@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:41:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/18 17:22:38 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/18 17:28:05 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void					render(t_doom *doom);
 
 // EVENTS
 
+void					key_init(t_doom *doom);
 int						key_on(int key, void *param);
 int						key_off(int key, void *param);
 int						button_on(int button, int x, int y, void *param);

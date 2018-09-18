@@ -6,7 +6,7 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/18 12:36:39 by tberthie          #+#    #+#              #
-#    Updated: 2018/09/18 16:50:43 by tberthie         ###   ########.fr        #
+#    Updated: 2018/09/18 17:25:52 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = doom-nukem
 
 MLX = mlx/libmlx.a
 INCLUDES = -I includes/ -I mlx/mlx.h
-FLAGS = -framework OpenGL -framework AppKit #-Weverything -Ofast -g3 -fsanitize=address
+FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main loop render ) \
