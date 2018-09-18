@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:41:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/18 14:11:58 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/18 17:27:41 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include "vectors.h"
 
 #define ERROR_PREFIX	"./doom-nukem: "
 
+int						printvec(t_vec a);
 void					ft_error(const char *str) __attribute((noreturn));
 
 #endif
