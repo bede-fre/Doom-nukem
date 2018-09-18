@@ -6,14 +6,14 @@
 #    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/18 12:36:39 by tberthie          #+#    #+#              #
-#    Updated: 2018/09/18 12:41:43 by tberthie         ###   ########.fr        #
+#    Updated: 2018/09/18 13:36:22 by tberthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = doom-nukem
 
 INCLUDES = -I includes/
-FLAGS = -Weverything
+FLAGS = -Weverything -Ofast -g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 		main ))
