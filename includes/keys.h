@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 12:41:12 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 17:27:39 by toliver          ###   ########.fr       */
+/*   Created: 2018/09/18 17:17:53 by tberthie          #+#    #+#             */
+/*   Updated: 2018/09/18 17:22:47 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#ifndef KEYS_H
+# define KEYS_H
 
-int					printvec(t_vec a)
+typedef struct		s_key
 {
-	printf("x = %f, y = %f, z = %f\n", a.x, a.y, a.z);
-	return (1);
-}
+	int				code;
+	char			pressed;
 
-int					main(int ac)
-{
-	t_vec			v;
-//	ft_error("test");
-	v = ft_vecdef(0, 0, 1);
-	printvec(v);
-	v = ft_vecrot(v, 90, 90, 0);
-	printvec(v);
-	return (0);
-}
+}					t_key;
+
+#endif

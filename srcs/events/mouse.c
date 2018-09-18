@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 14:05:39 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 14:12:17 by tberthie         ###   ########.fr       */
+/*   Created: 2018/09/18 15:46:10 by tberthie          #+#    #+#             */
+/*   Updated: 2018/09/18 16:50:09 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void				ft_error(const char *str)
+int						mouse_move(int button, int x, int y, void *param)
 {
-	write(2, ERROR_PREFIX, strlen(ERROR_PREFIX));
-	if (!str)
-		str = strerror(errno);
-	write(2, str, strlen(str));
-	write(2, "\n", 1);
-	exit(1);
+	return (0);
+}
+
+int						button_on(int button, int x, int y, void *param)
+{
+	return (0);
+}
+
+int						button_off(int button, int x, int y, void *param)
+{
+	return (0);
 }

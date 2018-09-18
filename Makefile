@@ -3,36 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+         #
+#    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/18 12:36:39 by tberthie          #+#    #+#              #
-#    Updated: 2018/09/18 14:28:35 by toliver          ###   ########.fr        #
+#    Created: 2018/09/18 17:36:10 by toliver           #+#    #+#              #
+#    Updated: 2018/09/18 17:36:56 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = doom-nukem
 
-INCLUDES = -I includes/
-FLAGS = -Weverything -Ofast -g3 -fsanitize=address
+MLX = mlx/libmlx.a
+INCLUDES = -I includes/ -I mlx/mlx.h
+FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-		main tools vector/vector ))
+	   $(addprefix vector/, vector ) \
+	   $(addprefix core/, main loop render ) \
+	   $(addprefix events/, keys mouse window ) \
+	   $(addprefix tools/, malloc error ) \
+		))
 
 all: $(NAME)
 
 $(NAME): objs $(OBJS)
-	gcc -o $(NAME) $(OBJS) $(FLAGS) $(INCLUDE)
+	make -C mlx
+	gcc -o $(NAME) $(MLX) $(OBJS) $(FLAGS) $(INCLUDES)
 
 objs/%.o: srcs/%.c
 	gcc -o $@ -c $< $(FLAGS) $(INCLUDES)
 
 objs:
-	mkdir objs
+	mkdir -p objs/events
+	mkdir objs/tools
+	mkdir objs/core
 
 clean:
+	make -C mlx clean
 	rm -rf objs
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(MLX)
 
 re: fclean all
+	make -C mlx re
