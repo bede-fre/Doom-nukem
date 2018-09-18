@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 12:41:12 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 14:12:28 by tberthie         ###   ########.fr       */
+/*   Created: 2018/09/18 14:05:39 by tberthie          #+#    #+#             */
+/*   Updated: 2018/09/18 14:12:17 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-int					main(int ac)
+void				ft_error(const char *str)
 {
-//	ft_error("test");
-	return (0);
+	write(2, ERROR_PREFIX, strlen(ERROR_PREFIX));
+	if (!str)
+		str = strerror(errno);
+	write(2, str, strlen(str));
+	write(2, "\n", 1);
+	exit(1);
 }
