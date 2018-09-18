@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 14:05:39 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 14:12:17 by tberthie         ###   ########.fr       */
+/*   Created: 2018/09/18 14:25:08 by tberthie          #+#    #+#             */
+/*   Updated: 2018/09/18 16:51:07 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void				ft_error(const char *str)
+static int				loop_hook(void *param)
 {
-	write(2, ERROR_PREFIX, strlen(ERROR_PREFIX));
-	if (!str)
-		str = strerror(errno);
-	write(2, str, strlen(str));
-	write(2, "\n", 1);
-	exit(1);
+	render(param);
+	return (0);
+}
+
+void					loop(t_doom *doom)
+{
+	mlx_hook(doom->window, 2, 0, &key_on, doom);
+	mlx_hook(doom->window, 3, 0, &key_off, doom);
+	mlx_hook(doom->window, 4, 0, &button_on, doom);
+	mlx_hook(doom->window, 5, 0, &button_off, doom);
+	mlx_hook(doom->window, 6, 0, &mouse_move, doom);
+	mlx_hook(doom->window, 17, 0, &window_closed, doom);
+	mlx_loop(doom->mlx);
 }

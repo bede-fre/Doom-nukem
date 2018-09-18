@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 12:41:12 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 14:12:28 by tberthie         ###   ########.fr       */
+/*   Created: 2018/09/18 17:17:53 by tberthie          #+#    #+#             */
+/*   Updated: 2018/09/18 17:22:47 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#ifndef KEYS_H
+# define KEYS_H
 
-int					main(int ac)
+typedef struct		s_key
 {
-//	ft_error("test");
-	return (0);
-}
+	int				code;
+	char			pressed;
+
+}					t_key;
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:41:52 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/18 14:11:58 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/18 17:22:38 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,49 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "mlx.h"
+
+#include "vectors.h"
+#include "map.h"
+#include "keys.h"
+
 #define ERROR_PREFIX	"./doom-nukem: "
 
+#define WIN_WIDTH		1920
+#define WIN_HEIGHT		1080
+
+// T_DOOM
+
+typedef struct			s_doom
+{
+	void				*mlx;
+	void				*window;
+
+	t_key				**keys;
+
+	t_zone				**zones;
+
+}						t_doom;
+
+
+// CORE
+
+void					loop(t_doom *doom);
+void					render(t_doom *doom);
+
+// EVENTS
+
+int						key_on(int key, void *param);
+int						key_off(int key, void *param);
+int						button_on(int button, int x, int y, void *param);
+int						button_off(int button, int x, int y, void *param);
+int						mouse_move(int button, int x, int y, void *param);
+int						window_closed(void *param) __attribute((noreturn));
+
+// TOOLS
+
+void					*ft_malloc(unsigned int bytes);
+void					*ft_memalloc(unsigned int bytes);
 void					ft_error(const char *str) __attribute((noreturn));
 
 #endif
