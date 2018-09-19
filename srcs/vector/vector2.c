@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   vector2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 17:40:27 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/18 17:40:29 by toliver          ###   ########.fr       */
+/*   Created: 2018/09/19 15:06:45 by toliver           #+#    #+#             */
+/*   Updated: 2018/09/19 15:07:13 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "vectors.h"
 
-int					window_closed(void *param)
+t_vec		ft_vecscale(t_vec a, float s)
 {
-	exit(0);
+	t_vec	v;
+
+	v.x = a.x * s;
+	v.y = a.y * s;
+	v.z = a.z * s;
+	return (v);
+}
+
+t_vec		ft_vecdiv(t_vec a, float s)
+{
+	t_vec	v;
+
+	if (s != 0)
+	{
+		v.x = a.x / s;
+		v.y = a.y / s;
+		v.z = a.z / s;
+		return (v);
+	}
+	return (a);
 }

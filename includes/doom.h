@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:33:26 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/18 17:33:28 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/18 17:40:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@
 
 #define ERROR_PREFIX	"./doom-nukem: "
 
-<<<<<<< HEAD
-int						printvec(t_vec a);
-=======
 #define WIN_WIDTH		1920
 #define WIN_HEIGHT		1080
 
@@ -67,7 +64,6 @@ int						window_closed(void *param) __attribute((noreturn));
 
 void					*ft_malloc(unsigned int bytes);
 void					*ft_memalloc(unsigned int bytes);
->>>>>>> a653a17a5702b36e8208f0cd0fa077e55e22099e
 void					ft_error(const char *str) __attribute((noreturn));
 
 #endif
