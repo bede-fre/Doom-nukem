@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/18 17:36:10 by toliver           #+#    #+#              #
-#    Updated: 2018/09/19 15:07:56 by toliver          ###   ########.fr        #
+#    Updated: 2018/09/19 16:41:06 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INCLUDES = -I includes/ -I mlx/mlx.h
 FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix vector/, vector vector2 angle vecrot) \
+	   $(addprefix vector/, vector vector2 angle vecrot intersection) \
 	   $(addprefix core/, main loop render ) \
 	   $(addprefix events/, keys mouse window ) \
 	   $(addprefix tools/, malloc error ) \

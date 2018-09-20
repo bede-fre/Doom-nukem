@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:06:45 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/19 15:07:13 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/20 17:03:55 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ t_vec		ft_vecdiv(t_vec a, float s)
 		return (v);
 	}
 	return (a);
+}
+
+float		ft_2dvecnorm(t_vec a)
+{
+	return (sqrt(a.x * a.x + a.y * a.y));
 }
