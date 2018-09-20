@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/20 19:51:23 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/20 20:07:47 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void					*ft_malloc(unsigned int bytes);
 void					*ft_memalloc(unsigned int bytes);
 void					ft_error(const char *str) __attribute((noreturn));
 
-void					merge_images(t_img *dest, t_img *src, int x, int y);
+void					merge_images(t_img *dest, t_img *src, int x, int y); // penser a l'alpha
+int						px_to_img(t_img *img, int x, int y, int c); // penser a l'alpha
 
 #endif

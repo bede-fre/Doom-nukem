@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:38:43 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/20 19:30:12 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/20 20:07:49 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,15 @@ void			merge_images(t_img *dest, t_img *src, int x, int y)
 			dest_data += dest->width * BYTES_PER_PIXEL;
 		src_data += src->width * BYTES_PER_PIXEL;
 	}
+}
+
+int			px_to_img(t_img *img, int x, int y, int c)
+{
+	if (x < 0 || x >= img.width || y < 0 || y >= img.height)
+		return (0);
+	img->img_str[x * 4 + y * img->imgx * 4] = (c & 0xff);
+	img->img_str[x * 4 + y * img->imgx * 4 + 1] = ((c >> 8) & 0xff);
+	img->img_str[x * 4 + y * img->imgx * 4 + 2] = c >> 16;
+	img->img_str[x * 4 + y * img->imgx * 4 + 3] = 0;
+	return (1);
 }
