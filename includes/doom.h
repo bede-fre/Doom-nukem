@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:33:26 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/20 16:34:52 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/20 19:02:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@
 
 // T_DOOM
 
+typedef struct			s_param
+{
+	float				sensitivity;
+	t_vec				mousepos;
+}						t_param;
+
+typedef struct			s_player
+{
+	t_vec				pos;
+	t_vec				rot;
+	float				speed;
+}						t_player;
+
 typedef struct			s_doom
 {
 	void				*mlx;
@@ -41,6 +54,8 @@ typedef struct			s_doom
 	int					*bindings;
 	char				*keys;
 
+	t_player			player;
+	t_param				param;
 	t_zone				**zones;
 
 }						t_doom;
@@ -60,7 +75,7 @@ char					is_key_pressed(t_doom *doom, int key);
 
 int						button_on(int button, int x, int y, void *param);
 int						button_off(int button, int x, int y, void *param);
-int						mouse_move(int button, int x, int y, void *param);
+int						mouse_move(int x, int y, void *param);
 int						window_closed(void *param) __attribute((noreturn));
 
 // TOOLS

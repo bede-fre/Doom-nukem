@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/20 16:35:44 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/20 19:44:05 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			key_init(t_doom *doom)
 char			is_key_pressed(t_doom *doom, int key)
 {
 	if (key > 0 && key < K_END)
-		return (doom->bindings[key]);
+		return (doom->keys[key]);
 	return (0);	
 }
 
@@ -48,6 +48,9 @@ int				key_pressed(int key, void *param)
 
 	if ((index = get_key_id((t_doom*)param, key)) != -1)
 		((t_doom*)param)->keys[index] = 1;
+	if (key == 53)
+		exit(0);
+	playermove(param);
 	return (0);
 }
 

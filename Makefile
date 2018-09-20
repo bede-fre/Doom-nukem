@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/18 17:36:10 by toliver           #+#    #+#              #
-#    Updated: 2018/09/19 16:41:06 by toliver          ###   ########.fr        #
+#    Updated: 2018/09/20 18:47:31 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main loop render ) \
 	   $(addprefix events/, keys mouse window ) \
 	   $(addprefix tools/, malloc error ) \
+	   $(addprefix playerhandling/, playermove) \
 		))
 
 all: $(NAME)
@@ -37,6 +38,7 @@ objs:
 	mkdir objs/tools
 	mkdir objs/core
 	mkdir objs/vector
+	mkdir objs/playerhandling
 
 clean:
 	make -C mlx clean

@@ -6,13 +6,20 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/20 17:32:25 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/20 19:49:02 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static void			init(void)
+static void			playerinit(t_doom *env)
+{
+	env->player.pos = ft_vecdef(10, 10, 0);
+	env->player.rot = ft_vecdef(0, 1, 0);
+	env->player.speed = 0.2;
+}
+
+static void			init(t_doom **env)
 {
 	t_doom			*doom;
 
@@ -23,7 +30,10 @@ static void			init(void)
 	WIN_HEIGHT, "doom-nukem")))
 		ft_error("MLX failed to create a window");
 	mlx_clear_window(doom->mlx, doom->window);
-	loop(doom);
+	playerinit(doom);
+	doom->param.sensitivity = 1.0;
+	doom->param.mousepos = ft_vecdef(-6000, -6000, 0);
+	*env = doom;
 }
 
 int					blueskintest(void) // a supprimer apres
@@ -36,7 +46,9 @@ int					blueskintest(void) // a supprimer apres
 
 int					main(void)
 {
-//	init();
+	t_doom			*env;
+	init(&env);
 	blueskintest();
+	loop(env);
 	return (0);
 }

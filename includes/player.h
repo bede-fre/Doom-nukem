@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.h                                             :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 17:17:53 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/20 19:41:40 by toliver          ###   ########.fr       */
+/*   Created: 2018/09/20 18:46:29 by toliver           #+#    #+#             */
+/*   Updated: 2018/09/20 18:48:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
-enum e_keys {
-
-	K_FORWARD = 1,
-	K_BACKWARD,
-	K_LEFT,
-	K_RIGHT,
-
-	K_END
-};
+int		playerrot(t_doom *env);
 
 #endif
