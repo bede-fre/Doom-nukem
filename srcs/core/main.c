@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 12:41:12 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/20 15:57:46 by tberthie         ###   ########.fr       */
+/*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
+/*   Updated: 2018/09/20 17:32:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,17 @@ static void			init(void)
 	loop(doom);
 }
 
+int					blueskintest(void) // a supprimer apres
+{
+	ft_printvector(ft_2dintersection(ft_linedef(ft_vecdef(2, 2, 0), ft_vecdef(6, 10, 0)),ft_linedef(ft_vecdef(-10, 4, 0), ft_vecdef(12, 25, 0))));
+	printf("longueur = %f\n", ft_2dvecnorm(ft_vecsub(ft_vecdef(2, 2, 0), ft_vecdef(2, 2, 0))));
+	printf("longueur = %f\n", ft_2dvecnorm(ft_vecsub(ft_2dintersection(ft_linedef(ft_vecdef(2, 2, 0), ft_vecdef(6, 10, 0)),ft_linedef(ft_vecdef(-10, 4, 0), ft_vecdef(12, 25, 0))), ft_vecdef(2, 2, 0))));
+	return (1);
+}
+
 int					main(void)
 {
-	init();
+//	init();
+	blueskintest();
 	return (0);
 }
