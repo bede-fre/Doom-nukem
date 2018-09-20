@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:33:26 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/18 17:40:05 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/20 16:34:52 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef struct			s_doom
 	void				*mlx;
 	void				*window;
 
-	t_key				**keys;
+	int					*bindings;
+	char				*keys;
 
 	t_zone				**zones;
 
@@ -52,9 +53,11 @@ void					render(t_doom *doom);
 
 // EVENTS
 
+int						key_pressed(int key, void *param);
+int						key_released(int key, void *param);
 void					key_init(t_doom *doom);
-int						key_on(int key, void *param);
-int						key_off(int key, void *param);
+char					is_key_pressed(t_doom *doom, int key);
+
 int						button_on(int button, int x, int y, void *param);
 int						button_off(int button, int x, int y, void *param);
 int						mouse_move(int button, int x, int y, void *param);
