@@ -6,18 +6,21 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:17:53 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 17:22:47 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:38:35 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYS_H
 # define KEYS_H
 
-typedef struct		s_key
-{
-	int				code;
-	char			pressed;
+enum e_keys {
 
-}					t_key;
+	K_FORWARD,
+	K_BACKWARD,
+	K_LEFT,
+	K_RIGHT,
+
+	K_END
+};
 
 #endif

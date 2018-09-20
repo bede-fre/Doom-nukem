@@ -6,46 +6,56 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/18 17:30:46 by tberthie         ###   ########.fr       */
+/*   Updated: 2018/09/20 16:35:44 by tberthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void			key_init(t_doom *doom)
+static int		get_key_id(t_doom *doom, int keycode)
 {
-	doom->keys = (t_key**)ft_memalloc(sizeof(t_key*));
-	doom->keys[0] = 0;
+	if (keycode == doom->bindings[K_FORWARD])
+		return (K_FORWARD);
+	if (keycode == doom->bindings[K_BACKWARD])
+		return (K_BACKWARD);
+	if (keycode == doom->bindings[K_LEFT])
+		return (K_LEFT);
+	if (keycode == doom->bindings[K_RIGHT])
+		return (K_RIGHT);
+	return (-1);
 }
 
-void			key_add(t_doom *doom, int key)
+void			key_init(t_doom *doom)
 {
-
+	doom->keys = (char*)ft_memalloc(sizeof(char) * K_END);
+	doom->bindings = (int*)ft_memalloc(sizeof(int) * K_END);
+	doom->bindings[K_FORWARD] = 13;
+	doom->bindings[K_BACKWARD] = 0;
+	doom->bindings[K_LEFT] = 1;
+	doom->bindings[K_RIGHT] = 2;
 }
 
 char			is_key_pressed(t_doom *doom, int key)
 {
-	t_key		**keys;
+	if (key > 0 && key < K_END)
+		return (doom->bindings[key]);
+	return (0);	
+}
 
-	keys = doom->keys;
-	while (*keys)
-	{
-		if (keys[0]->code == key)
-			return (keys[0]->pressed);
-		keys++;
-	}
-	key_add(doom, key);
+int				key_pressed(int key, void *param)
+{
+	int			index;
+
+	if ((index = get_key_id((t_doom*)param, key)) != -1)
+		((t_doom*)param)->keys[index] = 1;
 	return (0);
 }
 
-int				key_on(int key, void *param)
+int				key_released(int key, void *param)
 {
-	// turn on
-	return (0);
-}
+	int			index;
 
-int				key_off(int key, void *param)
-{
-	// turn off
+	if ((index = get_key_id((t_doom*)param, key)) != -1)
+		((t_doom*)param)->keys[index] = 0;
 	return (0);
 }
