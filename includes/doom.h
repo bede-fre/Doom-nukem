@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 17:33:26 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/20 19:02:37 by toliver          ###   ########.fr       */
+/*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
+/*   Updated: 2018/09/20 19:51:23 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ int						window_closed(void *param) __attribute((noreturn));
 void					*ft_malloc(unsigned int bytes);
 void					*ft_memalloc(unsigned int bytes);
 void					ft_error(const char *str) __attribute((noreturn));
+
+void					merge_images(t_img *dest, t_img *src, int x, int y);
 
 #endif

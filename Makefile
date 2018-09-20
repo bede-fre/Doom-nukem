@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/18 17:36:10 by toliver           #+#    #+#              #
-#    Updated: 2018/09/20 18:47:31 by toliver          ###   ########.fr        #
+#    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
+#    Updated: 2018/09/20 19:50:53 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix vector/, vector vector2 angle vecrot intersection) \
 	   $(addprefix core/, main loop render ) \
 	   $(addprefix events/, keys mouse window ) \
-	   $(addprefix tools/, malloc error ) \
 	   $(addprefix playerhandling/, playermove) \
+	   $(addprefix tools/, malloc error images ) \
 		))
 
 all: $(NAME)
