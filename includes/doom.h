@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/20 20:07:47 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 14:16:01 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include "vectors.h"
 #include "map.h"
 #include "keys.h"
+#include "image.h"
 
 #define ERROR_PREFIX	"./doom-nukem: "
 
