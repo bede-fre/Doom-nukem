@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 15:22:39 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:12:35 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct			s_doom
 	int					*bindings;
 	char				*keys;
 
+	t_img				img;
+
 	t_player			player;
 	t_param				param;
 	t_zone				**zones;
@@ -87,5 +89,6 @@ void					ft_error(const char *str) __attribute((noreturn));
 
 void					merge_images(t_img *dest, t_img *src, int x, int y); // penser a l'alpha
 int						px_to_img(t_img *img, int x, int y, int c); // penser a l'alpha
+void					ft_putline(t_vec a, t_vec b, t_img *img, int color);
 
 #endif

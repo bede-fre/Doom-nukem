@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/20 19:44:05 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:37:20 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void			key_init(t_doom *doom)
 	doom->keys = (char*)ft_memalloc(sizeof(char) * K_END);
 	doom->bindings = (int*)ft_memalloc(sizeof(int) * K_END);
 	doom->bindings[K_FORWARD] = 13;
-	doom->bindings[K_BACKWARD] = 0;
-	doom->bindings[K_LEFT] = 1;
+	doom->bindings[K_BACKWARD] = 1;
+	doom->bindings[K_LEFT] = 0;
 	doom->bindings[K_RIGHT] = 2;
 }
 
@@ -50,7 +50,7 @@ int				key_pressed(int key, void *param)
 		((t_doom*)param)->keys[index] = 1;
 	if (key == 53)
 		exit(0);
-	playermove(param);
+	render(param);
 	return (0);
 }
 

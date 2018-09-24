@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:35:11 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/20 19:49:07 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:24:37 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,30 @@ int			playermove(t_doom *env)
 	t_vec	movedirection;
 	t_vec	flattenedmovement;
 
-	printf("PLAYER MOVEMENT:\n");
+//	printf("PLAYER MOVEMENT:\n");
 	movedirection = ft_vecdef(0, 0, 0);
 	flattenedmovement = ft_vecdef(env->player.rot.x, env->player.rot.y, 0);
 	flattenedmovement = ft_vecnormalize(flattenedmovement);
-	ft_printvector(flattenedmovement);
-	ft_printvector(env->player.pos);
+//	ft_printvector(flattenedmovement);
+//	ft_printvector(env->player.pos);
 	if (is_key_pressed(env, K_FORWARD))
 	{
-		printf("FORWARD\n");
+//		printf("FORWARD\n");
 		movedirection = ft_vecadd(movedirection, flattenedmovement);
 	}
 	if (is_key_pressed(env, K_BACKWARD))
 	{
-		printf("BACKWARD\n");
+//		printf("BACKWARD\n");
 		movedirection = ft_vecsub(movedirection, flattenedmovement);
 	}
 	if (is_key_pressed(env, K_LEFT))
 	{
-		printf("LEFT\n");
+//		printf("LEFT\n");
 		movedirection = ft_vecadd(movedirection, ft_vecrotz(flattenedmovement, -90));
 	}
 	if (is_key_pressed(env, K_RIGHT))
 	{
-		printf("RIGHT\n");
+//		printf("RIGHT\n");
 		movedirection = ft_vecadd(movedirection, ft_vecrotz(flattenedmovement, 90));
 	}
 	if (ft_vecnorm(movedirection) != 0)
@@ -59,10 +59,10 @@ int			playermove(t_doom *env)
 		if (ft_vecnorm(movedirection) > 1.00)
 			movedirection = ft_vecnormalize(movedirection);
 	}
-	ft_printvector(movedirection);
-	ft_printvector(env->player.pos);
+//	ft_printvector(movedirection);
+//	ft_printvector(env->player.pos);
 	env->player.pos = ft_vecadd(env->player.pos, ft_vecscale(movedirection, env->player.speed));
-	ft_printvector(movedirection);
-	ft_printvector(env->player.pos);
+//	ft_printvector(movedirection);
+//	ft_printvector(env->player.pos);
 	return (1);
 }

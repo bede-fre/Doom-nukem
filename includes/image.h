@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:25:59 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/24 14:16:20 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:04:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ typedef struct		s_img
 	void			*ptr;
 	char			*data;
 
+	int				bpp;
+	int				linesize;
+	int				endian;
 	int				width;
 	int				height;
 

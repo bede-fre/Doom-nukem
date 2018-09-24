@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/09/20 19:50:53 by toliver          ###   ########.fr        #
+#    Updated: 2018/09/24 16:58:33 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix core/, main loop render ) \
 	   $(addprefix events/, keys mouse window ) \
 	   $(addprefix playerhandling/, playermove) \
-	   $(addprefix tools/, malloc error images ) \
+	   $(addprefix tools/, malloc error images putline) \
 		))
 
 all: $(NAME)

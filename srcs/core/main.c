@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 15:22:37 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:37:18 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_wall				*wall(char type, int nextzone, t_vec origin, t_vec dir)
 {
 	t_wall			*ptr;
 
-	ptr = (t_wall*)malloc(sizeof(t_wall));
+	ptr = (t_wall*)ft_memalloc(sizeof(t_wall));
 	ptr->type = type;
 	ptr->nextzone = nextzone;
 	ptr->origin = origin;
@@ -28,8 +28,8 @@ t_zone				*malloczonetest(void)
 {
 	t_zone			*zone;
 
-	zone = (t_zone*)malloc(sizeof(t_zone));
-	zone->walls = (t_wall**)malloc(sizeof(t_wall*) * 5);
+	zone = (t_zone*)ft_memalloc(sizeof(t_zone));
+	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 5);
 	zone->walls[0] = wall(0, -1, ft_vecdef(0, 0, 0), ft_vecdef(1, 0, 0));
 	zone->walls[1] = wall(0, -1, ft_vecdef(20, 0, 0), ft_vecdef(0, 1, 0));
 	zone->walls[2] = wall(0, -1, ft_vecdef(20, 20, 0), ft_vecdef(20, -1, 0));
@@ -48,8 +48,19 @@ static void			mapinit(t_doom *env)
 static void			playerinit(t_doom *env)
 {
 	env->player.pos = ft_vecdef(10, 10, 0);
-	env->player.rot = ft_vecdef(0, 1, 0);
-	env->player.speed = 0.2;
+	env->player.rot = ft_vecdef(0, -1, 0);
+	env->player.speed = 0.1;
+}
+
+static void			imginit(t_doom *env)
+{
+	if (!(env->img.ptr = mlx_new_image(env->mlx, WIN_WIDTH, WIN_HEIGHT)))
+		exit (1);
+	if (!(env->img.data = mlx_get_data_addr(env->img.ptr, &(env->img.bpp),
+			&(env->img.linesize), &(env->img.endian))))
+		exit (1);
+	env->img.width = WIN_WIDTH;
+	env->img.height = WIN_HEIGHT;
 }
 
 static void			init(t_doom **env)
@@ -67,6 +78,7 @@ static void			init(t_doom **env)
 	doom->param.sensitivity = 1.0;
 	doom->param.mousepos = ft_vecdef(-6000, -6000, 0);
 	mapinit(doom);
+	imginit(doom);
 	*env = doom;
 }
 
