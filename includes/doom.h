@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 17:12:35 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/24 20:30:17 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@
 #include "map.h"
 #include "keys.h"
 #include "image.h"
+#include "player.h"
 
 #define ERROR_PREFIX	"./doom-nukem: "
 
 #define WIN_WIDTH		1920
 #define WIN_HEIGHT		1080
+#define CLIPPING		1
+#define FOV				60.0
 
 // T_DOOM
 
@@ -56,6 +59,7 @@ typedef struct			s_doom
 	char				*keys;
 
 	t_img				img;
+	t_img				map;
 
 	t_player			player;
 	t_param				param;
@@ -86,9 +90,21 @@ int						window_closed(void *param) __attribute((noreturn));
 void					*ft_malloc(unsigned int bytes);
 void					*ft_memalloc(unsigned int bytes);
 void					ft_error(const char *str) __attribute((noreturn));
+t_wall					*get_wall(char type, int nextzone, t_vec o, t_vec d);
+void					mapimgalloc(t_zone **zones, t_img *map, t_doom *env);
 
 void					merge_images(t_img *dest, t_img *src, int x, int y); // penser a l'alpha
 int						px_to_img(t_img *img, int x, int y, int c); // penser a l'alpha
+void					img_get(t_img *ing, int x, int y, t_doom *env);
+
+
+// DRAWING
+
 void					ft_putline(t_vec a, t_vec b, t_img *img, int color);
+
+// PLAYER HANDLING
+
+int						playerrot(t_doom *env, t_vec diff);
+int						playermove(t_doom *env);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/09/24 16:58:33 by toliver          ###   ########.fr        #
+#    Updated: 2018/09/24 20:52:43 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@ NAME = doom-nukem
 
 MLX = mlx/libmlx.a
 INCLUDES = -I includes/ -I mlx/mlx.h
-FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra
+FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra -g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix vector/, vector vector2 angle vecrot intersection) \
-	   $(addprefix core/, main loop render ) \
+	   $(addprefix core/, main loop render map) \
 	   $(addprefix events/, keys mouse window ) \
 	   $(addprefix playerhandling/, playermove) \
-	   $(addprefix tools/, malloc error images putline) \
+	   $(addprefix tools/, malloc error images putline allocate) \
 		))
 
 all: $(NAME)
