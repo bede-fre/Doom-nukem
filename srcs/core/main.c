@@ -6,11 +6,12 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 20:53:40 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/25 09:05:52 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
 t_zone				*malloczonetest(void)
 {
 	t_zone			*zone;

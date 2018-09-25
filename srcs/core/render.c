@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/24 20:56:12 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/25 09:43:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,21 @@ int							ft_printrays(t_doom *env, t_img *img)
 	float					increment;
 	t_vec					raydir;
 	int						i;
+	int						d;
 
 	increment = FOV / WIN_WIDTH;
 	raydir = ft_vecrotz(env->player.rot, -(FOV / 2));
+
+
+	raydir.x -= env->player.pos.x;
+	raydir.y -= env->player.pos.y;
+	raydir.z -= env->player.pos.z;
+	d = sqrt(pow(raydir.x, 2.0) + pow(raydir.y, 2.0) + pow(raydir.z, 2.0));
+	raydir.x /= d;
+	raydir.y /= d;
+	raydir.z /= d;
+
+
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
