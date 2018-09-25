@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:35:11 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/25 15:21:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/25 17:09:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			playerrot(t_doom *env, t_vec diff)
 {
 	diff = ft_vecscale(diff, env->param.sensitivity);
-	env->player.rot = ft_vecrot(env->player.rot, 0, diff.y, diff.x);
+	env->player.rot = ft_vecrot(env->player.rot, -diff.y, 0, diff.x);
 	return (1);
 }
 
