@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/25 12:44:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/25 15:32:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,32 @@ int							ft_printmap(t_doom *env, t_img *img)
 
 static void					ft_make_minimap(t_doom *env, t_img *img)
 {
+	t_vec	vect;
 	int	x;
 	int	y;
 	int	i;
 	int	j;
 
-	i = (int)(env->player.pos.x * 10.0 - 100.0);
-	j = (int)(env->player.pos.y * 10.0 - 100.0);
+	i = (int)(env->player.pos.x * 10.0 - (float)MAP_WIDTH / 2.0);
+	j = (int)(env->player.pos.y * 10.0 - (float)MAP_HEIGHT / 2.0);
 	x = -1;
 	while (++x < MAP_WIDTH)
 	{
 		y = -1;
 		while (++y < MAP_HEIGHT)
 		{
-			if (x + i < 0 || y + j < 0 || x + i >= WIN_WIDTH || y + j >= WIN_HEIGHT)
+			vect = ft_vecdef((float)x - (float)MAP_WIDTH / 2.0, (float)y - (float)MAP_HEIGHT / 2.0, 0);
+			vect = ft_vecrotz(vect, env->player.rot.x * 100.0);
+			vect.x += env->player.pos.x * 10.0;
+			vect.y += env->player.pos.y * 10.0;
+			if (vect.x < 0 || vect.y < 0 || vect.x >= WIN_WIDTH || vect.y >= WIN_HEIGHT)
 				px_to_img(&env->minimap, x, y, 0);
 			else
 			{
-				env->minimap.data[x * 4 + y * 4 * MAP_WIDTH] = img->data[(x + i) * 4 + (y + j) * 4 * WIN_WIDTH];
-				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 1] = img->data[((x + i) * 4 + (y + j) * 4 * WIN_WIDTH) + 1];
-				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 2] = img->data[((x + i) * 4 + (y + j) * 4 * WIN_WIDTH) + 2];
-				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 3] = img->data[((x + i) * 4 + (y + j) * 4 * WIN_WIDTH) + 3];
+				env->minimap.data[x * 4 + y * 4 * MAP_WIDTH] = img->data[(int)vect.x * 4 + (int)vect.y * 4 * WIN_WIDTH];
+				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 1] = img->data[((int)vect.x * 4 + (int)vect.y * 4 * WIN_WIDTH) + 1];
+				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 2] = img->data[((int)vect.x * 4 + (int)vect.y * 4 * WIN_WIDTH) + 2];
+				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 3] = img->data[((int)vect.x * 4 + (int)vect.y * 4 * WIN_WIDTH) + 3];
 			}
 			if (x == 0 || y == 0 || x == MAP_WIDTH - 1 || y == MAP_HEIGHT - 1)
 				px_to_img(&env->minimap, x, y, 0xFFFFFF);
