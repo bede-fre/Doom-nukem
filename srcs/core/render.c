@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/25 09:43:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/25 11:55:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,9 @@ int							ft_printrays(t_doom *env, t_img *img)
 	float					increment;
 	t_vec					raydir;
 	int						i;
-	int						d;
 
 	increment = FOV / WIN_WIDTH;
 	raydir = ft_vecrotz(env->player.rot, -(FOV / 2));
-
-
-	raydir.x -= env->player.pos.x;
-	raydir.y -= env->player.pos.y;
-	raydir.z -= env->player.pos.z;
-	d = sqrt(pow(raydir.x, 2.0) + pow(raydir.y, 2.0) + pow(raydir.z, 2.0));
-	raydir.x /= d;
-	raydir.y /= d;
-	raydir.z /= d;
-
-
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
@@ -59,12 +47,44 @@ int							ft_printmap(t_doom *env, t_img *img)
 	return (1);
 }
 
+static void					ft_make_minimap(t_doom *env, t_img *img)
+{
+	int	x;
+	int	y;
+	int	i;
+	int	j;
+
+	i = (int)env->player.pos.x * 10 - 100;
+	j = (int)env->player.pos.y * 10 - 100;
+	x = -1;
+	while (++x < MAP_WIDTH)
+	{
+		y = -1;
+		while (++y < MAP_HEIGHT)
+		{
+			if (x + i < 0 || y + j < 0 || x + i >= WIN_WIDTH || y + j >= WIN_HEIGHT)
+				px_to_img(&env->minimap, x, y, 0);
+			else
+			{
+				env->minimap.data[x * 4 + y * 4 * MAP_WIDTH] = img->data[(x + i) * 4 + (y + j) * 4 * WIN_WIDTH];
+				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 1] = img->data[((x + i) * 4 + (y + j) * 4 * WIN_WIDTH) + 1];
+				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 2] = img->data[((x + i) * 4 + (y + j) * 4 * WIN_WIDTH) + 2];
+				env->minimap.data[(x * 4 + y * 4 * MAP_WIDTH) + 3] = img->data[((x + i) * 4 + (y + j) * 4 * WIN_WIDTH) + 3];
+			}
+			if (x == 0 || y == 0 || x == MAP_WIDTH - 1 || y == MAP_HEIGHT - 1)
+				px_to_img(&env->minimap, x, y, 0xFFFFFF);
+		}
+	}
+}
+
 void						render(t_doom *doom)
 {
 	bzero(doom->img.data, doom->img.width * doom->img.height * 4);
 	playermove(doom);
 	ft_printmap(doom, &doom->img);
 	ft_printplayer(doom, &doom->img);
+	ft_make_minimap(doom, &doom->img);
 	mlx_put_image_to_window(doom->mlx ,doom->window, doom->img.ptr, 0, 0);
-//	printf("Render\n");
+	mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 300, 300);
+	//	printf("Render\n");
 }

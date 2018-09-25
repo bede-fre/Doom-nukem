@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 20:30:17 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/25 10:16:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct			s_doom
 
 	t_img				img;
 	t_img				map;
+	t_img				minimap;
 
 	t_player			player;
 	t_param				param;
