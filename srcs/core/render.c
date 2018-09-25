@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/25 11:55:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/25 12:44:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void					ft_make_minimap(t_doom *env, t_img *img)
 	int	i;
 	int	j;
 
-	i = (int)env->player.pos.x * 10 - 100;
-	j = (int)env->player.pos.y * 10 - 100;
+	i = (int)(env->player.pos.x * 10.0 - 100.0);
+	j = (int)(env->player.pos.y * 10.0 - 100.0);
 	x = -1;
 	while (++x < MAP_WIDTH)
 	{
