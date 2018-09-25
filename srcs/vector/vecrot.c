@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:05:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 17:47:16 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/25 16:39:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vec		ft_vecroty(t_vec a, float yrot)
 	yrot = ft_degtorad(yrot);
 	cos = cosf(yrot);
 	sin = sinf(yrot);
-	v.x = a.x * cos - a.z * sin;
+	v.x = a.x * cos + a.z * sin;
 	v.y = a.y;
 	v.z = -(a.x) * sin + a.z * cos;
 	return (v);
