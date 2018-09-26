@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:33:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 20:08:17 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/26 09:32:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ float		ft_2dslope(t_vec a, t_vec b);
 float		ft_2dvecnorm(t_vec a);
 t_line		ft_linedef(t_vec a, t_vec b);
 int			ft_printvector(t_vec a);
+float		ft_dot_product(t_vec a, t_vec b);
+float		ft_vec_angle(t_vec a, t_vec b);
 
 #endif
