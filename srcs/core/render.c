@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/26 09:40:07 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/26 10:01:18 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void					ft_make_minimap(t_doom *env, t_img *img)
 		while (++y < MAP_HEIGHT)
 		{
 			vect = ft_vecdef((float)x - (float)MAP_WIDTH / 2.0, (float)y - (float)MAP_HEIGHT / 2.0, 0);
-			vect = ft_vecrotz(vect, -env->angle);
+			vect = ft_vecrotz(vect, env->angle);
 			vect.x += env->player.pos.x * 10.0;
 			vect.y += env->player.pos.y * 10.0;
 			if (vect.x < 0 || vect.y < 0 || vect.x >= WIN_WIDTH || vect.y >= WIN_HEIGHT)
