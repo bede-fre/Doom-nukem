@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/27 19:17:18 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/27 19:31:39 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,26 +150,27 @@ void						ft_make_view(t_doom *env, t_img *img)
 	raydir = ft_vecrotz(env->player.rot, -(FOV / 2));
 	i = 0;
 	test = 0;
-//	bzero(img->data, img->width * img->height * 4);
+	bzero(img->data, img->width * img->height * 4);
 	while (i < WIN_WIDTH / 20)
 	{
 		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env);
 		if (intersect != INFINITY)
 		{
-//			ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00); 
+	//		ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00); 
 			
 //			test++;
-//		if (intersect <= 5)
-//		{
-//			intersect = 1;
-//		}
-//		else if (intersect > 20)
-//		{
-//			intersect = 0;
-//		}
-//		else
-			intersect = 1 - intersect / 15;
+		if (intersect <= 5)
+		{
+			intersect = 1;
+		}
+		else if (intersect > 20)
+		{
+			intersect = 0;
+		}
+		else
+			intersect = 1 - (intersect - 5) / 15;
 		if (intersect != 0)
+		{
 			ft_putline(ft_vecdef(i * 20,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
 			ft_putline(ft_vecdef(i * 20 + 1,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 1,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
 			ft_putline(ft_vecdef(i * 20 + 2,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 2,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
@@ -191,7 +192,9 @@ void						ft_make_view(t_doom *env, t_img *img)
 			ft_putline(ft_vecdef(i * 20 + 18,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 18,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
 			ft_putline(ft_vecdef(i * 20 + 19,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 19,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
 		}
-		raydir = ft_vecrotz(raydir, increment);
+			ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00);  // rayons sur la map
+		}
+		raydir = ft_vecrotz(raydir, increment * 20);
 		i++;
 	}
 //	printf("test = %d, should be %d\n", test, WIN_WIDTH);
@@ -202,12 +205,12 @@ void						render(t_doom *doom)
 //	mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 300, 300);
 	bzero(doom->img.data, doom->img.width * doom->img.height * 4);
 	playermove(doom);
-	ft_printmap(doom, &doom->img);
-	ft_printplayer(doom, &doom->img);
 	ft_make_minimap(doom, &doom->img);
 	ft_make_view(doom, &doom->img);
+	ft_printmap(doom, &doom->img);
+	ft_printplayer(doom, &doom->img);
 	mlx_put_image_to_window(doom->mlx ,doom->window, doom->img.ptr, 0, 0);
-	mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 300, 300);
+	//mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 300, 300);
 //	mlx_put_image_to_window(doom->mlx, doom->window, doom->view.ptr, 300, 300);
 	//	printf("Render\n");
 }
