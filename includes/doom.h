@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/26 09:23:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/27 16:18:54 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct			s_player
 {
 	t_vec				pos;
 	t_vec				rot;
+	t_vec				rotangle;
 	float				speed;
 }						t_player;
 
@@ -59,6 +60,7 @@ typedef struct			s_doom
 	char				*keys;
 
 	t_img				img;
+	t_img				view;
 	t_img				map;
 	t_img				minimap;
 

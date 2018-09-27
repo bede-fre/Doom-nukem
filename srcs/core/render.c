@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/26 10:01:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/27 18:19:13 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,98 @@ static void					ft_make_minimap(t_doom *env, t_img *img)
 	}
 }
 
+float						crossproduct2d(t_vec a, t_vec b)
+{
+	return (a.x * b.y - a.y * b.x);
+}
+
+float						rayintersect(t_vec rayorigin, t_vec raydir, t_line wall)
+{
+	t_vec					v1;
+	t_vec					v2;
+	t_vec					v3;
+	float					dotproduct;
+	float					t1;
+	float					t2;
+
+	v1 = ft_vecsub(rayorigin, wall.a);
+	v1.z = 0;
+	v2 = ft_vecsub(wall.b, wall.a);
+	v2.z = 0;
+	v3 = ft_vecdef(-raydir.y, raydir.x, 0);
+	v3.z = 0;
+	dotproduct = ft_dot_product(v2, v3);
+	if (fabs(dotproduct) == 0)
+		return (INFINITY);
+	t1 = crossproduct2d(v2, v1) / dotproduct;
+	t2 = (v1.x * v3.x + v1.y * v3.y) / dotproduct;
+	if (t1 >= 0.0 && (t2 >= 0.0 && t2 <= 1.0))
+		return (t1);
+	return (INFINITY);
+}
+
+float						ft_rayintersect(t_vec pos, t_vec dir, t_zone **zones, t_doom *env)
+{
+	float					intersect;
+	float					tmpintersect;
+	t_line					wall;
+	int						i;
+
+	i = 0;
+	intersect = INFINITY;
+	while (zones[0]->walls[i]) // a changer quand on aura plus de zones (ne tester que la zone du player)
+	{
+		wall.a = zones[0]->walls[i]->origin;
+		wall.b = (zones[0]->walls[i + 1]) ? zones[0]->walls[i + 1]->origin : zones[0]->walls[0]->origin;
+		tmpintersect = rayintersect(pos, dir, wall);
+		if (tmpintersect != INFINITY)
+		{
+	//		printf("intersect = %f\n", tmpintersect);
+	//		printf("x = %f, y = %f\n", ft_vecadd(pos, ft_vecscale(ft_vecdef(cosf(env->player.rotangle.z), sinf(env->player.rotangle.z), 0), tmpintersect)).x, ft_vecadd(pos, ft_vecscale(ft_vecdef(cosf(env->player.rotangle.z), sinf(env->player.rotangle.z), 0), tmpintersect)).y);
+			if (intersect != INFINITY || tmpintersect < intersect)
+				intersect = tmpintersect;
+		}
+		i++;	
+	}
+	return (intersect);
+}
+
+void						ft_make_view(t_doom *env, t_img *img)
+{
+	float					increment;
+	t_vec					raydir;
+	int						i;
+	float					intersect;
+	int						test;
+
+	increment = FOV / WIN_WIDTH;
+	raydir = ft_vecrotz(env->player.rot, -(FOV / 2));
+	i = 0;
+	test = 0;
+//	bzero(img->data, img->width * img->height * 4);
+	while (i < WIN_WIDTH)
+	{
+		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env);
+		if (intersect != INFINITY)
+			ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00); 
+//			test++;
+		raydir = ft_vecrotz(raydir, increment);
+		i++;
+	}
+//	printf("test = %d, should be %d\n", test, WIN_WIDTH);
+}
+
 void						render(t_doom *doom)
 {
+//	mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 300, 300);
 	bzero(doom->img.data, doom->img.width * doom->img.height * 4);
 	playermove(doom);
 	ft_printmap(doom, &doom->img);
 	ft_printplayer(doom, &doom->img);
 	ft_make_minimap(doom, &doom->img);
+	ft_make_view(doom, &doom->img);
 	mlx_put_image_to_window(doom->mlx ,doom->window, doom->img.ptr, 0, 0);
 	mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 300, 300);
+//	mlx_put_image_to_window(doom->mlx, doom->window, doom->view.ptr, 300, 300);
 	//	printf("Render\n");
 }

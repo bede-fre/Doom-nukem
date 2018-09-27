@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:29:03 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/26 09:25:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:30:25 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ t_vec		ft_2dintersection(t_line a, t_line b)
 	x = (a.avalue * b.bvalue - b.avalue * a.bvalue == 0) ? INFINITY :
 		((b.bvalue * a.cvalue - a.bvalue * b.cvalue) /
 		(a.avalue * b.bvalue - b.avalue * a.bvalue));
-	printf("x crossing = %f\n", x);
+//	printf("x crossing = %f\n", x);
 	y = (a.avalue * b.bvalue - b.avalue * a.bvalue == 0) ? INFINITY :
 		((a.avalue * b.cvalue - b.avalue * a.cvalue) /
 		(a.avalue * b.bvalue - b.avalue * a.bvalue));
-	printf("y crossing = %f\n", y);
+//	printf("y crossing = %f\n", y);
 	return (ft_vecdef(x, y, 0));
 }

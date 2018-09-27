@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/25 16:48:15 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/09/27 15:31:13 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void			playerinit(t_doom *env)
 {
 	env->player.pos = ft_vecdef(10, 10, 0);
 	env->player.rot = ft_vecdef(0, -1, 0);
+	env->player.rotangle = ft_vecdef(0, 0, -90);
 	env->player.speed = 0.1;
 }
 
@@ -46,6 +47,7 @@ static void			imginit(t_doom *env)
 {
 	img_get(&env->img, WIN_WIDTH, WIN_HEIGHT, env);
 	img_get(&env->minimap, MAP_WIDTH, MAP_HEIGHT, env);
+	img_get(&env->view, WIN_WIDTH, WIN_HEIGHT, env);
 }
 
 static void			init(t_doom **env)
