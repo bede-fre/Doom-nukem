@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/27 19:31:39 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/28 17:30:03 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,57 +144,29 @@ void						ft_make_view(t_doom *env, t_img *img)
 	t_vec					raydir;
 	int						i;
 	float					intersect;
-	int						test;
+	float					angle;
+	float					testcos;
 
 	increment = FOV / WIN_WIDTH;
 	raydir = ft_vecrotz(env->player.rot, -(FOV / 2));
 	i = 0;
-	test = 0;
 	bzero(img->data, img->width * img->height * 4);
-	while (i < WIN_WIDTH / 20)
+	angle = -(FOV / 2);
+	while (i < WIN_WIDTH)
 	{
 		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env);
 		if (intersect != INFINITY)
 		{
 	//		ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00); 
-			
-//			test++;
-		if (intersect <= 5)
-		{
-			intersect = 1;
+			testcos = cosf(ft_degtorad(fabsf(angle)));
+			intersect = intersect * testcos / 20;
+			if (intersect != 0)
+			{	
+				ft_putline(ft_vecdef(i, (img->height / 2) * intersect, 0), ft_vecdef(i,img->height - ((img->height / 2) * intersect), 0), img, 0xffffff);
+			}
 		}
-		else if (intersect > 20)
-		{
-			intersect = 0;
-		}
-		else
-			intersect = 1 - (intersect - 5) / 15;
-		if (intersect != 0)
-		{
-			ft_putline(ft_vecdef(i * 20,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 1,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 1,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 2,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 2,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 3,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 3,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 4,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 4,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 5,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 5,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 6,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 6,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 7,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 7,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 8,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 8,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 9,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 9,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 10,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 10,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 11,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 11,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 12,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 12,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 13,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 13,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 14,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 14,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 15,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 15,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 16,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 16,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 17,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 17,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 18,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 18,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-			ft_putline(ft_vecdef(i * 20 + 19,(img->height / 2) * (1-intersect), 0), ft_vecdef(i * 20 + 19,img->height - ((img->height / 2) * (1 - intersect)), 0), img, 0xffffff);
-		}
-			ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00);  // rayons sur la map
-		}
-		raydir = ft_vecrotz(raydir, increment * 20);
+		angle += increment;
+		raydir = ft_vecrotz(raydir, increment);
 		i++;
 	}
 //	printf("test = %d, should be %d\n", test, WIN_WIDTH);
