@@ -6,14 +6,14 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/09/26 16:06:14 by toliver          ###   ########.fr        #
+#    Updated: 2018/09/29 11:17:05 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = doom-nukem
 
 MLX = mlx/libmlx.a
-INCLUDES = -I includes/ -I mlx/mlx.h
+INCLUDES = -I includes -I mlx
 FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra -g3 -fsanitize=address
 
 OBJS = $(addprefix objs/, $(addsuffix .o, \

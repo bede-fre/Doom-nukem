@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/27 16:18:54 by toliver          ###   ########.fr       */
+/*   Updated: 2018/09/29 11:23:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ void					mapimgalloc(t_zone **zones, t_img *map, t_doom *env);
 void					merge_images(t_img *dest, t_img *src, int x, int y); // penser a l'alpha
 int						px_to_img(t_img *img, int x, int y, int c); // penser a l'alpha
 void					img_get(t_img *ing, int x, int y, t_doom *env);
+
+void					rotmapimgalloc(t_zone **zones, t_img *map, t_doom *env);
 
 
 // DRAWING
