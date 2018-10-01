@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/09/29 11:17:05 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/01 11:04:03 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 	   $(addprefix tools/, malloc error images putline allocate) \
 		))
 
+.PHONY: all all clean fclean re objs $(NAME)
+
 all: $(NAME)
 
 $(NAME): objs $(OBJS)
@@ -31,7 +33,7 @@ $(NAME): objs $(OBJS)
 	gcc -o $(NAME) $(MLX) $(OBJS) $(FLAGS) $(INCLUDES)
 
 objs/%.o: srcs/%.c
-	gcc -o $@ -c $< $(FLAGS) $(INCLUDES)
+	gcc -c $^ -o $@ $(FLAGS) $(INCLUDES)
 
 objs:
 	mkdir -p objs/events
