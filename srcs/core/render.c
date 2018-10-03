@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/29 11:29:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/03 17:15:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,63 +48,35 @@ int							ft_printmap(t_doom *env, t_img *img)
 	return (1);
 }
 
-float						crossproduct2d(t_vec a, t_vec b)
+static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom *env)
 {
-	return (a.x * b.y - a.y * b.x);
-}
+	t_vec	wall_dir;
+	t_vec	vec;
+	int		i;
+	float	dist;
+	float	t;
 
-float						rayintersect(t_vec rayorigin, t_vec raydir, t_line wall)
-{
-	t_vec					v1;
-	t_vec					v2;
-	t_vec					v3;
-	float					dotproduct;
-	float					t1;
-	float					t2;
-
-	v1 = ft_vecsub(rayorigin, wall.a);
-	v1.z = 0;
-	v2 = ft_vecsub(wall.b, wall.a);
-	v2.z = 0;
-	v3 = ft_vecdef(-raydir.y, raydir.x, 0);
-	v3.z = 0;
-	dotproduct = ft_dot_product(v2, v3);
-	if (fabs(dotproduct) == 0)
-		return (INFINITY);
-	t1 = crossproduct2d(v2, v1) / dotproduct;
-	t2 = (v1.x * v3.x + v1.y * v3.y) / dotproduct;
-	if (t1 >= 0.0 && (t2 >= 0.0 && t2 <= 1.0))
-		return (t1);
-	return (INFINITY);
-}
-
-float						ft_rayintersect(t_vec pos, t_vec dir, t_zone **zones, t_doom *env)
-{
-	float					intersect;
-	float					tmpintersect;
-	t_line					wall;
-	int						i;
-
-	i = 0;
-	intersect = INFINITY;
-	while (zones[0]->walls[i]) // a changer quand on aura plus de zones (ne tester que la zone du player)
+	dist = INFINITY;
+	vec = ft_vecdef(0.0, 0.0, 1.0);
+	i = -1;
+	while (zones[0]->walls[++i])
 	{
-		wall.a = zones[0]->walls[i]->origin;
-		wall.b = (zones[0]->walls[i + 1]) ? zones[0]->walls[i + 1]->origin : zones[0]->walls[0]->origin;
-		tmpintersect = rayintersect(pos, dir, wall);
-		if (tmpintersect != INFINITY)
-		{
-	//		printf("intersect = %f\n", tmpintersect);
-	//		printf("x = %f, y = %f\n", ft_vecadd(pos, ft_vecscale(ft_vecdef(cosf(env->player.rotangle.z), sinf(env->player.rotangle.z), 0), tmpintersect)).x, ft_vecadd(pos, ft_vecscale(ft_vecdef(cosf(env->player.rotangle.z), sinf(env->player.rotangle.z), 0), tmpintersect)).y);
-			if (intersect != INFINITY || tmpintersect < intersect)
-				intersect = tmpintersect;
-		}
-		i++;	
+		wall_dir.x = zones[0]->walls[i]->direction.y * vec.z - zones[0]->walls[i]->direction.z * vec.y;
+		wall_dir.y = zones[0]->walls[i]->direction.z * vec.x - zones[0]->walls[i]->direction.x * vec.z;
+		wall_dir.z = zones[0]->walls[i]->direction.x * vec.y - zones[0]->walls[i]->direction.y * vec.x;
+		t = -(((wall_dir.x * (pos.x - zones[0]->walls[i]->origin.x)) +
+				(wall_dir.y * (pos.y - zones[0]->walls[i]->origin.y)) +
+				(wall_dir.z * (pos.z - zones[0]->walls[i]->origin.z))) /
+				((wall_dir.x * raydir.x) +
+				(wall_dir.y * raydir.y) +
+				(wall_dir.z * raydir.z)));
+		if (t >= 0.0 && t < dist)
+			dist = t;
 	}
-	return (intersect);
+	return (dist);
 }
 
-void						ft_make_view(t_doom *env, t_img *img)
+static void					ft_make_view(t_doom *env, t_img *img)
 {
 	float					increment;
 	t_vec					raydir;
@@ -123,19 +95,19 @@ void						ft_make_view(t_doom *env, t_img *img)
 		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env);
 		if (intersect != INFINITY)
 		{
-	//		ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, ft_vecscale(raydir, intersect)), 10), img, 0xffff00); 
 			testcos = cosf(ft_degtorad(fabsf(angle)));
+			testcos = 0.0;
 			intersect = intersect * testcos / 20;
 			if (intersect != 0)
-			{	
-				ft_putline(ft_vecdef(i, (img->height / 2) * intersect, 0), ft_vecdef(i,img->height - ((img->height / 2) * intersect), 0), img, 0xffffff);
+			{
+				ft_putline(ft_vecdef(i, (img->height / 2) - intersect / 2.0, 0),
+				ft_vecdef(i, ((img->height / 2) + intersect / 2.0), 0), img, 0xffffff);
 			}
 		}
 		angle += increment;
 		raydir = ft_vecrotz(raydir, increment);
 		i++;
 	}
-//	printf("test = %d, should be %d\n", test, WIN_WIDTH);
 }
 
 void						render(t_doom *doom)
