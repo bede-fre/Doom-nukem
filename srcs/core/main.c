@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/04 11:25:22 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/04 11:36:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void			playerinit(t_doom *env)
 	env->player.pos = ft_vecdef(10, 10, 0);
 	env->player.rot = ft_vecdef(0, -1, 0);
 	env->player.rotangle = ft_vecdef(0, 0, -90);
-	env->player.speed = 0.2;
+	env->player.speed = 0.1;
 }
 
 static void			imginit(t_doom *env)
@@ -62,7 +62,7 @@ static void			init(t_doom **env)
 		ft_error("MLX failed to create a window");
 	mlx_clear_window(doom->mlx, doom->window);
 	playerinit(doom);
-	doom->param.sensitivity = 1.0;
+	doom->param.sensitivity = 0.3;
 	doom->param.mousepos = ft_vecdef(-6000, -6000, 0);
 	mapinit(doom);
 	imginit(doom);

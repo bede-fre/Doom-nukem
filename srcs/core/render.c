@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/04 11:26:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/04 11:38:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void					ft_make_view(t_doom *env, t_img *img)
 	float					increment;
 	t_vec					raydir;
 	int						i;
+	int						j;
 	float					intersect;
 	float					angle;
 	float					testcos;
@@ -96,8 +97,9 @@ static void					ft_make_view(t_doom *env, t_img *img)
 		{
 			if (intersect != 0)
 			{
-				ft_putline(ft_vecdef((float)i, ((img->height / 2.0) - intersect), 0.0),
-				ft_vecdef((float)i, ((img->height / 2.0) + intersect), 0.0), img, 0xffffff);
+				j = intersect / 2.0 + img->height / 2.0;
+				while (--j >= img->height / 2.0 - intersect)
+					px_to_img(img, i, j, 0xFFFFFF);
 			}
 		}
 		angle += increment;
