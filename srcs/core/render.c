@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/03 17:15:02 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/04 11:26:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,17 @@ static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom 
 	i = -1;
 	while (zones[0]->walls[++i])
 	{
-		wall_dir.x = zones[0]->walls[i]->direction.y * vec.z - zones[0]->walls[i]->direction.z * vec.y;
-		wall_dir.y = zones[0]->walls[i]->direction.z * vec.x - zones[0]->walls[i]->direction.x * vec.z;
-		wall_dir.z = zones[0]->walls[i]->direction.x * vec.y - zones[0]->walls[i]->direction.y * vec.x;
+		wall_dir = ft_cross_product(zones[0]->walls[i]->direction, vec);
 		t = -(((wall_dir.x * (pos.x - zones[0]->walls[i]->origin.x)) +
-				(wall_dir.y * (pos.y - zones[0]->walls[i]->origin.y)) +
-				(wall_dir.z * (pos.z - zones[0]->walls[i]->origin.z))) /
-				((wall_dir.x * raydir.x) +
-				(wall_dir.y * raydir.y) +
-				(wall_dir.z * raydir.z)));
+			(wall_dir.y * (pos.y - zones[0]->walls[i]->origin.y)) +
+			(wall_dir.z * (pos.z - zones[0]->walls[i]->origin.z))) /
+			((wall_dir.x * raydir.x) +
+			(wall_dir.y * raydir.y) +
+			(wall_dir.z * raydir.z)));
 		if (t >= 0.0 && t < dist)
 			dist = t;
 	}
+	dist = 10.0 / dist * 32.0;
 	return (dist);
 }
 
@@ -95,13 +94,10 @@ static void					ft_make_view(t_doom *env, t_img *img)
 		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env);
 		if (intersect != INFINITY)
 		{
-			testcos = cosf(ft_degtorad(fabsf(angle)));
-			testcos = 0.0;
-			intersect = intersect * testcos / 20;
 			if (intersect != 0)
 			{
-				ft_putline(ft_vecdef(i, (img->height / 2) - intersect / 2.0, 0),
-				ft_vecdef(i, ((img->height / 2) + intersect / 2.0), 0), img, 0xffffff);
+				ft_putline(ft_vecdef((float)i, ((img->height / 2.0) - intersect), 0.0),
+				ft_vecdef((float)i, ((img->height / 2.0) + intersect), 0.0), img, 0xffffff);
 			}
 		}
 		angle += increment;

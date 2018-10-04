@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/10/01 11:04:03 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/04 09:46:20 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,10 @@ objs/%.o: srcs/%.c
 
 objs:
 	mkdir -p objs/events
-	mkdir objs/tools
-	mkdir objs/core
-	mkdir objs/vector
-	mkdir objs/playerhandling
+	mkdir -p objs/tools
+	mkdir -p objs/core
+	mkdir -p objs/vector
+	mkdir -p objs/playerhandling
 
 clean:
 	make -C mlx clean

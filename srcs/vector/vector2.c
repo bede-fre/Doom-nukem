@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:06:45 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/26 09:42:17 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/04 11:09:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ float		ft_2dvecnorm(t_vec a)
 float		ft_dot_product(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
+t_vec		ft_cross_product(t_vec a, t_vec b)
+{
+	t_vec	c;
+
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = a.z * b.x - a.x * b.z;
+	c.z = a.x * b.y - a.y * b.x;
+	return (c);
 }
 
 float		ft_vec_angle(t_vec a, t_vec b)

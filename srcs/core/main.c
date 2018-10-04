@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/27 19:17:22 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/04 11:25:22 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_zone				*malloczonetest(void)
 	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 6);
 	zone->walls[0] = get_wall(0, -1, ft_vecdef(0, 0, 0), ft_vecdef(1, 0, 0));
 	zone->walls[1] = get_wall(0, -1, ft_vecdef(20, 0, 0), ft_vecdef(0, 1, 0));
-	zone->walls[2] = get_wall(0, -1, ft_vecdef(20, 20, 0), ft_vecdef(0, -1, 0));
-	zone->walls[3] = get_wall(0, -1, ft_vecdef(10, 30, 0), ft_vecdef(-1, 0, 0));
-	zone->walls[4] = get_wall(0, -1, ft_vecdef(0, 20, 0), ft_vecdef(-1, 0, 0));
-	zone->walls[4] = NULL;
+	zone->walls[2] = get_wall(0, -1, ft_vecdef(20, 20, 0), ft_vecdef(-0.5, 0.5, 0));
+	zone->walls[3] = get_wall(0, -1, ft_vecdef(10, 30, 0), ft_vecdef(-0.5, -0.5, 0));
+	zone->walls[4] = get_wall(0, -1, ft_vecdef(0, 20, 0), ft_vecdef(0, -1, 0));
+	zone->walls[5] = NULL;
 	return (zone);
 }
 

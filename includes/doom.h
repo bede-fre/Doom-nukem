@@ -6,34 +6,35 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/03 16:52:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/04 09:23:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOM_H
-#define DOOM_H
+# define DOOM_H
 
-#include <errno.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include "vectors.h"
+# include <errno.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <unistd.h>
+# include "vectors.h"
 
-#include "mlx.h"
+# include "mlx.h"
 
-#include "vectors.h"
-#include "map.h"
-#include "keys.h"
-#include "image.h"
-#include "player.h"
+# include "vectors.h"
+# include "map.h"
+# include "keys.h"
+# include "image.h"
+# include "player.h"
 
-#define ERROR_PREFIX	"./doom-nukem: "
+# define ERROR_PREFIX	"./doom-nukem: "
 
-#define WIN_WIDTH		1920
-#define WIN_HEIGHT		1080
-#define CLIPPING		1
-#define FOV				60.0
+# define WIN_WIDTH		1920
+# define WIN_HEIGHT		1080
+# define CLIPPING		1
+# define FOV			60.0
+# define WALL_HEIGHT	10
 
 // T_DOOM
 
