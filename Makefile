@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/10/04 09:46:20 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/05 18:06:12 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,14 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 
 all: $(NAME)
 
-$(NAME): objs $(OBJS)
+minilibx:
 	make -C mlx
-	gcc -o $(NAME) $(MLX) $(OBJS) $(FLAGS) $(INCLUDES)
+
+$(NAME): minilibx objs $(OBJS)
+	gcc $(FLAGS) $(OBJS) $(MLX) $(INCLUDES) -o $(NAME)
 
 objs/%.o: srcs/%.c
-	gcc -c $^ -o $@ $(FLAGS) $(INCLUDES)
+	gcc $(FLAGS) $(INCLUDES) -c $^ -o $@
 
 objs:
 	mkdir -p objs/events
