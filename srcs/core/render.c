@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/04 11:38:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/05 14:24:06 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int							ft_printmap(t_doom *env, t_img *img)
 	return (1);
 }
 
-static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom *env)
+static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom *env, float angle)
 {
 	t_vec	wall_dir;
 	t_vec	vec;
@@ -71,7 +71,8 @@ static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom 
 		if (t >= 0.0 && t < dist)
 			dist = t;
 	}
-	dist = 10.0 / dist * 32.0;
+	dist *= cos(ft_degtorad(angle));
+	dist = ((env->img.width / 2.0) / tan(ft_degtorad(FOV / 2.0)) / dist);
 	return (dist);
 }
 
@@ -92,14 +93,17 @@ static void					ft_make_view(t_doom *env, t_img *img)
 	angle = -(FOV / 2);
 	while (i < WIN_WIDTH)
 	{
-		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env);
+		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env, angle);
 		if (intersect != INFINITY)
 		{
 			if (intersect != 0)
 			{
-				j = intersect / 2.0 + img->height / 2.0;
-				while (--j >= img->height / 2.0 - intersect)
-					px_to_img(img, i, j, 0xFFFFFF);
+				j = -1;
+				while (++j <= intersect / 2.0)
+				{
+					px_to_img(img, i, (img->height / 2.0) + j, 0xFFFFFF);
+					px_to_img(img, i, (img->height / 2.0) - j, 0xFFFFFF);
+				}
 			}
 		}
 		angle += increment;
