@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/05 14:24:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/05 17:33:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int							ft_printrays(t_doom *env, t_img *img)
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		ft_putline(ft_vecscale(env->player.pos, 10), ft_vecadd(ft_vecscale(env->player.pos, 10), ft_vecscale(raydir, 10)), img, 0xaaff00);
-//		ft_putline(ft_vecscale(env->player.pos, 10), ft_vecscale(ft_vecadd(env->player.pos, raydir), 20), &env->img, 0xaaff00);
+		ft_putline(ft_vecscale(env->player.pos, 10),
+		ft_vecadd(ft_vecscale(env->player.pos, 10),
+		ft_vecscale(raydir, 10)), img, 0xaaff00);
 		raydir = ft_vecrotz(raydir, increment);
 		i++;
 	}

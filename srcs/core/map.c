@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:11:18 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/29 11:21:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/05 17:39:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void			mapdraw(t_zone **zones, t_img *map)
 		while (zones[i]->walls[ii])
 		{
 			if (zones[i]->walls[ii + 1])
-
 				ft_putline(ft_vecscale(zones[i]->walls[ii]->origin, 10),
 						ft_vecscale(zones[i]->walls[ii + 1]->origin, 10),
 						map, 0xcccccc);
@@ -72,9 +71,9 @@ static int			ft_printrays(t_img *img)
 	t_vec					raydir;
 	int						i;
 
-	center = ft_vecdef(MAP_WIDTH / 2, MAP_HEIGHT / 2, 0);
+	center = ft_vecdef(MAP_WIDTH / 2, MAP_HEIGHT / 2 - 5, 0);
 	increment = FOV / WIN_WIDTH;
-	raydir = ft_vecrotz(ft_vecdef(0, -1, 0), -(FOV / 2));
+	raydir = ft_vecrotz(ft_vecdef(0, 1, 0), -(FOV / 2));
 	i = -1;
 	while (++i < WIN_WIDTH)
 	{
