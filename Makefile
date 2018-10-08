@@ -3,56 +3,122 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/20 19:50:33 by toliver           #+#    #+#              #
-#    Updated: 2018/10/05 18:06:12 by lguiller         ###   ########.fr        #
+#    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
+#    Updated: 2018/10/08 16:09:21 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = doom-nukem
+##################
+##  VARIABLES   ##
+##################
 
-MLX = mlx/libmlx.a
-INCLUDES = -I includes -I mlx
-FLAGS = -framework OpenGL -framework AppKit -Wall -Wextra -g3 -fsanitize=address
+OPE_SYS			= $(shell uname)
+NAME			= doom
+SRCS1			= $(addprefix $(OBJS_DIR), $(addsuffix .c, \
+				  $(addprefix vector/, vector vector2 angle vecrot intersection) \
+				  $(addprefix core/, main loop render map) \
+				  $(addprefix events/, keys mouse window) \
+				  $(addprefix playerhandling/, playermove) \
+				  $(addprefix tools/, malloc error images putline allocate) \
+				  ))
+OBJS			= $(SRCS1:.c=.o)
+SRCS_DIR		= srcs/
+OBJS_DIR		= objs/
+MINILIBX		= $(MLX_DIR)/libmlx.a
+FLAGS			= -Wall -Wextra -Werror -O2 -g -fsanitize=address
 
-OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(addprefix vector/, vector vector2 angle vecrot intersection) \
-	   $(addprefix core/, main loop render map) \
-	   $(addprefix events/, keys mouse window ) \
-	   $(addprefix playerhandling/, playermove) \
-	   $(addprefix tools/, malloc error images putline allocate) \
-		))
+ifeq ($(OPE_SYS), Linux)
+	MLX_DIR		= minilibx_x11
+	INCLUDES	= -I includes -I $(MLX_DIR) -I /usr/include
+	FRAMEWORK	= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
+else
+	MLX_DIR		= mlx
+	INCLUDES	= -I includes -I $(MLX_DIR)
+	FRAMEWORK	= -framework OpenGL -framework Appkit
+endif
 
-.PHONY: all all clean fclean re objs $(NAME)
+##################
+##    COLORS    ##
+##################
+
+_BLACK		= "\033[30m"
+_RED		= "\033[31m"
+_GREEN		= "\033[32m"
+_YELLOW		= "\033[33m"
+_BLUE		= "\033[34m"
+_VIOLET		= "\033[35m"
+_CYAN		= "\033[36m"
+_WHITE		= "\033[37m"
+_END		= "\033[0m"
+_CLEAR		= "\033[2K"
+_HIDE_CURS	= "\033[?25l"
+_SHOW_CURS	= "\033[?25h"
+_UP			= "\033[A"
+_CUT		= "\033[k"
+
+##################
+##   TARGETS    ##
+##################
+
+.PHONY: all title minilibx create_dir clean fclean re norme
 
 all: $(NAME)
 
-minilibx:
-	make -C mlx
+minilibx: title
+	@make -sC $(MLX_DIR) 2>/dev/null
 
-$(NAME): minilibx objs $(OBJS)
-	gcc $(FLAGS) $(OBJS) $(MLX) $(INCLUDES) -o $(NAME)
+$(NAME): minilibx create_dir $(OBJS)
+	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) $(MINILIBX) -o $(NAME)
+	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
+	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 
-objs/%.o: srcs/%.c
-	gcc $(FLAGS) $(INCLUDES) -c $^ -o $@
 
-objs:
-	mkdir -p objs/events
-	mkdir -p objs/tools
-	mkdir -p objs/core
-	mkdir -p objs/vector
-	mkdir -p objs/playerhandling
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+	@gcc $(FLAGS) $(INCLUDES) -c $^ -o $@
+
+create_dir:
+	@mkdir -p objs/events
+	@mkdir -p objs/tools
+	@mkdir -p objs/core
+	@mkdir -p objs/vector
+	@mkdir -p objs/playerhandling
 
 clean:
-	make -C mlx clean
-	rm -rf objs
+	@make -sC $(MLX_DIR) clean
+	@/bin/rm -rf $(OBJS_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(MLX)
+	@/bin/rm -f $(NAME)
 
 re:
-	$(MAKE) fclean
-	$(MAKE)
-	make -C mlx re
+	@$(MAKE) -s fclean
+	@$(MAKE) -s
+
+norme:
+	@norminette srcs/*.c includes/*.h
+
+title:
+	@echo $(_RED)
+	@echo "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆"
+	@echo
+	@echo "                     :::::::::   ::::::::   ::::::::    :::   :::        "
+	@echo "                    :+:    :+: :+:    :+: :+:    :+:  :+:+: :+:+:        "
+	@echo "                   +:+    +:+ +:+    +:+ +:+    +:+ +:+ +:+:+ +:+        "
+	@echo "                  +#+    +:+ +#+    +:+ +#+    +:+ +#+  +:+  +#+         "
+	@echo "                 +#+    +#+ +#+    +#+ +#+    +#+ +#+       +#+          "
+	@echo "                #+#    #+# #+#    #+# #+#    #+# #+#       #+#           "
+	@echo "               #########   ########   ########  ###       ###            "
+	@echo "          ::::    ::: :::    ::: :::    ::: ::::::::::   :::   :::       "
+	@echo "         :+:+:   :+: :+:    :+: :+:   :+:  :+:         :+:+: :+:+:       "
+	@echo "        :+:+:+  +:+ +:+    +:+ +:+  +:+   +:+        +:+ +:+:+ +:+       "
+	@echo "       +#+ +:+ +#+ +#+    +:+ +#++:++    +#++:++#   +#+  +:+  +#+        "
+	@echo "      +#+  +#+#+# +#+    +#+ +#+  +#+   +#+        +#+       +#+         "
+	@echo "     #+#   #+#+# #+#    #+# #+#   #+#  #+#        #+#       #+#          "
+	@echo "    ###    ####  ########  ###    ### ########## ###       ###           "
+	@echo
+	@echo "◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆"
+	@printf $(_YELLOW)
+	@echo "                                                       2018 © lguiller bede-fre"
+	@echo $(_END)

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:33:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/08 12:24:33 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/08 15:59:48 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define VECTORS_H
 
 #include <math.h>
+#include <stdio.h>
 
 typedef struct	s_vec
 {

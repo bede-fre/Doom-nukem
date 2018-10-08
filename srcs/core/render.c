@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/08 13:52:47 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:00:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int							ft_printplayer(t_doom *env, t_img *img)
 
 int							ft_printmap(t_doom *env, t_img *img)
 {
+	(void)img;
 //	merge_images(img, &env->map, 0, 0);
 	rotmapimgalloc(env->zones, &env->minimap, env);
 	return (1);
@@ -79,7 +80,6 @@ static void					ft_make_view(t_doom *env, t_img *img)
 	int						j;
 	float					intersect;
 	float					angle;
-	float					testcos;
 
 	increment = FOV / WIN_WIDTH;
 	raydir = ft_vecrotz(env->player.rot, -(FOV / 2));

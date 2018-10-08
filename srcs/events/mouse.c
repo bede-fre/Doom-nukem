@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:46:10 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/20 19:09:39 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/08 16:01:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ int						mouse_move(int x, int y, void *param)
 
 int						button_on(int button, int x, int y, void *param)
 {
+	(void)button;
+	(void)x;
+	(void)y;
+	(void)param;
 	return (0);
 }
 
 int						button_off(int button, int x, int y, void *param)
 {
+	(void)button;
+	(void)x;
+	(void)y;
+	(void)param;
 	return (0);
 }
