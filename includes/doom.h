@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/05 17:41:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:29:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define WIN_HEIGHT		1080
 # define CLIPPING		1
 # define FOV			60.0
-# define WALL_HEIGHT	10
 
 // T_DOOM
 
