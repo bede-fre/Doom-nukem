@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/05 17:33:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/08 13:52:47 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,19 @@ int							ft_printmap(t_doom *env, t_img *img)
 
 static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom *env, float angle)
 {
-	t_vec	wall_dir;
-	t_vec	vec;
 	int		i;
 	float	dist;
 	float	t;
+	t_vec	inter;
 
 	dist = INFINITY;
-	vec = ft_vecdef(0.0, 0.0, 1.0);
 	i = -1;
 	while (zones[0]->walls[++i])
 	{
-		wall_dir = ft_cross_product(zones[0]->walls[i]->direction, vec);
-		t = -(((wall_dir.x * (pos.x - zones[0]->walls[i]->origin.x)) +
-			(wall_dir.y * (pos.y - zones[0]->walls[i]->origin.y)) +
-			(wall_dir.z * (pos.z - zones[0]->walls[i]->origin.z))) /
-			((wall_dir.x * raydir.x) +
-			(wall_dir.y * raydir.y) +
-			(wall_dir.z * raydir.z)));
-		if (t >= 0.0 && t < dist)
+		inter = ft_vec_intersection(raydir, pos, zones[0]->walls[i]->direction, zones[0]->walls[i]->origin);
+		inter = ft_vecsub(inter, pos);
+		t = ft_vecnorm(inter);
+		if (t < dist && ft_dot_product(inter, raydir) > 0.0)
 			dist = t;
 	}
 	dist *= cos(ft_degtorad(angle));
@@ -92,7 +86,7 @@ static void					ft_make_view(t_doom *env, t_img *img)
 	i = 0;
 	bzero(img->data, img->width * img->height * 4);
 	angle = -(FOV / 2);
-	while (i < WIN_WIDTH)
+		while (i < WIN_WIDTH)
 	{
 		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env, angle);
 		if (intersect != INFINITY)
