@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/08 16:09:21 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/08 16:46:48 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ##################
 
 OPE_SYS			= $(shell uname)
-NAME			= doom
+NAME			= doom-nukem
 SRCS1			= $(addprefix $(OBJS_DIR), $(addsuffix .c, \
 				  $(addprefix vector/, vector vector2 angle vecrot intersection) \
 				  $(addprefix core/, main loop render map) \

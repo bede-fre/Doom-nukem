@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/24 17:37:20 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/08 16:33:32 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char			is_key_pressed(t_doom *doom, int key)
 {
 	if (key > 0 && key < K_END)
 		return (doom->keys[key]);
-	return (0);	
+	return (0);
 }
 
 int				key_pressed(int key, void *param)

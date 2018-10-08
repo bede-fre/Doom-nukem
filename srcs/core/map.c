@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:11:18 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/05 17:39:15 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:35:48 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void			mapdraw(t_zone **zones, t_img *map)
 
 	i = 0;
 	while (zones[i])
-	{	
+	{
 		ii = 0;
 		while (zones[i]->walls[ii])
 		{
@@ -43,19 +43,19 @@ void				mapimgalloc(t_zone **zones, t_img *map, t_doom *env)
 	int				ii;
 	float			maxx;
 	float			maxy;
-	
+
 	i = 0;
 	maxx = 0;
 	maxy = 0;
 	while (zones[i])
-	{	
+	{
 		ii = 0;
 		while (zones[i]->walls[ii])
 		{
 			if (zones[i]->walls[ii]->origin.x > maxx)
 				maxx = zones[i]->walls[ii]->origin.x;
 			if (zones[i]->walls[ii]->origin.y > maxy)
-				maxy = zones[i]->walls[ii]->origin.y; 
+				maxy = zones[i]->walls[ii]->origin.y;
 			ii++;
 		}
 		i++;

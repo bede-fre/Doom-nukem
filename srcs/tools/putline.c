@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 17:22:18 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/26 16:45:53 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/08 16:36:47 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static void		errset2(int *err, float *y, int difinc0, int difinc3)
 	*y += difinc3;
 }
 
-void		ft_putline(t_vec a, t_vec b, t_img *img, int color)
+void			ft_putline(t_vec a, t_vec b, t_img *img, int color)
 {
-	int		difinc[4];
-	int		err;
-	int		err2;
+	int	difinc[4];
+	int	err;
+	int	err2;
 
 	difinc[0] = abs((int)roundf(b.x) - (int)roundf(a.x));
 	difinc[1] = abs((int)roundf(b.y) - (int)roundf(a.y));

@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/08 16:00:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:44:56 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int							ft_printmap(t_doom *env, t_img *img)
 	return (1);
 }
 
-static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom *env, float angle)
+static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones)
 {
 	int		i;
 	float	dist;
@@ -67,8 +67,6 @@ static float				ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones, t_doom 
 		if (t < dist && ft_dot_product(inter, raydir) > 0.0)
 			dist = t;
 	}
-	dist *= cos(ft_degtorad(angle));
-	dist = ((env->img.width / 2.0) / tan(ft_degtorad(FOV / 2.0)) / dist);
 	return (dist);
 }
 
@@ -86,9 +84,11 @@ static void					ft_make_view(t_doom *env, t_img *img)
 	i = 0;
 	bzero(img->data, img->width * img->height * 4);
 	angle = -(FOV / 2);
-		while (i < WIN_WIDTH)
+	while (i < WIN_WIDTH)
 	{
-		intersect = ft_rayintersect(env->player.pos, raydir, env->zones, env, angle);
+		intersect = ft_rayintersect(env->player.pos, raydir, env->zones);
+		intersect *= cos(ft_degtorad(angle));
+		intersect = ((env->img.width / 2.0) / tan(ft_degtorad(FOV / 2.0)) / intersect);
 		if (intersect != INFINITY)
 		{
 			if (intersect != 0)
@@ -114,7 +114,7 @@ void						render(t_doom *doom)
 	ft_make_view(doom, &doom->img);
 	ft_printmap(doom, &doom->img);
 //	ft_printplayer(doom, &doom->img);
-	mlx_put_image_to_window(doom->mlx ,doom->window, doom->img.ptr, 0, 0);
+	mlx_put_image_to_window(doom->mlx, doom->window, doom->img.ptr, 0, 0);
 	mlx_put_image_to_window(doom->mlx, doom->window, doom->minimap.ptr, 0, 0);
 //	mlx_put_image_to_window(doom->mlx, doom->window, doom->view.ptr, 300, 300);
 	//	printf("Render\n");

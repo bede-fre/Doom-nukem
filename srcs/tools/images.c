@@ -6,17 +6,17 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:38:43 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/25 17:26:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:37:37 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void			merge_images(t_img *dest, t_img *src, int x, int y)
+void	merge_images(t_img *dest, t_img *src, int x, int y)
 {
-	char		*dest_data;
-	char		*src_data;
-	int			i;
+	char	*dest_data;
+	char	*src_data;
+	int		i;
 
 	i = 0;
 	if (x >= dest->width || y >= dest->height)
@@ -29,7 +29,7 @@ void			merge_images(t_img *dest, t_img *src, int x, int y)
 		if (y >= 0 || i + y >= 0)
 		{
 			if (x < 0 && x + src->width > 0)
-				memcpy(dest_data, src_data - (x * BYTES_PER_PIXEL), 
+				memcpy(dest_data, src_data - (x * BYTES_PER_PIXEL),
 				(src->width + x > dest->width ?
 					dest->width : src->width + x) * BYTES_PER_PIXEL);
 			else if (x >= 0)
@@ -37,14 +37,14 @@ void			merge_images(t_img *dest, t_img *src, int x, int y)
 					dest->width - x : src->width) * BYTES_PER_PIXEL);
 		}
 		if (++i + y >= dest->height)
-			break;
+			break ;
 		if (i + y > 0)
 			dest_data += dest->width * BYTES_PER_PIXEL;
 		src_data += src->width * BYTES_PER_PIXEL;
 	}
 }
 
-int			px_to_img(t_img *img, int x, int y, int c)
+int		px_to_img(t_img *img, int x, int y, int c)
 {
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return (0);
