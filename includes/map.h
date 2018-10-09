@@ -6,29 +6,29 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:29:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/04 09:16:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/09 14:34:44 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
+# include "doom.h"
+
 # define MAP_WIDTH 200
 # define MAP_HEIGHT 200
 
-typedef struct			s_wall
+typedef struct	s_wall
 {
-	char				type; // clip / noclip / ...?
+	int			nextzone;
+	char		type; // clip / noclip / ...?
+	t_vec		origin;
+	t_vec		direction;
+}				t_wall;
 
-	int					nextzone;
-	t_vec				origin;
-	t_vec				direction;
-}						t_wall;
-
-typedef struct			s_zone
+typedef struct	s_zone
 {
-	t_wall				**walls;
-
-}						t_zone;
+	t_wall		**walls;
+}				t_zone;
 
 #endif

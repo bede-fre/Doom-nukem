@@ -6,13 +6,13 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/08 16:33:32 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/09 15:56:59 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static int		get_key_id(t_doom *doom, int keycode)
+static int	get_key_id(t_doom *doom, int keycode)
 {
 	if (keycode == doom->bindings[K_FORWARD])
 		return (K_FORWARD);
@@ -25,7 +25,7 @@ static int		get_key_id(t_doom *doom, int keycode)
 	return (-1);
 }
 
-void			key_init(t_doom *doom)
+void		key_init(t_doom *doom)
 {
 	doom->keys = (char*)ft_memalloc(sizeof(char) * K_END);
 	doom->bindings = (int*)ft_memalloc(sizeof(int) * K_END);
@@ -35,30 +35,34 @@ void			key_init(t_doom *doom)
 	doom->bindings[K_RIGHT] = 2;
 }
 
-char			is_key_pressed(t_doom *doom, int key)
+char		is_key_pressed(t_doom *doom, int key)
 {
 	if (key > 0 && key < K_END)
 		return (doom->keys[key]);
 	return (0);
 }
 
-int				key_pressed(int key, void *param)
+int			key_pressed(int key, void *param)
 {
-	int			index;
+	int		index;
+	t_doom	*env;
 
-	if ((index = get_key_id((t_doom*)param, key)) != -1)
-		((t_doom*)param)->keys[index] = 1;
+	env = (t_doom*)param;
+	if ((index = get_key_id(env, key)) != -1)
+		env->keys[index] = 1;
 	if (key == 53)
 		exit(0);
 	render(param);
 	return (0);
 }
 
-int				key_released(int key, void *param)
+int			key_released(int key, void *param)
 {
-	int			index;
+	int		index;
+	t_doom	*env;
 
-	if ((index = get_key_id((t_doom*)param, key)) != -1)
-		((t_doom*)param)->keys[index] = 0;
+	env = (t_doom*)param;
+	if ((index = get_key_id(env, key)) != -1)
+		env->keys[index] = 0;
 	return (0);
 }

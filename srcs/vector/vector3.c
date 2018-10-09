@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.h                                             :+:      :+:    :+:   */
+/*   vector3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 17:17:53 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/24 17:37:22 by toliver          ###   ########.fr       */
+/*   Created: 2018/10/09 12:01:14 by bede-fre          #+#    #+#             */
+/*   Updated: 2018/10/09 16:15:55 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#include "vectors.h"
 
-enum e_keys {
-
-	K_FORWARD = 1,
-	K_BACKWARD,
-	K_LEFT,
-	K_RIGHT,
-
-	K_END
-};
-
-#endif
+float	ft_vec_angle(t_vec a, t_vec b)
+{
+	return (ft_radtodeg(acosf(ft_dot_product(a, b) /
+		(ft_vecnorm(a) * ft_vecnorm(b)))));
+}

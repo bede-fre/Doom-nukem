@@ -6,19 +6,19 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:25:08 by tberthie          #+#    #+#             */
-/*   Updated: 2018/09/24 20:54:44 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/09 14:02:06 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static int				loop_hook(void *param)
+static int	loop_hook(void *param)
 {
 	render(param);
 	return (0);
 }
 
-void					loop(t_doom *doom)
+void		loop(t_doom *doom)
 {
 	key_init(doom);
 	mlx_hook(doom->window, 2, 0, &key_pressed, doom);

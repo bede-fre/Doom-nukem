@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alloction.c                                        :+:      :+:    :+:   */
+/*   allocate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:13:12 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 19:15:38 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/09 13:53:20 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-t_wall				*get_wall(char type, int nextzone, t_vec origin, t_vec dir)
+t_wall	*get_wall(char type, int nextzone, t_vec origin, t_vec dir)
 {
-	t_wall			*ptr;
+	t_wall	*ptr;
 
 	ptr = (t_wall*)ft_memalloc(sizeof(t_wall));
 	ptr->type = type;
@@ -24,7 +24,7 @@ t_wall				*get_wall(char type, int nextzone, t_vec origin, t_vec dir)
 	return (ptr);
 }
 
-void				img_get(t_img *img, int x, int y, t_doom *env)
+void	img_get(t_img *img, int x, int y, t_doom *env)
 {
 	if (!(img->ptr = mlx_new_image(env->mlx, x, y)))
 		ft_error("Failed to initialize new image");

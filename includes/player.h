@@ -6,11 +6,27 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:46:29 by toliver           #+#    #+#             */
-/*   Updated: 2018/09/24 19:03:46 by toliver          ###   ########.fr       */
+/*   Updated: 2018/10/09 16:01:35 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
-#define PLAYER_H
+# define PLAYER_H
+
+# include "vectors.h"
+
+typedef struct	s_coord
+{
+	int			x;
+	int			y;
+}				t_coord;
+
+typedef struct	s_player
+{
+	t_vec		pos;
+	t_vec		rot;
+	t_vec		rotangle;
+	float		speed;
+}				t_player;
 
 #endif

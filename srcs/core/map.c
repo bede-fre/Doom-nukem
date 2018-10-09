@@ -6,125 +6,119 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 19:11:18 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/08 16:35:48 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/09 15:38:20 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static void			mapdraw(t_zone **zones, t_img *map)
+static void	mapdraw(t_zone **zones, t_img *map)
 {
-	int				i;
-	int				ii;
+	t_coord	p;
 
-	i = 0;
-	while (zones[i])
+	p.x = -1;
+	while (zones[++p.x])
 	{
-		ii = 0;
-		while (zones[i]->walls[ii])
+		p.y = -1;
+		while (zones[p.x]->walls[++p.y])
 		{
-			if (zones[i]->walls[ii + 1])
-				ft_putline(ft_vecscale(zones[i]->walls[ii]->origin, 10),
-						ft_vecscale(zones[i]->walls[ii + 1]->origin, 10),
-						map, 0xcccccc);
+			if (zones[p.x]->walls[p.y + 1])
+				ft_putline(ft_vecscale(zones[p.x]->walls[p.y]->origin, 10.0),
+					ft_vecscale(zones[p.x]->walls[p.y + 1]->origin, 10.0),
+					map, 0xcccccc);
 			else
-				ft_putline(ft_vecscale(zones[i]->walls[ii]->origin, 10),
-						ft_vecscale(zones[i]->walls[0]->origin, 10),
-						map, 0xcccccc);
-			ii++;
+				ft_putline(ft_vecscale(zones[p.x]->walls[p.y]->origin, 10.0),
+					ft_vecscale(zones[p.x]->walls[0]->origin, 10.0),
+					map, 0xcccccc);
 		}
-		i++;
 	}
 }
 
-void				mapimgalloc(t_zone **zones, t_img *map, t_doom *env)
+void		mapimgalloc(t_zone **zones, t_img *map, t_doom *env)
 {
-	int				i;
-	int				ii;
-	float			maxx;
-	float			maxy;
+	t_coord	p;
+	t_vec	max;
 
-	i = 0;
-	maxx = 0;
-	maxy = 0;
-	while (zones[i])
+	max.x = 0.0;
+	max.y = 0.0;
+	p.x = -1;
+	while (zones[++p.x])
 	{
-		ii = 0;
-		while (zones[i]->walls[ii])
+		p.y = -1;
+		while (zones[p.x]->walls[++p.y])
 		{
-			if (zones[i]->walls[ii]->origin.x > maxx)
-				maxx = zones[i]->walls[ii]->origin.x;
-			if (zones[i]->walls[ii]->origin.y > maxy)
-				maxy = zones[i]->walls[ii]->origin.y;
-			ii++;
+			if (zones[p.x]->walls[p.y]->origin.x > max.x)
+				max.x = zones[p.x]->walls[p.y]->origin.x;
+			if (zones[p.x]->walls[p.y]->origin.y > max.y)
+				max.y = zones[p.x]->walls[p.y]->origin.y;
 		}
-		i++;
 	}
-	img_get(map, (int)(maxx * 10 + 1), (int)(maxy * 10 + 1), env);
+	img_get(map, (int)(max.x * 10.0 + 1.0), (int)(max.y * 10.0 + 1.0), env);
 	mapdraw(zones, map);
 }
 
-static int			ft_printrays(t_img *img)
+static void	ft_printrays(t_img *img)
 {
-	float					increment;
-	t_vec					center;
-	t_vec					raydir;
-	int						i;
+	int		i;
+	t_vec	center;
+	t_vec	raydir;
+	float	increment;
 
-	center = ft_vecdef(MAP_WIDTH / 2, MAP_HEIGHT / 2 - 5, 0);
-	increment = FOV / WIN_WIDTH;
-	raydir = ft_vecrotz(ft_vecdef(0, 1, 0), -(FOV / 2));
+	center = ft_vecdef((float)MAP_WIDTH / 2.0,
+		(float)MAP_HEIGHT / 2.0 - 5.0, 0.0);
+	increment = FOV / (float)WIN_WIDTH;
+	raydir = ft_vecrotz(ft_vecdef(0.0, 1.0, 0.0), -(FOV / 2.0));
 	i = -1;
 	while (++i < WIN_WIDTH)
 	{
-		ft_putline(center, ft_vecadd(center, ft_vecscale(raydir, 10)), img, 0xaaff00);
+		ft_putline(center, ft_vecadd(center, ft_vecscale(raydir, 10.0)), img,
+			0xaaff00);
 		raydir = ft_vecrotz(raydir, increment);
 	}
-	return (1);
 }
 
-static void			maprotdraw(t_zone **zones, t_img *map, t_doom *env)
+static void	print_walls(t_zone **zones, t_img *map, t_doom *env, t_coord p)
 {
-	t_vec			p1;
-	t_vec			p2;
-	t_vec			center;
-	int				i;
-	int				ii;
+	t_vec	p1;
+	t_vec	p2;
+	t_vec	center;
 
 	center = ft_vecdef(100.0, 100.0, 0.0);
-	i = 0;
-	while (zones[i])
-	{
-		ii = 0;
-		while (zones[i]->walls[ii])
-		{
-			p1 = ft_vecsub(ft_vecscale(zones[i]->walls[ii]->origin, 10.0),
-					ft_vecscale(env->player.pos, 10.0));
-			p1 = ft_vecrotz(p1, -env->angle);
-			p1 = ft_vecadd(p1, center);
-			if (zones[i]->walls[ii + 1])
-				p2 = ft_vecsub(ft_vecscale(zones[i]->walls[ii + 1]->origin, 10.0),
-						ft_vecscale(env->player.pos, 10.0));
-			else
-				p2 = ft_vecsub(ft_vecscale(zones[i]->walls[0]->origin, 10.0),
-						ft_vecscale(env->player.pos, 10.0));
-			p2 = ft_vecrotz(p2, -env->angle);
-			p2 = ft_vecadd(p2, center);
-			ft_putline(p1, p2, map, 0xCCCCCC);
-			ii++;
-		}
-		i++;
-	}
-	ft_printrays(map);
-	i = -1;
-	while (++i < 200 && (ii = -1))
-		while (++ii < 200)
-			if (i == 0 || ii == 0 || i == MAP_WIDTH - 1 || ii == MAP_HEIGHT - 1)
-				px_to_img(map, i, ii, 0xFFFFFF);
+	p1 = ft_vecsub(ft_vecscale(zones[p.x]->walls[p.y]->origin, 10.0),
+		ft_vecscale(env->player.pos, 10.0));
+	p1 = ft_vecrotz(p1, -env->angle);
+	p1 = ft_vecadd(p1, center);
+	if (zones[p.x]->walls[p.y + 1])
+		p2 = ft_vecsub(ft_vecscale(zones[p.x]->walls[p.y + 1]->origin,
+			10.0), ft_vecscale(env->player.pos, 10.0));
+	else
+		p2 = ft_vecsub(ft_vecscale(zones[p.x]->walls[0]->origin, 10.0),
+			ft_vecscale(env->player.pos, 10.0));
+	p2 = ft_vecrotz(p2, -env->angle);
+	p2 = ft_vecadd(p2, center);
+	ft_putline(p1, p2, map, 0xCCCCCC);
 }
 
-void				rotmapimgalloc(t_zone **zones, t_img *map, t_doom *env)
+void		rotmapimgalloc(t_zone **zones, t_img *map, t_doom *env)
 {
-	img_get(map, 200, 200, env);
-	maprotdraw(zones, map, env);
+	t_coord	p;
+
+	img_get(map, MAP_WIDTH, MAP_HEIGHT, env);
+	p.x = -1;
+	while (zones[++p.x])
+	{
+		p.y = -1;
+		while (zones[p.x]->walls[++p.y])
+			print_walls(zones, map, env, p);
+	}
+	ft_printrays(map);
+	p.x = -1;
+	while (++p.x < MAP_WIDTH)
+	{
+		p.y = -1;
+		while (++p.y < MAP_HEIGHT)
+			if (p.x == 0 || p.y == 0 || p.x == MAP_WIDTH - 1
+				|| p.y == MAP_HEIGHT - 1)
+				px_to_img(map, p.x, p.y, 0xFFFFFF);
+	}
 }
