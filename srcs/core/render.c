@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/09 16:39:47 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 14:55:13 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,50 @@ int				ft_printplayer(t_doom *env, t_img *img)
 }
 */
 
+static int		ft_check_inter(t_vec inter, t_line line)
+{
+	t_vec	v_wall;
+	t_vec	v_inter;
+
+	v_wall = ft_vecsub(line.b, line.a);
+	v_inter = ft_vecsub(inter, line.a);
+	return (ft_vecnorm(v_inter) < ft_vecnorm(v_wall) &&
+		ft_dot_product(v_inter, v_wall) > 0.0);
+}
+
 static float	ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones)
 {
-	int		i;
-	float	dist;
-	float	t;
+	float	dist[2];
 	t_vec	inter;
+	t_line	l1;
+	t_line	l2;
+	t_coord	i;
 
-	dist = INFINITY;
-	i = -1;
-	while (zones[0]->walls[++i])
+	dist[1] = INFINITY;
+	i.x = -1;
+	while (zones[++i.x])
 	{
-		inter = ft_vec_intersection(raydir, pos, zones[0]->walls[i]->direction,
-			zones[0]->walls[i]->origin);
-		inter = ft_vecsub(inter, pos);
-		t = ft_vecnorm(inter);
-		if (t < dist && ft_dot_product(inter, raydir) > 0.0)
-			dist = t;
+		i.y = -1;
+		while (zones[i.x]->walls[++i.y])
+		{
+			l1 = ft_vec_to_line(ft_vecadd(raydir, pos), pos);
+			if (zones[i.x]->walls[i.y + 1])
+				l2 = ft_vec_to_line(zones[i.x]->walls[i.y]->origin,
+					zones[i.x]->walls[i.y + 1]->origin);
+			else
+				l2 = ft_vec_to_line(zones[i.x]->walls[i.y]->origin,
+					zones[i.x]->walls[0]->origin);
+			inter = ft_vec_intersection(l1, l2);
+			if (ft_check_inter(inter, l2))
+			{
+				inter = ft_vecsub(inter, pos);
+				dist[0] = ft_vecnorm(inter);
+				if (dist[0] < dist[1] && ft_dot_product(inter, raydir) > 0.0)
+					dist[1] = dist[0];
+			}
+		}
 	}
-	return (dist);
+	return (dist[1]);
 }
 
 static void		ft_make_view(t_doom *env, t_img *img)
@@ -81,11 +106,14 @@ static void		ft_make_view(t_doom *env, t_img *img)
 		inter = (((float)env->img.width / 2.0) / tanf(ft_degtorad(FOV / 2.0)) /
 			(ft_rayintersect(env->player.pos, raydir, env->zones) *
 			cosf(ft_degtorad(angle))));
+		p.y = -1;
 		if (inter != INFINITY && inter != 0.0)
 		{
-			p.y = img->height / 2.0 - inter / 2.0;
-			while (++p.y <= img->height / 2.0 + inter / 2.0)
-				px_to_img(img, p.x, p.y, 0xFFFFFF);
+			while (++p.y < inter / 2.0 && p.y >= 0.0 && p.y < img->height)
+			{
+				px_to_img(img, p.x, (img->height / 2.0) + p.y, 0xFFFFFF);
+				px_to_img(img, p.x, (img->height / 2.0) - p.y, 0xFFFFFF);
+			}
 		}
 		angle += i;
 		raydir = ft_vecrotz(raydir, i);

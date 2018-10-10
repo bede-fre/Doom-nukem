@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/09 12:02:12 by bede-fre         ###   ########.fr        #
+#    Updated: 2018/10/10 10:41:30 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS			= $(SRCS1:.c=.o)
 SRCS_DIR		= srcs/
 OBJS_DIR		= objs/
 MINILIBX		= $(MLX_DIR)/libmlx.a
-FLAGS			= -Wall -Wextra -Werror -O2 -g -fsanitize=address
+FLAGS			= -Wall -Wextra -O2 -g -fsanitize=address
 
 ifeq ($(OPE_SYS), Linux)
 	MLX_DIR		= minilibx_x11

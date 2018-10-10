@@ -6,37 +6,60 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 10:15:20 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/09 15:27:30 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 14:24:53 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static	t_zone	*malloczone(void)
+static	t_zone	*malloczone_2(void)
 {
 	t_zone	*zone;
 
 	zone = (t_zone*)ft_memalloc(sizeof(t_zone));
-	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 6);
-	zone->walls[0] = get_wall(0, -1, ft_vecdef(0.0, 0.0, 0.0),
-		ft_vecdef(1.0, 0.0, 0.0));
-	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 0.0, 0.0),
-		ft_vecdef(0.0, 1.0, 0.0));
-	zone->walls[2] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0),
-		ft_vecdef(-0.5, 0.5, 0.0));
-	zone->walls[3] = get_wall(0, -1, ft_vecdef(10.0, 30.0, 0.0),
-		ft_vecdef(-0.5, -0.5, 0.0));
-	zone->walls[4] = get_wall(0, -1, ft_vecdef(0.0, 20.0, 0.0),
-		ft_vecdef(0.0, -1.0, 0.0));
-	zone->walls[5] = NULL;
+	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 5);
+	zone->walls[0] = get_wall(0, -1, ft_vecdef(10.0, 30.0, 0.0));
+	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0));
+	zone->walls[2] = get_wall(0, -1, ft_vecdef(30.0, 30.0, 0.0));
+	zone->walls[3] = get_wall(0, -1, ft_vecdef(20.0, 40.0, 0.0));
+	zone->walls[4] = NULL;
+	return (zone);
+}
+
+static	t_zone	*malloczone_1(void)
+{
+	t_zone	*zone;
+
+	zone = (t_zone*)ft_memalloc(sizeof(t_zone));
+	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 4);
+	zone->walls[0] = get_wall(0, -1, ft_vecdef(0.0, 20.0, 0.0));
+	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0));
+	zone->walls[2] = get_wall(0, -1, ft_vecdef(10.0, 30.0, 0.0));
+	zone->walls[3] = NULL;
+	return (zone);
+}
+
+static	t_zone	*malloczone_0(void)
+{
+	t_zone	*zone;
+
+	zone = (t_zone*)ft_memalloc(sizeof(t_zone));
+	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 5);
+	zone->walls[0] = get_wall(0, -1, ft_vecdef(0.0, 0.0, 0.0));
+	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 0.0, 0.0));
+	zone->walls[2] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0));
+	zone->walls[3] = get_wall(0, -1, ft_vecdef(0.0, 20.0, 0.0));
+	zone->walls[4] = NULL;
 	return (zone);
 }
 
 static void		mapinit(t_doom *env)
 {
-	env->zones = (t_zone**)malloc(sizeof(t_zone*) * 2);
-	env->zones[1] = NULL;
-	env->zones[0] = malloczone();
+	env->zones = (t_zone**)malloc(sizeof(t_zone*) * 4);
+	env->zones[0] = malloczone_0();
+	env->zones[1] = malloczone_1();
+	env->zones[2] = malloczone_2();
+	env->zones[3] = NULL;
 	mapimgalloc(env->zones, &env->map, env);
 }
 

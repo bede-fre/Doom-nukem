@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:29:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/09 14:34:44 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 14:21:35 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct	s_wall
 	int			nextzone;
 	char		type; // clip / noclip / ...?
 	t_vec		origin;
-	t_vec		direction;
 }				t_wall;
 
 typedef struct	s_zone

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 17:33:10 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/09 13:44:55 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 14:12:41 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ t_vec			ft_vecroty(t_vec a, float yrot);
 t_vec			ft_vecrotz(t_vec a, float zrot);
 t_vec			ft_cross_product(t_vec a, t_vec b);
 t_vec			ft_vecdef(float x, float y, float z);
+t_vec			ft_vec_intersection(t_line l1, t_line l2);
 t_vec			ft_vecrot(t_vec a, float xrot, float yrot, float zrot);
-t_vec			ft_vec_intersection(t_vec uni1, t_vec p1, t_vec uni2, t_vec p2);
+t_line			ft_vec_to_line(t_vec a, t_vec b);
 
 #endif

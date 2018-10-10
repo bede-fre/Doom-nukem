@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/09 16:08:44 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 14:23:11 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			ft_error(const char *str) __attribute__((noreturn));
 void			merge_images(t_img *dest, t_img *src, int x, int y); // penser a l'alpha
 void			mapimgalloc(t_zone **zones, t_img *map, t_doom *env);
 void			rotmapimgalloc(t_zone **zones, t_img *map, t_doom *env);
-t_wall			*get_wall(char type, int nextzone, t_vec o, t_vec d);
+t_wall			*get_wall(char type, int nextzone, t_vec o);
 
 // DRAWING
 
