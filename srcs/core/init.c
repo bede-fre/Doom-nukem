@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 10:15:20 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/10 14:24:53 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 15:01:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	t_zone	*malloczone_2(void)
 
 	zone = (t_zone*)ft_memalloc(sizeof(t_zone));
 	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 5);
-	zone->walls[0] = get_wall(0, -1, ft_vecdef(10.0, 30.0, 0.0));
+	zone->walls[0] = get_wall(0, 1, ft_vecdef(10.0, 30.0, 0.0));
 	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0));
 	zone->walls[2] = get_wall(0, -1, ft_vecdef(30.0, 30.0, 0.0));
 	zone->walls[3] = get_wall(0, -1, ft_vecdef(20.0, 40.0, 0.0));
@@ -32,8 +32,8 @@ static	t_zone	*malloczone_1(void)
 
 	zone = (t_zone*)ft_memalloc(sizeof(t_zone));
 	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 4);
-	zone->walls[0] = get_wall(0, -1, ft_vecdef(0.0, 20.0, 0.0));
-	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0));
+	zone->walls[0] = get_wall(0, 0, ft_vecdef(0.0, 20.0, 0.0));
+	zone->walls[1] = get_wall(0, 2, ft_vecdef(20.0, 20.0, 0.0));
 	zone->walls[2] = get_wall(0, -1, ft_vecdef(10.0, 30.0, 0.0));
 	zone->walls[3] = NULL;
 	return (zone);
@@ -47,7 +47,7 @@ static	t_zone	*malloczone_0(void)
 	zone->walls = (t_wall**)ft_memalloc(sizeof(t_wall*) * 5);
 	zone->walls[0] = get_wall(0, -1, ft_vecdef(0.0, 0.0, 0.0));
 	zone->walls[1] = get_wall(0, -1, ft_vecdef(20.0, 0.0, 0.0));
-	zone->walls[2] = get_wall(0, -1, ft_vecdef(20.0, 20.0, 0.0));
+	zone->walls[2] = get_wall(0, 1, ft_vecdef(20.0, 20.0, 0.0));
 	zone->walls[3] = get_wall(0, -1, ft_vecdef(0.0, 20.0, 0.0));
 	zone->walls[4] = NULL;
 	return (zone);

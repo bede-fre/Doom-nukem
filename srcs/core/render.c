@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/10 14:55:13 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/10 15:15:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,27 @@ static float	ft_rayintersect(t_vec pos, t_vec raydir, t_zone **zones)
 
 	dist[1] = INFINITY;
 	i.x = -1;
-	while (zones[++i.x])
-	{
-		i.y = -1;
+	while (zones[++i.x] && (i.y = -1))
 		while (zones[i.x]->walls[++i.y])
-		{
-			l1 = ft_vec_to_line(ft_vecadd(raydir, pos), pos);
-			if (zones[i.x]->walls[i.y + 1])
-				l2 = ft_vec_to_line(zones[i.x]->walls[i.y]->origin,
-					zones[i.x]->walls[i.y + 1]->origin);
-			else
-				l2 = ft_vec_to_line(zones[i.x]->walls[i.y]->origin,
-					zones[i.x]->walls[0]->origin);
-			inter = ft_vec_intersection(l1, l2);
-			if (ft_check_inter(inter, l2))
+			if (zones[i.x]->walls[i.y]->nextzone == -1)
 			{
-				inter = ft_vecsub(inter, pos);
-				dist[0] = ft_vecnorm(inter);
-				if (dist[0] < dist[1] && ft_dot_product(inter, raydir) > 0.0)
-					dist[1] = dist[0];
+				l1 = ft_vec_to_line(ft_vecadd(raydir, pos), pos);
+				if (zones[i.x]->walls[i.y + 1])
+					l2 = ft_vec_to_line(zones[i.x]->walls[i.y]->origin,
+							zones[i.x]->walls[i.y + 1]->origin);
+				else
+					l2 = ft_vec_to_line(zones[i.x]->walls[i.y]->origin,
+							zones[i.x]->walls[0]->origin);
+				inter = ft_vec_intersection(l1, l2);
+				if (ft_check_inter(inter, l2))
+				{
+					inter = ft_vecsub(inter, pos);
+					dist[0] = ft_vecnorm(inter);
+					if (dist[0] < dist[1]
+						&& ft_dot_product(inter, raydir) > 0.0)
+						dist[1] = dist[0];
+				}
 			}
-		}
-	}
 	return (dist[1]);
 }
 
