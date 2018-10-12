@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 17:32:23 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/09 14:02:17 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/11 16:42:36 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(void)
 {
-	t_doom	*env;
+	t_doom	env;
 
 	init(&env);
-	loop(env);
+	loop(&env);
 	return (0);
 }

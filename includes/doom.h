@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/11 14:07:54 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/12 14:51:50 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "events.h"
 # include "image.h"
 # include "player.h"
+# include "libft.h"
 
 # define ERROR_PREFIX	"./doom-nukem: "
 
@@ -45,14 +46,14 @@ typedef struct	s_doom
 	t_img		img;
 	t_img		map;
 	t_img		minimap;
-	t_zone		**zones;
+	t_zone		*zone;
 	t_param		param;
 	t_player	player;
 }				t_doom;
 
 // CORE
 
-void			init(t_doom **env);
+void			init(t_doom *env);
 void			loop(t_doom *doom);
 void			render(t_doom *doom);
 
@@ -63,15 +64,12 @@ char			is_key_pressed(t_doom *doom, int key);
 
 // TOOLS
 
-void			*ft_malloc(unsigned int bytes);
-void			*ft_memalloc(unsigned int bytes);
 void			px_to_img(t_img *img, int x, int y, int c);
 void			img_get(t_img *ing, int x, int y, t_doom *env);
 void			ft_error(const char *str) __attribute__((noreturn));
 void			merge_images(t_img *dest, t_img *src, int x, int y); // penser a l'alpha
-void			mapimgalloc(t_zone **zones, t_img *map, t_doom *env);
-void			rotmapimgalloc(t_zone **zones, t_img *map, t_doom *env);
-t_wall			*get_wall(char type, int nextzone, t_vec o);
+void			mapimgalloc(t_zone *zone, t_img *map, t_doom *env);
+void			rotmapimgalloc(t_zone *zone, t_img *map, t_doom *env);
 
 // DRAWING
 
