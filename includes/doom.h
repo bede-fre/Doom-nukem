@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/12 14:51:50 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/16 13:59:06 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,20 @@ typedef struct	s_doom
 	t_player	player;
 }				t_doom;
 
+typedef struct	s_view
+{
+	float		angle;
+	float		inter;
+	float		i;
+}				t_view;
+
 // CORE
 
 void			init(t_doom *env);
 void			loop(t_doom *doom);
 void			render(t_doom *doom);
+void			mapinit(t_doom *env);
+
 
 // EVENTS
 

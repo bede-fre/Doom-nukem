@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:29:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/12 11:08:49 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/16 13:42:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ typedef struct		s_zone
 	t_wall			*wall;
 	struct s_zone	*next;
 }					t_zone;
+
+void				sort_list(t_zone *zone);
+void				make_circular_lst(t_zone *zone);
 
 #endif

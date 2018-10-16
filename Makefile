@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/12 14:52:01 by bede-fre         ###   ########.fr        #
+#    Updated: 2018/10/16 13:51:32 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OPE_SYS			= $(shell uname)
 NAME			= doom-nukem
 SRCS1			= $(addprefix $(OBJS_DIR), $(addsuffix .c, \
 				  $(addprefix vector/, vector vector2 vector3 angle vecrot intersection) \
-				  $(addprefix core/, main loop render map init) \
+				  $(addprefix core/, main loop render map init map_init sort_list make_circular_lst rotmap) \
 				  $(addprefix events/, keys mouse window) \
 				  $(addprefix playerhandling/, playermove) \
 				  $(addprefix tools/, error images putline allocate) \
