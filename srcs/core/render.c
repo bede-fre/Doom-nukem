@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/16 14:21:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:36:08 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,23 @@ static void		ft_make_view(t_doom *env, t_img *img)
 	t_coord	p;
 	t_vec	raydir;
 	t_view	ptr;
+	float	a;
+	int		test;
+
+	a = ft_vec_angle(env->player.body, env->player.head);
+	if (env->player.head.y < 0.0)
+		a = -a;
+	test = img->height / 2 + (int)(a *10.0);
+	printf("%f\n", a);
 
 	ptr.i = FOV / WIN_WIDTH;
-	raydir = ft_vecrotz(env->player.rot, -(FOV / 2.0));
+	raydir = ft_vecrotz(env->player.body, -(FOV / 2.0));
 	bzero(img->data, img->width * img->height * 4);
 	ptr.angle = -(FOV / 2.0);
 	p.x = -1;
 	while (++p.x < WIN_WIDTH)
 	{
-		ptr.inter = (((float)env->img.width / 2.0) /
+		ptr.inter = (((float)env->img.width / 2) /
 			tanf(ft_degtorad(FOV / 2.0)) /
 			(ft_rayintersect(env->player.pos, raydir, env->zone) *
 			cosf(ft_degtorad(ptr.angle))));
@@ -118,8 +126,8 @@ static void		ft_make_view(t_doom *env, t_img *img)
 		if (ptr.inter != INFINITY && ptr.inter != 0.0)
 			while (++p.y < ptr.inter / 2.0 && p.y >= 0.0 && p.y < img->height)
 			{
-				px_to_img(img, p.x, (img->height / 2.0) + p.y, 0xFFFFFF);
-				px_to_img(img, p.x, (img->height / 2.0) - p.y, 0xFFFFFF);
+				px_to_img(img, p.x, test + p.y, 0xFFFFFF);
+				px_to_img(img, p.x, test - p.y, 0xFFFFFF);
 			}
 		ptr.angle += ptr.i;
 		raydir = ft_vecrotz(raydir, ptr.i);

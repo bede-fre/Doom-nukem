@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 10:15:20 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/16 13:54:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:04:44 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void		playerinit(t_doom *env)
 {
 	env->player.pos = ft_vecdef(10.0, 10.0, 0.0);
-	env->player.rot = ft_vecdef(0.0, -1.0, 0.0);
-	env->angle = ft_vec_angle(ft_vecdef(0.0, -1.0, 0.0), env->player.rot);
-	env->player.rotangle = ft_vecdef(0.0, 0.0, -90.0);
+	env->player.body = ft_vecdef(0.0, -1.0, 0.0);
+	env->player.head = env->player.body;
+	env->angle = ft_vec_angle(ft_vecdef(0.0, -1.0, 0.0), env->player.body);
 	env->player.speed = 0.1;
 }
 

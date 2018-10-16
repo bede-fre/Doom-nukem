@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 19:51:17 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/16 13:59:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:01:49 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 typedef struct	s_doom
 {
-	int			angle;
+	float		angle;
 	int			*bindings;
 	void		*mlx;
 	void		*window;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:46:29 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/09 16:01:35 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:01:40 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct	s_coord
 typedef struct	s_player
 {
 	t_vec		pos;
-	t_vec		rot;
-	t_vec		rotangle;
+	t_vec		head;
+	t_vec		body;
 	float		speed;
 }				t_player;
 
