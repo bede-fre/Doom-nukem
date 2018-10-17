@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:35:11 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/17 14:03:26 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/17 14:06:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	playerrot(t_doom *env, t_vec diff)
 	env->angle = (env->player.body.x <= 0.0) ? -env->angle : env->angle;
 	if (vec_tmp.z >= -0.5 && vec_tmp.z <= 0.5)
 	{
-		printf("%f\n", vec_tmp.z);
 		tmp = vec_tmp.z + 0.5;
 		env->wall_center = WIN_HEIGHT * tmp;
 		env->player.head = vec_tmp;
