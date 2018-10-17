@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:35:11 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/16 17:03:58 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/17 13:42:36 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int	playerrot(t_doom *env, t_vec diff)
 {
+	t_vec	vec_tmp;
+	float	tmp;
+
 	diff = ft_vecscale(diff, env->param.sensitivity);
-	env->player.body = ft_vecrot(env->player.body, 0.0, 0.0, diff.x);
-	
-	env->player.head = ft_vecrot(env->player.body, -diff.y, 0.0, 0.0);
+	env->player.body = ft_vecrotz(env->player.body, diff.x);
+	vec_tmp = ft_vecrot(env->player.head, -diff.y, 0.0, diff.x);
 	env->angle = ft_vec_angle(ft_vecdef(0.0, -1.0, 0.0), env->player.body);
 	env->angle = (env->player.body.x <= 0.0) ? -env->angle : env->angle;
+	if (vec_tmp.z >= -0.5 && vec_tmp.z <= 0.5)
+	{
+		tmp = vec_tmp.z + 0.5;
+		env->wall_center = WIN_HEIGHT * tmp;
+		env->player.head = vec_tmp;
+	}
 	return (1);
 }
 
@@ -41,7 +49,7 @@ int	playermove(t_doom *env)
 		dir = ft_vecadd(dir, ft_vecrotz(mov, 90.0));
 	if (ft_vecnorm(dir) > 1.0)
 		dir = ft_vecnormalize(dir);
-	env->player.pos = ft_vecadd(env->player.pos,
-		ft_vecscale(dir, env->player.speed));
+	env->player.pos = ft_vecadd(env->player.pos, ft_vecscale(dir,
+		env->player.speed));
 	return (1);
 }
