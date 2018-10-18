@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 13:27:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/16 13:43:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/18 11:40:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static void		free_infos(char **infos)
+static void		free_infos(char **infos, char *line)
 {
 	int	i;
 
@@ -20,6 +20,7 @@ static void		free_infos(char **infos)
 	while (infos[++i])
 		free(infos[i]);
 	free(infos);
+	free(line);
 }
 
 static void		stock_wall(t_wall *wall, char **infos)
@@ -75,14 +76,15 @@ void			mapinit(t_doom *env)
 	env->zone->next = NULL;
 	env->zone->wall = (t_wall*)ft_memalloc(sizeof(t_wall));
 	stock_wall(env->zone->wall, infos);
-	free_infos(infos);
+	free_infos(infos, line);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tmp_z = env->zone;
 		infos = ft_strsplit(line, ';');
 		search_zone(infos, tmp_z);
-		free_infos(infos);
+		free_infos(infos, line);
 	}
+	free(line);
 	sort_list(env->zone);
 	make_circular_lst(env->zone);
 }
