@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/17 13:19:12 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/18 09:32:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,11 @@ static void		ft_make_view(t_doom *env, t_img *img)
 			(ft_rayintersect(env->player.pos, raydir, env->zone) *
 			cosf(ft_degtorad(ptr.angle))));
 		p.y = -1;
-		if (ptr.inter != INFINITY && ptr.inter != 0.0)
-			while (++p.y < ptr.inter / 2.0 && p.y >= 0.0 && p.y < img->height)
-			{
-				px_to_img(img, p.x, env->wall_center + p.y, 0xFFFFFF);
-				px_to_img(img, p.x, env->wall_center - p.y, 0xFFFFFF);
-			}
+		while (++p.y < ptr.inter / 2.0)
+		{
+			px_to_img(img, p.x, env->wall_center + p.y, 0xFFFFFF);
+			px_to_img(img, p.x, env->wall_center - p.y, 0xFFFFFF);
+		}
 		ptr.angle += ptr.i;
 		raydir = ft_vecrotz(raydir, ptr.i);
 	}
