@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/19 09:38:14 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/19 11:14:22 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ static void		ft_make_view(t_doom *env, t_img *img)
 	t_coord	p;
 	t_vec	raydir;
 	t_view	ptr;
+	int		i;
 
 	ptr.i = FOV / WIN_WIDTH;
 	raydir = ft_vecrotz(env->player.body, -(FOV / 2.0f));
@@ -114,12 +115,11 @@ static void		ft_make_view(t_doom *env, t_img *img)
 			tanf(ft_degtorad(FOV / 2.0f)) /
 			(ft_rayintersect(env->player.pos, raydir, env->zone) *
 			cosf(ft_degtorad(ptr.angle))));
-		p.y = -1;
-		while (++p.y < (float)(ptr.inter / 2.0f))
-		{
-			px_to_img(img, p.x, env->wall_center + p.y, 0xFFFFFF);
-			px_to_img(img, p.x, env->wall_center - p.y, 0xFFFFFF);
-		}
+		p.y = env->wall_center - (int)(ptr.inter /
+			((env->keys[K_CTRL]) ? 1.4f : 2.0f));
+		i = -1;
+		while (++i < (int)(ptr.inter))
+			px_to_img(img, p.x, p.y + i, 0xFFFFFF);
 		ptr.angle += ptr.i;
 		raydir = ft_vecrotz(raydir, ptr.i);
 	}

@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:24:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/09 15:15:00 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 10:14:32 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ enum			e_keys
 	K_BACKWARD,
 	K_LEFT,
 	K_RIGHT,
+	K_CTRL,
 	K_END
 };
 

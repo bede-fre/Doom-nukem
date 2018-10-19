@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/18 11:23:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/19 10:07:37 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	get_key_id(t_doom *doom, int keycode)
 		return (K_LEFT);
 	if (keycode == doom->bindings[K_RIGHT])
 		return (K_RIGHT);
+	if (keycode == doom->bindings[K_CTRL])
+		return (K_CTRL);
 	return (-1);
 }
 
@@ -33,6 +35,7 @@ void		key_init(t_doom *doom)
 	doom->bindings[K_BACKWARD] = 1;
 	doom->bindings[K_LEFT] = 0;
 	doom->bindings[K_RIGHT] = 2;
+	doom->bindings[K_CTRL] = 256;
 }
 
 char		is_key_pressed(t_doom *doom, int key)
@@ -52,6 +55,8 @@ int			key_pressed(int key, void *param)
 		env->keys[index] = 1;
 	if (key == 53)
 		exit(0);
+	if (key == 256)
+		env->player.crouched = WIN_HEIGHT;
 	render(param);
 	return (0);
 }

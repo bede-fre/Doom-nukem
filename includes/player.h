@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:46:29 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/16 17:01:40 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 10:01:59 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_player
 	t_vec		head;
 	t_vec		body;
 	float		speed;
+	int			crouched;
 }				t_player;
 
 #endif

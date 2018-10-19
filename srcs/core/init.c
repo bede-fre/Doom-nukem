@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 10:15:20 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/19 09:35:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/19 10:02:29 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void		playerinit(t_doom *env)
 	env->angle = ft_vec_angle(ft_vecdef(0.0f, -1.0f, 0.0f), env->player.body);
 	env->wall_center = WIN_HEIGHT / 2;
 	env->player.speed = 0.1f;
+	env->player.crouched = 0;
 }
 
 void			init(t_doom *env)
