@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 13:50:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/17 13:20:05 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 09:39:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static void	ft_printrays(t_img *img)
 	t_vec	raydir;
 	float	increment;
 
-	center = ft_vecdef((float)MAP_WIDTH / 2.0,
-			(float)MAP_HEIGHT / 2.0 - 5.0, 0.0);
+	center = ft_vecdef((float)MAP_WIDTH / 2.0f,
+		(float)MAP_HEIGHT / 2.0f - 5.0f, 0.0f);
 	increment = FOV / (float)WIN_WIDTH;
-	raydir = ft_vecrotz(ft_vecdef(0.0, 1.0, 0.0), -(FOV / 2.0));
+	raydir = ft_vecrotz(ft_vecdef(0.0f, 1.0f, 0.0f), -(FOV / 2.0f));
 	i = -1;
 	while (++i < WIN_WIDTH)
 	{
-		ft_putline(center, ft_vecadd(center, ft_vecscale(raydir, 10.0)), img,
-				0xaaff00);
+		ft_putline(center, ft_vecadd(center, ft_vecscale(raydir, 10.0f)), img,
+			0xAAFF00);
 		raydir = ft_vecrotz(raydir, increment);
 	}
 }
@@ -38,13 +38,13 @@ static void	print_walls(t_wall *wall, t_img *map, t_doom *env)
 	t_vec	p2;
 	t_vec	center;
 
-	center = ft_vecdef(100.0, 100.0, 0.0);
-	p1 = ft_vecsub(ft_vecscale(wall->origin, 10.0),
-			ft_vecscale(env->player.pos, 10.0));
+	center = ft_vecdef(100.0f, 100.0f, 0.0f);
+	p1 = ft_vecsub(ft_vecscale(wall->origin, 10.0f),
+			ft_vecscale(env->player.pos, 10.0f));
 	p1 = ft_vecrotz(p1, -env->angle);
 	p1 = ft_vecadd(p1, center);
 	p2 = ft_vecsub(ft_vecscale(wall->next->origin,
-				10.0), ft_vecscale(env->player.pos, 10.0));
+		10.0f), ft_vecscale(env->player.pos, 10.0f));
 	p2 = ft_vecrotz(p2, -env->angle);
 	p2 = ft_vecadd(p2, center);
 	ft_putline(p1, p2, map, 0xCCCCCC);

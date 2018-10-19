@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 16:38:43 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/09 16:08:10 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 09:41:33 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	px_to_img(t_img *img, int x, int y, int c)
 {
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return ;
-	img->data[x * 4 + y * img->width * 4] = (c & 0xff);
-	img->data[x * 4 + y * img->width * 4 + 1] = ((c >> 8) & 0xff);
-	img->data[x * 4 + y * img->width * 4 + 2] = ((c >> 16) & 0xff);
+	img->data[x * 4 + y * img->width * 4] = (c & 0xFF);
+	img->data[x * 4 + y * img->width * 4 + 1] = ((c >> 8) & 0xFF);
+	img->data[x * 4 + y * img->width * 4 + 2] = ((c >> 16) & 0xFF);
 	img->data[x * 4 + y * img->width * 4 + 3] = c >> 24;
 }

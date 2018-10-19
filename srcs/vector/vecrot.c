@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 15:05:41 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/09 16:14:16 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 09:42:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ t_vec	ft_vecrotx(t_vec a, float xrot)
 	float	cos;
 	float	sin;
 
-	while (xrot <= -360.0)
-		xrot += 360.0;
-	while (xrot >= 360.0)
-		xrot -= 360.0;
+	while (xrot <= -360.0f)
+		xrot += 360.0f;
+	while (xrot >= 360.0f)
+		xrot -= 360.0f;
 	xrot = ft_degtorad(xrot);
 	cos = cosf(xrot);
 	sin = sinf(xrot);
@@ -37,10 +37,10 @@ t_vec	ft_vecroty(t_vec a, float yrot)
 	float	cos;
 	float	sin;
 
-	while (yrot <= -360.0)
-		yrot += 360.0;
-	while (yrot >= 360.0)
-		yrot -= 360.0;
+	while (yrot <= -360.0f)
+		yrot += 360.0f;
+	while (yrot >= 360.0f)
+		yrot -= 360.0f;
 	yrot = ft_degtorad(yrot);
 	cos = cosf(yrot);
 	sin = sinf(yrot);
@@ -56,10 +56,10 @@ t_vec	ft_vecrotz(t_vec a, float zrot)
 	float	cos;
 	float	sin;
 
-	while (zrot <= -360.0)
-		zrot += 360.0;
-	while (zrot >= 360.0)
-		zrot -= 360.0;
+	while (zrot <= -360.0f)
+		zrot += 360.0f;
+	while (zrot >= 360.0f)
+		zrot -= 360.0f;
 	zrot = ft_degtorad(zrot);
 	cos = cosf(zrot);
 	sin = sinf(zrot);

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:40:01 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/09 16:14:51 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 09:43:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_vec	ft_vecnormalize(t_vec a)
 	t_vec	v;
 	float	norm;
 
-	if ((norm = ft_vecnorm(a)) != 1.0 && norm != 0.0)
+	if ((norm = ft_vecnorm(a)) != 1.0f && norm != 0.0f)
 	{
 		v.x = a.x / norm;
 		v.y = a.y / norm;

@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:29:03 by toliver           #+#    #+#             */
-/*   Updated: 2018/10/10 14:09:39 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/19 09:42:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ t_vec			ft_vec_intersection(t_line l1, t_line l2)
 	t_vec	inter;
 
 	if (l1.slope == l2.slope)
-		return (ft_vecdef(INFINITY, INFINITY, 0.0));
+		return (ft_vecdef(INFINITY, INFINITY, 0.0f));
 	if (l1.slope == INFINITY)
 		inter.x = l1.a.x;
 	else if (l2.slope == INFINITY)
 		inter.x = l2.a.x;
 	else
 		inter.x = (l2.offset - l1.offset) / (l1.slope - l2.slope);
-	if (l1.slope == 0.0)
+	if (l1.slope == 0.0f)
 		inter.y = l1.a.y;
-	else if (l2.slope == 0.0)
+	else if (l2.slope == 0.0f)
 		inter.y = l2.a.y;
 	else
 		inter.y = (l1.slope == INFINITY) ? l2.slope * inter.x + l2.offset :
 			l1.slope * inter.x + l1.offset;
-	inter.z = 0.0;
+	inter.z = 0.0f;
 	return (inter);
 }

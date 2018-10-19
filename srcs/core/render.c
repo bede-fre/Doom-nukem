@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/18 09:32:09 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/19 09:38:14 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,18 @@ static void		ft_make_view(t_doom *env, t_img *img)
 	t_view	ptr;
 
 	ptr.i = FOV / WIN_WIDTH;
-	raydir = ft_vecrotz(env->player.body, -(FOV / 2.0));
+	raydir = ft_vecrotz(env->player.body, -(FOV / 2.0f));
 	bzero(img->data, img->width * img->height * 4);
-	ptr.angle = -(FOV / 2.0);
+	ptr.angle = -(FOV / 2.0f);
 	p.x = -1;
 	while (++p.x < WIN_WIDTH)
 	{
 		ptr.inter = (((float)(env->img.width / 2)) /
-			tanf(ft_degtorad(FOV / 2.0)) /
+			tanf(ft_degtorad(FOV / 2.0f)) /
 			(ft_rayintersect(env->player.pos, raydir, env->zone) *
 			cosf(ft_degtorad(ptr.angle))));
 		p.y = -1;
-		while (++p.y < ptr.inter / 2.0)
+		while (++p.y < (float)(ptr.inter / 2.0f))
 		{
 			px_to_img(img, p.x, env->wall_center + p.y, 0xFFFFFF);
 			px_to_img(img, p.x, env->wall_center - p.y, 0xFFFFFF);
