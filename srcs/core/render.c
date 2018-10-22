@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 16:17:52 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/19 11:14:22 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/22 14:17:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ static void		find_dist(t_vec pos, t_vec raydir, t_wall *wall, float *inter)
 	{
 		p = ft_vecsub(p, pos);
 		tmp = ft_vecnorm(p);
-		if (tmp < *inter
-				&& ft_dot_product(p, raydir) > 0.0)
+		if (tmp < *inter && ft_dot_product(p, raydir) > 0.0)
 			*inter = tmp;
 	}
 }

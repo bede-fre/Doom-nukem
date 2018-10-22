@@ -6,7 +6,7 @@
 /*   By: tberthie <tberthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 15:42:46 by tberthie          #+#    #+#             */
-/*   Updated: 2018/10/19 10:07:37 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/22 14:29:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int			key_pressed(int key, void *param)
 		env->keys[index] = 1;
 	if (key == 53)
 		exit(0);
-	if (key == 256)
-		env->player.crouched = WIN_HEIGHT;
 	render(param);
 	return (0);
 }
