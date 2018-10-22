@@ -6,7 +6,7 @@
 #    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/18 11:48:10 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/22 11:51:40 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,31 +14,15 @@
 ##  VARIABLES   ##
 ##################
 
-OPE_SYS			= $(shell uname)
-NAME			= doom-nukem
-SRCS1			= $(addprefix $(OBJS_DIR), $(addsuffix .c, \
-				  $(addprefix vector/, vector vector2 vector3 angle vecrot intersection) \
-				  $(addprefix core/, main loop render map init map_init sort_list make_circular_lst rotmap) \
-				  $(addprefix events/, keys mouse window) \
-				  $(addprefix playerhandling/, playermove) \
-				  $(addprefix tools/, error images putline allocate) \
-				  ))
-OBJS			= $(SRCS1:.c=.o)
-SRCS_DIR		= srcs/
 OBJS_DIR		= objs/
-LIBFT_DIR		= libft
-LIBFT			= $(LIBFT_DIR)/libft.a
-MINILIBX		= $(MLX_DIR)/libmlx.a
-FLAGS			= -Wall -Wextra -Werror -O2 -g -fsanitize=address
+LIBFT_DIR		= libft/
+GAME_DIR		= srcs/game/
+EDITOR_DIR		= srcs/map_editor/
 
 ifeq ($(OPE_SYS), Linux)
 	MLX_DIR		= minilibx_x11
-	INCLUDES	= -I includes -I $(MLX_DIR) -I $(LIBFT_DIR) -I /usr/include
-	FRAMEWORK	= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 else
-	MLX_DIR		= mlx
-	INCLUDES	= -I includes -I $(MLX_DIR) -I $(LIBFT_DIR)
-	FRAMEWORK	= -framework OpenGL -framework Appkit
+	MLX_DIR		= minilibx
 endif
 
 ##################
@@ -64,46 +48,40 @@ _CUT		= "\033[k"
 ##   TARGETS    ##
 ##################
 
-.PHONY: all title minilibx create_dir clean fclean re norme libft
+.PHONY: all title minilibx clean fclean re norme libft game editor
 
-all: $(NAME)
+all: game
+
+editor: libft
+	@$(MAKE) -C $(EDITOR_DIR)
+
+game: editor
+	@$(MAKE) -C $(GAME_DIR)
 
 minilibx: title
-	@make -sC $(MLX_DIR) 2>/dev/null
+	@$(MAKE) -sC $(MLX_DIR) 2>/dev/null
 
 libft: minilibx
-	@make -sC $(LIBFT_DIR)
-
-$(NAME): libft create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -o $(NAME)
-	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
-	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
-
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@gcc $(FLAGS) $(INCLUDES) -c $^ -o $@
-
-create_dir:
-	@mkdir -p objs/events
-	@mkdir -p objs/tools
-	@mkdir -p objs/core
-	@mkdir -p objs/vector
-	@mkdir -p objs/playerhandling
+	@$(MAKE) -sC $(LIBFT_DIR)
 
 clean:
-	@make -sC $(MLX_DIR) clean
-	@make -sC $(LIBFT_DIR) clean
-	@/bin/rm -rf $(OBJS_DIR)
+	@$(MAKE) -sC $(MLX_DIR) clean
+	@$(MAKE) -sC $(LIBFT_DIR) clean
+	@$(MAKE) -sC $(GAME_DIR) clean
+	@$(MAKE) -sC $(EDITOR_DIR) clean
 
 fclean: clean
-	@make -sC $(LIBFT_DIR) fclean
-	@/bin/rm -f $(NAME)
+	@$(MAKE) -sC $(LIBFT_DIR) fclean
+	@$(MAKE) -sC $(GAME_DIR) fclean
+	@$(MAKE) -sC $(EDITOR_DIR) fclean
 
 re:
 	@$(MAKE) -s fclean
 	@$(MAKE) -s
 
 norme:
-	@norminette srcs/*.c includes/*.h
+	@$(MAKE) -C $(GAME_DIR) norme
+	@$(MAKE) -C $(EDITOR_DIR) norme
 
 title:
 	@echo $(_RED)
@@ -116,6 +94,7 @@ title:
 	@echo "                 +#+    +#+ +#+    +#+ +#+    +#+ +#+       +#+          "
 	@echo "                #+#    #+# #+#    #+# #+#    #+# #+#       #+#           "
 	@echo "               #########   ########   ########  ###       ###            "
+	@echo
 	@echo "          ::::    ::: :::    ::: :::    ::: ::::::::::   :::   :::       "
 	@echo "         :+:+:   :+: :+:    :+: :+:   :+:  :+:         :+:+: :+:+:       "
 	@echo "        :+:+:+  +:+ +:+    +:+ +:+  +:+   +:+        +:+ +:+:+ +:+       "
