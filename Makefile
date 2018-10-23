@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 13:04:16 by cmace            ###   ########.fr        #
+#    Updated: 2018/10/23 13:24:17 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,12 +118,6 @@ LIBFT_DIR		= libft/
 GAME_DIR		= srcs/game/
 EDITOR_DIR		= srcs/map_editor/
 
-ifeq ($(OPE_SYS), Linux)
-	MLX_DIR		= minilibx_x11
-else
-	MLX_DIR		= minilibx
-endif
-
 ##################
 ##    COLORS    ##
 ##################
@@ -147,9 +141,9 @@ _CUT		= "\033[k"
 ##   TARGETS    ##
 ##################
 
-.PHONY: all title minilibx clean fclean re norme libft game editor
+.PHONY: all title clean fclean re norme libft game editor
 
-all: install game
+all: game
 
 editor: libft
 	@$(MAKE) -C $(EDITOR_DIR)
@@ -157,14 +151,10 @@ editor: libft
 game: editor
 	@$(MAKE) -C $(GAME_DIR)
 
-minilibx: title
-	@$(MAKE) -sC $(MLX_DIR) 2>/dev/null
-
-libft: minilibx
+libft: install
 	@$(MAKE) -sC $(LIBFT_DIR)
 
 clean:
-	@$(MAKE) -sC $(MLX_DIR) clean
 	@$(MAKE) -sC $(LIBFT_DIR) clean
 	@$(MAKE) -sC $(GAME_DIR) clean
 	@$(MAKE) -sC $(EDITOR_DIR) clean

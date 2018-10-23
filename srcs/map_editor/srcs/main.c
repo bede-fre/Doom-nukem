@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/23 13:06:38 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/23 13:28:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void plop(void)
 int main(void)
 {
 	SDL_Init(SDL_INIT_VIDEO); // Initialisation de la SDL
-	SDL_CreateWindow("Test", 200, 200, 1920, 1080, 0); // Ouverture de la fenêtre
+	SDL_CreateWindow("Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, 0u); // Ouverture de la fenêtre
 	plop(); // Mise en pause du programme
 	SDL_Quit(); // Arrêt de la SDL
 	return EXIT_SUCCESS; // Fermeture du programme
