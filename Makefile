@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
+#    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/22 17:21:48 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/23 12:29:47 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,7 +149,7 @@ _CUT		= "\033[k"
 
 .PHONY: all title minilibx clean fclean re norme libft game editor
 
-all: game
+all: install game
 
 editor: libft
 	@$(MAKE) -C $(EDITOR_DIR)
@@ -225,12 +225,13 @@ sdl_main:
 	@$(foreach file, $(SDL_MAIN_INCLUDE), test -e $(file) || (echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file) in $@\033[0m" ; \
 		cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; ./configure --prefix=$$PWD/../ ;\
 		make && make install);)
+	@mkdir -p ./includes
 	@cp -r $(SDL_MAIN_INCLUDE_PATH) ./includes/SDL
 
 sdl_image:
 	@if [ ! -d "$(SDL_FOLDER)" ] ; then make sdl_main; fi
 	@if [ ! -e "$(SDL_FOLDER)$(SDL_IMAGE_VERSION)" ] ; then cd $(SDL_FOLDER) && $(CURL_PATH) $(SDL_IMAGE_DOWNLOAD) > $(SDL_IMAGE_VERSION); fi
-	if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)" ] ; then cd $(SDL_FOLDER) && tar -xvzf $(SDL_IMAGE_VERSION); fi
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)" ] ; then cd $(SDL_FOLDER) && tar -xvzf $(SDL_IMAGE_VERSION); fi
 	@$(foreach file, $(SDL_IMAGE), test -e $(file) || (echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file)\033[0m" ; \
 		cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER) ; ./configure --prefix=$$PWD/../ --with-sdl-prefix=$$PWD/../../sdl ;\
 		make && make install);)

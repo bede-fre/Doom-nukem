@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+         #
+#    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/22 11:36:34 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/23 12:31:04 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,17 @@ OBJS_DIR		= objs/
 LIBFT_DIR		= libft
 LIBFT			= $(LIBFT_DIR)/libft.a
 MINILIBX		= $(MLX_DIR)/libmlx.a
+SDL_FOLDER 		= $(HOME)/goinfre/sdl/
+SDL_MAIN_OBJ_LIBS = libSDL2.a
+SDL_IMAGE_OBJ_LIBS = libSDL2_image.a
+SDL_MAIN_FOLDER = $(SDL_MAIN_VERSION:.tar.gz=)
+SDL_MAIN_LIBS	= $(SDL_FOLDER)lib/
+SDL_IMAGE_LIBS	= $(SDL_FOLDER)lib/
+SDL_IMAGE_FOLDER		= $(SDL_IMAGE_VERSION:.tar.gz=)
+SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/
+SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/
+SDL_IMAGE		= $(addprefix $(SDL_IMAGE_LIBS), $(SDL_IMAGE_OBJ_LIBS))
+SDL_MAIN		= $(addprefix $(SDL_MAIN_LIBS), $(SDL_MAIN_OBJ_LIBS))
 FLAGS			= -Wall -Wextra -Werror -g
 
 ifeq ($(OPE_SYS), Linux)
@@ -63,7 +74,8 @@ _CUT		= "\033[k"
 all: $(NAME)
 
 $(NAME): create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -o ../../$(NAME)
+	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -I $(SDL_MAIN_INCLUDE_PATH) -L $(SDL_MAIN_LIBS) -lSDL2\
+		-I$(SDL_IMAGE_INCLUDE_PATH) -L $(SDL_IMAGE_LIBS) -lSDL2_image -o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
 	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 
