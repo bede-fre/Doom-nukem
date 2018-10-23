@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 13:39:44 by cmace            ###   ########.fr        #
+#    Updated: 2018/10/23 14:08:46 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ CURL_PATH = curl -L
 
 OBJS_DIR		= objs/
 LIBFT_DIR		= libft/
+LIBVECT_DIR		= libvect/
 GAME_DIR		= srcs/game/
 EDITOR_DIR		= srcs/map_editor/
 
@@ -153,15 +154,18 @@ game: editor
 
 libft: install
 	@$(MAKE) -sC $(LIBFT_DIR)
+	@$(MAKE) -sC $(LIBVECT_DIR)
 
 clean:
 	@$(MAKE) -sC $(LIBFT_DIR) clean
+	@$(MAKE) -sC $(LIBVECT_DIR) clean
 	@$(MAKE) -sC $(GAME_DIR) clean
 	@$(MAKE) -sC $(EDITOR_DIR) clean
 	@rm -rf SDL
 
 fclean: clean
 	@$(MAKE) -sC $(LIBFT_DIR) fclean
+	@$(MAKE) -sC $(LIBVECT_DIR) fclean
 	@$(MAKE) -sC $(GAME_DIR) fclean
 	@$(MAKE) -sC $(EDITOR_DIR) fclean
 	@rm -rf SDL

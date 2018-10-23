@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/23 13:28:10 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/23 14:16:47 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ static void plop(void)
 
 int main(void)
 {
+	t_mat3 test;
 	SDL_Init(SDL_INIT_VIDEO); // Initialisation de la SDL
 	SDL_CreateWindow("Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, 0u); // Ouverture de la fenêtre
 	plop(); // Mise en pause du programme
 	SDL_Quit(); // Arrêt de la SDL
+	test = ft_vecdef(0.0f, 1.0f, 2.0f);
+	printf("%f, %f %f\n", test.x, test.y, test.z);
 	return EXIT_SUCCESS; // Fermeture du programme
 }

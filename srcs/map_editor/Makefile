@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 13:22:26 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/23 14:11:04 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,10 @@ OBJS			= $(SRCS:.c=.o)
 SRCS_DIR		= srcs/
 OBJS_DIR		= objs/
 LIBFT_DIR		= libft
+LIBVECT_DIR		= libvect
 LIBFT			= $(LIBFT_DIR)/libft.a
-INCLUDES		= -I includes -I $(LIBFT_DIR) -I ../../
+LIBVECT			= $(LIBVECT_DIR)/libvect.a
+INCLUDES		= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) -I ../../
 FRAMEWORK		= -framework OpenGL -framework Appkit
 SDL_FOLDER		= $(HOME)/goinfre/sdl/
 SDL_MAIN_OBJ_LIBS = libSDL2.a
@@ -65,7 +67,7 @@ _CUT		= "\033[k"
 all: $(NAME)
 
 $(NAME): create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -I $(SDL_MAIN_INCLUDE_PATH) \
+	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) $(MINILIBX) -I $(SDL_MAIN_INCLUDE_PATH) \
 		-L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) -L $(SDL_IMAGE_LIBS) \
 		-lSDL2_image -o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)

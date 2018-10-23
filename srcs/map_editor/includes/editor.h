@@ -6,21 +6,16 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/23 13:07:51 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/23 14:16:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <math.h>
 # include "SDL/SDL.h"
+# include "libvect.h"
+# include "libft.h"
 
 typedef struct	s_img
 {
