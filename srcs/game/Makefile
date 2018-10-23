@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 12:23:52 by cmace            ###   ########.fr        #
+#    Updated: 2018/10/23 13:16:18 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ ifeq ($(OPE_SYS), Linux)
 	FRAMEWORK	= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 else
 	MLX_DIR		= minilibx
-	INCLUDES	= -I includes -I $(MLX_DIR) -I $(LIBFT_DIR)
+	INCLUDES	= -I includes -I $(MLX_DIR) -I $(LIBFT_DIR) -I ../../
 	FRAMEWORK	= -framework OpenGL -framework Appkit
 endif
 
