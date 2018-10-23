@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 12:29:47 by cmace            ###   ########.fr        #
+#    Updated: 2018/10/23 13:04:16 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -225,8 +225,8 @@ sdl_main:
 	@$(foreach file, $(SDL_MAIN_INCLUDE), test -e $(file) || (echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file) in $@\033[0m" ; \
 		cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; ./configure --prefix=$$PWD/../ ;\
 		make && make install);)
-	@mkdir -p ./includes
-	@cp -r $(SDL_MAIN_INCLUDE_PATH) ./includes/SDL
+	@mkdir -p ./SDL
+	@cp -r $(SDL_MAIN_INCLUDE_PATH) ./SDL
 
 sdl_image:
 	@if [ ! -d "$(SDL_FOLDER)" ] ; then make sdl_main; fi
@@ -238,4 +238,10 @@ sdl_image:
 	@$(foreach file, $(SDL_IMAGE_LIBS), test -e $(file) || (echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file)\033[0m" ;\
 		cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER) ; ./configure --prefix=$$PWD/../ --with-sdl-prefix=$$PWD/../../sdl ;\
 		make && make install);)
-	@cp $(SDL_FOLDER)SDL2_image-2.0.3/SDL_image.h ./includes/SDL/SDL_image.h
+	@cp $(SDL_FOLDER)SDL2_image-2.0.3/SDL_image.h ./SDL/SDL_image.h
+
+cleansdl:
+	@rm -rf $(SDL_FOLDER)
+	@rm -rf
+
+reall: cleansdl re
