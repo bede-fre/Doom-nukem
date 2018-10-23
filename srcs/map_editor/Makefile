@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 15:49:00 by bede-fre         ###   ########.fr        #
+#    Updated: 2018/10/23 15:52:17 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,30 +14,30 @@
 ##  VARIABLES   ##
 ##################
 
-OPE_SYS			= $(shell uname)
-NAME			= editor
-SRCS			= $(addprefix $(OBJS_DIR), $(addsuffix .c, main init events))
-OBJS			= $(SRCS:.c=.o)
-SRCS_DIR		= srcs/
-OBJS_DIR		= objs/
-LIBFT_DIR		= libft
-LIBVECT_DIR		= libvect
-LIBFT			= $(LIBFT_DIR)/libft.a
-LIBVECT			= $(LIBVECT_DIR)/libvect.a
-INCLUDES		= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) -I ../../
-FRAMEWORK		= -framework OpenGL -framework Appkit
-SDL_FOLDER		= $(HOME)/goinfre/sdl/
-SDL_MAIN_OBJ_LIBS = libSDL2.a
-SDL_IMAGE_OBJ_LIBS = libSDL2_image.a
-SDL_MAIN_FOLDER = $(SDL_MAIN_VERSION:.tar.gz=)
-SDL_MAIN_LIBS	= $(SDL_FOLDER)lib/
-SDL_IMAGE_LIBS	= $(SDL_FOLDER)lib/
+OPE_SYS					= $(shell uname)
+NAME					= editor
+SRCS					= $(addprefix $(OBJS_DIR), $(addsuffix .c, main init events))
+OBJS					= $(SRCS:.c=.o)
+SRCS_DIR				= srcs/
+OBJS_DIR				= objs/
+LIBFT_DIR				= libft
+LIBVECT_DIR				= libvect
+LIBFT					= $(LIBFT_DIR)/libft.a
+LIBVECT					= $(LIBVECT_DIR)/libvect.a
+INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) -I ../../
+FRAMEWORK				= -framework OpenGL -framework Appkit
+SDL_FOLDER				= $(HOME)/goinfre/sdl/
+SDL_MAIN_OBJ_LIBS		= libSDL2.a
+SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
+SDL_MAIN_FOLDER			= $(SDL_MAIN_VERSION:.tar.gz=)
+SDL_MAIN_LIBS			= $(SDL_FOLDER)lib/
+SDL_IMAGE_LIBS			= $(SDL_FOLDER)lib/
 SDL_IMAGE_FOLDER		= $(SDL_IMAGE_VERSION:.tar.gz=)
 SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/
 SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/
-SDL_IMAGE		= $(addprefix $(SDL_IMAGE_LIBS), $(SDL_IMAGE_OBJ_LIBS))
-SDL_MAIN		= $(addprefix $(SDL_MAIN_LIBS), $(SDL_MAIN_OBJ_LIBS))
-FLAGS			= -Wall -Wextra -Werror -g
+SDL_IMAGE				= $(addprefix $(SDL_IMAGE_LIBS), $(SDL_IMAGE_OBJ_LIBS))
+SDL_MAIN				= $(addprefix $(SDL_MAIN_LIBS), $(SDL_MAIN_OBJ_LIBS))
+FLAGS					= -Wall -Wextra -Werror -g
 
 ##################
 ##    COLORS    ##
