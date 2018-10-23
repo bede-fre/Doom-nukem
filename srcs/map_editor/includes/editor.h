@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/23 14:16:19 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/23 15:47:59 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ typedef struct	s_img
 
 typedef struct	s_env
 {
-	void		*mlx;
-	void		*win;
+	SDL_Window	*win;
 	t_img		*img;
 }				t_env;
+
+void			init(t_env *env);
+void			events(SDL_Event event, int *loop);
 
 #endif

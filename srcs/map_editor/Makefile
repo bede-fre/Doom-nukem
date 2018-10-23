@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 14:11:04 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/23 15:49:00 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 OPE_SYS			= $(shell uname)
 NAME			= editor
-SRCS			= $(addprefix $(OBJS_DIR), $(addsuffix .c, main))
+SRCS			= $(addprefix $(OBJS_DIR), $(addsuffix .c, main init events))
 OBJS			= $(SRCS:.c=.o)
 SRCS_DIR		= srcs/
 OBJS_DIR		= objs/
