@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   make_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/24 11:37:10 by lguiller         ###   ########.fr       */
+/*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
+/*   Updated: 2018/10/24 11:35:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-/*
-** INITIALISATION DE ENV ET LANCEMENT DE LA BOUCLE DES EVENTS
-*/
-
-static void	ft_loop(void)
+void	make_grid(t_env *env)
 {
-	int			loop;
-	t_env		env;
-	SDL_Event	event;
+	t_point p;
+	SDL_Color color = {255, 255, 255, 0};
 
-	loop = 1;
-	init(&env);
-	make_grid(&env);
-	SDL_RenderPresent(env.renderer);
-	while (loop)
-	{
-		if (SDL_PollEvent(&event) == 1)
-			events(event, &loop, &env);
-	}
-	SDL_DestroyWindow(env.window);
-	SDL_Quit();
-}
-
-int			main(void)
-{
-	ft_loop();
-	return (EXIT_SUCCESS);
+	p.x = -1;
+	while (++p.y <= 1080 && (p.x = -1))
+		while (++p.x <= 1920)
+			if ((p.x + env->grid.gap.x) % env->grid.scale == 0 ||
+				(p.y + env->grid.gap.y) % env->grid.scale == 0)
+				set_pixel(env->renderer, p.x, p.y, color);
 }

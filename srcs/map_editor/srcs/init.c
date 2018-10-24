@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/24 10:18:48 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 11:24:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,7 @@ void	init(t_env *env)
 		ft_error((char*)SDL_GetError(), 2, ft_puterror);
 	if (!(env->renderer = SDL_CreateRenderer(env->window, -1, 0)))
 		ft_error((char*)SDL_GetError(), 3, ft_puterror);
+	env->grid.scale = 25;
+	env->grid.gap.x = 1920 / 2;
+	env->grid.gap.y = 1080 / 2;
 }
