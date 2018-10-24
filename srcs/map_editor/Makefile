@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/24 11:34:34 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/24 12:10:19 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 OPE_SYS					= $(shell uname)
 NAME					= editor
-SRCS					= $(addprefix $(OBJS_DIR), $(addsuffix .c, main init events set_pixel make_grid))
+SRCS					= $(addprefix $(OBJS_DIR), $(addsuffix .c, main init events tools make_grid))
 OBJS					= $(SRCS:.c=.o)
 SRCS_DIR				= srcs/
 OBJS_DIR				= objs/
