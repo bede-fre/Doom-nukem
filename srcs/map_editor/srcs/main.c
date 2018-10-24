@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/24 11:37:10 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 16:12:49 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	ft_loop(void)
 	{
 		if (SDL_PollEvent(&event) == 1)
 			events(event, &loop, &env);
+		keyboard_events(&env);
 	}
 	SDL_DestroyWindow(env.window);
 	SDL_Quit();

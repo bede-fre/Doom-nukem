@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/24 14:42:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 15:30:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	make_grid(t_env *env)
 {
-	t_point		p;
-	SDL_Color	white = {255, 255, 255, 0};
-	SDL_Color	red = {200, 0, 0, 0};
-	t_point		new_gap;
+	t_point			p;
+	const SDL_Color	white = {200, 200, 200, 0};
+	const SDL_Color	red = {200, 0, 0, 0};
+	t_point			new_gap;
 
 	new_gap.x = env->grid.center.x + env->grid.gap.x;
 	new_gap.y = env->grid.center.y + env->grid.gap.y;
