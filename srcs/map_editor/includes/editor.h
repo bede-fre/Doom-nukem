@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/23 16:34:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 10:47:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@
 # include "libvect.h"
 # include "libft.h"
 
-typedef struct		s_img
+typedef struct		s_env
 {
+	SDL_Window		*window;
 	SDL_Renderer	*renderer;
-	SDL_Texture		*texture;
-	SDL_Surface		*surface;
-}					t_img;
+}					t_env;
 
-typedef struct	s_env
-{
-	SDL_Window	*window;
-	t_img		*img;
-}				t_env;
-
-void			init(t_env *env);
-void			events(SDL_Event event, int *loop);
+void				init(t_env *env);
+void				events(SDL_Event event, int *loop, t_env *env);
+void				set_pixel(SDL_Renderer *renderer, int x, int y, SDL_Color color);
 
 #endif

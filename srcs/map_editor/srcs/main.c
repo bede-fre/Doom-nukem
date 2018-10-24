@@ -6,30 +6,36 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/23 17:09:14 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 10:48:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+/*
+** INITIALISATION DE ENV ET LANCEMENT DE LA BOUCLE DES EVENTS
+*/
 
 static void	ft_loop(void)
 {
 	int			loop;
 	t_env		env;
 	SDL_Event	event;
-	SDL_Color orange = {255, 127, 40, 125};
+	SDL_Color	color = {255, 0, 0, 0};
+	int			x;
+	int			y;
 
 	loop = 1;
 	init(&env);
+	y = 50;
+	while (++y < 100 && (x = 50))
+		while (++x < 100)
+			set_pixel(env.renderer, x, y, color);
+	SDL_RenderPresent(env.renderer);
 	while (loop)
 	{
 		if (SDL_PollEvent(&event) == 1)
-			events(event, &loop);
-		SDL_DestroyRenderer(env.img->renderer);
-		env.img->renderer = SDL_CreateRenderer(env.window, -1, 0);
-		SDL_SetRenderDrawColor(env.img->renderer, orange.r, orange.g, orange.b, orange.a);
-		SDL_RenderClear(env.img->renderer);
-		SDL_RenderPresent(env.img->renderer);
+			events(event, &loop, &env);
 	}
 	SDL_DestroyWindow(env.window);
 	SDL_Quit();
