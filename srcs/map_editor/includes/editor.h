@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/24 10:47:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 11:02:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "SDL/SDL.h"
 # include "libvect.h"
 # include "libft.h"
+
+# define SCALE 25
 
 typedef struct		s_env
 {
