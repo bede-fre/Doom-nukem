@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/24 12:09:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 13:37:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "SDL/SDL.h"
 # include "libvect.h"
 # include "libft.h"
+
+# define WIN_WIDTH	1920
+# define WIN_HEIGHT	1080
 
 typedef struct		s_point
 {
@@ -27,6 +30,7 @@ typedef struct		s_grid
 {
 	unsigned int	scale;
 	unsigned int	gap_scale;
+	t_point			center;
 	t_point			gap;
 }					t_grid;
 

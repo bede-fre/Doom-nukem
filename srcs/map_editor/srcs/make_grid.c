@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/24 12:03:33 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/24 14:42:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,24 @@
 
 void	make_grid(t_env *env)
 {
-	t_point p;
-	SDL_Color color = {255, 255, 255, 0};
+	t_point		p;
+	SDL_Color	white = {255, 255, 255, 0};
+	SDL_Color	red = {200, 0, 0, 0};
+	t_point		new_gap;
 
-	p.x = -1;
-	while (++p.y <= 1080 && (p.x = -1))
-		while (++p.x <= 1920)
-			if ((p.x + env->grid.gap.x * (env->grid.gap_scale)) % env->grid.scale == 0 ||
-				(p.y + env->grid.gap.y * (env->grid.gap_scale)) % env->grid.scale == 0)
-				set_pixel(env->renderer, p.x, p.y, color);
+	new_gap.x = env->grid.center.x + env->grid.gap.x;
+	new_gap.y = env->grid.center.y + env->grid.gap.y;
+	p.y = -1;
+	while (++p.y <= WIN_HEIGHT)
+	{
+		p.x = -1;
+		while (++p.x <= WIN_WIDTH)
+		{
+			if (abs(p.x - new_gap.x) % env->grid.scale == 0 ||
+				abs(p.y - new_gap.y) % env->grid.scale == 0)
+				set_pixel(env->renderer, p.x, p.y, white);
+			if (p.x == new_gap.x || p.y == new_gap.y)
+				set_pixel(env->renderer, p.x, p.y, red);
+		}
+	}
 }
