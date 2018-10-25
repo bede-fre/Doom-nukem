@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 12:07:26 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/25 10:43:02 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/25 10:45:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void		set_pixel(SDL_Renderer *renderer, int x, int y, SDL_Color color)
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderDrawPoint(renderer, x, y);
 }
+
+/*
+** ASSEMBLAGE DES DIFFERENTS TAUX DE COULEUR EN UNE
+*/
 
 Uint32		set_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
