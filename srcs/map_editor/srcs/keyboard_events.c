@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 09:20:07 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/25 09:22:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/25 10:42:23 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	keyboard_events(t_env *env)
 		env->grid.scale += 1;
 	if (env->keys[K_ZOOMOUT])
 		env->grid.scale -= (env->grid.scale > 1) ? 1 : 0;
-	clear_window(env->renderer);
 	make_grid(env);
 	SDL_RenderPresent(env->renderer);
 }
