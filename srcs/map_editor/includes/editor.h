@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/25 10:43:20 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/25 12:56:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ enum				e_keys
 	K_QUIT,
 	K_END
 };
+
+typedef struct		s_draw
+{
+	Uint32			*pixel;
+	SDL_PixelFormat	*format;
+	SDL_Texture		*texture;
+	void			*tmp;
+	int				sizeline;
+}					t_draw;
 
 typedef struct		s_point
 {
