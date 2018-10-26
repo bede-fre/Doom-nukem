@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/25 12:56:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/26 16:18:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void				set_pixel(SDL_Renderer *renderer, int x, int y,
 void				make_grid(t_env *env);
 Uint32				set_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 void				keyboard_events(t_env *env);
+void				check_frame(void);
 
 #endif

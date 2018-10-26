@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/25 14:27:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/26 15:39:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static void	init_bindings(t_env *env)
 {
 	env->keys = (int*)ft_memalloc(sizeof(int) * K_END + 1);
 	env->bindings = (int*)ft_memalloc(sizeof(int) * K_END + 1);
-	env->bindings[K_UP] = SDLK_UP;
-	env->bindings[K_DOWN] = SDLK_DOWN;
-	env->bindings[K_LEFT] = SDLK_LEFT;
-	env->bindings[K_RIGHT] = SDLK_RIGHT;
-	env->bindings[K_ZOOMIN] = SDLK_EQUALS;
-	env->bindings[K_ZOOMOUT] = SDLK_MINUS;
-	env->bindings[K_RESET] = SDLK_SPACE;
-	env->bindings[K_QUIT] = SDLK_ESCAPE;
+	env->bindings[K_UP] = (int)SDLK_UP;
+	env->bindings[K_DOWN] = (int)SDLK_DOWN;
+	env->bindings[K_LEFT] = (int)SDLK_LEFT;
+	env->bindings[K_RIGHT] = (int)SDLK_RIGHT;
+	env->bindings[K_ZOOMIN] = (int)SDLK_EQUALS;
+	env->bindings[K_ZOOMOUT] = (int)SDLK_MINUS;
+	env->bindings[K_RESET] = (int)SDLK_SPACE;
+	env->bindings[K_QUIT] = (int)SDLK_ESCAPE;
 }
 
 void		init(t_env *env)
