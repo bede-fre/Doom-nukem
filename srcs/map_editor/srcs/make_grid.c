@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/25 14:45:30 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/26 09:25:14 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_draw(t_draw *draw, t_env *env)
 	draw->pixel = draw->tmp;
 }
 
-static void uninit_draw(t_draw *draw, t_env *env)
+static void	uninit_draw(t_draw *draw, t_env *env)
 {
 	SDL_FreeFormat(draw->format);
 	SDL_UnlockTexture(draw->texture);
@@ -29,7 +29,7 @@ static void uninit_draw(t_draw *draw, t_env *env)
 	SDL_DestroyTexture(draw->texture);
 }
 
-void	make_grid(t_env *env)
+void		make_grid(t_env *env)
 {
 	t_point			p;
 	const Uint32	white = set_color(100, 100, 100, 0);
