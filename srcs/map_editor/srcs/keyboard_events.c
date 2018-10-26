@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 09:20:07 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/26 09:20:20 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/26 09:29:22 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	movements(t_env *env)
 
 void	keyboard_events(t_env *env)
 {
+	movements(env);
 	if (env->keys[K_RESET])
 	{
 		env->grid.gap.x = 0;
