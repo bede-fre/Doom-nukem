@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 09:20:07 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/26 09:29:22 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/26 09:52:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 void	movements(t_env *env)
 {
 	if (env->keys[K_UP])
-		env->grid.gap.y += env->grid.gap_scale;
+		env->grid.gap.y += env->grid.scale * 10;
 	if (env->keys[K_DOWN])
-		env->grid.gap.y -= env->grid.gap_scale;
+		env->grid.gap.y -= env->grid.scale * 10;
 	if (env->keys[K_LEFT])
-		env->grid.gap.x += env->grid.gap_scale;
+		env->grid.gap.x += env->grid.scale * 10;
 	if (env->keys[K_RIGHT])
-		env->grid.gap.x -= env->grid.gap_scale;
+		env->grid.gap.x -= env->grid.scale * 10;
 }
 
 /*
@@ -39,15 +39,13 @@ void	keyboard_events(t_env *env)
 	{
 		env->grid.gap.x = 0;
 		env->grid.gap.y = 0;
-		make_grid(env);
-		SDL_RenderPresent(env->renderer);
 	}
 	if (env->keys[K_ZOOMIN])
 		env->grid.scale += (env->grid.scale < 50) ? 1 : 0;
 	if (env->keys[K_ZOOMOUT])
 		env->grid.scale -= (env->grid.scale > 1) ? 1 : 0;
 	if ((*env->keys || *(env->keys + 1) || *(env->keys + 2) || *(env->keys + 3)
-		|| *(env->keys + 4) || *(env->keys + 5)))
+		|| *(env->keys + 4) || *(env->keys + 5) || *(env->keys + 6)))
 	{
 		if ((env->grid.scale < 50 && env->grid.scale > 1)
 			|| (!env->keys[K_ZOOMIN] && !env->keys[K_ZOOMOUT]))
