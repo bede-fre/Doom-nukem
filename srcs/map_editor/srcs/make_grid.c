@@ -6,25 +6,41 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/26 09:25:14 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/10/29 11:53:33 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static void	init_draw(t_draw *draw, t_env *env)
+static void	init_draw(t_draw *draw)
 {
-	draw->texture = SDL_CreateTexture(env->renderer, SDL_PIXELFORMAT_RGBA8888,
-		SDL_TEXTUREACCESS_STREAMING, WIN_WIDTH, WIN_HEIGHT);
-	draw->format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
-	SDL_LockTexture(draw->texture, NULL, &draw->tmp, &draw->sizeline);
-	draw->pixel = draw->tmp;
+	Uint32	rmask;
+	Uint32	gmask;
+	Uint32	bmask;
+	Uint32	amask;
+
+	if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+	{
+		rmask = 0xFF000000;
+		gmask = 0xFF0000;
+		bmask = 0xFF00;
+		amask = 0xFF;
+	}
+	else
+	{
+		rmask = 0xFF;
+		gmask = 0xFF00;
+		bmask = 0xFF0000;
+		amask = 0xFF000000;
+	}
+	draw->surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
+		rmask, gmask, bmask, amask);
 }
 
 static void	uninit_draw(t_draw *draw, t_env *env)
 {
-	SDL_FreeFormat(draw->format);
-	SDL_UnlockTexture(draw->texture);
+	draw->texture = SDL_CreateTextureFromSurface(env->renderer, draw->surface);
+	SDL_FreeSurface(draw->surface);
 	SDL_RenderCopy(env->renderer, draw->texture, NULL, NULL);
 	SDL_DestroyTexture(draw->texture);
 }
@@ -32,14 +48,14 @@ static void	uninit_draw(t_draw *draw, t_env *env)
 void		make_grid(t_env *env)
 {
 	t_point			p;
-	const Uint32	white = set_color(100, 100, 100, 0);
-	const Uint32	red = set_color(200, 0, 0, 0);
 	t_point			new_gap;
 	t_draw			draw;
+	Uint32			*tmp;
 
-	init_draw(&draw, env);
+	init_draw(&draw);
 	new_gap.x = env->grid.center.x + env->grid.gap.x;
 	new_gap.y = env->grid.center.y + env->grid.gap.y;
+	tmp = (Uint32*)draw.surface->pixels;
 	p.y = -1;
 	while (++p.y < WIN_HEIGHT)
 	{
@@ -48,9 +64,9 @@ void		make_grid(t_env *env)
 		{
 			if (abs(p.x - new_gap.x) % env->grid.scale == 0 ||
 				abs(p.y - new_gap.y) % (env->grid.scale) == 0)
-				draw.pixel[p.y * WIN_WIDTH + p.x] = white;
+				*(tmp + p.x + p.y * WIN_WIDTH) = GREY;
 			if (p.x == new_gap.x || p.y == new_gap.y)
-				draw.pixel[p.y * WIN_WIDTH + p.x] = red;
+				*(tmp + p.x + p.y * WIN_WIDTH) = RED;
 		}
 	}
 	uninit_draw(&draw, env);

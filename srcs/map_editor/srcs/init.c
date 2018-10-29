@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/26 15:39:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 11:54:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	init_sdl(t_env *env)
 	if (!(env->window = SDL_CreateWindow("GAME EDITOR", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_OPENGL)))
 		ft_error((char*)SDL_GetError(), 2, ft_puterror);
-	if (!(env->renderer = SDL_CreateRenderer(env->window, -1, 0)))
+	if (!(env->renderer = SDL_CreateRenderer(env->window, -1,
+		SDL_RENDERER_ACCELERATED)))
 		ft_error((char*)SDL_GetError(), 3, ft_puterror);
 }
 
@@ -33,8 +34,7 @@ static void	init_sdl(t_env *env)
 
 static void	init_grid(t_env *env)
 {
-	env->grid.scale = 25;
-	env->grid.gap_scale = 25;
+	env->grid.scale = 20;
 	env->grid.center.x = WIN_WIDTH / 2;
 	env->grid.center.y = WIN_HEIGHT / 2;
 	env->grid.gap.x = 0;
