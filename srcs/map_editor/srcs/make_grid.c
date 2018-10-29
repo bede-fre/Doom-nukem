@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 13:20:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 13:59:59 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 ** ENREGISTREMENT DE LA GRILLE DANS LA SURFACE
 */
 
-void		make_grid(t_env *env)
+void		make_grid(t_env *env, t_draw *draw)
 {
 	t_point			p;
 	t_point			new_gap;
-	t_draw			draw;
 
-	init_draw(&draw, env);
 	new_gap.x = env->grid.center.x + env->grid.gap.x;
 	new_gap.y = env->grid.center.y + env->grid.gap.y;
 	p.y = -1;
@@ -33,10 +31,9 @@ void		make_grid(t_env *env)
 		{
 			if (abs(p.x - new_gap.x) % env->grid.scale == 0 ||
 				abs(p.y - new_gap.y) % (env->grid.scale) == 0)
-				fill_px(draw.surface, p, GREY);
+				fill_px(draw->surface, p.x, p.y, GREY);
 			if (p.x == new_gap.x || p.y == new_gap.y)
-				fill_px(draw.surface, p, RED);
+				fill_px(draw->surface, p.x, p.y, RED);
 		}
 	}
-	uninit_draw(&draw, env);
 }

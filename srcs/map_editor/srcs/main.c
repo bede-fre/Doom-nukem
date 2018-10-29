@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:40:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 14:39:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static void	ft_loop(void)
 
 	loop = 1;
 	init(&env);
-	make_grid(&env);
-	SDL_RenderPresent(env.renderer);
+	start_draw(&env);
 	while (loop)
 	{
 		while (SDL_PollEvent(&event))

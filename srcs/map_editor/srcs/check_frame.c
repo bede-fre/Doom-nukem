@@ -6,13 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:15:15 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/26 16:18:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 14:37:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
-
-int		g_fps = 60;
 
 void	check_frame(void)
 {
@@ -22,7 +20,7 @@ void	check_frame(void)
 	static int		beginsecond;
 	static int		nb_frame;
 
-	framedelay = 1000 / g_fps;
+	framedelay = 1000 / CAP_FPS;
 	frame_actual = SDL_GetTicks();
 	if (beginsecond == 0)
 		beginsecond = frame_actual;
