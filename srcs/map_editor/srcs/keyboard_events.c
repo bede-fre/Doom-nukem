@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 09:20:07 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 11:36:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 13:07:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ void	keyboard_events(t_env *env)
 	{
 		if ((env->grid.scale < 20 && env->grid.scale > 1)
 			|| (!env->keys[K_ZOOMIN] && !env->keys[K_ZOOMOUT]))
-		{
-			SDL_RenderClear(env->renderer);
-			make_grid(env);
-			SDL_RenderPresent(env->renderer);
-		}
+			start_draw(env);
 	}
 }
