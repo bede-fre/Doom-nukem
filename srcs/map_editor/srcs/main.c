@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 11:54:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 12:40:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	ft_loop(void)
 		keyboard_events(&env);
 		check_frame();
 	}
+	SDL_RenderClear(env.renderer);
 	SDL_DestroyWindow(env.window);
 	SDL_Quit();
 }
