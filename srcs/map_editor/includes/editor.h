@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/29 12:35:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 12:58:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void				make_grid(t_env *env);
 Uint32				set_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 void				keyboard_events(t_env *env);
 void				check_frame(void);
-void				init_draw(t_draw *draw);
+void				init_draw(t_draw *draw, t_env *env);
 void				uninit_draw(t_draw *draw, t_env *env);
+void				clear(t_env *env, t_draw *draw, const char *str, int error);
 
 #endif

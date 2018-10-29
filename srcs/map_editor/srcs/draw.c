@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 12:34:16 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:41:28 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 12:58:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-void	init_draw(t_draw *draw)
+void	init_draw(t_draw *draw, t_env *env)
 {
 	Uint32	rmask;
 	Uint32	gmask;
@@ -33,13 +33,16 @@ void	init_draw(t_draw *draw)
 		bmask = 0xFF0000;
 		amask = 0xFF000000;
 	}
-	draw->surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
-		rmask, gmask, bmask, amask);
+	if (!(draw->surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
+		rmask, gmask, bmask, amask)))
+		clear(env, draw, SDL_GetError(), 4);
 }
 
 void	uninit_draw(t_draw *draw, t_env *env)
 {
-	draw->texture = SDL_CreateTextureFromSurface(env->renderer, draw->surface);
+	if (!(draw->texture = SDL_CreateTextureFromSurface(env->renderer,
+		draw->surface)))
+		clear(env, draw, SDL_GetError(), 5);
 	SDL_FreeSurface(draw->surface);
 	SDL_RenderCopy(env->renderer, draw->texture, NULL, NULL);
 	SDL_DestroyTexture(draw->texture);

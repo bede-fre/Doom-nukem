@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:34:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 12:58:48 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		make_grid(t_env *env)
 	t_draw			draw;
 	Uint32			*tmp;
 
-	init_draw(&draw);
+	init_draw(&draw, env);
 	new_gap.x = env->grid.center.x + env->grid.gap.x;
 	new_gap.y = env->grid.center.y + env->grid.gap.y;
 	tmp = (Uint32*)draw.surface->pixels;
