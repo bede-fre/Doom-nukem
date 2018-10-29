@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/29 13:08:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 13:17:21 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void				init_draw(t_draw *draw, t_env *env);
 void				uninit_draw(t_draw *draw, t_env *env);
 void				clear(t_env *env, t_draw *draw, const char *str, int error);
 void				start_draw(t_env *env);
+void				fill_px(SDL_Surface *surface, t_point p, Uint32 col);
 
 #endif
