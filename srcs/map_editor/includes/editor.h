@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/29 14:36:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 16:34:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define WHITE		(Uint32)0xFFFFFFFF
 # define GREY		(Uint32)0xFF555555
 # define RED		(Uint32)0xFF000099
+# define GREEN		(Uint32)0xFF009900
 
 enum				e_keys
 {
@@ -81,15 +82,19 @@ typedef struct		s_env
 	t_grid			grid;
 	int				*bindings;
 	int				*keys;
+	t_point			mouse;
+	t_point			p1;
+	t_point			p2;
+	int				t;
 }					t_env;
 
 void				init(t_env *env);
 void				events(SDL_Event event, int *loop, t_env *env);
 void				set_pixel(SDL_Renderer *renderer, int x, int y,
-		SDL_Color color);
+						SDL_Color color);
 void				make_grid(t_env *env, t_draw *draw);
 Uint32				set_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
-void				keyboard_events(t_env *env);
+void				refresh_events(t_env *env);
 void				check_frame(void);
 t_draw				init_draw(t_env *env);
 void				uninit_draw(t_draw *draw, t_env *env);
@@ -97,6 +102,7 @@ void				clear(t_env *env, t_draw *draw, const char *str, int error);
 void				start_draw(t_env *env);
 void				fill_px(SDL_Surface *surface, int x, int y, Uint32 col);
 void				circle(SDL_Surface *surface, t_point p, int r, Uint32 col);
-void				line(SDL_Surface *surface, t_point p1, t_point p2, Uint32 col);
+void				line(SDL_Surface *surface, t_point p1,
+						t_point p2, Uint32 col);
 
 #endif

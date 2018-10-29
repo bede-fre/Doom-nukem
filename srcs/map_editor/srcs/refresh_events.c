@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_events.c                                  :+:      :+:    :+:   */
+/*   refresh_events.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/25 09:20:07 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 14:38:30 by lguiller         ###   ########.fr       */
+/*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
+/*   Updated: 2018/10/29 15:42:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	movements(t_env *env)
 ** GESTION DES ACTIONS A EFFECTUER LORS D'UN EVENEMENT CLAVIER
 */
 
-void	keyboard_events(t_env *env)
+void	refresh_events(t_env *env)
 {
 	movements(env);
 	if (env->keys[K_RESET])
@@ -44,11 +44,5 @@ void	keyboard_events(t_env *env)
 		env->grid.scale += (env->grid.scale < 20) ? 1 : 0;
 	if (env->keys[K_ZOOMOUT])
 		env->grid.scale -= (env->grid.scale > 1) ? 1 : 0;
-	if ((*env->keys || *(env->keys + 1) || *(env->keys + 2) || *(env->keys + 3)
-		|| *(env->keys + 4) || *(env->keys + 5) || *(env->keys + 6)))
-	{
-		if ((env->grid.scale < 20 && env->grid.scale > 1)
-			|| (!env->keys[K_ZOOMIN] && !env->keys[K_ZOOMOUT]))
-			start_draw(env);
-	}
+	start_draw(env);
 }

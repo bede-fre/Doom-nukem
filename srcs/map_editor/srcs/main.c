@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 14:39:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 14:57:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_loop(void)
 	{
 		while (SDL_PollEvent(&event))
 			events(event, &loop, &env);
-		keyboard_events(&env);
+		refresh_events(&env);
 		check_frame();
 	}
 	SDL_RenderClear(env.renderer);

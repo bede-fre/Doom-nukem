@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:59:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 16:03:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void		init(t_env *env)
 	init_sdl(env);
 	init_grid(env);
 	init_bindings(env);
+	env->t = 0;
 }
