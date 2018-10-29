@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 11:54:55 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 12:39:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@ static void	init_sdl(t_env *env)
 		ft_error((char*)SDL_GetError(), 1, ft_puterror);
 	if (!(env->window = SDL_CreateWindow("GAME EDITOR", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_OPENGL)))
+	{
+		SDL_Quit();
 		ft_error((char*)SDL_GetError(), 2, ft_puterror);
+	}
 	if (!(env->renderer = SDL_CreateRenderer(env->window, -1,
 		SDL_RENDERER_ACCELERATED)))
+	{
+		SDL_DestroyWindow(env->window);
+		SDL_Quit();
 		ft_error((char*)SDL_GetError(), 3, ft_puterror);
+	}
 }
 
 /*
