@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 12:34:16 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:34:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 12:41:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ void	uninit_draw(t_draw *draw, t_env *env)
 	SDL_RenderCopy(env->renderer, draw->texture, NULL, NULL);
 	SDL_DestroyTexture(draw->texture);
 }
-
