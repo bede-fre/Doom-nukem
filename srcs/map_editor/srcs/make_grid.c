@@ -6,11 +6,15 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 11:31:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:58:48 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 13:05:23 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+/*
+** ENREGISTREMENT DE LA GRILLE DANS LA SURFACE
+*/
 
 void		make_grid(t_env *env)
 {

@@ -6,11 +6,15 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 12:34:16 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:58:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 13:04:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+/*
+** INITIALISATION DE LA SURFACE
+*/
 
 void	init_draw(t_draw *draw, t_env *env)
 {
@@ -37,6 +41,11 @@ void	init_draw(t_draw *draw, t_env *env)
 		rmask, gmask, bmask, amask)))
 		clear(env, draw, SDL_GetError(), 4);
 }
+
+/*
+** INITIALISATION DE LA TEXTURE VIA LA SURFACE, COPY DE LA SURFACE DANS
+** LE RENDERER ET DESTRUCTION DE LA TEXTURE ET DE LA SURFACE
+*/
 
 void	uninit_draw(t_draw *draw, t_env *env)
 {

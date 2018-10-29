@@ -6,11 +6,15 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 12:43:46 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 12:54:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/29 13:05:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+/*
+** DESTRUCTION DES VARIABLES ALLOUE AVEC LA SDL
+*/
 
 void	clear(t_env *env, t_draw *draw, const char *str, int error)
 {
