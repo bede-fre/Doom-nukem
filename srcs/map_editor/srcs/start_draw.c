@@ -6,11 +6,16 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/30 13:44:15 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/30 13:57:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+/*
+** TRANSPOSITION DES COORDONNEES DU POINT P RELATIVE A LA POSITION DE LA GRILLE
+** EN POSITION RELATIVE A LA FENETRE
+*/
 
 static t_point	transposition(t_env *env, t_point p)
 {
@@ -23,6 +28,10 @@ static t_point	transposition(t_env *env, t_point p)
 	new_p.y = p.y * env->grid.scale + transpos.y;
 	return (new_p);
 }
+
+/*
+** LANCEMENT DES FONCTIONS D'EDITION DE SURFACE
+*/
 
 void			start_draw(t_env *env)
 {
