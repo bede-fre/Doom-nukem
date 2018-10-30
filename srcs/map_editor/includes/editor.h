@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/29 16:34:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/30 13:44:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 ** COLOR ABGR
 */
 
-# define WHITE_T	(Uint32)0x88FFFFFF
 # define WHITE		(Uint32)0xFFFFFFFF
 # define GREY		(Uint32)0xFF555555
 # define RED		(Uint32)0xFF000099
 # define GREEN		(Uint32)0xFF009900
+# define LIGHT_GREY	(Uint32)0xFF999999
 
 enum				e_keys
 {
@@ -104,5 +104,6 @@ void				fill_px(SDL_Surface *surface, int x, int y, Uint32 col);
 void				circle(SDL_Surface *surface, t_point p, int r, Uint32 col);
 void				line(SDL_Surface *surface, t_point p1,
 						t_point p2, Uint32 col);
+t_point				ft_pointdef(int x, int y);
 
 #endif
