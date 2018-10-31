@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 16:03:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/31 11:28:08 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	init_bindings(t_env *env)
 	env->bindings[K_ZOOMIN] = (int)SDLK_EQUALS;
 	env->bindings[K_ZOOMOUT] = (int)SDLK_MINUS;
 	env->bindings[K_RESET] = (int)SDLK_SPACE;
+	env->bindings[B_LEFT] = (int)SDL_BUTTON_LEFT;
 	env->bindings[K_QUIT] = (int)SDLK_ESCAPE;
 }
 
@@ -64,5 +65,4 @@ void		init(t_env *env)
 	init_sdl(env);
 	init_grid(env);
 	init_bindings(env);
-	env->t = 0;
 }

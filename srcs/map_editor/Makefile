@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/30 13:53:04 by lguiller         ###   ########.fr        #
+#    Updated: 2018/10/31 13:29:25 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@
 OPE_SYS					= $(shell uname)
 NAME					= editor
 SRCS					= $(addprefix $(OBJS_DIR), $(addsuffix .c, \
-						  main init events tools make_grid refresh_events \
-						  check_frame init2 clear start_draw draw))
+						main init events tools make_grid refresh_events \
+						check_frame init2 clear start_draw draw tools2 \
+						stock_map))
 OBJS					= $(SRCS:.c=.o)
 SRCS_DIR				= srcs/
 OBJS_DIR				= objs/

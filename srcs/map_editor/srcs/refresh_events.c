@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 15:42:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/10/31 17:27:23 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** DEPLACEMENTS DE LA CAMERA
 */
 
-void	movements(t_env *env)
+static void	movements(t_env *env)
 {
 	if (env->keys[K_UP])
 		env->grid.gap.y += env->grid.scale * 10;
@@ -32,7 +32,7 @@ void	movements(t_env *env)
 ** GESTION DES ACTIONS A EFFECTUER LORS D'UN EVENEMENT CLAVIER
 */
 
-void	refresh_events(t_env *env)
+void		refresh_events(t_env *env)
 {
 	movements(env);
 	if (env->keys[K_RESET])
@@ -44,5 +44,10 @@ void	refresh_events(t_env *env)
 		env->grid.scale += (env->grid.scale < 20) ? 1 : 0;
 	if (env->keys[K_ZOOMOUT])
 		env->grid.scale -= (env->grid.scale > 1) ? 1 : 0;
+	if (env->keys[B_LEFT])
+	{
+		stock_map(env);
+		printf("x: %d y: %d \n", env->sector->vertex->p.x, env->sector->vertex->p.y);
+	}
 	start_draw(env);
 }
