@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 13:26:21 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/05 12:54:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 13:53:06 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,40 @@ void		new_sector(t_sector *sector, int num)
 	tmp->next = NULL;
 }
 
+int			check_point(t_sector *sector, t_point p)
+{
+	t_sector	*tmp_s;
+	t_vertex	*tmp_v;
+
+	tmp_s = sector;
+	while (tmp_s->next)
+		tmp_s = tmp_s->next;
+	tmp_v = tmp_s->vertex;
+	while (tmp_v)
+	{
+		if (tmp_v->p.x == p.x && tmp_v->p.y == p.y)
+			return (0);
+		tmp_v = tmp_v->next;
+	}
+	return (1);
+}
+
+void		make_circular(t_sector *sector)
+{
+	t_sector	*tmp_s;
+	t_vertex	*tmp_v;
+	t_vertex	*save_first;
+
+	tmp_s = sector;
+	while (tmp_s->next)
+		tmp_s = tmp_s->next;
+	tmp_v = tmp_s->vertex;
+	save_first = tmp_s->vertex;
+	while (tmp_v->next)
+		tmp_v = tmp_v->next;
+	tmp_v->next = save_first;
+}
+
 /*
 ** STOCKAGE INFORMATIONS SECTORS ET VERTEX
 */
@@ -69,11 +103,13 @@ void		stock_map(t_env *env)
 	if (env->actual_vert > 2 &&
 		env->mouse.x == env->save_p.x && env->mouse.y == env->save_p.y)
 	{
+		make_circular(env->sector);
 		new_sector(env->sector, ++env->actual_sec);
 		env->actual_vert = 0;
 	}
-	else if (env->actual_vert == 0 ||
-		(env->mouse.x != env->save_p.x && env->mouse.y != env->save_p.y))
+	else if ((env->actual_vert == 0 ||
+		(env->mouse.x != env->save_p.x || env->mouse.y != env->save_p.y))
+		&& check_point(env->sector, env->mouse))
 		stock_infos(new_vertex(env->sector),
 			ft_pointdef(env->mouse.x, env->mouse.y), env->actual_vert++);
 }

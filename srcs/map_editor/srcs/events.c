@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/05 12:52:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 14:45:35 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,12 @@ static void	print_map(t_env *env)
 	while (sec_tmp)
 	{
 		vert_tmp = sec_tmp->vertex;
-		while (vert_tmp)
+		if (vert_tmp)
+		{
+			printf("secnum:%d  vertnum:%d  x:%d  y:%d\n", sec_tmp->num, vert_tmp->num, vert_tmp->p.x, vert_tmp->p.y);
+			vert_tmp = vert_tmp->next;
+		}
+		while (vert_tmp && vert_tmp->num != 0)
 		{
 			printf("secnum:%d  vertnum:%d  x:%d  y:%d\n", sec_tmp->num, vert_tmp->num, vert_tmp->p.x, vert_tmp->p.y);
 			vert_tmp = vert_tmp->next;
@@ -87,13 +92,14 @@ static void	print_map(t_env *env)
 void		events(SDL_Event event, int *loop, t_env *env)
 {
 	if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN &&
-		event.key.keysym.sym == SDLK_ESCAPE))
+				event.key.keysym.sym == SDLK_ESCAPE))
 		*loop = 0;
 	if (event.type == SDL_KEYDOWN || event.type == SDL_MOUSEBUTTONDOWN)
 		press(event, env);
-	if (event.type == SDL_KEYUP || event.type == SDL_MOUSEBUTTONUP)
-	{
+	if (event.type == SDL_KEYUP)
 		release(event, env);
+	if (event.type == SDL_MOUSEBUTTONUP)
+	{
 		stock_map(env);
 		print_map(env);
 	}
