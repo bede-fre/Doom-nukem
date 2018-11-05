@@ -6,18 +6,15 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 13:26:21 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/05 13:53:06 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:55:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-void		stock_infos(t_vertex *vertex, t_point p, int num)
-{
-	vertex->p.x = p.x;
-	vertex->p.y = p.y;
-	vertex->num = num;
-}
+/*
+** MALLOC D'UN NOUVEAU VERTEX A LA FIN DE TOUT LES AUTRES DEJA EXISTANT
+*/
 
 t_vertex	*new_vertex(t_sector *sector)
 {
@@ -39,6 +36,10 @@ t_vertex	*new_vertex(t_sector *sector)
 	return (tmp_v->next);
 }
 
+/*
+** MALLOC D'UN NOUVEAU SECTEUR A LA FIN DE TOUT LES AUTRES DEJA EXISTANT
+*/
+
 void		new_sector(t_sector *sector, int num)
 {
 	t_sector *tmp;
@@ -58,6 +59,11 @@ void		new_sector(t_sector *sector, int num)
 	tmp->next = NULL;
 }
 
+/*
+** CHECK SI LE NOUVEAU POINT PEUT ETRE ENREGISTRER, IL NE L'ES PAS SI C'EST
+** LE MEME QU'UN PRECEDENT
+*/
+
 int			check_point(t_sector *sector, t_point p)
 {
 	t_sector	*tmp_s;
@@ -75,6 +81,11 @@ int			check_point(t_sector *sector, t_point p)
 	}
 	return (1);
 }
+
+/*
+** FAIRE POINTER LE DERNIER ELEMENT DE LA LISTE VERS LE PREMIER POUR LA RENDRE
+** CIRCULAIRE
+*/
 
 void		make_circular(t_sector *sector)
 {
@@ -98,6 +109,8 @@ void		make_circular(t_sector *sector)
 
 void		stock_map(t_env *env)
 {
+	t_vertex *tmp;
+
 	if (env->actual_vert == 0)
 		env->save_p = ft_pointdef(env->mouse.x, env->mouse.y);
 	if (env->actual_vert > 2 &&
@@ -110,6 +123,10 @@ void		stock_map(t_env *env)
 	else if ((env->actual_vert == 0 ||
 		(env->mouse.x != env->save_p.x || env->mouse.y != env->save_p.y))
 		&& check_point(env->sector, env->mouse))
-		stock_infos(new_vertex(env->sector),
-			ft_pointdef(env->mouse.x, env->mouse.y), env->actual_vert++);
+	{
+		tmp = new_vertex(env->sector);
+		tmp->p.x = env->mouse.x;
+		tmp->p.y = env->mouse.y;
+		tmp->num = env->actual_vert++;
+	}
 }
