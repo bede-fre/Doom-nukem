@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/05 15:43:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:59:14 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_sdl(t_env *env)
 	if (SDL_Init(SDL_INIT_VIDEO))
 		clear(env, SDL_GetError(), 1);
 	if (!(env->window = SDL_CreateWindow("GAME EDITOR", SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_OPENGL)))
+		SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, 0)))
 		clear(env, SDL_GetError(), 2);
 	if (!(env->renderer = SDL_CreateRenderer(env->window, -1,
 		SDL_RENDERER_ACCELERATED)))
