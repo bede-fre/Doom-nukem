@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/05 15:05:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:42:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	print_map(t_env *env, SDL_Surface *surface)
 
 void	start_draw(t_env *env)
 {
-	t_draw			draw;
+	SDL_Surface *surface;
 
 	SDL_RenderClear(env->renderer);
-	draw = init_draw(env);
-	make_grid(env, &draw);
-	print_map(env, draw.surface);
-	circle(draw.surface, grid_to_wind(env, env->mouse), env->grid.scale / 2,
+	surface = init_surface(env);
+	make_grid(env, surface);
+	print_map(env, surface);
+	circle(surface, grid_to_wind(env, env->mouse), env->grid.scale / 2,
 		LIGHT_GREY);
-	uninit_draw(&draw, env);
+	create_texture(surface, env);
 	SDL_RenderPresent(env->renderer);
 }

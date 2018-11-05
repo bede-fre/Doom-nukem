@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/05 14:46:31 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:40:57 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ typedef struct		s_bres
 	int				a;
 	int				b;
 }					t_bres;
-
-typedef struct		s_draw
-{
-	SDL_Surface		*surface;
-	SDL_Texture		*texture;
-}					t_draw;
 
 typedef struct		s_point
 {
@@ -113,14 +107,14 @@ void				init(t_env *env);
 void				events(SDL_Event event, int *loop, t_env *env);
 void				set_pixel(SDL_Renderer *renderer, int x, int y,
 						SDL_Color color);
-void				make_grid(t_env *env, t_draw *draw);
+void				make_grid(t_env *env, SDL_Surface *surface);
 Uint32				set_color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 void				refresh_events(t_env *env);
 void				check_frame(void);
 void				stock_map(t_env *env);
-t_draw				init_draw(t_env *env);
-void				uninit_draw(t_draw *draw, t_env *env);
-void				clear(t_env *env, t_draw *draw, const char *str, int error);
+SDL_Surface			*init_surface(t_env *env);
+void				create_texture(SDL_Surface *surface, t_env *env);
+void				clear(t_env *env, const char *str, int error);
 void				start_draw(t_env *env);
 void				fill_px(SDL_Surface *surface, int x, int y, Uint32 col);
 void				circle(SDL_Surface *surface, t_point p, int r, Uint32 col);

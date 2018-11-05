@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:47:28 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/05 15:05:30 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:41:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@
 ** INITIALISATION DE LA SURFACE
 */
 
-t_draw	init_draw(t_env *env)
+SDL_Surface	*init_surface(t_env *env)
 {
-	t_draw draw;
+	SDL_Surface *surface;
 
-	if (!(draw.surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
+	if (!(surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
 		0xFF, 0xFF00, 0xFF0000, 0xFF000000)))
-		clear(env, &draw, SDL_GetError(), 4);
-	return (draw);
+	{
+		SDL_FreeSurface(surface);
+		clear(env, SDL_GetError(), 4);
+	}
+	return (surface);
 }
 
 /*
@@ -31,12 +34,17 @@ t_draw	init_draw(t_env *env)
 ** LE RENDERER ET DESTRUCTION DE LA TEXTURE ET DE LA SURFACE
 */
 
-void	uninit_draw(t_draw *draw, t_env *env)
+void		create_texture(SDL_Surface *surface, t_env *env)
 {
-	if (!(draw->texture = SDL_CreateTextureFromSurface(env->renderer,
-		draw->surface)))
-		clear(env, draw, SDL_GetError(), 5);
-	SDL_FreeSurface(draw->surface);
-	SDL_RenderCopy(env->renderer, draw->texture, NULL, NULL);
-	SDL_DestroyTexture(draw->texture);
+	SDL_Texture *texture;
+
+	if (!(texture = SDL_CreateTextureFromSurface(env->renderer, surface)))
+	{
+		SDL_FreeSurface(surface);
+		SDL_DestroyTexture(texture);
+		clear(env, SDL_GetError(), 5);
+	}
+	SDL_FreeSurface(surface);
+	SDL_RenderCopy(env->renderer, texture, NULL, NULL);
+	SDL_DestroyTexture(texture);
 }
