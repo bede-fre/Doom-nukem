@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_frame.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 16:15:15 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/29 14:37:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 14:58:38 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	check_frame(void)
 		beginsecond = frame_actual;
 	if (frame_actual - beginsecond > 1000)
 	{
-		printf("fps = %d\n", nb_frame);
+		ft_putstr("fps = ");
+		ft_putnbr(nb_frame);
+		ft_putchar('\n');
 		nb_frame = 0;
 		beginsecond = 0;
 	}
