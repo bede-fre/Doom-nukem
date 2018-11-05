@@ -6,71 +6,74 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 13:26:21 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/31 17:22:58 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/05 12:54:00 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-
-void	stock_vertex(t_env *env)
+void		stock_infos(t_vertex *vertex, t_point p, int num)
 {
-	t_vertex	*tmp_v;
-	static int	i;
-	
-	if (env->sector->num != env->save_s)
-		i = 0;
-	if (i == 0)
+	vertex->p.x = p.x;
+	vertex->p.y = p.y;
+	vertex->num = num;
+}
+
+t_vertex	*new_vertex(t_sector *sector)
+{
+	t_sector *tmp_s;
+	t_vertex *tmp_v;
+
+	tmp_s = sector;
+	while (tmp_s->next)
+		tmp_s = tmp_s->next;
+	if (!tmp_s->vertex)
 	{
-		env->sector->vertex = (t_vertex*)ft_memalloc(sizeof(t_vertex));
-		env->sector->vertex->p = ft_pointdef(env->mouse.x, env->mouse.y);
-		env->sector->vertex->num = i;
-		i = 1;
-		env->sector->vertex->next = NULL;
+		tmp_s->vertex = (t_vertex*)ft_memalloc(sizeof(t_vertex));
+		return (tmp_s->vertex);
 	}
-	else
+	tmp_v = tmp_s->vertex;
+	while (tmp_v->next)
+		tmp_v = tmp_v->next;
+	tmp_v->next = (t_vertex*)ft_memalloc(sizeof(t_vertex));
+	return (tmp_v->next);
+}
+
+void		new_sector(t_sector *sector, int num)
+{
+	t_sector *tmp;
+	t_sector *prev_tmp;
+
+	prev_tmp = NULL;
+	tmp = sector;
+	while (tmp->next)
 	{
-		env->sector->vertex->next = (t_vertex*)ft_memalloc(sizeof(t_vertex));
-		tmp_v = env->sector->vertex;
-		tmp_v = env->sector->vertex->next;
-		tmp_v->p = ft_pointdef(env->mouse.x, env->mouse.y);
-		tmp_v->num++;
-		tmp_v->next = NULL;
+		prev_tmp = tmp;
+		tmp = tmp->next;
 	}
+	tmp->next = (t_sector*)ft_memalloc(sizeof(t_sector));
+	tmp = tmp->next;
+	tmp->prev = prev_tmp;
+	tmp->num = num;
+	tmp->next = NULL;
 }
 
 /*
 ** STOCKAGE INFORMATIONS SECTORS ET VERTEX
 */
 
-void	stock_map(t_env *env)
+void		stock_map(t_env *env)
 {
-	t_sector	*tmp_s;
-	static int	i;
-
-	if (i == 0)
-	{
-		env->sector = (t_sector*)ft_memalloc(sizeof(t_sector));
-		env->sector->num = i;
-		i = 1;
-		env->sector->next = NULL;
-		env->sector->prev = NULL;
+	if (env->actual_vert == 0)
 		env->save_p = ft_pointdef(env->mouse.x, env->mouse.y);
-		env->save_s = env->sector->num;
-		stock_vertex(env);
-	}
-	if ((env->mouse.x != env->save_p.x) && (env->mouse.y != env->save_p.y))
-		stock_vertex(env);
-	else
+	if (env->actual_vert > 2 &&
+		env->mouse.x == env->save_p.x && env->mouse.y == env->save_p.y)
 	{
-		env->sector->next = (t_sector*)ft_memalloc(sizeof(t_sector));
-		tmp_s = env->sector;
-		tmp_s = env->sector->next;
-		tmp_s->num++;
-		i = 1;
-		tmp_s->next = NULL;
-		tmp_s->prev = NULL;
-		env->save_p = ft_pointdef(env->mouse.x, env->mouse.y);
-		stock_vertex(env);
+		new_sector(env->sector, ++env->actual_sec);
+		env->actual_vert = 0;
 	}
+	else if (env->actual_vert == 0 ||
+		(env->mouse.x != env->save_p.x && env->mouse.y != env->save_p.y))
+		stock_infos(new_vertex(env->sector),
+			ft_pointdef(env->mouse.x, env->mouse.y), env->actual_vert++);
 }

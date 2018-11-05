@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/31 11:28:08 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/05 12:55:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ static void	init_grid(t_env *env)
 	env->grid.center.y = WIN_HEIGHT / 2;
 	env->grid.gap.x = 0;
 	env->grid.gap.y = 0;
+	env->actual_sec = 0;
+	env->actual_vert = 0;
+	env->sector = (t_sector*)ft_memalloc(sizeof(t_sector));
+	env->sector->num = 0;
+	env->sector->next = NULL;
+	env->sector->vertex = NULL;
 }
 
 /*

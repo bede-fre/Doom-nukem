@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/10/31 17:17:37 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/05 10:13:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libvect.h"
 # include "libft.h"
 
-# define WIN_WIDTH	1920
-# define WIN_HEIGHT	1080
+# define WIN_WIDTH	800
+# define WIN_HEIGHT	600
 # define CAP_FPS	60
 
 /*
@@ -102,10 +102,11 @@ typedef struct		s_env
 	t_grid			grid;
 	int				*bindings;
 	int				*keys;
-	int				save_s;
 	t_point			mouse;
 	t_point			save_p;
 	t_sector		*sector;
+	int				actual_sec;
+	int				actual_vert;
 }					t_env;
 
 void				init(t_env *env);
