@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/05 14:55:56 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:05:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	print_map(t_env *env, SDL_Surface *surface)
 			prev = current;
 			current = current->next;
 		}
+		if (current)
+			line(surface, grid_to_wind(env, prev->p),
+				grid_to_wind(env, current->p), GREEN);
 		tmp_s = tmp_s->next;
 	}
 }

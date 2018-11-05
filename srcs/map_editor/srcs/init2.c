@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:47:28 by lguiller          #+#    #+#             */
-/*   Updated: 2018/10/30 13:47:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:05:30 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 t_draw	init_draw(t_env *env)
 {
-	t_draw	draw;
+	t_draw draw;
 
 	if (!(draw.surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
 		0xFF, 0xFF00, 0xFF0000, 0xFF000000)))
