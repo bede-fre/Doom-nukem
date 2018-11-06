@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/05 14:45:35 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/06 09:48:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	mouse_button(SDL_Event event, t_env *env)
 
 /*
 ** GESTION DE LA FERMETURE DE LA FENETRE ET EVENEMENT CLAVIER
-*/
 
 static void	print_map(t_env *env)
 {
@@ -88,6 +87,7 @@ static void	print_map(t_env *env)
 		sec_tmp = sec_tmp->next;
 	}
 }
+*/
 
 void		events(SDL_Event event, int *loop, t_env *env)
 {
@@ -101,7 +101,7 @@ void		events(SDL_Event event, int *loop, t_env *env)
 	if (event.type == SDL_MOUSEBUTTONUP)
 	{
 		stock_map(env);
-		print_map(env);
+//		print_map(env);
 	}
 	if (event.type == SDL_MOUSEMOTION)
 		mouse_motion(event, env);
