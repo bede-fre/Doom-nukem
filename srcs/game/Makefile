@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 16:02:38 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/07 10:54:56 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@
 
 OPE_SYS					= $(shell uname)
 NAME					= doom-nukem
-SRCS					= $(addprefix $(OBJS_DIR), $(addsuffix .c, main))
-OBJS					= $(SRCS:.c=.o)
+SRCS_FILES				= $(addsuffix .c, main)
+SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
+OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
 OBJS_DIR				= objs/
 LIBFT_DIR				= libft
