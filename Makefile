@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/10/23 16:01:16 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/08 14:57:27 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,16 +31,16 @@ FREETYPE_DOWNLOAD		= https://download.savannah.gnu.org/releases/freetype/freetyp
 FREETYPE_VERSION		= freetype-2.8.1.tar.gz
 FREETYPE_FOLDER			= $(FREETYPE_VERSION:.tar.gz=)
 SDL_MAIN_HEADER			= $(addsuffix .h, SDL SDL_assert SDL_atomic SDL_audio SDL_bits \
-						 SDL_blendmode SDL_cpuinfo SDL_egl SDL_endian SDL_error SDL_events \
-						 SDL_filesystem SDL_gamecontroller SDL_gesture SDL_haptic SDL_hints \
-						 SDL_joystick SDL_keyboard SDL_keycode SDL_loadso SDL_log \
-						 SDL_main SDL_messagebox SDL_mouse SDL_mutex SDL_name SDL_opengl \
-						 SDL_opengl_glext SDL_opengles SDL_opengles2_gl2ext SDL_opengles2_gl2 \
-						 SDL_opengles2_gl2platform SDL_opengles2 SDL_opengles2_khrplatform \
-						 SDL_pixels SDL_platform SDL_power SDL_quit SDL_rect SDL_render \
-						 SDL_rwops SDL_scancode SDL_shape SDL_stdinc SDL_surface SDL_system \
-						 SDL_syswm SDL_thread SDL_timer SDL_touch SDL_types SDL_version \
-						 SDL_video SDL_vulkan begin_code close_code)
+							 SDL_blendmode SDL_cpuinfo SDL_egl SDL_endian SDL_error SDL_events \
+							 SDL_filesystem SDL_gamecontroller SDL_gesture SDL_haptic SDL_hints \
+							 SDL_joystick SDL_keyboard SDL_keycode SDL_loadso SDL_log \
+							 SDL_main SDL_messagebox SDL_mouse SDL_mutex SDL_name SDL_opengl \
+							 SDL_opengl_glext SDL_opengles SDL_opengles2_gl2ext SDL_opengles2_gl2 \
+							 SDL_opengles2_gl2platform SDL_opengles2 SDL_opengles2_khrplatform \
+							 SDL_pixels SDL_platform SDL_power SDL_quit SDL_rect SDL_render \
+							 SDL_rwops SDL_scancode SDL_shape SDL_stdinc SDL_surface SDL_system \
+							 SDL_syswm SDL_thread SDL_timer SDL_touch SDL_types SDL_version \
+							 SDL_video SDL_vulkan begin_code close_code)
 SDL_IMAGE_HEADER		= SDL_image.h
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
