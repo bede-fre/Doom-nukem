@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 10:44:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/09 14:28:09 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,18 @@
 # define MAPX			32
 # define MAPY			MAPX
 # define INFOX			256
-# define FPX			960
-# define FPY			540
+# define INFOY			256
 # define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
 # define SPR_KNIFE		"./srcs/game/sprites/weapon1.xpm"
-# define SPR_WOLF		"./srcs/game/sprites/wolf1.xpm"
-# define SPR_PAPYRUS	"./srcs/game/sprites/papyrus1.xpm"
-# define WINX			FPX + INFOX
-# define WINY			FPY
+# define WINX			960
+# define WINY			540
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
 # define FOV			60.0
-# define RAY_ANGLE		FOV / (double)FPX
+# define RAY_ANGLE		FOV / (double)WINX
 # define START			's'
 # define FLOOR			' '
 # define WALL			'1'
@@ -199,10 +196,8 @@ typedef struct	s_textures
 
 typedef struct	s_sprites
 {
-	void		*papyrus;
 	void		*knife;
 	int			height;
-	void		*wolf;
 	int			width;
 }				t_sprites;
 

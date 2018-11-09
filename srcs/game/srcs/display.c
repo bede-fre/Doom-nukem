@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/08 16:13:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/09 14:22:29 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 
 void		ft_print_all(t_all *all)
 {
-	pthread_t	test[FPX / THREAD];
-	t_all		*tmp[FPX / THREAD];
+	pthread_t	test[WINX / THREAD];
+	t_all		*tmp[WINX / THREAD];
 	int			i;
 	int			x;
 
@@ -41,7 +41,7 @@ void		ft_print_all(t_all *all)
 	all->lens = ft_rad(FOV / 2.0) * all->keys_tab[KEY_H];
 	all->i = -THREAD;
 	x = 0;
-	while ((all->i += THREAD) < FPX)
+	while ((all->i += THREAD) < WINX)
 	{
 		tmp[x] = (t_all*)malloc(sizeof(t_all));
 		ft_cpy_struct(tmp[x], all);
@@ -51,7 +51,7 @@ void		ft_print_all(t_all *all)
 		++x;
 	}
 	i = -1;
-	while (++i < FPX / THREAD)
+	while (++i < WINX / THREAD)
 	{
 		pthread_join(test[i], NULL);
 		free(tmp[i]);

@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/08 17:01:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/09 11:34:37 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		ft_wall_height_on_screen(double dist)
 {
-	return ((int)((((double)FPX / 2.0) / tan(ft_rad(FOV / 2.0))
+	return ((int)((((double)WINX / 2.0) / tan(ft_rad(FOV / 2.0))
 		* (CAM_HEIGHT) / dist) * 2.0));
 }
 

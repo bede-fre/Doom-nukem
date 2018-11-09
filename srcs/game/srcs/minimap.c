@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/06/05 10:09:50 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/09 15:45:06 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX])
 	int		x;
 	int		y;
 
+	y = -1;
+	while(++y < INFOY)
+	{
+		x = -1;
+		while (++x < INFOX)
+			ft_fill_pixel(ptr, x, y, ALPHA);
+	}
 	y = -1;
 	while (++y < BUFF_SIZE)
 	{

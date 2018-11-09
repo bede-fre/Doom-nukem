@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 10:46:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/09 15:05:05 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,9 @@ void		ft_init_mlx(t_all *all, char *title)
 {
 	all->ptr.mlx = mlx_init();
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
-	all->info.img = mlx_xpm_file_to_image(all->ptr.mlx, SPR_PAPYRUS,
-		&all->sprites.width, &all->sprites.height);
-	all->fp.img = mlx_new_image(all->ptr.mlx, FPX, FPY);
+	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
+	all->fp.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
 	all->sprites.knife = mlx_xpm_file_to_image(all->ptr.mlx, SPR_KNIFE,
-		&all->sprites.width, &all->sprites.height);
-	all->sprites.wolf = mlx_xpm_file_to_image(all->ptr.mlx, SPR_WOLF,
 		&all->sprites.width, &all->sprites.height);
 	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
 		&all->info.sl, &all->info.endian);
