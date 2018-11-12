@@ -86,6 +86,7 @@
 #  define KEY_Q			113
 #  define KEY_E			101
 #  define KEY_T			116
+#  define KEY_SPACEBAR  32
 #  define KEY_SHIFT		65505
 #  define KEYS_TAB_SIZE	65600
 # else
@@ -102,6 +103,7 @@
 #  define KEY_Q			12
 #  define KEY_E			14
 #  define KEY_T			17
+#  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
 #  define KEY_SHIFT		257

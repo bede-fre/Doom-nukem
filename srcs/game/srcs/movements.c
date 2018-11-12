@@ -112,8 +112,20 @@ int			ft_movements(t_all *all)
 	if (all->keys_tab[KEY_E] == TRUE)
 		all->p.a -= ft_rad(ROT_SPEED);
 	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
-	all->wall_gap1 = (all->keys_tab[KEY_CTRL] == TRUE) ? 1.333333333333f : 2.0f;
-	all->wall_gap2 = (all->keys_tab[KEY_CTRL] == TRUE) ? 4.0f : 2.0f;
+	if (all->keys_tab[KEY_CTRL] == TRUE && all->wall_gap1 >= 1.33f && all->wall_gap2 <= 4.0f) {
+		all->wall_gap1 = all->wall_gap1 - 0.1f;
+		all->wall_gap2 = all->wall_gap2 + 0.1f;
+	} else if ( all->keys_tab[KEY_CTRL] == FALSE && all->wall_gap1 < 2.0f && all->wall_gap2 > 2.0f ) {
+		all->wall_gap1 = all->wall_gap1 + 0.1f;
+		all->wall_gap2 = all->wall_gap2 - 0.1f;
+	}
+	if (all->keys_tab[KEY_SPACEBAR] == TRUE && all->wall_gap1 <= 4.0f && all->wall_gap2 >= 1.33f) {
+		all->wall_gap1 = all->wall_gap1 + 0.1f;
+		all->wall_gap2 = all->wall_gap2 - 0.01f;
+	} else if (all->keys_tab[KEY_SPACEBAR] == FALSE && all->wall_gap1 > 2.0f && all->wall_gap2 < 2.0f) {
+		all->wall_gap1 = all->wall_gap1 - 0.2f;
+		all->wall_gap2 = all->wall_gap2 + 0.02f;
+	}
 	ft_teleport(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
 	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
