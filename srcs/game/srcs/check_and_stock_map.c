@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:40:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/06/05 15:26:47 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/12 14:01:12 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ static void	ft_check_start(char *buff, short i, char (*start)[2])
 static void	ft_check_char(char *buff, short i)
 {
 	while (++i < BUFF_SIZE)
-		if (buff[i] != FLOOR && buff[i] != WALL && buff[i] != START
-			&& buff[i] != SECRET && buff[i] != TP_S && buff[i] != TP_E)
+		if (buff[i] != FLOOR && buff[i] != START
+			&& buff[i] != SECRET && buff[i] != TP_S && buff[i] != TP_E
+			&& buff[i] != T_A && buff[i] != T_B && buff[i] != T_C
+			&& buff[i] != T_D)
 			ft_error("error: Wrong character found", 4, ft_puterror);
 }
 

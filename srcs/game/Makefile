@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/09 10:33:02 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/12 14:53:03 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OPE_SYS					= $(shell uname)
 NAME					= doom-nukem
 SRCS_FILES				= $(addsuffix .c, main bresenham display print_env \
 						  check_and_stock_map init minimap raycasting copy_struct \
-						  input_device movements to_map)
+						  input_device movements tools)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/

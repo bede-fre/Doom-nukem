@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:36:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 12:50:41 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/12 14:29:17 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	ft_cpy_struct_2(t_all *tmp, t_all *all)
 	tmp->rc.ray_v.dy = all->rc.ray_v.dy;
 	tmp->rc.ray_v.x = all->rc.ray_v.x;
 	tmp->rc.ray_v.y = all->rc.ray_v.y;
-	tmp->rc.ray.txtrs = all->rc.ray.txtrs;
 	tmp->rc.ray.dist = all->rc.ray.dist;
 	tmp->rc.ray.hit = all->rc.ray.hit;
 	tmp->rc.ray.fx = all->rc.ray.fx;
@@ -64,8 +63,6 @@ void		ft_cpy_struct(t_all *tmp, t_all *all)
 	tmp->ptr = all->ptr;
 	tmp->fp = all->fp;
 	tmp->rc = all->rc;
-	tmp->rc.ray.txtrs = all->rc.ray.txtrs;
-	tmp->rc.ray_h.txtrs = all->rc.ray_h.txtrs;
 	tmp->rc.ray_h.dist = all->rc.ray_h.dist;
 	tmp->rc.ray_h.hit = all->rc.ray_h.hit;
 	tmp->rc.ray_h.fx = all->rc.ray_h.fx;
@@ -76,6 +73,5 @@ void		ft_cpy_struct(t_all *tmp, t_all *all)
 	tmp->rc.ray_h.dy = all->rc.ray_h.dy;
 	tmp->rc.ray_h.x = all->rc.ray_h.x;
 	tmp->rc.ray_h.y = all->rc.ray_h.y;
-	tmp->rc.ray_v.txtrs = all->rc.ray_v.txtrs;
 	ft_cpy_struct_2(tmp, all);
 }

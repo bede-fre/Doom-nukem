@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/09 15:44:04 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/12 14:52:06 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ static void	ft_moving(t_all *all, double dir)
 	sh.y = (sin(all->p.a) >= 0.0) ? -dir * HIT_BOX : dir * HIT_BOX;
 	p.x = (sh.x + all->p.x + dir * ((cos(all->p.a) * speed)));
 	p.y = (sh.y + all->p.y + -dir * ((sin(all->p.a) * speed)));
-	all->p.x += (all->p.y >= 0.0 && to_map(all->p.y) < 32.0)
-		&& (p.x >= HIT_BOX && p.x < (MAPX * (int)BLOCK_SIZE - HIT_BOX))
-		&& (all->rc.map[to_map((all->p.y - HIT_BOX))][to_map(p.x)] != '1' &&
-		all->rc.map[to_map((all->p.y + HIT_BOX))][to_map(p.x)] != '1') ?
+	all->p.x += (all->p.y >= 0.0 && to_map(all->p.y) < 32.0
+		&& p.x >= HIT_BOX && p.x < (MAPX * (int)BLOCK_SIZE - HIT_BOX)
+		&& !is_wall(all->rc.map[to_map((all->p.y - HIT_BOX))][to_map(p.x)])
+		&& !is_wall(all->rc.map[to_map((all->p.y + HIT_BOX))][to_map(p.x)])) ?
 		dir * (cos(all->p.a) * speed) : 0.0;
-	all->p.y += (all->p.x >= 0.0 && to_map(all->p.x) < 32.0)
-		&& (p.y >= HIT_BOX && p.y < (MAPY * (int)BLOCK_SIZE - HIT_BOX))
-		&& (all->rc.map[to_map(p.y)][to_map((all->p.x + HIT_BOX))] != '1' &&
-		all->rc.map[to_map(p.y)][to_map((all->p.x - HIT_BOX))] != '1') ?
+	all->p.y += (all->p.x >= 0.0 && to_map(all->p.x) < 32.0
+		&& p.y >= HIT_BOX && p.y < (MAPY * (int)BLOCK_SIZE - HIT_BOX)
+		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x + HIT_BOX))])
+		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x - HIT_BOX))])) ?
 		-dir * (sin(all->p.a) * speed) : 0.0;
 }
 
@@ -54,15 +54,15 @@ static void	ft_strafing(t_all *all, double dir)
 	sh.y = (cos(all->p.a) >= 0.0) ? -dir * HIT_BOX : dir * HIT_BOX;
 	p.x = (sh.x + all->p.x + -dir * (sin(all->p.a) * speed));
 	p.y = (sh.y + all->p.y + -dir * (cos(all->p.a) * speed));
-	all->p.x += (all->p.y >= 0.0 && to_map(all->p.y) < 32.0)
-		&& (p.x >= HIT_BOX && p.x < (MAPX * (int)BLOCK_SIZE - HIT_BOX))
-		&& (all->rc.map[to_map((all->p.y - HIT_BOX))][to_map(p.x)] != '1' &&
-		all->rc.map[to_map((all->p.y + HIT_BOX))][to_map(p.x)] != '1') ?
+	all->p.x += (all->p.y >= 0.0 && to_map(all->p.y) < 32.0
+		&& p.x >= HIT_BOX && p.x < (MAPX * (int)BLOCK_SIZE - HIT_BOX)
+		&& !is_wall(all->rc.map[to_map((all->p.y - HIT_BOX))][to_map(p.x)])
+		&& !is_wall(all->rc.map[to_map((all->p.y + HIT_BOX))][to_map(p.x)])) ?
 		-dir * (sin(all->p.a) * speed) : 0.0;
-	all->p.y += (all->p.x >= 0.0 && to_map(all->p.x) < 32.0)
-		&& (p.y >= HIT_BOX && p.y < (MAPY * (int)BLOCK_SIZE - HIT_BOX))
-		&& (all->rc.map[to_map(p.y)][to_map((all->p.x + HIT_BOX))] != '1' &&
-		all->rc.map[to_map(p.y)][to_map((all->p.x - HIT_BOX))] != '1') ?
+	all->p.y += (all->p.x >= 0.0 && to_map(all->p.x) < 32.0
+		&& p.y >= HIT_BOX && p.y < (MAPY * (int)BLOCK_SIZE - HIT_BOX)
+		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x + HIT_BOX))])
+		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x - HIT_BOX))])) ?
 		-dir * (cos(all->p.a) * speed) : 0.0;
 }
 
@@ -88,30 +88,9 @@ static void	ft_teleport(t_all *all)
 		}
 	}
 }
-/*
-static void	ft_test(t_img *ptr)
-{
-	int x;
-	int y;
-
-	y = -1;
-	while (++y <= INFOY)
-	{
-		x = -1;
-		while (++x <= INFOX)
-		{
-			if (ptr->data[(x * 4) + (y * ptr->sl)] == (char)0
-				&& ptr->data[(x * 4) + (y * ptr->sl) + 1] == (char)0
-				&& ptr->data[(x * 4) + (y * ptr->sl) + 2] == (char)0
-				&& ptr->data[(x * 4) + (y * ptr->sl) + 3] == (char)0)
-				ptr->data[(x * 4) + (y * ptr->sl) + 3] = (char)255;
-		}
-	}
-}*/
 
 static void	ft_refresh_images(t_all *all)
 {
-//	ft_test (&all->info);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->sprites.knife,
@@ -138,7 +117,8 @@ int			ft_movements(t_all *all)
 	ft_teleport(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
 	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
-	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp, &all->info.sl, &all->info.endian);
+	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
+		&all->info.sl, &all->info.endian);
 	ft_print_all(all);
 	ft_refresh_images(all);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/09 11:34:37 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/12 14:49:42 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ static int		ft_color_textures(t_img *ptr, double cpt, int col)
 
 static int		ft_find_color(t_all *all, double cpt, int col)
 {
-	if (all->rc.ray.hit == N_W)
+	char	hit_wall;
+
+	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
+	if (hit_wall == 'A')
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
-	else if (all->rc.ray.hit == S_W)
-		return (ft_color_textures(&all->textures.img_s, cpt, col));
-	else if (all->rc.ray.hit == E_W)
+	else if (hit_wall == 'B')
 		return (ft_color_textures(&all->textures.img_e, cpt, col));
+	else if (hit_wall == 'C')
+		return (ft_color_textures(&all->textures.img_s, cpt, col));
 	else
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
 }

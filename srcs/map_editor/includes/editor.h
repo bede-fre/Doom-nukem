@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/05 15:40:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/12 10:15:32 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ typedef struct		s_bres
 	int				a;
 	int				b;
 }					t_bres;
-
-typedef struct		s_point
-{
-	int				x;
-	int				y;
-}					t_point;
 
 typedef struct		s_grid
 {

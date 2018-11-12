@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 14:28:09 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/12 14:52:50 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,13 @@
 # define RAY_ANGLE		FOV / (double)WINX
 # define START			's'
 # define FLOOR			' '
-# define WALL			'1'
 # define SECRET			'2'
 # define TP_S			'3'
 # define TP_E			'4'
+# define T_A			'A'
+# define T_B			'B'
+# define T_C			'C'
+# define T_D			'D'
 # define ALPHA			0xFF000000
 # define BLACK			0
 # define WHITE			0xFFFFFF
@@ -134,7 +137,6 @@ typedef struct	s_parse
 
 typedef struct	s_ray
 {
-	char		*txtrs;
 	double		dist;
 	int			hit;
 	double		fx;
@@ -246,5 +248,6 @@ int				ft_quit(void);
 void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
+int				is_wall(char wall);
 
 #endif
