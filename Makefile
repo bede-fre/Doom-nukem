@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/09 10:25:11 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/13 16:16:51 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 ##  VARIABLES   ##
 ##################
 
-SDL_FOLDER				= $(HOME)/goinfre/sdl/
+SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_DOWNLOAD		= https://www.libsdl.org/release/SDL2-2.0.8.tar.gz
 SDL_MAIN_VERSION		= SDL2-2.0.8.tar.gz
 SDL_MAIN_FOLDER			= $(SDL_MAIN_VERSION:.tar.gz=)
@@ -41,19 +41,30 @@ SDL_MAIN_HEADER			= $(addsuffix .h, SDL SDL_assert SDL_atomic SDL_audio SDL_bits
 							 SDL_rwops SDL_scancode SDL_shape SDL_stdinc SDL_surface SDL_system \
 							 SDL_syswm SDL_thread SDL_timer SDL_touch SDL_types SDL_version \
 							 SDL_video SDL_vulkan begin_code close_code)
-SDL_IMAGE_HEADER		= SDL_image.h
+SDL_IMAGE_HEADER =			SDL_image.h
+SDL_TTF_HEADER =			SDL_ttf.h
+FREETYPE_HEADER			= ft2build.h
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
-SDL_MAIN_LIBS_PATH		= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/
-SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/
-SDL_IMAGE_LIBS_PATH		= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/
-SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/
-SDL_MAIN_INCLUDE		= $(addprefix $(SDL_MAIN_INCLUDE_PATH), $(SDL_MAIN_HEADER))
-SDL_MAIN_LIBS			= $(SDL_FOLDER)lib/
-SDL_MAIN				= $(addprefix $(SDL_MAIN_LIBS), $(SDL_MAIN_OBJ_LIBS))
-SDL_IMAGE_LIBS			= $(SDL_FOLDER)lib/
-SDL_IMAGE				= $(addprefix $(SDL_IMAGE_LIBS), $(SDL_IMAGE_OBJ_LIBS))
-SDL_IMAGE_INCLUDE		= $(addprefix $(SDL_IMAGE_INCLUDE_PATH), $(SDL_IMAGE_HEADER))
+FREETYPE_OBJ_LIBS		= libfreetype.a
+SDL_TTF_OBJ_LIBS		= libSDL2_ttf.a
+SDL_MAIN_LIBS_PATH =		$(SDL_FOLDER)$(SDL_MAIN_FOLDER)/lib/
+SDL_MAIN_INCLUDE_PATH =		$(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/SDL2/
+SDL_IMAGE_LIBS_PATH =		$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/lib/
+SDL_IMAGE_INCLUDE_PATH =	$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/include/SDL2/
+SDL_MIXER_LIBS_PATH =		$(SDL_FOLDER)$(SDL_MIXER_FOLDER)/lib/
+SDL_MIXER_INCLUDE_PATH =	$(SDL_FOLDER)$(SDL_MIXER_FOLDER)/include/SDL2/
+SDL_TTF_LIBS_PATH =			$(SDL_FOLDER)$(SDL_TTF_FOLDER)/lib/
+SDL_TTF_INCLUDE_PATH =		$(SDL_FOLDER)$(SDL_TTF_FOLDER)/include/SDL2/
+
+SDL_MAIN_LIBS =			$(addprefix $(SDL_MAIN_LIBS_PATH), $(SDL_MAIN_OBJ_LIBS))
+SDL_MAIN_INCLUDE =		$(addprefix $(SDL_MAIN_INCLUDE_PATH), $(SDL_MAIN_HEADER))
+SDL_IMAGE_LIBS =		$(addprefix $(SDL_IMAGE_LIBS_PATH), $(SDL_IMAGE_OBJ_LIBS))
+SDL_IMAGE_INCLUDE =		$(addprefix $(SDL_IMAGE_INCLUDE_PATH), $(SDL_IMAGE_HEADER))
+SDL_MIXER_LIBS =		$(addprefix $(SDL_MIXER_LIBS_PATH), $(SDL_MIXER_OBJ_LIBS))
+SDL_MIXER_INCLUDE =		$(addprefix $(SDL_MIXER_INCLUDE_PATH), $(SDL_MIXER_HEADER))
+SDL_TTF_LIBS =			$(addprefix $(SDL_TTF_LIBS_PATH), $(SDL_TTF_OBJ_LIBS))
+SDL_TTF_INCLUDE =		$(addprefix $(SDL_TTF_INCLUDE_PATH), $(SDL_TTF_HEADER))
 CURL_PATH				= curl -L
 OBJS_DIR				= objs/
 LIBFT_DIR				= libft/
@@ -149,45 +160,74 @@ title:
 	@echo $(_END)
 
 install:
+	@if [ ! -d "$(SDL_FOLDER)" ] ; then mkdir $(SDL_FOLDER) ; fi
 	@echo "\x1b[44m\x1b[1mVerifing sdl_main ... $(HGLSS) \033[0m"
 	@make sdl_main
 	@echo "\x1b[42m\x1b[1m Done $(CHECK) \033[0m"
 	@echo "\x1b[44m\x1b[1mVerifing sdl_image ... $(HGLSS) \033[0m"
 	@make sdl_image
 	@echo "\x1b[42m\x1b[1m Done $(CHECK) \033[0m"
+	@echo "\x1b[44m\x1b[1mVerifing sdl_ttf ... $(HGLSS) \033[0m"
+	@make sdl_ttf
+	@echo "\x1b[42m\x1b[1m Done $(CHECK) \033[0m"
 
 sdl_main:
-	@if [ ! -d "$(SDL_FOLDER)" ] ; then mkdir $(SDL_FOLDER); fi
-	@if [ ! -e "$(SDL_FOLDER)$(SDL_MAIN_VERSION)" ] ; then cd $(SDL_FOLDER) && \
-		$(CURL_PATH) $(SDL_MAIN_DOWNLOAD) > $(SDL_MAIN_VERSION); fi
-	@if [ ! -d "$(SDL_FOLDER)$(SDL_MAIN_FOLDER)" ] ; then cd $(SDL_FOLDER) && \
-		tar -xvzf $(SDL_MAIN_VERSION); fi
-	@$(foreach file, $(SDL_MAIN), test -e $(file) || \
-		(echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file) in $@\033[0m" ; \
-		cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; ./configure --prefix=$$PWD/../ ; \
-		make && make install);)
-	@$(foreach file, $(SDL_MAIN_INCLUDE), test -e $(file) || \
-		(echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file) in $@\033[0m" ; \
-		cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; ./configure --prefix=$$PWD/../ ; \
-		make && make install);)
-	@mkdir -p ./SDL
-	@cp -r $(SDL_MAIN_INCLUDE_PATH) ./SDL
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_MAIN_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_MAIN_DOWNLOAD) > $(SDL_FOLDER)$(SDL_MAIN_VERSION) ;\
+															tar -xzf $(SDL_FOLDER)$(SDL_MAIN_VERSION) -C $(SDL_FOLDER)); fi
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; fi
+	@$(foreach file, $(SDL_MAIN_LIBS), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
+	cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build install );)
+	@$(foreach file, $(SDL_MAIN_INCLUDE), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
+	cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build install );)
 
 sdl_image:
-	@if [ ! -d "$(SDL_FOLDER)" ] ; then make sdl_main; fi
-	@if [ ! -e "$(SDL_FOLDER)$(SDL_IMAGE_VERSION)" ] ; then cd $(SDL_FOLDER) && \
-		$(CURL_PATH) $(SDL_IMAGE_DOWNLOAD) > $(SDL_IMAGE_VERSION); fi
-	@if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)" ] ; then cd $(SDL_FOLDER) && \
-		tar -xvzf $(SDL_IMAGE_VERSION); fi
-	@$(foreach file, $(SDL_IMAGE), test -e $(file) || \
-		(echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file)\033[0m" ; \
-		cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER) ; ./configure --prefix=$$PWD/../ \
-		--with-sdl-prefix=$$PWD/../../sdl ; make && make install);)
-	@$(foreach file, $(SDL_IMAGE_LIBS), test -e $(file) || \
-		(echo "\x1b[41m\x1b[1mUhhh.... Missing file $(file)\033[0m" ; \
-		cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER) ; ./configure --prefix=$$PWD/../ \
-		--with-sdl-prefix=$$PWD/../../sdl ; make && make install);)
-	@cp $(SDL_FOLDER)SDL2_image-2.0.3/SDL_image.h ./SDL/SDL_image.h
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_IMAGE_DOWNLOAD) > $(SDL_FOLDER)$(SDL_IMAGE_VERSION) ;\
+															tar -xzf $(SDL_FOLDER)$(SDL_IMAGE_VERSION) -C $(SDL_FOLDER)) ; fi
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; fi
+	@$(foreach file, $(SDL_IMAGE_LIBS), test -e $(file) || (echo "		\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
+	cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_IMAGE_FOLDER) --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build install);)
+	@$(foreach file, $(SDL_IMAGE_INCLUDE), test -e $(file) || (echo "		\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
+	cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_IMAGE_FOLDER) --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build install);)
+
+sdl_mixer:
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_MIXER_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_MIXER_DOWNLOAD) > $(SDL_FOLDER)$(SDL_MIXER_VERSION) ;\
+															tar -xzf $(SDL_FOLDER)$(SDL_MIXER_VERSION) -C $(SDL_FOLDER) ;) fi
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; fi
+	@$(foreach file, $(SDL_MIXER_LIBS), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
+	cd $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_MIXER_FOLDER) --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build install);)
+	@$(foreach file, $(SDL_MIXER_INCLUDE), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
+	cd $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_MIXER_FOLDER) --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; \
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build install);)
+
+sub_sdl_ttf:
+	cd $(SDL_FOLDER)$(FREETYPE_FOLDER)/build ; ../configure --prefix=$$PWD
+	make $(MFLAGS) -C $(SDL_FOLDER)$(FREETYPE_FOLDER)/build
+	make $(MFLAGS) -C $(SDL_FOLDER)$(FREETYPE_FOLDER)/build install
+	cd $(SDL_FOLDER)$(SDL_TTF_FOLDER) ; ./configure --prefix=$$PWD --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) --with-freetype-exec-prefix=$(SDL_FOLDER)$(FREETYPE_FOLDER)/build
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_TTF_FOLDER)
+	make $(MFLAGS) -C $(SDL_FOLDER)$(SDL_TTF_FOLDER) install
+
+sdl_ttf:
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_TTF_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_TTF_DOWNLOAD) > $(SDL_FOLDER)$(SDL_TTF_VERSION) ;\
+															tar -xzf $(SDL_FOLDER)$(SDL_TTF_VERSION) -C $(SDL_FOLDER)) ; fi
+	@if [ ! -d "$(SDL_FOLDER)$(SDL_TTF_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_TTF_FOLDER)/build ; fi
+	@if [ ! -f "$(SDL_FOLDER)$(FREETYPE_VERSION)" ] ; then $(CURL_PATH) $(FREETYPE_DOWNLOAD) > $(SDL_FOLDER)$(FREETYPE_VERSION) ; fi
+	@if [ ! -d "$(SDL_FOLDER)$(FREETYPE_FOLDER)" ] ; then tar -xzf $(SDL_FOLDER)$(FREETYPE_VERSION) -C $(SDL_FOLDER) ; fi
+	@if [ ! -d "$(SDL_FOLDER)$(FREETYPE_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(FREETYPE_FOLDER)/build ; fi
+	@$(foreach file, $(SDL_TTF_LIBS), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; make sub_sdl_ttf );)
+	@$(foreach file, $(SDL_TTF_INCLUDE), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; make sub_sdl_ttf );)
+
 
 cleansdl:
 	@rm -rf $(SDL_FOLDER)

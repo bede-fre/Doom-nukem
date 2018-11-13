@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/09 10:33:02 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/13 16:56:20 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,34 @@ LIBFT_DIR				= libft/
 MLX_DIR					= minilibx/
 LIBFT					= $(LIBFT_DIR)/libft.a
 MLX						= $(MLX_DIR)/libmlx.a
-INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR) -I ../../
+INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR)
 FRAMEWORK				= -framework OpenGL -framework Appkit
-SDL_FOLDER				= $(HOME)/goinfre/sdl/
+SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
+FREETYPE_OBJ_LIBS		= libfreetype.a
+SDL_TTF_OBJ_LIBS		= libSDL2_ttf.a
+SDL_MAIN_VERSION		= SDL2-2.0.8.tar.gz
+SDL_IMAGE_VERSION		= SDL2_image-2.0.3.tar.gz
+SDL_TTF_VERSION			= SDL2_ttf-2.0.14.tar.gz
+FREETYPE_VERSION		= freetype-2.8.1.tar.gz
 SDL_MAIN_FOLDER			= $(SDL_MAIN_VERSION:.tar.gz=)
-SDL_MAIN_LIBS			= $(SDL_FOLDER)lib/
-SDL_IMAGE_LIBS			= $(SDL_FOLDER)lib/
 SDL_IMAGE_FOLDER		= $(SDL_IMAGE_VERSION:.tar.gz=)
+FREETYPE_FOLDER			= $(FREETYPE_VERSION:.tar.gz=)
+SDL_TTF_FOLDER			= $(SDL_TTF_VERSION:.tar.gz=)
+SDL_MAIN_LIBS			= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/lib
+SDL_IMAGE_LIBS			= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/lib
+SDL_TTF_LIBS			= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/lib
+FREETYPE_LIBS			= $(SDL_FOLDER)$(FREETYPE_FOLDER)/build/lib
+SDL_TTF_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/
+FREETYPE_INCLUDE_PATH	= $(SDL_FOLDER)$(FREETYPE_FOLDER)/
 SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/
 SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/
-SDL_IMAGE				= $(addprefix $(SDL_IMAGE_LIBS), $(SDL_IMAGE_OBJ_LIBS))
-SDL_MAIN				= $(addprefix $(SDL_MAIN_LIBS), $(SDL_MAIN_OBJ_LIBS))
+SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
+SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
+SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
+FREETYPE				= $(addprefix $(LIBS), $(FREETYPE_OBJ_LIBS))
 FLAGS					= -Wall -Wextra -Werror -g
-
 ##################
 ##    COLORS    ##
 ##################
@@ -72,7 +85,8 @@ all: $(NAME)
 $(NAME): create_dir $(OBJS)
 	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(MLX) $(FRAMEWORK) $(MINILIBX) -I $(SDL_MAIN_INCLUDE_PATH) \
 		-L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) -L $(SDL_IMAGE_LIBS) \
-		-lSDL2_image -o ../../$(NAME)
+		-lSDL2_image  -I $(FREETYPE_INCLUDE_PATH) -L $(FREETYPE_LIBS) -lfreetype -I $(SDL_TTF_INCLUDE_PATH) -L $(SDL_TTF_LIBS) -lSDL2_ttf\
+		-o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
 	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 
