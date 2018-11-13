@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/12 14:47:32 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 10:53:41 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_B
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_C
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_D
-		&& map[to_map(ray->y)][to_map(ray->x)] != SECRET)
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_A_S
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_B_S
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_C_S
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_D_S)
 	{
 		ray->x += ray->xa;
 		ray->y += ray->ya;

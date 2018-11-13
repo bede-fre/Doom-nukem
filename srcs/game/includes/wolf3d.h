@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/12 14:52:50 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 10:54:35 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@
 # define RAY_ANGLE		FOV / (double)WINX
 # define START			's'
 # define FLOOR			' '
-# define SECRET			'2'
 # define TP_S			'3'
 # define TP_E			'4'
 # define T_A			'A'
+# define T_A_S			'a'
 # define T_B			'B'
+# define T_B_S			'b'
 # define T_C			'C'
+# define T_C_S			'c'
 # define T_D			'D'
+# define T_D_S			'd'
 # define ALPHA			0xFF000000
 # define BLACK			0
 # define WHITE			0xFFFFFF
@@ -209,6 +212,7 @@ typedef struct	s_all
 	t_textures	textures;
 	t_sprites	sprites;
 	t_img		info;
+	t_img		map;
 	t_mlx		ptr;
 	t_img		fp;
 	t_raycast	rc;

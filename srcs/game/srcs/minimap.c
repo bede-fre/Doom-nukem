@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/12 14:49:18 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 10:51:21 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX])
 			if (map[y][x] == T_A || map[y][x] == T_B || map[y][x] == T_C
 				|| map[y][x] == T_D)
 				ft_rect(ptr, x, y, WHITE);
-			else if (map[y][x] == SECRET)
+			else if (map[y][x] == T_A_S || map[y][x] == T_B_S
+				|| map[y][x] == T_C_S || map[y][x] == T_D_S)
 				ft_rect(ptr, x, y, GREY);
 			else if (map[y][x] == TP_S)
 				ft_rect(ptr, x, y, LIGHT_GREEN);
