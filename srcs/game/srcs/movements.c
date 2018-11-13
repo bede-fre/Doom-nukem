@@ -106,19 +106,23 @@ int			ft_movements(t_all *all)
 	(all->keys_tab[KEY_Q] == TRUE) ? all->p.a += ft_rad(ROT_SPEED) : 0;
 	(all->keys_tab[KEY_E] == TRUE) ? all->p.a -= ft_rad(ROT_SPEED) : 0;
 	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
-	if (all->keys_tab[KEY_CTRL] == TRUE && all->wall_gap1 >= 1.33f && all->wall_gap2 <= 4.0f) {
-		all->wall_gap1 -= 0.1f;
-		all->wall_gap2 += 0.1f;
+	if (all->keys_tab[KEY_CTRL] == TRUE && all->wall_gap1 > (4.0f / 3.0f) && all->wall_gap2 < 4.0f) {
+		all->wall_gap1 -= (2.0 - (4.0f / 3.0f)) / TRANS_F;
+		all->wall_gap2 += (4.0f - 2.0f) / TRANS_F;
+		// printf("%f  %f\n", all->wall_gap1, all->wall_gap2);
 	} else if ( all->keys_tab[KEY_CTRL] == FALSE && all->wall_gap1 < 2.0f && all->wall_gap2 > 2.0f ) {
-		all->wall_gap1 += 0.1f;
-		all->wall_gap2 -= 0.1f;
+		all->wall_gap1 += (2.0 - (4.0f / 3.0f)) / TRANS_F;
+		all->wall_gap2 -= (4.0f - 2.0f) / TRANS_F;
+		// printf("%f  %f\n", all->wall_gap1, all->wall_gap2);
 	}
-	if (all->keys_tab[KEY_SPACEBAR] == TRUE && all->wall_gap1 <= 4.0f && all->wall_gap2 >= 1.33f) {
-		all->wall_gap1 += 0.1f;
-		all->wall_gap2 -= 0.01f;
+	if (all->keys_tab[KEY_SPACEBAR] == TRUE && all->wall_gap1 < 4.0f && all->wall_gap2 > 1.33f) {
+		all->wall_gap1 += 0.2f;
+		all->wall_gap2 -= 0.067f;
+		// printf("%f  %f\n", all->wall_gap1, all->wall_gap2);
 	} else if (all->keys_tab[KEY_SPACEBAR] == FALSE && all->wall_gap1 > 2.0f && all->wall_gap2 < 2.0f) {
 		all->wall_gap1 -= 0.2f;
-		all->wall_gap2 += 0.02f;
+		all->wall_gap2 += 0.067f;
+		// printf("%f  %f\n", all->wall_gap1, all->wall_gap2);
 	}
 	ft_teleport(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);

@@ -66,6 +66,7 @@
 # define EAST2			2.0 * M_PI
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
+# define TRANS_F		10
 # define ZOOM			(double)(((double)MAPX * BLOCK_SIZE) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012

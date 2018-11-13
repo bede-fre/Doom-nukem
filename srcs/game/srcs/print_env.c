@@ -48,8 +48,11 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 	double	cpt;
 
 	cpt = ((double)i - all->start_wall) * (BLOCK_SIZE / (float)h);
-	if (all->keys_tab[KEY_CTRL])
-		cpt += BLOCK_SIZE / 4.0;
+	if (all->keys_tab[KEY_SPACEBAR]){
+		printf("%f\n", cpt);
+		cpt += (BLOCK_SIZE / 4) * ((all->wall_gap2 - 2.0f) / 2.0f);
+	} else
+		cpt += (BLOCK_SIZE / 4) * ((all->wall_gap2 - 2.0f) / 2.0f);
 	if (all->rc.ray.hit == N_W || all->rc.ray.hit == S_W)
 		col = (int)(all->rc.ray.x - ft_roundminf(all->rc.ray.x, BLOCK_SIZE));
 	else
