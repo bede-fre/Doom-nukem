@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 10:54:35 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 14:06:14 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
+# define TEXT_FLOOR		"./srcs/game/textures/mossy.xpm"
 # define SPR_KNIFE		"./srcs/game/sprites/weapon1.xpm"
 # define WINX			960
 # define WINY			540
@@ -197,6 +198,7 @@ typedef struct	s_textures
 	t_img		img_e;
 	t_img		img_n;
 	t_img		img_s;
+	t_img		img_f;
 }				t_textures;
 
 typedef struct	s_sprites

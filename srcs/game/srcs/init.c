@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 15:05:05 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 15:47:25 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		TEXT_EAST, &textures->width, &textures->height);
 	textures->img_w.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_WEST, &textures->width, &textures->height);
+	textures->img_f.img = mlx_xpm_file_to_image(all->ptr.mlx,
+		TEXT_FLOOR, &textures->width, &textures->height);
 	if (textures->img_n.img == NULL || textures->img_s.img == NULL
-		|| textures->img_e.img == NULL || textures->img_w.img == NULL)
+		|| textures->img_e.img == NULL || textures->img_w.img == NULL
+		|| textures->img_f.img == NULL)
 		ft_error("error", 11, perror);
 	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
 		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
@@ -65,6 +68,8 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		&textures->img_e.bpp, &textures->img_e.sl, &textures->img_e.endian);
 	textures->img_w.data = mlx_get_data_addr(textures->img_w.img,
 		&textures->img_w.bpp, &textures->img_w.sl, &textures->img_w.endian);
+	textures->img_f.data = mlx_get_data_addr(textures->img_f.img,
+		&textures->img_f.bpp, &textures->img_f.sl, &textures->img_f.endian);
 }
 
 void		ft_init_mlx(t_all *all, char *title)

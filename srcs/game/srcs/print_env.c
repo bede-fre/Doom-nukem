@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/13 11:00:32 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 15:43:48 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 		return (ft_color_textures(&all->textures.img_e, cpt, col));
 	else if (hit_wall == 'C' || hit_wall == 'c')
 		return (ft_color_textures(&all->textures.img_s, cpt, col));
-	else
+	else if (hit_wall == 'D' || hit_wall == 'd')
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
+	else
+		return (ft_color_textures(&all->textures.img_f, cpt, col));
 }
 
 static void		ft_print_textures(t_all *all, int x, int i, double h)
@@ -64,6 +66,9 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 
 	i = -1;
 	h = ft_wall_height_on_screen(all->rc.ray.dist * cos(lens));
+	if (all->rc.ray.x < 0.0 || all->rc.ray.x >= (MAPX * BLOCK_SIZE)
+		|| all->rc.ray.y < 0.0 || all->rc.ray.y >= (MAPY * BLOCK_SIZE))
+		h = 0.0;
 	while (++i < WINY)
 	{
 		if ((float)i <= (all->start_wall - ((float)h / all->wall_gap1)))
