@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 14:22:29 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 16:05:18 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		ft_print_all(t_all *all)
 	int			i;
 	int			x;
 
+	ft_print_map(&all->info, all->rc.map);
 	all->a = all->p.a + ft_rad(FOV / 2.0);
 	all->lens = ft_rad(FOV / 2.0) * all->keys_tab[KEY_H];
 	all->i = -THREAD;
@@ -56,7 +57,6 @@ void		ft_print_all(t_all *all)
 		pthread_join(test[i], NULL);
 		free(tmp[i]);
 	}
-	ft_print_map(&all->info, all->rc.map);
 }
 
 int			ft_quit(void)

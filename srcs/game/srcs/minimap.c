@@ -6,11 +6,25 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 10:51:21 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/13 16:04:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void ft_clear_minimap(t_img *ptr)
+{
+	int x;
+	int y;
+
+	y = -1;
+	while (++y < INFOY)
+	{
+		x = -1;
+		while (++x < INFOX)
+			ft_fill_pixel(ptr, x, y, 0xFF000000);
+	}
+}
 
 static void	ft_rect(t_img *ptr, int x, int y, int c)
 {
@@ -49,6 +63,7 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX])
 	int		x;
 	int		y;
 
+	ft_clear_minimap(ptr);
 	y = -1;
 	while (++y < BUFF_SIZE)
 	{
