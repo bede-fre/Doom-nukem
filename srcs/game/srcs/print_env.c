@@ -49,7 +49,7 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 
 	cpt = ((double)i - all->start_wall) * (BLOCK_SIZE / (float)h);
 	if (all->keys_tab[KEY_SPACEBAR]){
-		printf("%f\n", cpt);
+		// printf("%f\n", cpt);
 		cpt += (BLOCK_SIZE / 4) * ((all->wall_gap2 - 2.0f) / 2.0f);
 	} else
 		cpt += (BLOCK_SIZE / 4) * ((all->wall_gap2 - 2.0f) / 2.0f);
