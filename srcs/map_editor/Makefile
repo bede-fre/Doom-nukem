@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/14 16:39:47 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/14 16:47:07 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@
 
 OPE_SYS					= $(shell uname)
 NAME					= editor
-SRCS_FILES				= $(addsuffix .c, main init events tools make_grid refresh_events \
-							check_frame init2 clear start_draw check_and_stock_map print_map \
-							modif_map write_file shape input print_buttons init_button tools2 \
-							tools3)
+SRCS_FILES				= $(addsuffix .c, main init events tools make_grid \
+						  refresh_events check_frame init2 clear start_draw \
+						  check_and_stock_map print_map modif_map write_file \
+						  shape input print_buttons init_button tools2 tools3)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
@@ -28,8 +28,12 @@ LIBFT_DIR				= libft
 LIBVECT_DIR				= libvect
 LIBFT					= $(LIBFT_DIR)/libft.a
 LIBVECT					= $(LIBVECT_DIR)/libvect.a
-INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) -I $(SDL_MAIN_INCLUDE_PATH) -I $(SDL_IMAGE_INCLUDE_PATH) -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH)
-FRAMEWORK				= -framework OpenGL -framework Appkit
+INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) \
+						  -I $(SDL_MAIN_INCLUDE_PATH) -I $(SDL_IMAGE_INCLUDE_PATH) \
+						  -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH)
+FRAMEWORK				= -framework OpenGL -framework Appkit -I $(SDL_MAIN_INCLUDE_PATH) \
+						  -L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) \
+						  -L $(SDL_IMAGE_LIBS) -lSDL2_image
 SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
@@ -85,9 +89,7 @@ _CUT		= "\033[k"
 all: $(NAME)
 
 $(NAME): create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) -I $(SDL_MAIN_INCLUDE_PATH) \
-		-L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) -L $(SDL_IMAGE_LIBS) \
-		-lSDL2_image -o ../../$(NAME)
+	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) -o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
 	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 
