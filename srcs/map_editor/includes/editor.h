@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   editor.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/05 15:40:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/14 14:13:34 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EDITOR_H
 # define EDITOR_H
 
-# include "SDL/SDL.h"
+# include "SDL.h"
 # include "libvect.h"
 # include "libft.h"
 
@@ -56,12 +56,6 @@ typedef struct		s_bres
 	int				a;
 	int				b;
 }					t_bres;
-
-typedef struct		s_point
-{
-	int				x;
-	int				y;
-}					t_point;
 
 typedef struct		s_grid
 {

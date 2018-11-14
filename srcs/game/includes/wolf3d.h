@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 10:44:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/14 14:19:37 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# include "SDL/SDL.h"
+// # include "SDL.h"
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
@@ -238,7 +238,6 @@ void			ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE]);
 void			ft_fill_pixel(t_img *ptr, int x, int y, int col);
 void			ft_print_on_screen(t_all *all, int x, double a);
 void			ft_print_map(t_img *ptr, char map[MAPY][MAPX]);
-void			ft_check_map(char *buff, char (*start)[2]);
 void			ft_perso(t_img *img, double x, double y);
 void			ft_init_mlx(t_all *all, char *title);
 int				ft_key_release(int key, t_all *all);
