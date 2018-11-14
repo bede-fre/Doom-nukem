@@ -252,5 +252,6 @@ void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
 int				is_wall(char wall);
+void			jump_and_crouch(t_all *all);
 
 #endif
