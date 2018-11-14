@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/13 16:50:19 by cmace            ###   ########.fr        #
+#    Updated: 2018/11/14 14:18:03 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,10 @@ SDL_MAIN_LIBS			= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/lib
 SDL_IMAGE_LIBS			= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/lib
 SDL_TTF_LIBS			= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/lib
 FREETYPE_LIBS			= $(SDL_FOLDER)$(FREETYPE_FOLDER)/build/lib
-SDL_TTF_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/
-FREETYPE_INCLUDE_PATH	= $(SDL_FOLDER)$(FREETYPE_FOLDER)/
-SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/
-SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/
+SDL_TTF_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/include/SDL2
+FREETYPE_INCLUDE_PATH	= $(SDL_FOLDER)$(FREETYPE_FOLDER)/include
+SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/include/SDL2
+SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/SDL2
 SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
 SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
 SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
@@ -83,10 +83,6 @@ _CUT		= "\033[k"
 all: $(NAME)
 
 $(NAME): create_dir $(OBJS)
-	echo $(SDL_MAIN_LIBS)
-	echo $(SDL_IMAGE_LIBS)
-	echo $(SDL_TTF_LIBS)
-	echo $(FREETYPE_LIBS)
 	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) $(MINILIBX) -I $(SDL_MAIN_INCLUDE_PATH) \
 		-L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) -L $(SDL_IMAGE_LIBS) \
 		-lSDL2_image -I $(FREETYPE_INCLUDE_PATH) -L $(FREETYPE_LIBS) -lfreetype -I $(SDL_TTF_INCLUDE_PATH) -L $(SDL_TTF_LIBS) -lSDL2_ttf\

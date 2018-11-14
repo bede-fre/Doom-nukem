@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/13 16:16:51 by cmace            ###   ########.fr        #
+#    Updated: 2018/11/13 19:10:31 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -173,7 +173,7 @@ install:
 
 sdl_main:
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_MAIN_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_MAIN_DOWNLOAD) > $(SDL_FOLDER)$(SDL_MAIN_VERSION) ;\
-															tar -xzf $(SDL_FOLDER)$(SDL_MAIN_VERSION) -C $(SDL_FOLDER)); fi
+		tar -xzf $(SDL_FOLDER)$(SDL_MAIN_VERSION) -C $(SDL_FOLDER)); fi
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; fi
 	@$(foreach file, $(SDL_MAIN_LIBS), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
 	cd $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
@@ -186,7 +186,7 @@ sdl_main:
 
 sdl_image:
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_IMAGE_DOWNLOAD) > $(SDL_FOLDER)$(SDL_IMAGE_VERSION) ;\
-															tar -xzf $(SDL_FOLDER)$(SDL_IMAGE_VERSION) -C $(SDL_FOLDER)) ; fi
+		tar -xzf $(SDL_FOLDER)$(SDL_IMAGE_VERSION) -C $(SDL_FOLDER)) ; fi
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; fi
 	@$(foreach file, $(SDL_IMAGE_LIBS), test -e $(file) || (echo "		\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
 	cd $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_IMAGE_FOLDER) --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
@@ -199,7 +199,7 @@ sdl_image:
 
 sdl_mixer:
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_MIXER_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_MIXER_DOWNLOAD) > $(SDL_FOLDER)$(SDL_MIXER_VERSION) ;\
-															tar -xzf $(SDL_FOLDER)$(SDL_MIXER_VERSION) -C $(SDL_FOLDER) ;) fi
+		tar -xzf $(SDL_FOLDER)$(SDL_MIXER_VERSION) -C $(SDL_FOLDER) ;) fi
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; fi
 	@$(foreach file, $(SDL_MIXER_LIBS), test -e $(file) || (echo "\n\033[31mMissing file ($(file)) in $@\033[0m" ; \
 	cd $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/build ; ../configure --prefix=$(SDL_FOLDER)$(SDL_MIXER_FOLDER) --with-sdl-prefix=$(SDL_FOLDER)$(SDL_MAIN_FOLDER) ; \
@@ -220,7 +220,7 @@ sub_sdl_ttf:
 
 sdl_ttf:
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_TTF_FOLDER)" ] ; then ($(CURL_PATH) $(SDL_TTF_DOWNLOAD) > $(SDL_FOLDER)$(SDL_TTF_VERSION) ;\
-															tar -xzf $(SDL_FOLDER)$(SDL_TTF_VERSION) -C $(SDL_FOLDER)) ; fi
+		tar -xzf $(SDL_FOLDER)$(SDL_TTF_VERSION) -C $(SDL_FOLDER)) ; fi
 	@if [ ! -d "$(SDL_FOLDER)$(SDL_TTF_FOLDER)/build" ] ; then mkdir $(SDL_FOLDER)$(SDL_TTF_FOLDER)/build ; fi
 	@if [ ! -f "$(SDL_FOLDER)$(FREETYPE_VERSION)" ] ; then $(CURL_PATH) $(FREETYPE_DOWNLOAD) > $(SDL_FOLDER)$(FREETYPE_VERSION) ; fi
 	@if [ ! -d "$(SDL_FOLDER)$(FREETYPE_FOLDER)" ] ; then tar -xzf $(SDL_FOLDER)$(FREETYPE_VERSION) -C $(SDL_FOLDER) ; fi
