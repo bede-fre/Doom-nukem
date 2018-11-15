@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 10:46:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/13 15:47:25 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		TEXT_EAST, &textures->width, &textures->height);
 	textures->img_w.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_WEST, &textures->width, &textures->height);
+	textures->img_f.img = mlx_xpm_file_to_image(all->ptr.mlx,
+		TEXT_FLOOR, &textures->width, &textures->height);
 	if (textures->img_n.img == NULL || textures->img_s.img == NULL
-		|| textures->img_e.img == NULL || textures->img_w.img == NULL)
+		|| textures->img_e.img == NULL || textures->img_w.img == NULL
+		|| textures->img_f.img == NULL)
 		ft_error("error", 11, perror);
 	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
 		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
@@ -65,22 +68,23 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		&textures->img_e.bpp, &textures->img_e.sl, &textures->img_e.endian);
 	textures->img_w.data = mlx_get_data_addr(textures->img_w.img,
 		&textures->img_w.bpp, &textures->img_w.sl, &textures->img_w.endian);
+	textures->img_f.data = mlx_get_data_addr(textures->img_f.img,
+		&textures->img_f.bpp, &textures->img_f.sl, &textures->img_f.endian);
 }
 
 void		ft_init_mlx(t_all *all, char *title)
 {
 	all->ptr.mlx = mlx_init();
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
-	all->info.img = mlx_xpm_file_to_image(all->ptr.mlx, SPR_PAPYRUS,
-		&all->sprites.width, &all->sprites.height);
-	all->fp.img = mlx_new_image(all->ptr.mlx, FPX, FPY);
+	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
+	all->fp.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
 	all->sprites.knife = mlx_xpm_file_to_image(all->ptr.mlx, SPR_KNIFE,
-		&all->sprites.width, &all->sprites.height);
-	all->sprites.wolf = mlx_xpm_file_to_image(all->ptr.mlx, SPR_WOLF,
 		&all->sprites.width, &all->sprites.height);
 	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
 		&all->info.sl, &all->info.endian);
 	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
 		&all->fp.endian);
+	all->wall_gap1 = 2.0f;
+	all->wall_gap2 = 2.0f;
 	ft_init_textures(all, &all->textures);
 }

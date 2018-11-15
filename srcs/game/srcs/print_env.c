@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/08 17:01:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/13 15:43:48 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		ft_wall_height_on_screen(double dist)
 {
-	return ((int)((((double)FPX / 2.0) / tan(ft_rad(FOV / 2.0))
+	return ((int)((((double)WINX / 2.0) / tan(ft_rad(FOV / 2.0))
 		* (CAM_HEIGHT) / dist) * 2.0));
 }
 
@@ -29,14 +29,19 @@ static int		ft_color_textures(t_img *ptr, double cpt, int col)
 
 static int		ft_find_color(t_all *all, double cpt, int col)
 {
-	if (all->rc.ray.hit == N_W)
+	char	hit_wall;
+
+	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
+	if (hit_wall == 'A' || hit_wall == 'a')
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
-	else if (all->rc.ray.hit == S_W)
-		return (ft_color_textures(&all->textures.img_s, cpt, col));
-	else if (all->rc.ray.hit == E_W)
+	else if (hit_wall == 'B' || hit_wall == 'b')
 		return (ft_color_textures(&all->textures.img_e, cpt, col));
-	else
+	else if (hit_wall == 'C' || hit_wall == 'c')
+		return (ft_color_textures(&all->textures.img_s, cpt, col));
+	else if (hit_wall == 'D' || hit_wall == 'd')
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
+	else
+		return (ft_color_textures(&all->textures.img_f, cpt, col));
 }
 
 static void		ft_print_textures(t_all *all, int x, int i, double h)
@@ -45,8 +50,12 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 	double	cpt;
 
 	cpt = ((double)i - all->start_wall) * (BLOCK_SIZE / (float)h);
-	if (all->keys_tab[KEY_CTRL])
-		cpt += BLOCK_SIZE / 4.0;
+	if (all->keys_tab[KEY_SPACEBAR] && !all->keys_tab[KEY_CTRL])
+		cpt -= (BLOCK_SIZE / 4) * ((all->wall_gap1 - 2.0f) / 2.0f);
+	else if (all->wall_gap1 > 2.0f)
+		cpt -= (BLOCK_SIZE / 4) * ((all->wall_gap1 - 2.0f) / 2.0f);
+	else
+		cpt += (BLOCK_SIZE / 4) * ((all->wall_gap2 - 2.0f) / 2.0f);
 	if (all->rc.ray.hit == N_W || all->rc.ray.hit == S_W)
 		col = (int)(all->rc.ray.x - ft_roundminf(all->rc.ray.x, BLOCK_SIZE));
 	else
@@ -61,6 +70,9 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 
 	i = -1;
 	h = ft_wall_height_on_screen(all->rc.ray.dist * cos(lens));
+	if (all->rc.ray.x < 0.0 || all->rc.ray.x >= (MAPX * BLOCK_SIZE)
+		|| all->rc.ray.y < 0.0 || all->rc.ray.y >= (MAPY * BLOCK_SIZE))
+		h = 0.0;
 	while (++i < WINY)
 	{
 		if ((float)i <= (all->start_wall - ((float)h / all->wall_gap1)))

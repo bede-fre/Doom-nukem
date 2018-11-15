@@ -23,27 +23,31 @@
 # define MAPX			32
 # define MAPY			MAPX
 # define INFOX			256
-# define FPX			960
-# define FPY			540
+# define INFOY			256
 # define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
+# define TEXT_FLOOR		"./srcs/game/textures/mossy.xpm"
 # define SPR_KNIFE		"./srcs/game/sprites/weapon1.xpm"
-# define SPR_WOLF		"./srcs/game/sprites/wolf1.xpm"
-# define SPR_PAPYRUS	"./srcs/game/sprites/papyrus1.xpm"
-# define WINX			FPX + INFOX
-# define WINY			FPY
+# define WINX			960
+# define WINY			540
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
 # define FOV			60.0
-# define RAY_ANGLE		FOV / (double)FPX
+# define RAY_ANGLE		FOV / (double)WINX
 # define START			's'
 # define FLOOR			' '
-# define WALL			'1'
-# define SECRET			'2'
 # define TP_S			'3'
 # define TP_E			'4'
+# define T_A			'A'
+# define T_A_S			'a'
+# define T_B			'B'
+# define T_B_S			'b'
+# define T_C			'C'
+# define T_C_S			'c'
+# define T_D			'D'
+# define T_D_S			'd'
 # define ALPHA			0xFF000000
 # define BLACK			0
 # define WHITE			0xFFFFFF
@@ -66,6 +70,7 @@
 # define EAST2			2.0 * M_PI
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
+# define TRANS_F		10
 # define ZOOM			(double)(((double)MAPX * BLOCK_SIZE) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012
@@ -86,6 +91,7 @@
 #  define KEY_Q			113
 #  define KEY_E			101
 #  define KEY_T			116
+#  define KEY_SPACEBAR  32
 #  define KEY_SHIFT		65505
 #  define KEYS_TAB_SIZE	65600
 # else
@@ -102,6 +108,7 @@
 #  define KEY_Q			12
 #  define KEY_E			14
 #  define KEY_T			17
+#  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
 #  define KEY_SHIFT		257
@@ -137,7 +144,6 @@ typedef struct	s_parse
 
 typedef struct	s_ray
 {
-	char		*txtrs;
 	double		dist;
 	int			hit;
 	double		fx;
@@ -195,14 +201,13 @@ typedef struct	s_textures
 	t_img		img_e;
 	t_img		img_n;
 	t_img		img_s;
+	t_img		img_f;
 }				t_textures;
 
 typedef struct	s_sprites
 {
-	void		*papyrus;
 	void		*knife;
 	int			height;
-	void		*wolf;
 	int			width;
 }				t_sprites;
 
@@ -212,6 +217,7 @@ typedef struct	s_all
 	t_textures	textures;
 	t_sprites	sprites;
 	t_img		info;
+	t_img		map;
 	t_mlx		ptr;
 	t_img		fp;
 	t_raycast	rc;
@@ -250,5 +256,7 @@ int				ft_quit(void);
 void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
+int				is_wall(char wall);
+void			jump_and_crouch(t_all *all);
 
 #endif
