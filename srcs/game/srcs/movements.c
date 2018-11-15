@@ -99,21 +99,14 @@ static void	ft_refresh_images(t_all *all)
 
 int			ft_movements(t_all *all)
 {
-	if (all->keys_tab[KEY_A] == TRUE)
-		ft_strafing(all, 1.0);
-	if (all->keys_tab[KEY_D] == TRUE)
-		ft_strafing(all, -1.0);
-	if (all->keys_tab[KEY_W] == TRUE)
-		ft_moving(all, 1.0);
-	if (all->keys_tab[KEY_S] == TRUE)
-		ft_moving(all, -1.0);
-	if (all->keys_tab[KEY_Q] == TRUE)
-		all->p.a += ft_rad(ROT_SPEED);
-	if (all->keys_tab[KEY_E] == TRUE)
-		all->p.a -= ft_rad(ROT_SPEED);
+	(all->keys_tab[KEY_A] == TRUE) ? ft_strafing(all, 1.0) : 0;
+	(all->keys_tab[KEY_D] == TRUE) ? ft_strafing(all, -1.0) : 0;
+	(all->keys_tab[KEY_W] == TRUE) ? ft_moving(all, 1.0) : 0;
+	(all->keys_tab[KEY_S] == TRUE) ? ft_moving(all, -1.0) : 0;
+	(all->keys_tab[KEY_Q] == TRUE) ? all->p.a += ft_rad(ROT_SPEED) : 0;
+	(all->keys_tab[KEY_E] == TRUE) ? all->p.a -= ft_rad(ROT_SPEED) : 0;
 	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
-	all->wall_gap1 = (all->keys_tab[KEY_CTRL] == TRUE) ? 1.333333333333f : 2.0f;
-	all->wall_gap2 = (all->keys_tab[KEY_CTRL] == TRUE) ? 4.0f : 2.0f;
+	jump_and_crouch(all);
 	ft_teleport(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
 	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);

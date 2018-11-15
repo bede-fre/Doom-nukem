@@ -70,6 +70,7 @@
 # define EAST2			2.0 * M_PI
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
+# define TRANS_F		10
 # define ZOOM			(double)(((double)MAPX * BLOCK_SIZE) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012
@@ -90,6 +91,7 @@
 #  define KEY_Q			113
 #  define KEY_E			101
 #  define KEY_T			116
+#  define KEY_SPACEBAR  32
 #  define KEY_SHIFT		65505
 #  define KEYS_TAB_SIZE	65600
 # else
@@ -106,6 +108,7 @@
 #  define KEY_Q			12
 #  define KEY_E			14
 #  define KEY_T			17
+#  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
 #  define KEY_SHIFT		257
@@ -255,5 +258,6 @@ void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
 int				is_wall(char wall);
+void			jump_and_crouch(t_all *all);
 
 #endif

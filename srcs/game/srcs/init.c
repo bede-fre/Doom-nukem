@@ -84,5 +84,7 @@ void		ft_init_mlx(t_all *all, char *title)
 		&all->info.sl, &all->info.endian);
 	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
 		&all->fp.endian);
+	all->wall_gap1 = 2.0f;
+	all->wall_gap2 = 2.0f;
 	ft_init_textures(all, &all->textures);
 }
