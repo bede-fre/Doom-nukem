@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/14 16:40:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/15 09:53:42 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ void				clear(t_env *env, const char *str, int error);
 void				start_draw(t_env *env);
 void				fill_px(SDL_Surface *surface, int x, int y, Uint32 col);
 void				make_grid(SDL_Surface *surface);
-t_point				ft_pointdef(int x, int y);
 void				read_file(char *name, char (*map)[MAP_HEIGHT][MAP_WIDTH]);
 void				fill_rect(SDL_Surface *surface, t_point coord, Uint32 col);
 void				fill_border(SDL_Surface *surface, t_point coord, int l,
