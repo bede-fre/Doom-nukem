@@ -80,8 +80,10 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX])
 				ft_rect(ptr, x, y, LIGHT_GREEN);
 			else if (map[y][x] == TP_E)
 				ft_rect(ptr, x, y, GREEN);
-			else if (map[y][x] == T_DOOR_C || map[y][x] == T_DOOR_M || map[y][x] == T_DOOR_O)
+			else if (map[y][x] == T_DOOR_C)
 				ft_rect(ptr, x, y, BLUE);
+			else if (map[y][x] == T_DOOR_M || map[y][x] == T_DOOR_O)
+				ft_rect(ptr, x, y, LIGHT_BLUE);
 		}
 	}
 }
