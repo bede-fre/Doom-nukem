@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/14 16:47:07 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/16 15:02:48 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ NAME					= editor
 SRCS_FILES				= $(addsuffix .c, main init events tools make_grid \
 						  refresh_events check_frame init2 clear start_draw \
 						  check_and_stock_map print_map modif_map write_file \
-						  shape input print_buttons init_button tools2 tools3)
+						  shape input print_buttons init_button tools2 tools3 \
+						  set_text)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
@@ -33,7 +34,8 @@ INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) \
 						  -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH)
 FRAMEWORK				= -framework OpenGL -framework Appkit -I $(SDL_MAIN_INCLUDE_PATH) \
 						  -L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) \
-						  -L $(SDL_IMAGE_LIBS) -lSDL2_image
+						  -L $(SDL_IMAGE_LIBS) -lSDL2_image -L $(SDL_TTF_LIBS) -lSDL2_ttf \
+						  -L $(FREETYPE_LIBS) -lfreetype
 SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a

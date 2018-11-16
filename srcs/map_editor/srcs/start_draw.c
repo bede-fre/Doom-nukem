@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 14:51:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/16 16:32:25 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			start_draw(t_env *env)
 	SDL_RenderClear(env->renderer);
 	surface = init_surface(env);
 	set_background(surface, WHITE);
+	set_text(surface, env);
 	make_grid(surface);
 	print_map(surface, env->map);
 	print_buttons(env, surface, env->object, env->colision);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 13:14:38 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/16 16:31:44 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void	init_sdl(t_env *env)
 {
 	if (SDL_Init(SDL_INIT_VIDEO))
 		clear(env, SDL_GetError(), 1);
+	if (TTF_Init() == -1)
+		clear(env, TTF_GetError(), 16);
+	env->font = TTF_OpenFont(FONT, SCALE);
 	if (!(env->window = SDL_CreateWindow("GAME EDITOR", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, 0)))
 		clear(env, SDL_GetError(), 2);
@@ -65,7 +68,7 @@ static void	init_textures(t_env *env)
 	surface = IMG_Load(ERASER);
 	if (!(env->text.eraser =
 		SDL_CreateTextureFromSurface(env->renderer, surface)))
-		clear(env, SDL_GetError(), 15);
+		clear(env, SDL_GetError(), 16);
 	SDL_FreeSurface(surface);
 }
 
@@ -75,6 +78,7 @@ void		init(t_env *env, char *file_name)
 	read_file(file_name, &env->map);
 	init_bindings(env);
 	init_textures(env);
+	init_button(env);
 	env->file_name = (char*)ft_memalloc(sizeof(char) *
 		(ft_strlen(file_name) + 1));
 	env->file_name = ft_strcpy(env->file_name, file_name);

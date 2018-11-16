@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/15 09:53:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/16 16:45:48 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "SDL.h"
 # include "SDL_image.h"
+# include "SDL_ttf.h"
 # include "libvect.h"
 # include "libft.h"
 
@@ -46,6 +47,7 @@
 # define TEXT_C		"./srcs/map_editor/textures/stone1.xpm"
 # define TEXT_D		"./srcs/map_editor/textures/ice1.xpm"
 # define ERASER		"/srcs/map_editor/textures/eraser.jpg"
+# define FONT		"/srcs/map_editor/font/times-new-roman.ttf"
 
 /*
 ** COLOR RGBA
@@ -124,6 +126,7 @@ typedef struct		s_env
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
+	TTF_Font		*font;
 	t_textures		text;
 	char			map[MAP_HEIGHT][MAP_WIDTH];
 	int				*bindings;
@@ -166,11 +169,13 @@ void				button_release(SDL_Event event, t_env *env);
 void				print_buttons(t_env *env, SDL_Surface *surface,
 						char object, int colision);
 void				init_button(t_env *env);
+void				set_text(SDL_Surface *surface, t_env *env);
 SDL_Rect			create_rect(int x, int y, int w, int h);
 SDL_Rect			rect_to_map(SDL_Rect rect);
 SDL_Rect			rect_to_win(SDL_Rect rect);
 int					get_object(char x);
 int					get_colision(int x);
-char				chose_object(int x, int y, int colision);
+char				chose_object(t_button buttons[10], int x, int y,
+						int colision);
 
 #endif

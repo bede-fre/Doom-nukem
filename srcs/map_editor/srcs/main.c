@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/09 19:02:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/15 16:36:37 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	ft_loop(char *file_name)
 	}
 	SDL_RenderClear(env.renderer);
 	SDL_DestroyWindow(env.window);
+	TTF_CloseFont(env.font);
+	TTF_Quit();
 	SDL_Quit();
 }
 

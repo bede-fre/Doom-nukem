@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_events.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 15:22:09 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/16 16:32:10 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 static void	change_colision(t_env *env, char *object, int *colision)
 {
-	if (win_to_map(env->mouse.x) == 38 && win_to_map(env->mouse.y) == 14)
+	if (win_to_map(env->mouse.x) == win_to_map(env->buttons[COLISION].pos.x) &&
+		win_to_map(env->mouse.y) == win_to_map(env->buttons[COLISION].pos.y))
 	{
 		*colision = TRUE;
 		if (*object == T_AS || *object == T_BS ||
 			*object == T_CS || *object == T_DS)
 			*object -= 32;
 	}
-	else if (win_to_map(env->mouse.x) == 44 && win_to_map(env->mouse.y) == 14)
+	else if (win_to_map(env->mouse.x) ==
+		win_to_map(env->buttons[NO_COLISION].pos.x) &&
+		win_to_map(env->mouse.y) == win_to_map(env->buttons[NO_COLISION].pos.y))
 	{
 		*colision = FALSE;
 		if (*object == T_A || *object == T_B ||
@@ -34,7 +37,7 @@ static void	change_object(t_env *env, char *object)
 {
 	char x;
 
-	x = chose_object(env->mouse.x, env->mouse.y, env->colision);
+	x = chose_object(env->buttons, env->mouse.x, env->mouse.y, env->colision);
 	if (x != -1)
 		*object = x;
 }
