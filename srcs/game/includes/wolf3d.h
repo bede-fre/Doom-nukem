@@ -58,6 +58,7 @@
 # define RED			0xFF0000
 # define GREEN			0xFF00
 # define BLUE			0xFF
+# define LIGHT_BLUE		0x7777FF
 # define LIGHT_GREEN	0xAAFFAA
 # define GREY			0x888888
 # define YELLOW			0xFFFF00
