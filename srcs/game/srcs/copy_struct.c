@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:36:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/12 14:29:17 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/16 17:45:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static void	ft_cpy_struct_3(t_all *tmp, t_all *all)
 	tmp->prevx = all->prevx;
 	tmp->prevy = all->prevy;
 	tmp->start_wall = all->start_wall;
-	tmp->wall_gap1 = all->wall_gap1;
-	tmp->wall_gap2 = all->wall_gap2;
+	tmp->wall_gap = all->wall_gap;
 }
 
 static void	ft_cpy_struct_2(t_all *tmp, t_all *all)

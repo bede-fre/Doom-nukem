@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 14:19:37 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/16 17:43:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,8 +230,7 @@ typedef struct	s_all
 	int			prevy;
 	int			start_wall;
 	int			skip;
-	float		wall_gap1;
-	float		wall_gap2;
+	double		wall_gap;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);

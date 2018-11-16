@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:06 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/16 17:41:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int		ft_mouse_motion(int x, int y, t_all *all)
 		diffy = all->prevy - y;
 		if (!all->skip)
 		{
-			all->p.a += ((float)diffx / 100.0);
-			all->start_wall += ((float)diffy * 4.0);
+			all->p.a += ((double)diffx / 100.0);
+			all->start_wall += ((double)diffy * 4.0);
 		}
 		all->prevx = x;
 		all->prevy = y;
