@@ -19,5 +19,6 @@ int	to_map(double x)
 
 int	is_wall(char wall)
 {
-	return (wall == 'A' || wall == 'B' || wall == 'C' || wall == 'D');
+	return (wall == T_A || wall == T_B || wall == T_C || wall == T_D
+						|| wall == T_DOOR_C || wall == T_DOOR_M);
 }
