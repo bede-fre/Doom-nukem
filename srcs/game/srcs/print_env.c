@@ -40,6 +40,8 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 		return (ft_color_textures(&all->textures.img_s, cpt, col));
 	else if (hit_wall == 'D' || hit_wall == 'd')
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
+	else if (hit_wall == '-' || hit_wall == '~' || hit_wall == '|')
+		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else
 		return (ft_color_textures(&all->textures.img_f, cpt, col));
 }

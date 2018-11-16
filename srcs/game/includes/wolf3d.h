@@ -29,6 +29,7 @@
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
 # define TEXT_FLOOR		"./srcs/game/textures/mossy.xpm"
+# define TEXT_DOOR		"./srcs/game/textures/door.xpm"
 # define SPR_KNIFE		"./srcs/game/sprites/weapon1.xpm"
 # define WINX			960
 # define WINY			540
@@ -48,6 +49,9 @@
 # define T_C_S			'c'
 # define T_D			'D'
 # define T_D_S			'd'
+# define T_DOOR_C		'-'
+# define T_DOOR_M		'~'
+# define T_DOOR_O		'|'
 # define ALPHA			0xFF000000
 # define BLACK			0
 # define WHITE			0xFFFFFF
@@ -202,6 +206,7 @@ typedef struct	s_textures
 	t_img		img_n;
 	t_img		img_s;
 	t_img		img_f;
+	t_img		img_d;
 }				t_textures;
 
 typedef struct	s_sprites

@@ -39,7 +39,8 @@ static void	ft_check_char(char *buff, short i)
 		if (buff[i] != FLOOR && buff[i] != START && buff[i] != TP_S
 			&& buff[i] != TP_E && buff[i] != T_A && buff[i] != T_B
 			&& buff[i] != T_C && buff[i] != T_D && buff[i] != T_A_S
-			&& buff[i] != T_B_S && buff[i] != T_C_S && buff[i] != T_D_S)
+			&& buff[i] != T_B_S && buff[i] != T_C_S && buff[i] != T_D_S
+			&& buff[i] != T_DOOR_C && buff[i] != T_DOOR_O)
 			ft_error("error: Wrong character found", 4, ft_puterror);
 }
 
