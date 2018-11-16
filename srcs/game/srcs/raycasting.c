@@ -42,7 +42,7 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 	ray->dist = sqrt(pow(ray->dx, 2) + pow(ray->dy, 2));
 }
 
-static void	ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
+void	ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
 {
 	if (a == WEST || a == EAST || a == EAST2)
 		ray->fy = p->y;
@@ -57,7 +57,7 @@ static void	ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
 	ray->hit = (sin(a) > 0) ? S_W : N_W;
 }
 
-static void	ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
+void	ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
 {
 	if (a == NORTH || a == SOUTH)
 		ray->fx = p->x;

@@ -95,6 +95,7 @@
 #  define KEY_H			104
 #  define KEY_Q			113
 #  define KEY_E			101
+#  define KEY_F			102
 #  define KEY_T			116
 #  define KEY_SPACEBAR  32
 #  define KEY_SHIFT		65505
@@ -112,6 +113,7 @@
 #  define KEY_H			4
 #  define KEY_Q			12
 #  define KEY_E			14
+#  define KEY_F			3
 #  define KEY_T			17
 #  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
@@ -264,5 +266,6 @@ int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
 int				is_wall(char wall);
 void			jump_and_crouch(t_all *all);
+void			open_door(t_all *all);
 
 #endif
