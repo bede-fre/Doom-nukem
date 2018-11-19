@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/19 13:16:13 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 14:25:45 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ enum				e_keys
 	K_RESET = 0,
 	K_RENDER,
 	K_QUIT,
+	K_ESPACE,
 	B_LEFT,
 	B_RIGHT,
 	K_END

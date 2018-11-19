@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 12:04:37 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 14:22:04 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
 #  define RUN_SPEED		3.0
+#  define JUMP_SPEED	0.1
+#  define CROUCH_SPEED	0.1
 #  define ROT_SPEED		1.5
 #  define ESC			65307
 #  define KEY_A			97
@@ -91,12 +93,15 @@
 #  define KEY_E			101
 #  define KEY_T			116
 #  define KEY_SPACEBAR  32
+#  define KEY_CTRL		256
+#  define KEY_ENTER		36
 #  define KEY_SHIFT		65505
 #  define KEYS_TAB_SIZE	65600
 # else
 #  define MOVE_SPEED	2.0
 #  define RUN_SPEED		5.0
-#  define CROUCH_SPEED	1.0
+#  define JUMP_SPEED	0.1
+#  define CROUCH_SPEED	0.1
 #  define ROT_SPEED		2.5
 #  define ESC			53
 #  define KEY_A			0

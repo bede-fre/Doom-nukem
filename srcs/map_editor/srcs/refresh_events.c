@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 16:32:10 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/19 14:30:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ void		refresh_events(t_env *env)
 		write_file(env->file_name, env->map);
 		clear(env, NULL, 0);
 	}
+	if (env->keys[K_ESPACE])
+		system("leaks editor | grep 'leaked bytes'");
 	start_draw(env);
 }

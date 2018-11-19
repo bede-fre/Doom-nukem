@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 16:31:44 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/19 14:29:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	init_bindings(t_env *env)
 	env->bindings[K_RESET] = (int)SDLK_SPACE;
 	env->bindings[K_RENDER] = (int)SDLK_RETURN;
 	env->bindings[K_QUIT] = (int)SDLK_ESCAPE;
+	env->bindings[K_ESPACE] = (int)SDLK_SPACE;
 	env->bindings[B_LEFT] = (int)SDL_BUTTON_LEFT;
 	env->bindings[B_RIGHT] = (int)SDL_BUTTON_RIGHT;
 }
