@@ -6,14 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 17:43:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 10:40:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-// # include "SDL.h"
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>

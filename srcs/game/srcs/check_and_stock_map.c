@@ -6,29 +6,23 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:40:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/13 10:47:36 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/19 11:44:18 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	ft_check_line_length(char *buff)
-{
-	if (ft_strlen(buff) != BUFF_SIZE)
-		ft_error("error: Wrong line length", 1, ft_puterror);
-}
-
-static void	ft_check_start(char *buff, short i, char (*start)[2])
+static void	ft_check_start(char *buff, short i, int *start, int *tp)
 {
 	while (++i < BUFF_SIZE)
 	{
 		if (buff[i] == 's')
-			++(*start[0]);
+			++(*start);
 		if (buff[i] == '4')
-			++(*start[1]);
-		if (*start[0] > 1)
+			++(*tp);
+		if (*start > 1)
 			ft_error("error: More than one departure area", 2, ft_puterror);
-		if (*start[1] > 1)
+		if (*start > 1)
 			ft_error("error: More than one exit teleportation", 3, ft_puterror);
 	}
 }
@@ -43,37 +37,46 @@ static void	ft_check_char(char *buff, short i)
 			ft_error("error: Wrong character found", 4, ft_puterror);
 }
 
-void		ft_check_map(char *buff, char (*start)[2])
+static void	ft_check_map(char *buff, int *start, int *tp)
 {
-	ft_check_line_length(buff);
-	ft_check_start(buff, -1, start);
+	if (ft_strlen(buff) != BUFF_SIZE)
+		ft_error("error: Wrong column length", 1, ft_puterror);
+	ft_check_start(buff, -1, start, tp);
 	ft_check_char(buff, -1);
+}
+
+static void	ft_other_test(int test_gnl, int i, int start)
+{
+	if (test_gnl == -1)
+		ft_error("error: Not valid file", 7, ft_puterror);
+	if (i < BUFF_SIZE)
+		ft_error("error: Wrong line lenght", 8, ft_puterror);
+	if (start == 0)
+		ft_error("error: No start found", 9, ft_puterror);
 }
 
 void		ft_read_file(char *name, char (*map)[MAPY][MAPX])
 {
 	t_parse		parse;
-	static char	start[2];
+	int			start;
+	int			tp;
 	int			test_gnl;
 
+	start = 0;
+	tp = 0;
 	if ((parse.fd = open(name, O_RDONLY)) == -1)
 		ft_error("error", 5, perror);
 	parse.i = 0;
 	while ((test_gnl = get_next_line(parse.fd, &parse.buff)) > 0)
 	{
 		if (++parse.i > BUFF_SIZE)
-			ft_error("error: Wrong column length", 6, ft_puterror);
-		ft_check_map(parse.buff, &start);
+			ft_error("error: Wrong line length", 6, ft_puterror);
+		ft_check_map(parse.buff, &start, &tp);
 		ft_strcpy(map[0][parse.i - 1], parse.buff);
 		ft_memdel((void **)&parse.buff);
 	}
 	ft_memdel((void **)&parse.buff);
-	if (test_gnl == -1)
-		ft_error("error: Not valid file", 7, ft_puterror);
-	if (parse.i < BUFF_SIZE)
-		ft_error("error: Wrong column lenght", 8, ft_puterror);
-	if (start[0] == 0)
-		ft_error("error: No start found", 9, ft_puterror);
+	ft_other_test(test_gnl, parse.i, start);
 	if ((close(parse.fd)) == -1)
 		ft_error("error", 10, perror);
 }

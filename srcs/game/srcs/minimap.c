@@ -6,13 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 16:04:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 10:40:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void ft_clear_minimap(t_img *ptr)
+static void	ft_clear_minimap(t_img *ptr)
 {
 	int x;
 	int y;

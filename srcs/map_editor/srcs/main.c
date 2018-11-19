@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/15 16:36:37 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/19 10:11:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ static void	ft_loop(char *file_name)
 
 int			main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac == 2)
+		ft_loop(av[1]);
+	else if (ac == 3 && av[1][0] == '-' && av[1][1] == 'n' && av[1][2] == '\0')
 	{
-		ft_puterror("usage: ./editor [map_name]");
+		create_new_file(av[2]);
+		ft_loop(av[2]);
+	}
+	else
+	{
+		ft_puterror("usage: ./editor [-n] [map_name ...]");
 		return (EXIT_FAILURE);
 	}
-	ft_loop(av[1]);
 	return (EXIT_SUCCESS);
 }

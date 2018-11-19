@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 16:05:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 10:45:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@ void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 {
 	if ((y >= 0 && y < WINY) && (x >= 0 && x < WINX))
 	{
-		if (ptr->endian == 0 && ptr->bpp == (8 * 4))
-		{
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl))] =
-				(char)col;
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 1] =
-				(char)(col >> 8);
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 2] =
-				(char)(col >> 16);
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 3] =
-				(char)(col >> 24);
-		}
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl))] =
+			(char)col;
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 1] =
+			(char)(col >> 8);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 2] =
+			(char)(col >> 16);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 3] =
+			(char)(col >> 24);
 	}
 }
 

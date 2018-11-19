@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/16 15:02:48 by cmace            ###   ########.fr        #
+#    Updated: 2018/11/19 11:04:05 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS_FILES				= $(addsuffix .c, main init events tools make_grid \
 						  refresh_events check_frame init2 clear start_draw \
 						  check_and_stock_map print_map modif_map write_file \
 						  shape input print_buttons init_button tools2 tools3 \
-						  set_text)
+						  set_text create_new_file)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
@@ -61,7 +61,7 @@ SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
 SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
 SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
 FREETYPE				= $(addprefix $(LIBS), $(FREETYPE_OBJ_LIBS))
-FLAGS					= -Wall -Wextra -g
+FLAGS					= -Wall -Wextra -O2 -g
 
 ##################
 ##    COLORS    ##

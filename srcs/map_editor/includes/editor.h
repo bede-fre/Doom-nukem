@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/16 16:45:48 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/19 09:51:15 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,6 @@ int					get_object(char x);
 int					get_colision(int x);
 char				chose_object(t_button buttons[10], int x, int y,
 						int colision);
+void				create_new_file(char *file);
 
 #endif
