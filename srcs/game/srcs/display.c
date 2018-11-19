@@ -32,7 +32,7 @@ void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 
 void		ft_print_all(t_all *all)
 {
-	pthread_t	test[WINX / THREAD];
+	pthread_t	test[WINX / THREAD]; // may change test variable name ?
 	t_all		*tmp[WINX / THREAD];
 	int			i;
 	int			x;
