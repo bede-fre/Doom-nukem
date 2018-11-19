@@ -66,11 +66,12 @@ void	open_door(t_all *all)
 
 	// printf("all->prevx: %f\n", all->x);
 
-	if (all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] == T_DOOR_C && all->rc.ray.dist <= 100) {
-			all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] = T_DOOR_O;
-			ft_putstr("door open\n");
-	} else if (all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] == T_DOOR_O && all->rc.ray.dist <= 100) {
-			all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] = T_DOOR_C;
-			ft_putstr("door close\n");
-	}
+	// if (all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] == T_DOOR_C && all->rc.ray.dist <= 100) {
+	// 		all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] = T_DOOR_O;
+	// 		ft_putstr("door open\n");
+	// } else if (all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] == T_DOOR_O && all->rc.ray.dist <= 100) {
+	// 		all->rc.map[to_map(all->rc.ray_v.y)][to_map(all->rc.ray_v.x)] = T_DOOR_C;
+	// 		ft_putstr("door close\n");
+	// }
+	all->rc.map[27][27] = T_DOOR_O;
 }
