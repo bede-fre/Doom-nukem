@@ -228,6 +228,7 @@ typedef struct	s_all
 	t_img		map;
 	t_mlx		ptr;
 	t_img		fp;
+	t_img		door;
 	t_raycast	rc;
 	t_player	p;
 	double		a;
