@@ -117,6 +117,8 @@ void		ft_print_ray_infos(t_all *all)
 		ft_putstr("ray dist: ");
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
+		if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == T_DOOR_C)
+			all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_O;
 	}
 	ft_algo(&all->info, all->rc.ray, &all->p, YELLOW);
 	ft_perso(&all->info, all->p.x, all->p.y);
