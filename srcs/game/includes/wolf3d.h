@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 10:40:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 12:04:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,8 @@ typedef struct	s_img
 	void		*img;
 	int			bpp;
 	int			sl;
+	int			width;
+	int			height;
 }				t_img;
 
 typedef struct	s_mlx

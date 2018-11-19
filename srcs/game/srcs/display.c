@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 10:45:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 12:06:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 {
-	if ((y >= 0 && y < WINY) && (x >= 0 && x < WINX))
+	if ((y >= 0 && y < ptr->height) && (x >= 0 && x < ptr->width))
 	{
 		((char *)(ptr->data))[((x * 4) + (y * ptr->sl))] =
 			(char)col;
