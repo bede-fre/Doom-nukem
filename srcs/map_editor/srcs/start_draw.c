@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 16:32:25 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/19 13:19:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,17 @@ static void		set_background(SDL_Surface *surface, Uint32 col)
 
 static void		print_texture(t_env *env)
 {
-	SDL_Rect rect;
+	SDL_Rect	rect;
+	int			i;
 
-	rect = create_rect(env->buttons[WOOD].rect.x + 2,
-		env->buttons[WOOD].rect.y + 2, env->buttons[WOOD].rect.w - 3,
-		env->buttons[WOOD].rect.h - 3);
-	SDL_RenderCopy(env->renderer, env->buttons[WOOD].texture, NULL, &rect);
-	rect = create_rect(env->buttons[METAL].rect.x + 2,
-		env->buttons[METAL].rect.y + 2, env->buttons[METAL].rect.w - 3,
-		env->buttons[METAL].rect.h - 3);
-	SDL_RenderCopy(env->renderer, env->buttons[METAL].texture, NULL, &rect);
-	rect = create_rect(env->buttons[STONE].rect.x + 2,
-		env->buttons[STONE].rect.y + 2, env->buttons[STONE].rect.w - 3,
-		env->buttons[STONE].rect.h - 3);
-	SDL_RenderCopy(env->renderer, env->buttons[STONE].texture, NULL, &rect);
-	rect = create_rect(env->buttons[ICE].rect.x + 2,
-		env->buttons[ICE].rect.y + 2, env->buttons[ICE].rect.w - 3,
-		env->buttons[ICE].rect.h - 3);
-	SDL_RenderCopy(env->renderer, env->buttons[ICE].texture, NULL, &rect);
+	i = -1;
+	while (++i <= ICE)
+	{
+		rect = create_rect(env->buttons[i].rect.x + 2,
+			env->buttons[i].rect.y + 2, env->buttons[i].rect.w - 3,
+			env->buttons[i].rect.h - 3);
+		SDL_RenderCopy(env->renderer, env->buttons[i].texture, NULL, &rect);
+	}
 	rect = create_rect(env->buttons[B_ERASER].rect.x + 2,
 		env->buttons[B_ERASER].rect.y + 2, env->buttons[B_ERASER].rect.w - 3,
 		env->buttons[B_ERASER].rect.h - 3);
