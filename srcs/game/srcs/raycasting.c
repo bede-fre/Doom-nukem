@@ -29,7 +29,8 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_B_S
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_C_S
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_D_S
-		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_O
+		&& (map[to_map(ray->y - (64 * timer(0.0)))][to_map(ray->x - (64 * timer(0.0)))] != T_DOOR_O
+		|| map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_O)
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_M
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_C)
 	{

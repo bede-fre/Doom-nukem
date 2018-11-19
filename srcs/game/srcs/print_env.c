@@ -20,8 +20,8 @@ static int		ft_wall_height_on_screen(double dist)
 
 static int		ft_color_textures(t_img *ptr, double cpt, int col)
 {
-	if (col < 0)
-		return (ft_rgba(0,0,0,255));
+	if (col < 0 || col > 64)
+		return (ft_rgba(127, 127, 127, 0));
 	return (ft_rgba(
 		ptr->data[col * 4 + ((int)(CAM_HEIGHT + cpt) * ptr->sl) + 2],
 		ptr->data[col * 4 + ((int)(CAM_HEIGHT + cpt) * ptr->sl) + 1],
@@ -45,7 +45,7 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 	else if (hit_wall == '-' || hit_wall == '~')
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else if (hit_wall == '|')
-		return (ft_color_textures(&all->textures.img_d, cpt, col - 32));
+		return (ft_color_textures(&all->textures.img_d, cpt, col - (64 * timer(0.0000001))));
 	else
 		return (ft_color_textures(&all->textures.img_f, cpt, col));
 }
