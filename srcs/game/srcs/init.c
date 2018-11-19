@@ -82,15 +82,12 @@ void		ft_init_mlx(t_all *all, char *title)
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
 	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
 	all->fp.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
-	all->door.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
 	all->sprites.knife = mlx_xpm_file_to_image(all->ptr.mlx, SPR_KNIFE,
 		&all->sprites.width, &all->sprites.height);
 	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
 		&all->info.sl, &all->info.endian);
 	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
 		&all->fp.endian);
-	all->door.data = mlx_get_data_addr(all->door.img, &all->door.bpp, &all->door.sl,
-		&all->door.endian);
 	all->wall_gap1 = 2.0f;
 	all->wall_gap2 = 2.0f;
 	ft_init_textures(all, &all->textures);

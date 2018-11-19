@@ -22,3 +22,15 @@ int	is_wall(char wall)
 	return (wall == T_A || wall == T_B || wall == T_C || wall == T_D
 						|| wall == T_DOOR_C || wall == T_DOOR_M);
 }
+
+float	timer(float add)
+{
+	static float timer = 0.0;
+
+	if (timer == 1.0)
+	{
+		return (timer);
+	}
+	timer += add;
+	return (timer);
+}

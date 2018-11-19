@@ -228,7 +228,6 @@ typedef struct	s_all
 	t_img		map;
 	t_mlx		ptr;
 	t_img		fp;
-	t_img		door;
 	t_raycast	rc;
 	t_player	p;
 	double		a;
@@ -268,5 +267,8 @@ int				to_map(double x);
 int				is_wall(char wall);
 void			jump_and_crouch(t_all *all);
 void			open_door(t_all *all);
+float			timer(float add);
+void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a);
+void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a);
 
 #endif
