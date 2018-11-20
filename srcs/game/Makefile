@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/19 12:15:39 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/20 11:25:45 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
 SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
 SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
 FREETYPE				= $(addprefix $(LIBS), $(FREETYPE_OBJ_LIBS))
-FLAGS					= -Wall -Wextra -O2 -g
+FLAGS					= -Wall -Wextra -O2 -g $(TEST)
 
 ##################
 ##    COLORS    ##

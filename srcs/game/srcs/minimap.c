@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 10:40:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/20 12:54:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void		ft_perso(t_img *ptr, double x, double y)
 	}
 }
 
-void		ft_print_map(t_img *ptr, char map[MAPY][MAPX])
+void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
 {
 	int		x;
 	int		y;
 
+	(void)p;
 	ft_clear_minimap(ptr);
 	y = -1;
 	while (++y < BUFF_SIZE)

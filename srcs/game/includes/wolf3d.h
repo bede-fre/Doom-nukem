@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 14:22:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/20 11:57:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # define MAPX			32
 # define MAPY			MAPX
-# define INFOX			256
-# define INFOY			256
+# define INFOX			(WINY / 2)
+# define INFOY			(WINY / 2)
 # define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
@@ -81,7 +81,7 @@
 #  define MOVE_SPEED	2.0
 #  define RUN_SPEED		3.0
 #  define JUMP_SPEED	0.1
-#  define CROUCH_SPEED	0.1
+#  define CROUCH_SPEED	1.0
 #  define ROT_SPEED		1.5
 #  define ESC			65307
 #  define KEY_A			97
@@ -101,7 +101,7 @@
 #  define MOVE_SPEED	2.0
 #  define RUN_SPEED		5.0
 #  define JUMP_SPEED	0.1
-#  define CROUCH_SPEED	0.1
+#  define CROUCH_SPEED	1.0
 #  define ROT_SPEED		2.5
 #  define ESC			53
 #  define KEY_A			0
@@ -248,7 +248,7 @@ void			ft_read_file(char *name, char (*map)[MAPY][MAPX]);
 void			ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE]);
 void			ft_fill_pixel(t_img *ptr, int x, int y, int col);
 void			ft_print_on_screen(t_all *all, int x, double a);
-void			ft_print_map(t_img *ptr, char map[MAPY][MAPX]);
+void			ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p);
 void			ft_perso(t_img *img, double x, double y);
 void			ft_init_mlx(t_all *all, char *title);
 int				ft_key_release(int key, t_all *all);
@@ -261,6 +261,7 @@ int				ft_quit(void);
 void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
+int				to_win(int x);
 int				is_wall(char wall);
 void			jump_and_crouch(t_all *all);
 
