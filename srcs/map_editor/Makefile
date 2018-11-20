@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/19 13:31:50 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/19 14:46:01 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,37 +31,39 @@ LIBFT					= $(LIBFT_DIR)/libft.a
 LIBVECT					= $(LIBVECT_DIR)/libvect.a
 INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) \
 						  -I $(SDL_MAIN_INCLUDE_PATH) -I $(SDL_IMAGE_INCLUDE_PATH) \
-						  -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH)
+						  -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH) \
+						  -I $(SDL_MIXER_INCLUDE_PATH)
 FRAMEWORK				= -framework OpenGL -framework Appkit -I $(SDL_MAIN_INCLUDE_PATH) \
 						  -L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) \
 						  -L $(SDL_IMAGE_LIBS) -lSDL2_image -L $(SDL_TTF_LIBS) -lSDL2_ttf \
-						  -L $(FREETYPE_LIBS) -lfreetype
+						  -L $(FREETYPE_LIBS) -lfreetype -L $(SDL_MIXER_LIBS) -lSDL2_mixer
 SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
 FREETYPE_OBJ_LIBS		= libfreetype.a
 SDL_TTF_OBJ_LIBS		= libSDL2_ttf.a
+SDL_MIXER_OBJ_LIBS		= libSDL2_mixer.a
 SDL_MAIN_VERSION		= SDL2-2.0.8.tar.gz
 SDL_IMAGE_VERSION		= SDL2_image-2.0.3.tar.gz
 SDL_TTF_VERSION			= SDL2_ttf-2.0.14.tar.gz
 FREETYPE_VERSION		= freetype-2.8.1.tar.gz
+SDL_MIXER_VERSION		= SDL2_mixer-2.0.2.tar.gz
 SDL_MAIN_FOLDER			= $(SDL_MAIN_VERSION:.tar.gz=)
 SDL_IMAGE_FOLDER		= $(SDL_IMAGE_VERSION:.tar.gz=)
 FREETYPE_FOLDER			= $(FREETYPE_VERSION:.tar.gz=)
 SDL_TTF_FOLDER			= $(SDL_TTF_VERSION:.tar.gz=)
+SDL_MIXER_FOLDER		= $(SDL_MIXER_VERSION:.tar.gz=)
 SDL_MAIN_LIBS			= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/lib
 SDL_IMAGE_LIBS			= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/lib
 SDL_TTF_LIBS			= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/lib
+SDL_MIXER_LIBS			= $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/lib
 FREETYPE_LIBS			= $(SDL_FOLDER)$(FREETYPE_FOLDER)/build/lib
 SDL_TTF_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_TTF_FOLDER)/include/SDL2
 FREETYPE_INCLUDE_PATH	= $(SDL_FOLDER)$(FREETYPE_FOLDER)/include
 SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/include/SDL2
 SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include
-SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
-SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
-SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
-FREETYPE				= $(addprefix $(LIBS), $(FREETYPE_OBJ_LIBS))
-FLAGS					= -Wall -Wextra -O2 -g $(TEST)
+SDL_MIXER_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/include/SDL2
+FLAGS					= -Wall -Wextra -g
 
 ##################
 ##    COLORS    ##

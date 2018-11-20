@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/19 14:25:45 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 16:44:28 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include "SDL.h"
 # include "SDL_image.h"
 # include "SDL_ttf.h"
+# include "SDL_mixer.h"
 # include "libvect.h"
 # include "libft.h"
 
-# define WIN_DIM	20
+# define WIN_DIM	30
 # define WIN_WIDTH	WIN_HEIGHT + 18 * SCALE
 # define WIN_HEIGHT	(MAP_HEIGHT + 2) * WIN_DIM
 # define MAP_WIDTH	32
@@ -48,6 +49,14 @@
 # define TEXT_D		"./srcs/map_editor/textures/ice1.xpm"
 # define ERASER		"/srcs/map_editor/textures/eraser.jpg"
 # define FONT		"/srcs/map_editor/font/times-new-roman.ttf"
+# define S_WOOD		"srcs/map_editor/sounds/"
+# define S_METAL	"srcs/map_editor/sounds/"
+# define S_STONE	"srcs/map_editor/sounds/"
+# define S_TP_S		"srcs/map_editor/sounds/"
+# define S_TP_E		"srcs/map_editor/sounds/"
+# define S_ICE		"srcs/map_editor/sounds/"
+# define S_ERASER	"srcs/map_editor/sounds/erase.wav"
+# define S_ERROR	"srcs/map_editor/sounds/error.wav"
 
 /*
 ** COLOR RGBA
@@ -77,7 +86,7 @@ enum				e_keys
 	K_RESET = 0,
 	K_RENDER,
 	K_QUIT,
-	K_ESPACE,
+	K_LEAKS,
 	B_LEFT,
 	B_RIGHT,
 	K_END
@@ -123,11 +132,25 @@ typedef struct		s_button
 	SDL_Texture		*texture;
 }					t_button;
 
+typedef struct		s_sounds
+{
+	Mix_Music		*wood;
+	Mix_Music		*metal;
+	Mix_Music		*stone;
+	Mix_Music		*ice;
+	Mix_Music		*door;
+	Mix_Music		*tp_start;
+	Mix_Music		*tp_exit;
+	Mix_Music		*erase;
+	Mix_Music		*error;
+}					t_sounds;
+
 typedef struct		s_env
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
 	TTF_Font		*font;
+	t_sounds		sounds;
 	t_textures		text;
 	char			map[MAP_HEIGHT][MAP_WIDTH];
 	int				*bindings;
@@ -179,5 +202,6 @@ int					get_colision(int x);
 char				chose_object(t_button buttons[10], int x, int y,
 						int colision);
 void				create_new_file(char *file);
+Mix_Music			*get_sounds(t_env *env, char x);
 
 #endif

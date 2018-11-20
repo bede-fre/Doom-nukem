@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 10:51:33 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 14:39:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 15:47:39 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,19 @@ int			get_colision(int x)
 		if (x == wall[i])
 			return (colision[i]);
 	return (-1);
+}
+
+Mix_Music	*get_sounds(t_env *env, char x)
+{
+	if (x == T_A || x == T_AS)
+		return (env->sounds.wood);
+	if (x == T_B || x == T_BS)
+		return (env->sounds.metal);
+	if (x == T_C || x == T_CS)
+		return (env->sounds.stone);
+	if (x == T_D || x == T_DS)
+		return (env->sounds.ice);
+	if (x == FLOOR)
+		return (env->sounds.erase);
+	return (NULL);
 }

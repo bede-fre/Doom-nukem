@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 14:29:13 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 16:06:40 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,30 @@ static void	init_sdl(t_env *env)
 	if (TTF_Init() == -1)
 		clear(env, TTF_GetError(), 16);
 	env->font = TTF_OpenFont(FONT, SCALE);
+	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+		clear(env, Mix_GetError(), 20);
 	if (!(env->window = SDL_CreateWindow("GAME EDITOR", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, WIN_WIDTH, WIN_HEIGHT, 0)))
 		clear(env, SDL_GetError(), 2);
 	if (!(env->renderer = SDL_CreateRenderer(env->window, -1,
 		SDL_RENDERER_ACCELERATED)))
 		clear(env, SDL_GetError(), 3);
+    if ((env->sounds.wood = Mix_LoadMUS(S_WOOD)) == NULL)
+        ft_puterror(Mix_GetError());
+    if ((env->sounds.metal = Mix_LoadMUS(S_METAL)) == NULL)
+        ft_puterror(Mix_GetError());
+    if ((env->sounds.stone = Mix_LoadMUS(S_STONE)) == NULL)
+        ft_puterror(Mix_GetError());
+    if ((env->sounds.ice = Mix_LoadMUS(S_ICE)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((env->sounds.tp_start = Mix_LoadMUS(S_TP_S)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((env->sounds.tp_exit = Mix_LoadMUS(S_TP_E)) == NULL)
+		ft_puterror(Mix_GetError());
+    if ((env->sounds.erase = Mix_LoadMUS(S_ERASER)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((env->sounds.error = Mix_LoadMUS(S_ERROR)) == NULL)
+		ft_puterror(Mix_GetError());
 }
 
 /*
@@ -42,7 +60,7 @@ static void	init_bindings(t_env *env)
 	env->bindings[K_RESET] = (int)SDLK_SPACE;
 	env->bindings[K_RENDER] = (int)SDLK_RETURN;
 	env->bindings[K_QUIT] = (int)SDLK_ESCAPE;
-	env->bindings[K_ESPACE] = (int)SDLK_SPACE;
+	env->bindings[K_LEAKS] = (int)SDLK_SPACE;
 	env->bindings[B_LEFT] = (int)SDL_BUTTON_LEFT;
 	env->bindings[B_RIGHT] = (int)SDL_BUTTON_RIGHT;
 }

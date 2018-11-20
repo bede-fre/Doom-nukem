@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 10:11:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 15:23:16 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ft_loop(char *file_name)
 	SDL_DestroyWindow(env.window);
 	TTF_CloseFont(env.font);
 	TTF_Quit();
+	Mix_CloseAudio();
 	SDL_Quit();
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:43:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 14:11:53 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/19 16:03:33 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void		modif_map(t_env *env)
 		if (env->object == START || env->object == TP_E)
 			delete_car(env);
 		if (env->map[i.y][i.x] != START)
+		{
 			env->map[i.y][i.x] = env->object;
+			Mix_PlayMusic(get_sounds(env, env->object), 1);
+		}
+		else 
+			Mix_PlayMusic(env->sounds.error, 1);
 	}
 }
