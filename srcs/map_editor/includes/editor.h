@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/19 16:44:28 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/20 15:01:33 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,23 @@
 # define T_DS		'd'
 # define TRUE		1
 # define FALSE		0
-# define TEXT_A		"./srcs/map_editor/textures/wood1.xpm"
-# define TEXT_B		"./srcs/map_editor/textures/metal1.xpm"
-# define TEXT_C		"./srcs/map_editor/textures/stone1.xpm"
-# define TEXT_D		"./srcs/map_editor/textures/ice1.xpm"
-# define ERASER		"/srcs/map_editor/textures/eraser.jpg"
-# define FONT		"/srcs/map_editor/font/times-new-roman.ttf"
-# define S_WOOD		"srcs/map_editor/sounds/"
-# define S_METAL	"srcs/map_editor/sounds/"
-# define S_STONE	"srcs/map_editor/sounds/"
-# define S_TP_S		"srcs/map_editor/sounds/"
-# define S_TP_E		"srcs/map_editor/sounds/"
-# define S_ICE		"srcs/map_editor/sounds/"
-# define S_ERASER	"srcs/map_editor/sounds/erase.wav"
-# define S_ERROR	"srcs/map_editor/sounds/error.wav"
+# define F_SOUNDS	"srcs/map_editor/sounds/"
+# define F_FONT		"/srcs/map_editor/font/"
+# define F_TEXT		"/srcs/map_editor/textures/"
+# define TEXT_A		F_TEXT"wood1.xpm"
+# define TEXT_B		F_TEXT"metal1.xpm"
+# define TEXT_C		F_TEXT"stone1.xpm"
+# define TEXT_D		F_TEXT"ice1.xpm"
+# define ERASER		F_TEXT"eraser.jpg"
+# define FONT		F_FONT"times-new-roman.ttf"
+# define S_WOOD		F_SOUNDS"pose.wav"
+# define S_METAL	F_SOUNDS"pose.wav"
+# define S_STONE	F_SOUNDS"pose.wav"
+# define S_TP_S		F_SOUNDS"pose.wav"
+# define S_TP_E		F_SOUNDS"pose.wav"
+# define S_ICE		F_SOUNDS"pose.wav"
+# define S_ERASER	F_SOUNDS"erase.wav"
+# define S_ERROR	F_SOUNDS"error.wav"
 
 /*
 ** COLOR RGBA
