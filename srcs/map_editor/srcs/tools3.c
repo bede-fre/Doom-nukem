@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 09:42:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/20 09:17:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 static char	chose_object2(t_button buttons[10], int x, int y)
 {
-	if (win_to_map(x) == win_to_map(buttons[B_ERASER].pos.x) &&
+	if (win_to_map(x) >= win_to_map(buttons[B_ERASER].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[B_ERASER].pos.x) + 3 &&
 		win_to_map(y) == win_to_map(buttons[B_ERASER].pos.y))
 		return (FLOOR);
-	else if (win_to_map(x) == win_to_map(buttons[TP_START].pos.x) &&
+	else if (win_to_map(x) >= win_to_map(buttons[TP_START].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[TP_START].pos.x) + 2 &&
 		win_to_map(y) == win_to_map(buttons[TP_START].pos.y))
 		return (TP_S);
-	else if (win_to_map(x) == win_to_map(buttons[TP_END].pos.x) &&
+	else if (win_to_map(x) >= win_to_map(buttons[TP_END].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[TP_END].pos.x) + 2 &&
 		win_to_map(y) == win_to_map(buttons[TP_END].pos.y))
 		return (TP_E);
-	else if (win_to_map(x) == win_to_map(buttons[B_START].pos.x) &&
+	else if (win_to_map(x) >= win_to_map(buttons[B_START].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[B_START].pos.x) + 3 &&
 		win_to_map(y) == win_to_map(buttons[B_START].pos.y))
 		return (START);
 	return (-1);

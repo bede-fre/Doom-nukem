@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 14:30:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/20 09:19:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	change_colision(t_env *env, char *object, int *colision)
 {
-	if (win_to_map(env->mouse.x) == win_to_map(env->buttons[COLISION].pos.x) &&
+	if (win_to_map(env->mouse.x) >= win_to_map(env->buttons[COLISION].pos.x) &&
+		win_to_map(env->mouse.x) <=
+		win_to_map(env->buttons[COLISION].pos.x) + 2 &&
 		win_to_map(env->mouse.y) == win_to_map(env->buttons[COLISION].pos.y))
 	{
 		*colision = TRUE;
@@ -22,8 +24,10 @@ static void	change_colision(t_env *env, char *object, int *colision)
 			*object == T_CS || *object == T_DS)
 			*object -= 32;
 	}
-	else if (win_to_map(env->mouse.x) ==
+	else if (win_to_map(env->mouse.x) >=
 		win_to_map(env->buttons[NO_COLISION].pos.x) &&
+		win_to_map(env->mouse.x) <=
+		win_to_map(env->buttons[NO_COLISION].pos.x) + 2 &&
 		win_to_map(env->mouse.y) == win_to_map(env->buttons[NO_COLISION].pos.y))
 	{
 		*colision = FALSE;
