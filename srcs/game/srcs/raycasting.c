@@ -15,11 +15,9 @@
 static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 {
 	int		i;
-	float	door;
 
 	ray->x = ray->fx;
 	ray->y = ray->fy;
-	door = 0.0;
 	i = 0;
 	while (ray->x >= 0.0 && ray->x < (MAPX * BLOCK_SIZE)
 		&& ray->y >= 0.0 && ray->y < (MAPY * BLOCK_SIZE)
@@ -31,12 +29,11 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_B_S
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_C_S
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_D_S
-		&& (map[to_map(ray->y - door)][to_map(ray->x - door)] != T_DOOR_O
-		|| map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_O)
+		&& (map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_O
+		|| map[to_map(ray->y - (64 * timer(0.0, to_map(ray->y), to_map(ray->x), map[to_map(ray->y)][to_map(ray->x)])))][to_map(ray->x - (64 * timer(0.0, to_map(ray->y), to_map(ray->x), map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_O)
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_M
 		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_C)
 	{
-		door = 64 * timer(0.0, to_map(ray->y), to_map(ray->x), map[to_map(ray->y)][to_map(ray->x)]);
 		ray->x += ray->xa;
 		ray->y += ray->ya;
 		++i;
