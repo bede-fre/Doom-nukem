@@ -12,25 +12,30 @@
 
 #include "wolf3d.h"
 
-int	to_map(double x)
+int		to_map(double x)
 {
 	return ((int)(x / BLOCK_SIZE));
 }
 
-int	is_wall(char wall)
+int		is_wall(char wall)
 {
 	return (wall == T_A || wall == T_B || wall == T_C || wall == T_D
 						|| wall == T_DOOR_C || wall == T_DOOR_M);
 }
 
-float	timer(float add)
+float	timer(float add, int x, int y, char c)
 {
-	static float timer = 0.0;
+	static float timer[32][32];
 
-	if (timer == 1.0)
+	if (c == T_DOOR_C || c == T_DOOR_O)
 	{
-		return (timer);
+		if (c == T_DOOR_C)
+			timer[y][x] = 0.0;
+		else if (c == T_DOOR_O)
+			if (timer[y][x] == 1.0)
+				return (timer[y][x]);
+		timer[y][x] += add;
+		return (timer[y][x]);
 	}
-	timer += add;
-	return (timer);
+	return (0.0);
 }

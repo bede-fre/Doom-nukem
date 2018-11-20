@@ -267,7 +267,7 @@ int				to_map(double x);
 int				is_wall(char wall);
 void			jump_and_crouch(t_all *all);
 void			open_door(t_all *all);
-float			timer(float add);
+float			timer(float add, int x, int y, char c);
 void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a);
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a);
 

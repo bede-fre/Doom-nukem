@@ -32,8 +32,10 @@ static int		ft_color_textures(t_img *ptr, double cpt, int col)
 static int		ft_find_color(t_all *all, double cpt, int col)
 {
 	char	hit_wall;
+	float	door;
 
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
+	door = 64 * timer(0.0000001, to_map(all->rc.ray.y), to_map(all->rc.ray.x), hit_wall);
 	if (hit_wall == 'A' || hit_wall == 'a')
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
 	else if (hit_wall == 'B' || hit_wall == 'b')
@@ -45,7 +47,7 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 	else if (hit_wall == '-' || hit_wall == '~')
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else if (hit_wall == '|')
-		return (ft_color_textures(&all->textures.img_d, cpt, col - (64 * timer(0.0000001))));
+		return (ft_color_textures(&all->textures.img_d, cpt, col - door));
 	else
 		return (ft_color_textures(&all->textures.img_f, cpt, col));
 }
