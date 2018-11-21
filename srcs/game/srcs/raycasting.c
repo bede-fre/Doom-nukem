@@ -105,9 +105,6 @@ void		ft_print_ray_infos(t_all *all)
 		ft_putstr("ray dist: ");
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
-		
-		if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == T_DOOR_C)
-			all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_O;
 	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);
