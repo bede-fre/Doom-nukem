@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:57:38 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 16:14:59 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,7 @@ typedef struct	s_all
 	int			start_wall;
 	int			skip;
 	double		wall_gap;
+	int			speed;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);
