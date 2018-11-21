@@ -23,6 +23,27 @@ int		is_wall(char wall)
 						|| wall == T_DOOR_C || wall == T_DOOR_M);
 }
 
+int		is_displayable(char map[MAPY][MAPX], t_ray *ray) {
+	return (map[to_map(ray->y)][to_map(ray->x)] != T_A
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_B
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_C
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_D
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_A_S
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_B_S
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_C_S
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_D_S
+		&& map[to_map(ray->y - (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+			map[to_map(ray->y)][to_map(ray->x)])))]
+			[to_map(ray->x - (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_O
+		&& map[to_map(ray->y + (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+			map[to_map(ray->y)][to_map(ray->x)])))]
+			[to_map(ray->x + (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_O
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_M
+		&& map[to_map(ray->y)][to_map(ray->x)] != T_DOOR_C);
+}
+
 float	timer(float add, int x, int y, char c)
 {
 	static float timer[32][32];
