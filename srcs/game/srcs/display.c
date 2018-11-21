@@ -6,27 +6,24 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 16:05:18 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:48:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 {
-	if ((y >= 0 && y < WINY) && (x >= 0 && x < WINX))
+	if ((y >= 0 && y < ptr->height) && (x >= 0 && x < ptr->width))
 	{
-		if (ptr->endian == 0 && ptr->bpp == (8 * 4))
-		{
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl))] =
-				(char)col;
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 1] =
-				(char)(col >> 8);
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 2] =
-				(char)(col >> 16);
-			((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 3] =
-				(char)(col >> 24);
-		}
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl))] =
+			(char)col;
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 1] =
+			(char)(col >> 8);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 2] =
+			(char)(col >> 16);
+		((char *)(ptr->data))[((x * 4) + (y * ptr->sl)) + 3] =
+			(char)(col >> 24);
 	}
 }
 
@@ -37,7 +34,7 @@ void		ft_print_all(t_all *all)
 	int			i;
 	int			x;
 
-	ft_print_map(&all->info, all->rc.map);
+	ft_print_map(&all->info, all->rc.map, all->p);
 	all->a = all->p.a + ft_rad(FOV / 2.0);
 	all->lens = ft_rad(FOV / 2.0) * all->keys_tab[KEY_H];
 	all->i = -THREAD;
@@ -71,7 +68,7 @@ void		ft_draw(t_all all, char *name)
 	all.prevx = -8000;
 	all.prevy = -8000;
 	all.start_wall = WINY / 2;
-	title = ft_strjoin("wolf3d - ", name);
+	title = ft_strjoin("doom-nukem - ", name);
 	ft_init_mlx(&all, title);
 	free(title);
 	mlx_hook(all.ptr.win, 2, (1L << 0), ft_key_press, &all);

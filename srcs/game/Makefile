@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/14 14:23:22 by cmace            ###   ########.fr        #
+#    Updated: 2018/11/21 11:15:06 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
 OBJS_DIR				= objs/
-LIBFT_DIR				= libft/
-MLX_DIR					= minilibx/
+LIBFT_DIR				= libft
+MLX_DIR					= minilibx
+LIBVECT_DIR				= libvect
 LIBFT					= $(LIBFT_DIR)/libft.a
 MLX						= $(MLX_DIR)/libmlx.a
-INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR)
-FRAMEWORK				= -framework OpenGL -framework Appkit
+LIBVECT					= $(LIBVECT_DIR)/libvect.a
+INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR) -I $(LIBVECT_DIR)
+FRAMEWORK				= -framework OpenGL -framework Appkit $(LIBFT) $(MLX) $(LIBVECT)
 SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
@@ -54,7 +56,9 @@ SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
 SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
 SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
 FREETYPE				= $(addprefix $(LIBS), $(FREETYPE_OBJ_LIBS))
-FLAGS					= -Wall -Wextra -g
+TEST					= -Werror
+FLAGS					= -Wall -Wextra $(TEST) -O2 -g
+
 ##################
 ##    COLORS    ##
 ##################
@@ -81,9 +85,10 @@ _CUT		= "\033[k"
 .PHONY: all create_dir clean fclean re norme
 
 all: $(NAME)
+	@echo $(ARG)
 
 $(NAME): create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) $(MLX) -o ../../$(NAME)
+	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
 	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 

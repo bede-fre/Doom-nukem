@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 14:19:37 by cmace            ###   ########.fr       */
+/*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
+/*   Updated: 2018/11/21 11:57:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#ifndef DOOM_H
+# define DOOM_H
 
-// # include "SDL.h"
 # include "libft.h"
+# include "libvect.h"
 # include "mlx.h"
 # include <math.h>
 # include <limits.h>
@@ -22,8 +22,8 @@
 
 # define MAPX			32
 # define MAPY			MAPX
-# define INFOX			256
-# define INFOY			256
+# define INFOX			(WINY / 4)
+# define INFOY			(WINY / 4)
 # define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
@@ -76,7 +76,7 @@
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
 # define TRANS_F		10
-# define ZOOM			(double)(((double)MAPX * BLOCK_SIZE) / (double)INFOX)
+# define ZOOM			(((double)MAPX * BLOCK_SIZE / 4.0) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012
 # define TRUE			1
@@ -86,7 +86,9 @@
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
 #  define RUN_SPEED		3.0
-#  define ROT_SPEED		1.5
+#  define JUMP_SPEED	0.1
+#  define CROUCH_SPEED	1.0
+#  define ROT_SPEED		1.0
 #  define ESC			65307
 #  define KEY_A			97
 #  define KEY_D			100
@@ -98,13 +100,16 @@
 #  define KEY_F			102
 #  define KEY_T			116
 #  define KEY_SPACEBAR  32
+#  define KEY_CTRL		256
+#  define KEY_ENTER		36
 #  define KEY_SHIFT		65505
 #  define KEYS_TAB_SIZE	65600
 # else
 #  define MOVE_SPEED	2.0
 #  define RUN_SPEED		5.0
+#  define JUMP_SPEED	0.1
 #  define CROUCH_SPEED	1.0
-#  define ROT_SPEED		2.5
+#  define ROT_SPEED		2.0
 #  define ESC			53
 #  define KEY_A			0
 #  define KEY_D			2
@@ -178,6 +183,8 @@ typedef struct	s_img
 	void		*img;
 	int			bpp;
 	int			sl;
+	int			width;
+	int			height;
 }				t_img;
 
 typedef struct	s_mlx
@@ -238,21 +245,20 @@ typedef struct	s_all
 	int			prevy;
 	int			start_wall;
 	int			skip;
-	float		wall_gap1;
-	float		wall_gap2;
+	double		wall_gap;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);
 void			ft_print_ray_infos(t_all *all);
-void			ft_algo(t_img *ptr, t_ray ray, t_player *p, int col);
+void			ft_algo(t_img *ptr, t_point p1, t_point p2, int col);
 int				ft_button_press(int key, int x, int y, t_all *all);
 void			ft_init_player(char map[MAPY][MAPX], t_player *p);
 void			ft_read_file(char *name, char (*map)[MAPY][MAPX]);
 void			ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE]);
 void			ft_fill_pixel(t_img *ptr, int x, int y, int col);
 void			ft_print_on_screen(t_all *all, int x, double a);
-void			ft_print_map(t_img *ptr, char map[MAPY][MAPX]);
-void			ft_perso(t_img *img, double x, double y);
+void			ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p);
+void			ft_perso(t_img *img, t_player p);
 void			ft_init_mlx(t_all *all, char *title);
 int				ft_key_release(int key, t_all *all);
 void			ft_free_map(char map[MAPY][MAPX]);
@@ -264,6 +270,7 @@ int				ft_quit(void);
 void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
+int				to_win(int x);
 int				is_wall(char wall);
 int				is_displayable(char map[MAPY][MAPX], t_ray *ray);
 void			jump_and_crouch(t_all *all);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_buttons.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:22:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/14 14:39:44 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/16 15:46:13 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ static void	print_border_others_button(t_env *env, SDL_Surface *surface,
 	fill_border(surface, env->buttons[x].pos, env->buttons[x].size.x,
 		env->buttons[x].border_col);
 	x = get_colision(colision);
-	fill_rect(surface, env->buttons[x].pos, env->buttons[x].button_col);
+	fill_cross(surface, env->buttons[x].pos, env->buttons[x].button_col);
 }
 
 void		print_buttons(t_env *env, SDL_Surface *surface, char object,
 	int colision)
 {
-	init_button(env);
 	print_border_textures_buttons(env, surface, object);
 	print_others_buttons(env, surface);
 	print_border_others_button(env, surface, object, colision);

@@ -6,11 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 10:53:41 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:49:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 {
@@ -80,8 +80,7 @@ void		*ft_wall_dist(void *ptr)
 		else
 			all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 				all->rc.ray_h : all->rc.ray_v;
-		ft_algo(&all->info, all->rc.ray, &all->p, YELLOW);
-		ft_perso(&all->info, all->p.x, all->p.y);
+		ft_perso(&all->info, all->p);
 		ft_print_on_screen(all, all->i, all->lens);
 		all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 		all->a -= ft_rad(RAY_ANGLE);
@@ -110,9 +109,6 @@ void		ft_print_ray_infos(t_all *all)
 		if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == T_DOOR_C)
 			all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_O;
 	}
-	ft_algo(&all->info, all->rc.ray, &all->p, YELLOW);
-	ft_perso(&all->info, all->p.x, all->p.y);
-	ft_print_on_screen(all, all->i, all->lens);
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);
 }

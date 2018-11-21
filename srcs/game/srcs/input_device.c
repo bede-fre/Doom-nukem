@@ -6,11 +6,11 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/09 12:54:06 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:48:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 int		ft_key_press(int key, t_all *all)
 {
@@ -41,7 +41,7 @@ int		ft_button_press(int key, int x, int y, t_all *all)
 		all->p.ray_infos = 1;
 		all->a = a;
 		ft_print_ray_infos(all);
-//		system("leaks wolf3d | grep 'leaked bytes' | cut -c16- | cut -c-7");
+		system("leaks doom-nukem | grep 'leaked bytes'");
 		all->p.ray_infos = 0;
 	}
 	return (0);
@@ -63,8 +63,8 @@ int		ft_mouse_motion(int x, int y, t_all *all)
 		diffy = all->prevy - y;
 		if (!all->skip)
 		{
-			all->p.a += ((float)diffx / 100.0);
-			all->start_wall += ((float)diffy * 4.0);
+			all->p.a += ((double)diffx / 100.0);
+			all->start_wall += ((double)diffy * 4.0);
 		}
 		all->prevx = x;
 		all->prevy = y;

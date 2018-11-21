@@ -6,11 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 15:47:25 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:48:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 void		ft_init_player(char map[MAPY][MAPX], t_player *p)
 {
@@ -42,6 +42,7 @@ void		ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE])
 	while (++i < KEYS_TAB_SIZE)
 		keys_tab[0][i] = 0;
 	keys_tab[0][KEY_H] = 1;
+	keys_tab[0][KEY_T] = 1;
 }
 
 static void	ft_init_textures(t_all *all, t_textures *textures)
@@ -88,7 +89,10 @@ void		ft_init_mlx(t_all *all, char *title)
 		&all->info.sl, &all->info.endian);
 	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
 		&all->fp.endian);
-	all->wall_gap1 = 2.0f;
-	all->wall_gap2 = 2.0f;
+	all->fp.width = WINX;
+	all->fp.height = WINY;
+	all->info.width = INFOX;
+	all->info.height = INFOY;
+	all->wall_gap = 0.0;
 	ft_init_textures(all, &all->textures);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   editor.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/15 09:53:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/20 15:01:33 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include "SDL.h"
 # include "SDL_image.h"
+# include "SDL_ttf.h"
+# include "SDL_mixer.h"
 # include "libvect.h"
 # include "libft.h"
 
-# define WIN_DIM	20
+# define WIN_DIM	30
 # define WIN_WIDTH	WIN_HEIGHT + 18 * SCALE
 # define WIN_HEIGHT	(MAP_HEIGHT + 2) * WIN_DIM
 # define MAP_WIDTH	32
@@ -41,11 +43,23 @@
 # define T_DS		'd'
 # define TRUE		1
 # define FALSE		0
-# define TEXT_A		"./srcs/map_editor/textures/wood1.xpm"
-# define TEXT_B		"./srcs/map_editor/textures/metal1.xpm"
-# define TEXT_C		"./srcs/map_editor/textures/stone1.xpm"
-# define TEXT_D		"./srcs/map_editor/textures/ice1.xpm"
-# define ERASER		"/srcs/map_editor/textures/eraser.jpg"
+# define F_SOUNDS	"srcs/map_editor/sounds/"
+# define F_FONT		"/srcs/map_editor/font/"
+# define F_TEXT		"/srcs/map_editor/textures/"
+# define TEXT_A		F_TEXT"wood1.xpm"
+# define TEXT_B		F_TEXT"metal1.xpm"
+# define TEXT_C		F_TEXT"stone1.xpm"
+# define TEXT_D		F_TEXT"ice1.xpm"
+# define ERASER		F_TEXT"eraser.jpg"
+# define FONT		F_FONT"times-new-roman.ttf"
+# define S_WOOD		F_SOUNDS"pose.wav"
+# define S_METAL	F_SOUNDS"pose.wav"
+# define S_STONE	F_SOUNDS"pose.wav"
+# define S_TP_S		F_SOUNDS"pose.wav"
+# define S_TP_E		F_SOUNDS"pose.wav"
+# define S_ICE		F_SOUNDS"pose.wav"
+# define S_ERASER	F_SOUNDS"erase.wav"
+# define S_ERROR	F_SOUNDS"error.wav"
 
 /*
 ** COLOR RGBA
@@ -75,6 +89,7 @@ enum				e_keys
 	K_RESET = 0,
 	K_RENDER,
 	K_QUIT,
+	K_LEAKS,
 	B_LEFT,
 	B_RIGHT,
 	K_END
@@ -120,10 +135,25 @@ typedef struct		s_button
 	SDL_Texture		*texture;
 }					t_button;
 
+typedef struct		s_sounds
+{
+	Mix_Music		*wood;
+	Mix_Music		*metal;
+	Mix_Music		*stone;
+	Mix_Music		*ice;
+	Mix_Music		*door;
+	Mix_Music		*tp_start;
+	Mix_Music		*tp_exit;
+	Mix_Music		*erase;
+	Mix_Music		*error;
+}					t_sounds;
+
 typedef struct		s_env
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
+	TTF_Font		*font;
+	t_sounds		sounds;
 	t_textures		text;
 	char			map[MAP_HEIGHT][MAP_WIDTH];
 	int				*bindings;
@@ -166,11 +196,15 @@ void				button_release(SDL_Event event, t_env *env);
 void				print_buttons(t_env *env, SDL_Surface *surface,
 						char object, int colision);
 void				init_button(t_env *env);
+void				set_text(SDL_Surface *surface, t_env *env);
 SDL_Rect			create_rect(int x, int y, int w, int h);
 SDL_Rect			rect_to_map(SDL_Rect rect);
 SDL_Rect			rect_to_win(SDL_Rect rect);
 int					get_object(char x);
 int					get_colision(int x);
-char				chose_object(int x, int y, int colision);
+char				chose_object(t_button buttons[10], int x, int y,
+						int colision);
+void				create_new_file(char *file);
+Mix_Music			*get_sounds(t_env *env, char x);
 
 #endif

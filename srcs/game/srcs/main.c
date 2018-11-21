@@ -6,18 +6,18 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:16:31 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/08 10:49:05 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 13:49:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 int			main(int ac, char **av)
 {
 	t_all		all;
 
 	if (ac != 2)
-		ft_error("usage: ./wolf3d [map_name]", 12, ft_puterror);
+		ft_error("usage: ./doom-nukem [map_name ...]", 12, ft_puterror);
 	ft_read_file(av[1], &all.rc.map);
 	ft_init_player(all.rc.map, &all.p);
 	ft_init_keys_tab(&all.keys_tab);

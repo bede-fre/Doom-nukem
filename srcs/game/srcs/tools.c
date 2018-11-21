@@ -6,11 +6,16 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/12 14:54:16 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:49:41 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
+
+int	to_win(int x)
+{
+	return (x * BLOCK_SIZE / ZOOM);
+}
 
 int		to_map(double x)
 {

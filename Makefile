@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/14 16:59:08 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/17 14:44:23 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
 FREETYPE_OBJ_LIBS		= libfreetype.a
 SDL_TTF_OBJ_LIBS		= libSDL2_ttf.a
+SDL_MIXER_OBJ_LIBS		= libSDL2_mixer.a
 SDL_MAIN_LIBS_PATH		= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/lib/
 SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include/SDL2/
 SDL_IMAGE_LIBS_PATH		= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/lib/
@@ -72,6 +73,7 @@ LIBVECT_DIR				= libvect/
 MLX_DIR					= minilibx/
 GAME_DIR				= srcs/game/
 EDITOR_DIR				= srcs/map_editor/
+
 
 ##################
 ##    COLORS    ##
@@ -170,6 +172,9 @@ install:
 	@echo "\x1b[42m\x1b[1m Done $(CHECK) \033[0m"
 	@echo "\x1b[44m\x1b[1mVerifing sdl_ttf ... $(HGLSS) \033[0m"
 	@make sdl_ttf
+	@echo "\x1b[42m\x1b[1m Done $(CHECK) \033[0m"
+	@echo "\x1b[44m\x1b[1mVerifing sdl_mixer ... $(HGLSS) \033[0m"
+	@make sdl_mixer
 	@echo "\x1b[42m\x1b[1m Done $(CHECK) \033[0m"
 
 sdl_main:
