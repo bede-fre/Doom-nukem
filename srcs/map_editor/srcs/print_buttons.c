@@ -30,6 +30,8 @@ static void	print_others_buttons(t_env *env, SDL_Surface *surface)
 		env->buttons[TP_END].button_col);
 	fill_rect(surface, env->buttons[B_START].pos,
 		env->buttons[B_START].button_col);
+	fill_rect(surface, env->buttons[B_DOOR].pos,
+		env->buttons[B_DOOR].button_col);
 	fill_border(surface, env->buttons[COLISION].pos,
 		env->buttons[COLISION].size.x, env->buttons[COLISION].button_col);
 	fill_border(surface, env->buttons[NO_COLISION].pos,

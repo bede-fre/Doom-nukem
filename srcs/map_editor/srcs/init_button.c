@@ -43,6 +43,8 @@ void			init_button(t_env *env)
 	env->buttons[TP_END] = create_button(rect, TP_E_COL, BLACK, NULL);
 	rect = create_rect(map_to_win(38), map_to_win(24), dim2, dim2);
 	env->buttons[B_START] = create_button(rect, START_COL, BLACK, NULL);
+	rect = create_rect(map_to_win(44), map_to_win(24), dim2, dim2);
+	env->buttons[B_DOOR] = create_button(rect, T_DOOR_COL, BLACK, NULL);
 	rect = create_rect(map_to_win(38), map_to_win(16), dim2, dim2);
 	env->buttons[COLISION] = create_button(rect, BLACK, BLACK, NULL);
 	rect = create_rect(map_to_win(44), map_to_win(16), dim2, dim2);

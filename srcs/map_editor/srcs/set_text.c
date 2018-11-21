@@ -35,6 +35,9 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 	p = ft_pointdef(env->buttons[B_START].pos.x + dim,
 		env->buttons[B_START].pos.y);
 	set_string(env, "Spawn", p, surface);
+	p = ft_pointdef(env->buttons[B_DOOR].pos.x + dim,
+		env->buttons[B_DOOR].pos.y);
+	set_string(env, "Door", p, surface);
 	p = ft_pointdef(env->buttons[B_ERASER].pos.x + dim,
 		env->buttons[B_ERASER].pos.y);
 	set_string(env, "Eraser", p, surface);

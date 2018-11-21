@@ -42,13 +42,13 @@ SDL_Rect	rect_to_win(SDL_Rect rect)
 int			get_object(char x)
 {
 	const int	object[] = {WOOD, WOOD, METAL, METAL, STONE, STONE, ICE, ICE,
-		TP_START, TP_END, B_START, B_ERASER};
+		TP_START, TP_END, B_START, B_ERASER, B_DOOR};
 	const char	wall[] = {T_A, T_AS, T_B, T_BS, T_C, T_CS, T_D, T_DS, TP_S,
-		TP_E, START, FLOOR};
+		TP_E, START, FLOOR, T_DOOR};
 	int			i;
 
 	i = -1;
-	while (++i < 12)
+	while (++i < 13)
 		if (x == wall[i])
 			return (object[i]);
 	return (-1);

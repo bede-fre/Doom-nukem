@@ -38,6 +38,8 @@ static Uint32	col_wall(char object)
 		return (TP_E_COL);
 	else if (object == START)
 		return (START_COL);
+	else if (object == T_DOOR)
+		return (T_DOOR_COL);
 	return (0);
 }
 

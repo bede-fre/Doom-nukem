@@ -30,6 +30,10 @@ static char	chose_object2(t_button buttons[10], int x, int y)
 		win_to_map(x) <= win_to_map(buttons[B_START].pos.x) + 3 &&
 		win_to_map(y) == win_to_map(buttons[B_START].pos.y))
 		return (START);
+	else if (win_to_map(x) >= win_to_map(buttons[B_DOOR].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[B_DOOR].pos.x) + 3 &&
+		win_to_map(y) == win_to_map(buttons[B_DOOR].pos.y))
+		return (T_DOOR);
 	return (-1);
 }
 

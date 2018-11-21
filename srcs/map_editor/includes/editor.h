@@ -41,6 +41,7 @@
 # define T_BS		'b'
 # define T_CS		'c'
 # define T_DS		'd'
+# define T_DOOR		'-'
 # define TRUE		1
 # define FALSE		0
 # define F_SOUNDS	"srcs/map_editor/sounds/"
@@ -83,6 +84,7 @@
 # define SECRET_COL	(Uint32)0x888888FF
 # define TP_S_COL	(Uint32)0xAAFFAAFF
 # define TP_E_COL	(Uint32)0x00FF00FF
+# define T_DOOR_COL	(Uint32)0x0061ffFF
 
 enum				e_keys
 {
@@ -106,6 +108,7 @@ enum				e_button
 	TP_START,
 	TP_END,
 	B_START,
+	B_DOOR,
 	B_ERASER
 };
 
@@ -162,7 +165,7 @@ typedef struct		s_env
 	char			*file_name;
 	char			object;
 	int				colision;
-	t_button		buttons[10];
+	t_button		buttons[11];
 }					t_env;
 
 void				init(t_env *env, char *file_name);
