@@ -6,11 +6,11 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:36:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 17:45:17 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:48:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 static void	ft_cpy_struct_3(t_all *tmp, t_all *all)
 {

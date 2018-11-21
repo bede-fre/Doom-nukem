@@ -6,11 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/20 11:39:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:48:05 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom.h"
 
 void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 {
@@ -68,7 +68,7 @@ void		ft_draw(t_all all, char *name)
 	all.prevx = -8000;
 	all.prevy = -8000;
 	all.start_wall = WINY / 2;
-	title = ft_strjoin("wolf3d - ", name);
+	title = ft_strjoin("doom-nukem - ", name);
 	ft_init_mlx(&all, title);
 	free(title);
 	mlx_hook(all.ptr.win, 2, (1L << 0), ft_key_press, &all);

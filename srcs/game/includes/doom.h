@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 10:37:29 by lguiller         ###   ########.fr       */
+/*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
+/*   Updated: 2018/11/21 11:57:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#ifndef DOOM_H
+# define DOOM_H
 
 # include "libft.h"
 # include "libvect.h"
@@ -83,7 +83,7 @@
 #  define RUN_SPEED		3.0
 #  define JUMP_SPEED	0.1
 #  define CROUCH_SPEED	1.0
-#  define ROT_SPEED		1.5
+#  define ROT_SPEED		1.0
 #  define ESC			65307
 #  define KEY_A			97
 #  define KEY_D			100
@@ -103,7 +103,7 @@
 #  define RUN_SPEED		5.0
 #  define JUMP_SPEED	0.1
 #  define CROUCH_SPEED	1.0
-#  define ROT_SPEED		2.5
+#  define ROT_SPEED		2.0
 #  define ESC			53
 #  define KEY_A			0
 #  define KEY_D			2
