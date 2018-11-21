@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 16:39:23 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/21 11:43:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			init_button(t_env *env)
 	env->buttons[COLISION] = create_button(rect, BLACK, BLACK, NULL);
 	rect = create_rect(map_to_win(44), map_to_win(16), dim2, dim2);
 	env->buttons[NO_COLISION] = create_button(rect, BLACK, BLACK, NULL);
-	rect = create_rect(map_to_win(44), map_to_win(24), dim2, dim2);
+	rect = create_rect(map_to_win(38), map_to_win(26), dim2, dim2);
 	env->buttons[B_ERASER] = create_button(rect, BLACK, BLACK,
 		env->text.eraser);
 	rect = create_rect(map_to_win(36) + 2, map_to_win(2) + 2, dim1, dim1);
