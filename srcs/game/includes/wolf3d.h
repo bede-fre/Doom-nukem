@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:05:59 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/20 11:57:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 10:37:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define WOLF3D_H
 
 # include "libft.h"
+# include "libvect.h"
 # include "mlx.h"
 # include <math.h>
 # include <limits.h>
@@ -21,8 +22,8 @@
 
 # define MAPX			32
 # define MAPY			MAPX
-# define INFOX			(WINY / 2)
-# define INFOY			(WINY / 2)
+# define INFOX			(WINY / 4)
+# define INFOY			(WINY / 4)
 # define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
@@ -70,7 +71,7 @@
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
 # define TRANS_F		10
-# define ZOOM			(double)(((double)MAPX * BLOCK_SIZE) / (double)INFOX)
+# define ZOOM			(((double)MAPX * BLOCK_SIZE / 4.0) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012
 # define TRUE			1
@@ -241,7 +242,7 @@ typedef struct	s_all
 
 void			*ft_wall_dist(void *ptr);
 void			ft_print_ray_infos(t_all *all);
-void			ft_algo(t_img *ptr, t_ray ray, t_player *p, int col);
+void			ft_algo(t_img *ptr, t_point p1, t_point p2, int col);
 int				ft_button_press(int key, int x, int y, t_all *all);
 void			ft_init_player(char map[MAPY][MAPX], t_player *p);
 void			ft_read_file(char *name, char (*map)[MAPY][MAPX]);
@@ -249,7 +250,7 @@ void			ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE]);
 void			ft_fill_pixel(t_img *ptr, int x, int y, int col);
 void			ft_print_on_screen(t_all *all, int x, double a);
 void			ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p);
-void			ft_perso(t_img *img, double x, double y);
+void			ft_perso(t_img *img, t_player p);
 void			ft_init_mlx(t_all *all, char *title);
 int				ft_key_release(int key, t_all *all);
 void			ft_free_map(char map[MAPY][MAPX]);

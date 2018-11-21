@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/20 11:25:45 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/21 10:49:48 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
 OBJS_DIR				= objs/
-LIBFT_DIR				= libft/
-MLX_DIR					= minilibx/
+LIBFT_DIR				= libft
+MLX_DIR					= minilibx
+LIBVECT_DIR				= libvect
 LIBFT					= $(LIBFT_DIR)/libft.a
 MLX						= $(MLX_DIR)/libmlx.a
-INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR)
-FRAMEWORK				= -framework OpenGL -framework Appkit
+LIBVECT					= $(LIBVECT_DIR)/libvect.a
+INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR) -I $(LIBVECT_DIR)
+FRAMEWORK				= -framework OpenGL -framework Appkit $(LIBFT) $(MLX) $(LIBVECT)
 SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
@@ -84,7 +86,7 @@ _CUT		= "\033[k"
 all: $(NAME)
 
 $(NAME): create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) $(MLX) -o ../../$(NAME)
+	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
 	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 

@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/19 14:46:01 by cmace            ###   ########.fr        #
+#    Updated: 2018/11/21 10:34:28 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) \
 						  -I $(SDL_MAIN_INCLUDE_PATH) -I $(SDL_IMAGE_INCLUDE_PATH) \
 						  -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH) \
 						  -I $(SDL_MIXER_INCLUDE_PATH)
-FRAMEWORK				= -framework OpenGL -framework Appkit -I $(SDL_MAIN_INCLUDE_PATH) \
+FRAMEWORK				= -framework OpenGL -framework Appkit $(LIBFT) $(LIBVECT) \
+						  -I $(SDL_MAIN_INCLUDE_PATH) \
 						  -L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) \
 						  -L $(SDL_IMAGE_LIBS) -lSDL2_image -L $(SDL_TTF_LIBS) -lSDL2_ttf \
 						  -L $(FREETYPE_LIBS) -lfreetype -L $(SDL_MIXER_LIBS) -lSDL2_mixer

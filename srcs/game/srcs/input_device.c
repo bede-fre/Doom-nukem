@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/19 10:37:02 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 10:39:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_button_press(int key, int x, int y, t_all *all)
 		all->p.ray_infos = 1;
 		all->a = a;
 		ft_print_ray_infos(all);
-		system("leaks doom-nukem | grep 'leaked bytes' | cut -c16- | cut -c-7");
+		system("leaks doom-nukem | grep 'leaked bytes'");
 		all->p.ray_infos = 0;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 12:01:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 10:45:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ void		*ft_wall_dist(void *ptr)
 		else
 			all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 				all->rc.ray_h : all->rc.ray_v;
-		ft_algo(&all->info, all->rc.ray, &all->p, YELLOW);
-		ft_perso(&all->info, all->p.x, all->p.y);
+		ft_perso(&all->info, all->p);
 		ft_print_on_screen(all, all->i, all->lens);
 		all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 		all->a -= ft_rad(RAY_ANGLE);
@@ -114,9 +113,6 @@ void		ft_print_ray_infos(t_all *all)
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
 	}
-	ft_algo(&all->info, all->rc.ray, &all->p, YELLOW);
-	ft_perso(&all->info, all->p.x, all->p.y);
-	ft_print_on_screen(all, all->i, all->lens);
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);
 }
