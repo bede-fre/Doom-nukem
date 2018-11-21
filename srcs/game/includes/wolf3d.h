@@ -28,8 +28,8 @@
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
-# define TEXT_FLOOR		"./srcs/game/textures/mossy.xpm"
 # define TEXT_DOOR		"./srcs/game/textures/door.xpm"
+# define TEXT_DOOR_R	"./srcs/game/textures/door_reverse.xpm"
 # define SPR_KNIFE		"./srcs/game/sprites/weapon1.xpm"
 # define WINX			960
 # define WINY			540
@@ -208,8 +208,8 @@ typedef struct	s_textures
 	t_img		img_e;
 	t_img		img_n;
 	t_img		img_s;
-	t_img		img_f;
 	t_img		img_d;
+	t_img		img_dr;
 }				t_textures;
 
 typedef struct	s_sprites
@@ -265,6 +265,7 @@ void			ft_cpy_struct(t_all *tmp, t_all *all);
 int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
 int				is_wall(char wall);
+int				is_displayable(char map[MAPY][MAPX], t_ray *ray);
 void			jump_and_crouch(t_all *all);
 void			open_door(t_all *all);
 float			timer(float add, int x, int y, char c);

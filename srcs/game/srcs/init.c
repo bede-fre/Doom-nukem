@@ -54,13 +54,13 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		TEXT_EAST, &textures->width, &textures->height);
 	textures->img_w.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_WEST, &textures->width, &textures->height);
-	textures->img_f.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_FLOOR, &textures->width, &textures->height);
 	textures->img_d.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_DOOR, &textures->width, &textures->height);
+	textures->img_dr.img = mlx_xpm_file_to_image(all->ptr.mlx,
+		TEXT_DOOR_R, &textures->width, &textures->height);
 	if (textures->img_n.img == NULL || textures->img_s.img == NULL
 		|| textures->img_e.img == NULL || textures->img_w.img == NULL
-		|| textures->img_f.img == NULL || textures->img_d.img == NULL)
+		|| textures->img_d.img == NULL || textures->img_dr.img == NULL)
 		ft_error("error", 11, perror);
 	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
 		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
@@ -70,9 +70,9 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		&textures->img_e.bpp, &textures->img_e.sl, &textures->img_e.endian);
 	textures->img_w.data = mlx_get_data_addr(textures->img_w.img,
 		&textures->img_w.bpp, &textures->img_w.sl, &textures->img_w.endian);
-	textures->img_f.data = mlx_get_data_addr(textures->img_f.img,
-		&textures->img_f.bpp, &textures->img_f.sl, &textures->img_f.endian);
-	textures->img_d.data = mlx_get_data_addr(textures->img_d.img,
+	textures->img_d.data = mlx_get_data_addr(textures->img_dr.img,
+		&textures->img_dr.bpp, &textures->img_dr.sl, &textures->img_dr.endian);
+	textures->img_dr.data = mlx_get_data_addr(textures->img_d.img,
 		&textures->img_d.bpp, &textures->img_d.sl, &textures->img_d.endian);
 }
 
