@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:58:50 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/19 13:30:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 13:51:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 	p = ft_pointdef(map_to_win(36), map_to_win(22));
 	set_string(env, "Others:", p, surface);
 	p = ft_pointdef(env->buttons[B_START].pos.x + dim,
-			env->buttons[B_START].pos.y);
+		env->buttons[B_START].pos.y);
 	set_string(env, "Spawn", p, surface);
 	p = ft_pointdef(env->buttons[B_ERASER].pos.x + dim,
-			env->buttons[B_ERASER].pos.y);
+		env->buttons[B_ERASER].pos.y);
 	set_string(env, "Eraser", p, surface);
 }
 
@@ -52,18 +52,18 @@ void			set_text(SDL_Surface *surface, t_env *env)
 	p = ft_pointdef(map_to_win(36), map_to_win(14));
 	set_string(env, "Collision:", p, surface);
 	p = ft_pointdef(env->buttons[COLISION].pos.x + dim,
-			env->buttons[COLISION].pos.y);
+		env->buttons[COLISION].pos.y);
 	set_string(env, "Yes", p, surface);
 	p = ft_pointdef(env->buttons[NO_COLISION].pos.x + dim,
-			env->buttons[NO_COLISION].pos.y);
+		env->buttons[NO_COLISION].pos.y);
 	set_string(env, "No", p, surface);
 	p = ft_pointdef(map_to_win(36), map_to_win(18));
 	set_string(env, "Teleporter:", p, surface);
 	p = ft_pointdef(env->buttons[TP_START].pos.x + dim,
-			env->buttons[TP_START].pos.y);
+		env->buttons[TP_START].pos.y);
 	set_string(env, "Start", p, surface);
 	p = ft_pointdef(env->buttons[TP_END].pos.x + dim,
-			env->buttons[TP_END].pos.y);
+		env->buttons[TP_END].pos.y);
 	set_string(env, "Exit", p, surface);
 	set_text2(surface, env, dim);
 }
