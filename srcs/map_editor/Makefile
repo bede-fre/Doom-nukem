@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/21 10:34:28 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/21 11:02:45 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,8 @@ FREETYPE_INCLUDE_PATH	= $(SDL_FOLDER)$(FREETYPE_FOLDER)/include
 SDL_IMAGE_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_IMAGE_FOLDER)/include/SDL2
 SDL_MAIN_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MAIN_FOLDER)/include
 SDL_MIXER_INCLUDE_PATH	= $(SDL_FOLDER)$(SDL_MIXER_FOLDER)/include/SDL2
-FLAGS					= -Wall -Wextra -g
+TEST					= -Werror
+FLAGS					= -Wall -Wextra $(TEST) -O2 -g
 
 ##################
 ##    COLORS    ##

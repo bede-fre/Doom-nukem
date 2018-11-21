@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/21 10:49:48 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/21 11:15:06 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ SDL_IMAGE				= $(addprefix $(LIBS), $(SDL_IMAGE_OBJ_LIBS))
 SDL_MAIN				= $(addprefix $(LIBS), $(SDL_MAIN_OBJ_LIBS))
 SDL_TTF					= $(addprefix $(LIBS), $(SDL_TTF_OBJ_LIBS))
 FREETYPE				= $(addprefix $(LIBS), $(FREETYPE_OBJ_LIBS))
-FLAGS					= -Wall -Wextra -O2 -g $(TEST)
+TEST					= -Werror
+FLAGS					= -Wall -Wextra $(TEST) -O2 -g
 
 ##################
 ##    COLORS    ##
@@ -84,6 +85,7 @@ _CUT		= "\033[k"
 .PHONY: all create_dir clean fclean re norme
 
 all: $(NAME)
+	@echo $(ARG)
 
 $(NAME): create_dir $(OBJS)
 	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)
