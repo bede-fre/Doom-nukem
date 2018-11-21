@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/21 11:49:07 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 16:28:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,54 +16,42 @@ static void	ft_moving(t_all *all, double dir)
 {
 	t_coord		p;
 	t_fcoord	sh;
-	double		speed;
 
-	if (all->keys_tab[KEY_CTRL] == TRUE)
-		speed = CROUCH_SPEED;
-	else if (all->keys_tab[KEY_SHIFT] == TRUE && all->keys_tab[KEY_W] == TRUE)
-		speed = RUN_SPEED;
-	else
-		speed = MOVE_SPEED;
 	sh.x = (cos(all->p.a) >= 0.0) ? dir * HIT_BOX : -dir * HIT_BOX;
 	sh.y = (sin(all->p.a) >= 0.0) ? -dir * HIT_BOX : dir * HIT_BOX;
-	p.x = (sh.x + all->p.x + dir * ((cos(all->p.a) * speed)));
-	p.y = (sh.y + all->p.y + -dir * ((sin(all->p.a) * speed)));
+	p.x = (sh.x + all->p.x + dir * ((cos(all->p.a) * all->speed)));
+	p.y = (sh.y + all->p.y + -dir * ((sin(all->p.a) * all->speed)));
 	all->p.x += (all->p.y >= 0.0 && to_map(all->p.y) < 32.0
 		&& p.x >= HIT_BOX && p.x < (MAPX * (int)BLOCK_SIZE - HIT_BOX)
 		&& !is_wall(all->rc.map[to_map((all->p.y - HIT_BOX))][to_map(p.x)])
 		&& !is_wall(all->rc.map[to_map((all->p.y + HIT_BOX))][to_map(p.x)])) ?
-		dir * (cos(all->p.a) * speed) : 0.0;
+		dir * (cos(all->p.a) * all->speed) : 0.0;
 	all->p.y += (all->p.x >= 0.0 && to_map(all->p.x) < 32.0
 		&& p.y >= HIT_BOX && p.y < (MAPY * (int)BLOCK_SIZE - HIT_BOX)
 		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x + HIT_BOX))])
 		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x - HIT_BOX))])) ?
-		-dir * (sin(all->p.a) * speed) : 0.0;
+		-dir * (sin(all->p.a) * all->speed) : 0.0;
 }
 
 static void	ft_strafing(t_all *all, double dir)
 {
 	t_coord		p;
 	t_fcoord	sh;
-	double		speed;
 
-	if (all->keys_tab[KEY_CTRL] == TRUE)
-		speed = CROUCH_SPEED;
-	else
-		speed = MOVE_SPEED;
 	sh.x = (sin(all->p.a) >= 0.0) ? -dir * HIT_BOX : dir * HIT_BOX;
 	sh.y = (cos(all->p.a) >= 0.0) ? -dir * HIT_BOX : dir * HIT_BOX;
-	p.x = (sh.x + all->p.x + -dir * (sin(all->p.a) * speed));
-	p.y = (sh.y + all->p.y + -dir * (cos(all->p.a) * speed));
+	p.x = (sh.x + all->p.x + -dir * (sin(all->p.a) * all->speed));
+	p.y = (sh.y + all->p.y + -dir * (cos(all->p.a) * all->speed));
 	all->p.x += (all->p.y >= 0.0 && to_map(all->p.y) < 32.0
 		&& p.x >= HIT_BOX && p.x < (MAPX * (int)BLOCK_SIZE - HIT_BOX)
 		&& !is_wall(all->rc.map[to_map((all->p.y - HIT_BOX))][to_map(p.x)])
 		&& !is_wall(all->rc.map[to_map((all->p.y + HIT_BOX))][to_map(p.x)])) ?
-		-dir * (sin(all->p.a) * speed) : 0.0;
+		-dir * (sin(all->p.a) * all->speed) : 0.0;
 	all->p.y += (all->p.x >= 0.0 && to_map(all->p.x) < 32.0
 		&& p.y >= HIT_BOX && p.y < (MAPY * (int)BLOCK_SIZE - HIT_BOX)
 		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x + HIT_BOX))])
 		&& !is_wall(all->rc.map[to_map(p.y)][to_map((all->p.x - HIT_BOX))])) ?
-		-dir * (cos(all->p.a) * speed) : 0.0;
+		-dir * (cos(all->p.a) * all->speed) : 0.0;
 }
 
 static void	ft_teleport(t_all *all)
@@ -99,6 +87,12 @@ static void	ft_refresh_images(t_all *all)
 
 int			ft_movements(t_all *all)
 {
+	if (all->keys_tab[KEY_CTRL] == TRUE)
+		all->speed = CROUCH_SPEED;
+	else if (all->keys_tab[KEY_SHIFT] == TRUE && all->keys_tab[KEY_W] == TRUE)
+		all->speed = RUN_SPEED;
+	else
+		all->speed = MOVE_SPEED;
 	(all->keys_tab[KEY_A] == TRUE) ? ft_strafing(all, 1.0) : 0;
 	(all->keys_tab[KEY_D] == TRUE) ? ft_strafing(all, -1.0) : 0;
 	(all->keys_tab[KEY_W] == TRUE) ? ft_moving(all, 1.0) : 0;
