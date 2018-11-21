@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:43:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/19 16:03:33 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/21 11:32:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		modif_map(t_env *env)
 			env->map[i.y][i.x] = env->object;
 			Mix_PlayMusic(get_sounds(env, env->object), 1);
 		}
-		else 
+		else
 			Mix_PlayMusic(env->sounds.error, 1);
 	}
 }

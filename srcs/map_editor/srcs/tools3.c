@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/20 09:17:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:31:01 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,19 @@ char		chose_object(t_button buttons[10], int x, int y, int colision)
 		return ((colision) ? T_D : T_DS);
 	else
 		return (chose_object2(buttons, x, y));
+}
+
+Mix_Music	*get_sounds(t_env *env, char x)
+{
+	if (x == T_A || x == T_AS)
+		return (env->sounds.wood);
+	if (x == T_B || x == T_BS)
+		return (env->sounds.metal);
+	if (x == T_C || x == T_CS)
+		return (env->sounds.stone);
+	if (x == T_D || x == T_DS)
+		return (env->sounds.ice);
+	if (x == FLOOR)
+		return (env->sounds.erase);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 10:51:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/21 11:29:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
 	int				y;
 	const int		dimx = BLOCK_SIZE - (p.x / ZOOM) + HIT_BOX;
 	const int		dimy = BLOCK_SIZE - (p.y / ZOOM) + HIT_BOX;
+
 	ft_clear_minimap(ptr);
 	y = -1;
 	while (++y < MAPY)

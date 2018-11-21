@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/20 13:14:36 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/21 11:31:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ static void	change_object(t_env *env, char *object)
 ** GESTION DES ACTIONS A EFFECTUER LORS D'UN EVENEMENT CLAVIER
 */
 
-void        refresh_events(t_env *env)
+void		refresh_events(t_env *env)
 {
-    if (env->keys[B_LEFT])
-    {
-        change_colision(env, &env->object, &env->colision);
-        change_object(env, &env->object);
-        modif_map(env);
-    }
-    if (env->keys[K_RENDER])
-    {
-        write_file(env->file_name, env->map);
-        clear(env, NULL, 0);
-    }
-    if (env->keys[K_LEAKS])
-        system("leaks editor | grep 'leaked bytes'");
-    start_draw(env);
+	if (env->keys[B_LEFT])
+	{
+		change_colision(env, &env->object, &env->colision);
+		change_object(env, &env->object);
+		modif_map(env);
+	}
+	if (env->keys[K_RENDER])
+	{
+		write_file(env->file_name, env->map);
+		clear(env, NULL, 0);
+	}
+	if (env->keys[K_LEAKS])
+		system("leaks editor | grep 'leaked bytes'");
+	start_draw(env);
 }
