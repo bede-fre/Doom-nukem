@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/22 12:11:17 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/22 16:05:56 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ static void	ft_refresh_images(t_all *all)
 {
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
+	print_stamina_bar(&all->hud.stamina_bar, all->stamina);
+	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+		all->hud.stamina_bar.img, BARX, BARY);
 	if (all->s_idle)
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.ptr,
 		INFOX / 2, WINY - 85);
@@ -118,9 +121,7 @@ int			ft_movements(t_all *all)
 	jump_and_crouch(all);
 	ft_teleport(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
-	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
-	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
-		&all->info.sl, &all->info.endian);
+	init_image(all->ptr, &all->info, INFOX, INFOY);
 	ft_print_all(all);
 	ft_refresh_images(all);
 	return (1);

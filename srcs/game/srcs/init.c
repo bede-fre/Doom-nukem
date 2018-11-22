@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 12:10:20 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/22 16:07:30 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE])
 	keys_tab[0][KEY_T] = 1;
 }
 
-static void	ft_init_img(t_all *all, t_textures *textures)
+static void	init_textures(t_all *all, t_textures *textures)
 {
 	textures->img_n.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_NORTH, &textures->width, &textures->height);
@@ -64,7 +64,7 @@ static void	ft_init_img(t_all *all, t_textures *textures)
 		ft_error("error", 11, perror);
 }
 
-static void	ft_init_data(t_textures *textures)
+static void	init_data_textures(t_textures *textures)
 {
 	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
 		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
@@ -84,18 +84,11 @@ void		ft_init_mlx(t_all *all, char *title)
 {
 	all->ptr.mlx = mlx_init();
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
-	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
-	all->fp.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
-	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
-		&all->info.sl, &all->info.endian);
-	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
-		&all->fp.endian);
-	all->fp.width = WINX;
-	all->fp.height = WINY;
-	all->info.width = INFOX;
-	all->info.height = INFOY;
+	init_image(all->ptr, &all->info, INFOX, INFOY);
+	init_image(all->ptr, &all->fp, WINX, WINY);
+	init_image(all->ptr, &all->hud.stamina_bar, BARW, BARH);
 	all->wall_gap = 0.0;
-	ft_init_img(all, &all->textures);
-	ft_init_data(&all->textures);
+	init_textures(all, &all->textures);
+	init_data_textures(&all->textures);
 	init_stickman(all);
 }

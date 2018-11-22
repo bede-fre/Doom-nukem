@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/22 11:20:14 by bede-fre         ###   ########.fr        #
+#    Updated: 2018/11/22 15:59:33 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@
 OPE_SYS					= $(shell uname)
 NAME					= doom-nukem
 SRCS_FILES				= $(addsuffix .c, main bresenham display print_env \
-						  check_and_stock_map init minimap raycasting copy_struct \
-						  input_device movements movements2 tools tools2 \
-						  hud_sprites)
+						check_and_stock_map init minimap raycasting copy_struct \
+						input_device movements movements2 tools tools2 \
+						hud_sprites print_stamina_bar)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
@@ -28,7 +28,7 @@ LIBFT_DIR				= libft
 MLX_DIR					= minilibx
 LIBVECT_DIR				= libvect
 LIBFT					= $(LIBFT_DIR)/libft.a
-MLX						= $(MLX_DIR)/libmlx.a
+MLX					= $(MLX_DIR)/libmlx.a
 LIBVECT					= $(LIBVECT_DIR)/libvect.a
 INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR) -I $(LIBVECT_DIR)
 FRAMEWORK				= -framework OpenGL -framework Appkit $(LIBFT) $(MLX) $(LIBVECT)

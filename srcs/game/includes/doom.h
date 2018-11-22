@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 12:12:00 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/22 17:21:31 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,21 @@
 # define MAPY			MAPX
 # define INFOX			(WINY / 4)
 # define INFOY			(WINY / 4)
+# define BARX			(int)((double)WINX / 1.4)
+# define BARY			(WINY - 45)
+# define BARW			250
+# define BARH			15
 # define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
 # define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
 # define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
 # define TEXT_DOOR		"./srcs/game/textures/door.xpm"
 # define TEXT_DOOR_R	"./srcs/game/textures/door_reverse.xpm"
-# define SPR_WALK		"./srcs/game/sprites/Walk_Sprite.xpm"
-# define SPR_JUMP		"./srcs/game/sprites/Jump_Sprite.xpm"
-# define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite.xpm"
-# define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite.xpm"
-# define SPR_RUN		"./srcs/game/sprites/Run_Sprite.xpm"
+# define SPR_WALK		"./srcs/game/sprites/Walk_Sprite2.xpm"
+# define SPR_JUMP		"./srcs/game/sprites/Jump_Sprite2.xpm"
+# define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
+# define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
+# define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
 # define WINX			960
 # define WINY			540
 # define BLOCK_SIZE		64.0
@@ -57,6 +61,7 @@
 # define T_DOOR_M		'~'
 # define T_DOOR_O		'|'
 # define ALPHA			0xFF000000
+# define GREEN_A		0x5517EE01
 # define BLACK			0
 # define WHITE			0xFFFFFF
 # define RED			0xFF0000
@@ -65,6 +70,7 @@
 # define LIGHT_BLUE		ALPHA
 # define LIGHT_GREEN	0xAAFFAA
 # define GREY			0x888888
+# define GREY_A			0x44888888
 # define YELLOW			0xFFFF00
 # define TOP			0x87CEFA
 # define BOTTOM			0xFFDA8C
@@ -237,6 +243,7 @@ typedef struct	s_hud
 	t_sprites	s_idle;
 	t_sprites	s_walk;
 	t_sprites	s_crouch;
+	t_img		stamina_bar;
 }				t_hud;
 
 typedef struct	s_all
@@ -262,6 +269,7 @@ typedef struct	s_all
 	int			speed;
 	int			s_jump;
 	int			s_idle;
+	int			stamina;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);
@@ -300,5 +308,7 @@ void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 int				ft_wall_height_on_screen(double dist);
 void			init_stickman(t_all *all);
 int				is_movement(int keys_tab[KEYS_TAB_SIZE]);
+void			init_image(t_mlx ptr, t_img *img, int x, int y);
+void			print_stamina_bar(t_img *img, int stamina);
 
 #endif
