@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/22 15:59:33 by bede-fre         ###   ########.fr        #
+#    Updated: 2018/11/22 17:33:13 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBFT_DIR				= libft
 MLX_DIR					= minilibx
 LIBVECT_DIR				= libvect
 LIBFT					= $(LIBFT_DIR)/libft.a
-MLX					= $(MLX_DIR)/libmlx.a
+MLX						= $(MLX_DIR)/libmlx.a
 LIBVECT					= $(LIBVECT_DIR)/libvect.a
 INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(MLX_DIR) -I $(LIBVECT_DIR)
 FRAMEWORK				= -framework OpenGL -framework Appkit $(LIBFT) $(MLX) $(LIBVECT)
@@ -86,7 +86,6 @@ _CUT		= "\033[k"
 .PHONY: all create_dir clean fclean re norme
 
 all: $(NAME)
-	@echo $(ARG)
 
 $(NAME): create_dir $(OBJS)
 	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)

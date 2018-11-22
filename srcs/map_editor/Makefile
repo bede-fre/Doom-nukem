@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/21 11:02:45 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/22 17:32:51 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LIBFT_DIR				= libft
 LIBVECT_DIR				= libvect
 LIBFT					= $(LIBFT_DIR)/libft.a
 LIBVECT					= $(LIBVECT_DIR)/libvect.a
-INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBVECT_DIR) \
+INCLUDES				= -I includes -I $(LIBFT_DIR) -I $(LIBFT) -I $(LIBVECT) \
+						  -I $(LIBVECT_DIR) \
 						  -I $(SDL_MAIN_INCLUDE_PATH) -I $(SDL_IMAGE_INCLUDE_PATH) \
 						  -I $(SDL_TTF_INCLUDE_PATH) -I $(FREETYPE_INCLUDE_PATH) \
 						  -I $(SDL_MIXER_INCLUDE_PATH)
@@ -95,7 +96,7 @@ _CUT		= "\033[k"
 all: $(NAME)
 
 $(NAME): create_dir $(OBJS)
-	@gcc $(FLAGS) $(OBJS) $(LIBFT) $(LIBVECT) $(FRAMEWORK) -o ../../$(NAME)
+	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)
 	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
 	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
 
