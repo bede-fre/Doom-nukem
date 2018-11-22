@@ -77,7 +77,9 @@ static void	fill_rect(t_img *ptr, char map[MAPY][MAPX], t_player p, t_point i)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREEN);
 	else if (map[i.y][i.x] == T_DOOR_C)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLUE);
-	else if (map[i.y][i.x] == T_DOOR_M || map[i.y][i.x] == T_DOOR_O)
+	else if (map[i.y][i.x] == T_DOOR_M)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREEN);
+	else if ( map[i.y][i.x] == T_DOOR_O)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_BLUE);
 }
 
