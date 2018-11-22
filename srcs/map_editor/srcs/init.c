@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:34:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 10:36:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,30 @@ static void	init_bindings(t_env *env)
 
 static void	init_textures(t_env *env)
 {
-	SDL_Surface *surface;
+	SDL_Surface *s;
 
-	surface = IMG_Load(TEXT_A);
-	if (!(env->text.t_a = SDL_CreateTextureFromSurface(env->renderer, surface)))
+	s = IMG_Load(TEXT_A);
+	if (!(env->text.t_a = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 12);
-	SDL_FreeSurface(surface);
-	surface = IMG_Load(TEXT_B);
-	if (!(env->text.t_b = SDL_CreateTextureFromSurface(env->renderer, surface)))
+	SDL_FreeSurface(s);
+	s = IMG_Load(TEXT_B);
+	if (!(env->text.t_b = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 13);
-	SDL_FreeSurface(surface);
-	surface = IMG_Load(TEXT_C);
-	if (!(env->text.t_c = SDL_CreateTextureFromSurface(env->renderer, surface)))
+	SDL_FreeSurface(s);
+	s = IMG_Load(TEXT_C);
+	if (!(env->text.t_c = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 14);
-	SDL_FreeSurface(surface);
-	surface = IMG_Load(TEXT_D);
-	if (!(env->text.t_d = SDL_CreateTextureFromSurface(env->renderer, surface)))
+	SDL_FreeSurface(s);
+	s = IMG_Load(TEXT_D);
+	if (!(env->text.t_d = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 15);
-	surface = IMG_Load(ERASER);
-	if (!(env->text.eraser =
-		SDL_CreateTextureFromSurface(env->renderer, surface)))
+	s = IMG_Load(ERASER);
+	if (!(env->text.eraser = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 16);
-	SDL_FreeSurface(surface);
+	s = IMG_Load(TEXT_DOOR);
+	if (!(env->text.door = SDL_CreateTextureFromSurface(env->renderer, s)))
+		clear(env, SDL_GetError(), 17);
+	SDL_FreeSurface(s);
 }
 
 void		init(t_env *env, char *file_name)

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:48:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 09:38:59 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,37 @@ void		ft_perso(t_img *ptr, t_player p)
 	}
 }
 
-void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
+static void	fill_rect(t_img *ptr, char map[MAPY][MAPX], t_player p, t_point i)
 {
-	int				x;
-	int				y;
 	const int		dimx = BLOCK_SIZE - (p.x / ZOOM) + HIT_BOX;
 	const int		dimy = BLOCK_SIZE - (p.y / ZOOM) + HIT_BOX;
 
+	if (map[i.y][i.x] == T_A || map[i.y][i.x] == T_B || map[i.y][i.x] == T_C
+		|| map[i.y][i.x] == T_D)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
+	if (map[i.y][i.x] == T_A_S || map[i.y][i.x] == T_B_S
+			|| map[i.y][i.x] == T_C_S || map[i.y][i.x] == T_D_S)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREY);
+	else if (map[i.y][i.x] == TP_S)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_GREEN);
+	else if (map[i.y][i.x] == TP_E)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREEN);
+	else if (map[i.y][i.x] == T_DOOR_C)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLUE);
+	else if (map[i.y][i.x] == T_DOOR_M || map[i.y][i.x] == T_DOOR_O)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_BLUE);
+}
+
+void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
+{
+	t_point	i;
+
 	ft_clear_minimap(ptr);
-	y = -1;
-	while (++y < MAPY)
+	i.y = -1;
+	while (++i.y < MAPY)
 	{
-		x = -1;
-		while (++x < MAPY)
-		{
-			if (map[y][x] == T_A || map[y][x] == T_B || map[y][x] == T_C
-					|| map[y][x] == T_D)
-				ft_rect(ptr, to_win(x) + dimx, to_win(y) + dimy, WHITE);
-			else if (map[y][x] == T_A_S || map[y][x] == T_B_S
-					|| map[y][x] == T_C_S || map[y][x] == T_D_S)
-				ft_rect(ptr, to_win(x) + dimx, to_win(y) + dimy, GREY);
-			else if (map[y][x] == TP_S)
-				ft_rect(ptr, to_win(x) + dimx, to_win(y) + dimy, LIGHT_GREEN);
-			else if (map[y][x] == TP_E)
-				ft_rect(ptr, to_win(x) + dimx, to_win(y) + dimy, GREEN);
-			else if (map[y][x] == T_DOOR_C)
-				ft_rect(ptr, x, y, BLUE);
-			else if (map[y][x] == T_DOOR_M || map[y][x] == T_DOOR_O)
-				ft_rect(ptr, x, y, LIGHT_BLUE);
-		}
+		i.x = -1;
+		while (++i.x < MAPY)
+			fill_rect(ptr, map, p, i);
 	}
 }

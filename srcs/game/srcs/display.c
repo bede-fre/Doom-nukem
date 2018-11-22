@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:48:05 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 09:51:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 
 void		ft_print_all(t_all *all)
 {
-	pthread_t	test[WINX / THREAD]; // may change test variable name ?
+	pthread_t	thread[WINX / THREAD];
 	t_all		*tmp[WINX / THREAD];
 	int			i;
 	int			x;
@@ -43,7 +43,7 @@ void		ft_print_all(t_all *all)
 	{
 		tmp[x] = (t_all*)malloc(sizeof(t_all));
 		ft_cpy_struct(tmp[x], all);
-		pthread_create(&test[x], NULL, ft_wall_dist, tmp[x]);
+		pthread_create(&thread[x], NULL, ft_wall_dist, tmp[x]);
 		all->lens -= (double)THREAD * ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 		all->a -= (double)THREAD * ft_rad(RAY_ANGLE);
 		++x;
@@ -51,7 +51,7 @@ void		ft_print_all(t_all *all)
 	i = -1;
 	while (++i < WINX / THREAD)
 	{
-		pthread_join(test[i], NULL);
+		pthread_join(thread[i], NULL);
 		free(tmp[i]);
 	}
 }

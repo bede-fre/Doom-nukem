@@ -6,11 +6,21 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 15:30:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/13 11:25:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 10:13:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+static Uint32	col_wall2(char object)
+{
+	if (object == START)
+		return (START_COL);
+	else if (object == T_DOOR)
+		return (T_DOOR_COL);
+	else
+		return (0);
+}
 
 static Uint32	col_wall(char object)
 {
@@ -36,11 +46,8 @@ static Uint32	col_wall(char object)
 		return (TP_S_COL);
 	else if (object == TP_E)
 		return (TP_E_COL);
-	else if (object == START)
-		return (START_COL);
-	else if (object == T_DOOR)
-		return (T_DOOR_COL);
-	return (0);
+	else
+		return (col_wall2(object));
 }
 
 void			print_map(SDL_Surface *surface, char map[MAP_HEIGHT][MAP_WIDTH])

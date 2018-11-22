@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:49:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 10:01:20 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 	i = 0;
 	while (ray->x >= 0.0 && ray->x < (MAPX * BLOCK_SIZE)
 		&& ray->y >= 0.0 && ray->y < (MAPY * BLOCK_SIZE)
-		&& is_displayable(map, ray))
+		&& is_displayable(map[to_map(ray->y)][to_map(ray->x)])
+		&& is_door(map, ray))
 	{
 		ray->x += ray->xa;
 		ray->y += ray->ya;
@@ -32,7 +33,7 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 	ray->dist = sqrt(pow(ray->dx, 2) + pow(ray->dy, 2));
 }
 
-void	ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
+void		ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
 {
 	if (a == WEST || a == EAST || a == EAST2)
 		ray->fy = p->y;
@@ -47,7 +48,7 @@ void	ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
 	ray->hit = (sin(a) > 0) ? S_W : N_W;
 }
 
-void	ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
+void		ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
 {
 	if (a == NORTH || a == SOUTH)
 		ray->fx = p->x;

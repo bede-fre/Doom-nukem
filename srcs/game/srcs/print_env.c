@@ -6,17 +6,11 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/21 11:49:23 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 10:43:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-
-static int		ft_wall_height_on_screen(double dist)
-{
-	return ((int)((((double)WINX / 2.0) / tan(ft_rad(FOV / 2.0))
-		* (CAM_HEIGHT) / dist) * 2.0));
-}
 
 static int		ft_color_textures(t_img *ptr, double cpt, int col)
 {
@@ -29,13 +23,32 @@ static int		ft_color_textures(t_img *ptr, double cpt, int col)
 		ptr->data[col * 4 + ((int)(CAM_HEIGHT + cpt) * ptr->sl) + 3]));
 }
 
+static int		ft_find_color2(t_all *all, double cpt, int col, float door)
+{
+	float	hit_wall;
+
+	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
+	if ((hit_wall == '-' || hit_wall == '~') && (all->rc.ray.hit == S_W ||
+		all->rc.ray.hit == E_W))
+		return (ft_color_textures(&all->textures.img_dr, cpt, col));
+	else if (hit_wall == '|' && (all->rc.ray.hit == N_W ||
+		all->rc.ray.hit == W_W))
+		return (ft_color_textures(&all->textures.img_d, cpt, col + door));
+	else if (hit_wall == '|' && (all->rc.ray.hit == S_W ||
+		all->rc.ray.hit == E_W))
+		return (ft_color_textures(&all->textures.img_dr, cpt, col - door));
+	else
+		return (ft_color_textures(&all->textures.img_d, cpt, col));
+}
+
 static int		ft_find_color(t_all *all, double cpt, int col)
 {
 	char	hit_wall;
 	float	door;
 
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
-	door = 64 * timer(0.000001, to_map(all->rc.ray.y), to_map(all->rc.ray.x), hit_wall);
+	door = 64 * timer(0.0000001, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
+		hit_wall);
 	if (hit_wall == 'A' || hit_wall == 'a')
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
 	else if (hit_wall == 'B' || hit_wall == 'b')
@@ -44,16 +57,11 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 		return (ft_color_textures(&all->textures.img_s, cpt, col));
 	else if (hit_wall == 'D' || hit_wall == 'd')
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
-	else if ((hit_wall == '-' || hit_wall == '~') && (all->rc.ray.hit == N_W || all->rc.ray.hit == W_W))
+	else if ((hit_wall == '-' || hit_wall == '~') && (all->rc.ray.hit == N_W ||
+		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
-	else if ((hit_wall == '-' || hit_wall == '~') && (all->rc.ray.hit == S_W || all->rc.ray.hit == E_W))
-		return (ft_color_textures(&all->textures.img_dr, cpt, col));
-	else if (hit_wall == '|' && (all->rc.ray.hit == N_W || all->rc.ray.hit == W_W))
-		return (ft_color_textures(&all->textures.img_d, cpt, col + door));
-	else if (hit_wall == '|' && (all->rc.ray.hit == S_W || all->rc.ray.hit == E_W))
-		return (ft_color_textures(&all->textures.img_dr, cpt, col - door));
 	else
-		return (ft_color_textures(&all->textures.img_d, cpt, col));
+		return (ft_find_color2(all, cpt, col, door));
 }
 
 static void		ft_print_textures(t_all *all, int x, int i, double h)

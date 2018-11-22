@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/20 15:01:33 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/22 10:30:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define TEXT_C		F_TEXT"stone1.xpm"
 # define TEXT_D		F_TEXT"ice1.xpm"
 # define ERASER		F_TEXT"eraser.jpg"
+# define TEXT_DOOR	F_TEXT"door.xpm"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -84,7 +85,7 @@
 # define SECRET_COL	(Uint32)0x888888FF
 # define TP_S_COL	(Uint32)0xAAFFAAFF
 # define TP_E_COL	(Uint32)0x00FF00FF
-# define T_DOOR_COL	(Uint32)0x0061ffFF
+# define T_DOOR_COL	(Uint32)0x4AD8D4FF
 
 enum				e_keys
 {
@@ -126,6 +127,7 @@ typedef struct		s_textures
 	SDL_Texture		*t_c;
 	SDL_Texture		*t_d;
 	SDL_Texture		*eraser;
+	SDL_Texture		*door;
 }					t_textures;
 
 typedef struct		s_button

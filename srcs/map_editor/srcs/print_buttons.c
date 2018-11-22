@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:22:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/16 15:46:13 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/22 10:37:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	print_others_buttons(t_env *env, SDL_Surface *surface)
 		env->buttons[TP_END].button_col);
 	fill_rect(surface, env->buttons[B_START].pos,
 		env->buttons[B_START].button_col);
-	fill_rect(surface, env->buttons[B_DOOR].pos,
-		env->buttons[B_DOOR].button_col);
 	fill_border(surface, env->buttons[COLISION].pos,
 		env->buttons[COLISION].size.x, env->buttons[COLISION].button_col);
 	fill_border(surface, env->buttons[NO_COLISION].pos,

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 16:14:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 10:44:47 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,11 +273,15 @@ int				ft_mouse_motion(int x, int y, t_all *all);
 int				to_map(double x);
 int				to_win(int x);
 int				is_wall(char wall);
-int				is_displayable(char map[MAPY][MAPX], t_ray *ray);
+int				is_door(char map[MAPY][MAPX], t_ray *ray);
+int				is_displayable(char c);
 void			jump_and_crouch(t_all *all);
 void			open_door(t_all *all);
 float			timer(float add, int x, int y, char c);
-void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a);
-void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a);
+void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
+					double a);
+void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
+					double a);
+int				ft_wall_height_on_screen(double dist);
 
 #endif

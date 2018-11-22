@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:48:38 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 09:26:41 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE])
 	keys_tab[0][KEY_T] = 1;
 }
 
-static void	ft_init_textures(t_all *all, t_textures *textures)
+static void	ft_init_img(t_all *all, t_textures *textures)
 {
 	textures->img_n.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_NORTH, &textures->width, &textures->height);
@@ -63,6 +63,10 @@ static void	ft_init_textures(t_all *all, t_textures *textures)
 		|| textures->img_e.img == NULL || textures->img_w.img == NULL
 		|| textures->img_d.img == NULL || textures->img_dr.img == NULL)
 		ft_error("error", 11, perror);
+}
+
+static void	ft_init_data(t_textures *textures)
+{
 	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
 		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
 	textures->img_s.data = mlx_get_data_addr(textures->img_s.img,
@@ -94,5 +98,6 @@ void		ft_init_mlx(t_all *all, char *title)
 	all->info.width = INFOX;
 	all->info.height = INFOY;
 	all->wall_gap = 0.0;
-	ft_init_textures(all, &all->textures);
+	ft_init_img(all, &all->textures);
+	ft_init_data(&all->textures);
 }
