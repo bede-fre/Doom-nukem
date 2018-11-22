@@ -6,7 +6,7 @@
 /*   By: lguiller <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:36:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:48:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 11:56:58 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		ft_cpy_struct(t_all *tmp, t_all *all)
 	while (++i < KEYS_TAB_SIZE)
 		tmp->keys_tab[i] = all->keys_tab[i];
 	tmp->textures = all->textures;
-	tmp->sprites = all->sprites;
+	tmp->hud = all->hud;
 	tmp->info = all->info;
 	tmp->ptr = all->ptr;
 	tmp->fp = all->fp;

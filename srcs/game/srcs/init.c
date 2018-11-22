@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 09:26:41 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 12:10:20 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ static void	ft_init_img(t_all *all, t_textures *textures)
 		TEXT_DOOR, &textures->width, &textures->height);
 	textures->img_dr.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_DOOR_R, &textures->width, &textures->height);
-	if (textures->img_n.img == NULL || textures->img_s.img == NULL
-		|| textures->img_e.img == NULL || textures->img_w.img == NULL
-		|| textures->img_d.img == NULL || textures->img_dr.img == NULL)
+	if (!textures->img_n.img || !textures->img_s.img || !textures->img_e.img
+	|| !textures->img_w.img || !textures->img_d.img || !textures->img_dr.img)
 		ft_error("error", 11, perror);
 }
 
@@ -87,8 +86,6 @@ void		ft_init_mlx(t_all *all, char *title)
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
 	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
 	all->fp.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
-	all->sprites.knife = mlx_xpm_file_to_image(all->ptr.mlx, SPR_KNIFE,
-		&all->sprites.width, &all->sprites.height);
 	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
 		&all->info.sl, &all->info.endian);
 	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
@@ -100,4 +97,5 @@ void		ft_init_mlx(t_all *all, char *title)
 	all->wall_gap = 0.0;
 	ft_init_img(all, &all->textures);
 	ft_init_data(&all->textures);
+	init_stickman(all);
 }

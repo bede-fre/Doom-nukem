@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:44:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 12:12:00 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
 # define TEXT_DOOR		"./srcs/game/textures/door.xpm"
 # define TEXT_DOOR_R	"./srcs/game/textures/door_reverse.xpm"
-# define SPR_KNIFE		"./srcs/game/sprites/weapon1.xpm"
+# define SPR_WALK		"./srcs/game/sprites/Walk_Sprite.xpm"
+# define SPR_JUMP		"./srcs/game/sprites/Jump_Sprite.xpm"
+# define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite.xpm"
+# define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite.xpm"
+# define SPR_RUN		"./srcs/game/sprites/Run_Sprite.xpm"
 # define WINX			960
 # define WINY			540
 # define BLOCK_SIZE		64.0
@@ -99,7 +103,7 @@
 #  define KEY_E			101
 #  define KEY_F			102
 #  define KEY_T			116
-#  define KEY_SPACEBAR  32
+#  define KEY_SPACEBAR	32
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
 #  define KEY_SHIFT		65505
@@ -221,16 +225,25 @@ typedef struct	s_textures
 
 typedef struct	s_sprites
 {
-	void		*knife;
+	void		*ptr;
 	int			height;
 	int			width;
 }				t_sprites;
+
+typedef struct	s_hud
+{
+	t_sprites	s_jump;
+	t_sprites	s_run;
+	t_sprites	s_idle;
+	t_sprites	s_walk;
+	t_sprites	s_crouch;
+}				t_hud;
 
 typedef struct	s_all
 {
 	int			keys_tab[KEYS_TAB_SIZE];
 	t_textures	textures;
-	t_sprites	sprites;
+	t_hud		hud;
 	t_img		info;
 	t_img		map;
 	t_mlx		ptr;
@@ -247,6 +260,8 @@ typedef struct	s_all
 	int			skip;
 	double		wall_gap;
 	int			speed;
+	int			s_jump;
+	int			s_idle;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);
@@ -283,5 +298,7 @@ void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 					double a);
 int				ft_wall_height_on_screen(double dist);
+void			init_stickman(t_all *all);
+int				is_movement(int keys_tab[KEYS_TAB_SIZE]);
 
 #endif

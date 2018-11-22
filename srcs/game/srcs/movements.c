@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/21 16:28:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 12:11:17 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,21 @@ static void	ft_refresh_images(t_all *all)
 {
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
-	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->sprites.knife,
-		WINX / 2, WINY - 239);
+	if (all->s_idle)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.ptr,
+		INFOX / 2, WINY - 85);
+	else if (all->s_jump)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_jump.ptr,
+		INFOX / 2, WINY - 85);
+	else if (all->speed == RUN_SPEED)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_run.ptr,
+		INFOY / 2, WINY - 85);
+	else if (all->speed == MOVE_SPEED)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_walk.ptr,
+		INFOX / 2, WINY - 85);
+	else if (all->speed == CROUCH_SPEED)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+		all->hud.s_crouch.ptr, INFOX / 2, WINY - 85);
 }
 
 int			ft_movements(t_all *all)
@@ -100,6 +113,7 @@ int			ft_movements(t_all *all)
 	(all->keys_tab[KEY_Q] == TRUE) ? all->p.a += ft_rad(ROT_SPEED) : 0;
 	(all->keys_tab[KEY_E] == TRUE) ? all->p.a -= ft_rad(ROT_SPEED) : 0;
 	(all->keys_tab[KEY_F] == TRUE) ? open_door(all) : 0;
+	all->s_idle = (is_movement(all->keys_tab) ? 0 : 1);
 	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
 	jump_and_crouch(all);
 	ft_teleport(all);
