@@ -46,6 +46,10 @@ float	timer(float add, int x, int y, char c)
 		else if (c == T_DOOR_O)
 			if (timer[y][x] == 1.0f)
 				return (timer[y][x]);
+		if (timer[y][x] >= 0.66)
+			timer[y][x] += add * 1.25;
+		else if (timer[y][x] >= 0.90)
+			timer[y][x] = 1.0;
 		timer[y][x] += add;
 		return (timer[y][x]);
 	}
