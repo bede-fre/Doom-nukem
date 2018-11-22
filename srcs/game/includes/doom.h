@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:44:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 11:55:54 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "libft.h"
 # include "libvect.h"
 # include "mlx.h"
+# include "SDL.h"
+# include "SDL_mixer.h"
 # include <math.h>
 # include <limits.h>
 # include <pthread.h>
@@ -82,6 +84,8 @@
 # define TRUE			1
 # define FALSE			0
 # define THREAD			80
+#  define F_MUSIC		"srcs/game/musics/"
+#  define M_WOAH		F_MUSIC"WOAH.wav"
 
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
@@ -226,9 +230,15 @@ typedef struct	s_sprites
 	int			width;
 }				t_sprites;
 
+typedef struct	s_musics
+{
+	Mix_Music	*musics;
+}				t_musics;
+
 typedef struct	s_all
 {
 	int			keys_tab[KEYS_TAB_SIZE];
+	t_musics	musics;
 	t_textures	textures;
 	t_sprites	sprites;
 	t_img		info;
@@ -279,9 +289,11 @@ void			jump_and_crouch(t_all *all);
 void			open_door(t_all *all);
 float			timer(float add, int x, int y, char c);
 void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
-					double a);
+		double a);
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
-					double a);
+		double a);
 int				ft_wall_height_on_screen(double dist);
+void			ft_init_sdl(t_all *all);
+void			init_sounds(t_all *all);
 
 #endif
