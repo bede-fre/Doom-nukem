@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:36:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 12:15:41 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ static void	init_textures(t_env *env)
 	s = IMG_Load(TEXT_D);
 	if (!(env->text.t_d = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 15);
+	SDL_FreeSurface(s);
 	s = IMG_Load(ERASER);
 	if (!(env->text.eraser = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 16);
+	SDL_FreeSurface(s);
 	s = IMG_Load(TEXT_DOOR);
 	if (!(env->text.door = SDL_CreateTextureFromSurface(env->renderer, s)))
 		clear(env, SDL_GetError(), 17);
