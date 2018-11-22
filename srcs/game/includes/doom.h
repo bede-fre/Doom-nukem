@@ -283,5 +283,7 @@ void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 					double a);
 int				ft_wall_height_on_screen(double dist);
+void			display_map(char map[MAPY][MAPX]);
+void			update_door_status(t_all *all);
 
 #endif
