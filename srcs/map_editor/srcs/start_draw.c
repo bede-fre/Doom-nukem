@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:37:00 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:14:01 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			start_draw(t_env *env)
 	make_grid(surface);
 	print_map(surface, env->map);
 	print_buttons(env, surface, env->object, env->colision);
-	create_texture(surface, env);
+	print_view(surface, env);
 	print_texture(env);
 	SDL_RenderPresent(env->renderer);
 }

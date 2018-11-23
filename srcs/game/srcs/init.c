@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 11:51:04 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/23 14:45:39 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,4 @@ void		ft_init_mlx(t_all *all, char *title)
 	all->wall_gap = 0.0;
 	ft_init_img(all, &all->textures);
 	ft_init_data(&all->textures);
-}
-
-void	ft_init_sdl(t_all *all)
-{
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		exit(0);
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
-		exit(0);
-	init_sounds(all);
 }

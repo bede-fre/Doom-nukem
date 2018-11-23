@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 11:55:54 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/23 14:46:31 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,11 @@
 # define TRUE			1
 # define FALSE			0
 # define THREAD			80
-#  define F_MUSIC		"srcs/game/musics/"
-#  define M_WOAH		F_MUSIC"WOAH.wav"
+# define F_MUSIC		"srcs/game/musics/"
+# define F_SOUNDS		"srcs/game/sounds/"
+# define M_WOAH			F_MUSIC"WOAH.wav"
+# define S_OPENDOOR		F_SOUNDS"door_open.wav"
+# define S_TELEPORT		F_SOUNDS"teleport.wav"
 
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
@@ -235,10 +238,17 @@ typedef struct	s_musics
 	Mix_Music	*musics;
 }				t_musics;
 
+typedef struct	s_sounds
+{
+	Mix_Chunk	*opendoor;
+	Mix_Chunk	*teleport;
+}				t_sounds;
+
 typedef struct	s_all
 {
 	int			keys_tab[KEYS_TAB_SIZE];
 	t_musics	musics;
+	t_sounds	sounds;
 	t_textures	textures;
 	t_sprites	sprites;
 	t_img		info;

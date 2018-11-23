@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:58:50 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/21 13:51:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 19:22:03 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 	p = ft_pointdef(env->buttons[B_ERASER].pos.x + dim,
 		env->buttons[B_ERASER].pos.y);
 	set_string(env, "Eraser", p, surface);
+	p = ft_pointdef(env->buttons[B_END].pos.x + dim,
+		env->buttons[B_END].pos.y);
+	set_string(env, "End", p, surface);
 }
 
 void			set_text(SDL_Surface *surface, t_env *env)

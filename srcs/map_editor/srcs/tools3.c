@@ -6,13 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:31:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:34:40 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static char	chose_object2(t_button buttons[10], int x, int y)
+static char	chose_object2(t_button buttons[13], int x, int y)
 {
 	if (win_to_map(x) >= win_to_map(buttons[B_ERASER].pos.x) &&
 		win_to_map(x) <= win_to_map(buttons[B_ERASER].pos.x) + 3 &&
@@ -34,10 +34,14 @@ static char	chose_object2(t_button buttons[10], int x, int y)
 		win_to_map(x) <= win_to_map(buttons[B_DOOR].pos.x) + 3 &&
 		win_to_map(y) == win_to_map(buttons[B_DOOR].pos.y))
 		return (T_DOOR);
+	else if (win_to_map(x) >= win_to_map(buttons[B_END].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[B_END].pos.x) + 2 &&
+		win_to_map(y) == win_to_map(buttons[B_END].pos.y))
+		return (END);
 	return (-1);
 }
 
-char		chose_object(t_button buttons[10], int x, int y, int colision)
+char		chose_object(t_button buttons[13], int x, int y, int colision)
 {
 	if (win_to_map(x) >= win_to_map(buttons[WOOD].pos.x) &&
 		win_to_map(x) <= (win_to_map(buttons[WOOD].pos.x) + 4) &&
@@ -73,7 +77,17 @@ Mix_Music	*get_sounds(t_env *env, char x)
 		return (env->sounds.stone);
 	if (x == T_D || x == T_DS)
 		return (env->sounds.ice);
+	if (x == TP_S)
+		return (env->sounds.tp_start);
+	if (x == TP_E)
+		return (env->sounds.tp_exit);
+	if (x == T_DOOR)
+		return (env->sounds.door);
 	if (x == FLOOR)
 		return (env->sounds.erase);
+	if (x == START)
+		return (env->sounds.start);
+	if (x == END)
+		return (env->sounds.end);
 	return (NULL);
 }

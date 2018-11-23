@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/21 16:28:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 17:02:56 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	ft_teleport(t_all *all)
 				{
 					all->p.x = x * (int)BLOCK_SIZE + 32;
 					all->p.y = y * (int)BLOCK_SIZE + 32;
+					Mix_PlayChannel(-1, all->sounds.teleport, 0);
 				}
 			}
 		}

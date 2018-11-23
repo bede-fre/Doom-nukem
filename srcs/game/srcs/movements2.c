@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 10:37:05 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:49:14 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 19:01:26 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ void	open_door(t_all *all)
 		all->rc.ray_h : all->rc.ray_v;
 	if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == T_DOOR_C
 	&& all->rc.ray.dist <= 100)
+	{
 		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_O;
+		Mix_PlayChannel(-1, all->sounds.opendoor, 0);
+	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);
 }
