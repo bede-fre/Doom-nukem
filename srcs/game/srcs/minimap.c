@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 11:07:52 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:30:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static void	fill_rect(t_img *ptr, char map[MAPY][MAPX], t_player p, t_point i)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLUE);
 	else if (map[i.y][i.x] == T_DOOR_M || map[i.y][i.x] == T_DOOR_O)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_BLUE);
+	else if (map[i.y][i.x] == END)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLACK);
 }
 
 void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
