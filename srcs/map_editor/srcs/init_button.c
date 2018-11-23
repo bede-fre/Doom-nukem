@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:34:35 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:03:16 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void			init_button(t_env *env)
 	rect = create_rect(map_to_win(44), map_to_win(24), dim, dim);
 	env->buttons[B_DOOR] = create_button(rect, T_DOOR_COL, BLACK,
 		env->text.door);
+	rect = create_rect(map_to_win(44), map_to_win(26), dim, dim);
+	env->buttons[B_END] = create_button(rect, BLACK, BLUE, NULL);
 	init_big_button(env);
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/22 10:30:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 15:09:27 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define GAP		SCALE
 # define CAP_FPS	60
 # define START		's'
+# define END		'e'
 # define FLOOR		' '
 # define SECRET		'2'
 # define TP_S		'3'
@@ -57,9 +58,12 @@
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
 # define S_STONE	F_SOUNDS"pose.wav"
+# define S_ICE		F_SOUNDS"pose.wav"
 # define S_TP_S		F_SOUNDS"pose.wav"
 # define S_TP_E		F_SOUNDS"pose.wav"
-# define S_ICE		F_SOUNDS"pose.wav"
+# define S_DOOR		F_SOUNDS"pose.wav"
+# define S_END		F_SOUNDS"pose.wav"
+# define S_START	F_SOUNDS"pose.wav"
 # define S_ERASER	F_SOUNDS"erase.wav"
 # define S_ERROR	F_SOUNDS"error.wav"
 
@@ -68,6 +72,7 @@
 */
 
 # define BLACK		(Uint32)0x000000FF
+# define BLUE		(Uint32)0x0000FFFF
 # define WHITE		(Uint32)0xFFFFFFFF
 # define GREY		(Uint32)0x555555FF
 # define RED		(Uint32)0x990000FF
@@ -110,7 +115,8 @@ enum				e_button
 	TP_END,
 	B_START,
 	B_DOOR,
-	B_ERASER
+	B_ERASER,
+	B_END
 };
 
 typedef struct		s_parse
@@ -151,6 +157,8 @@ typedef struct		s_sounds
 	Mix_Music		*tp_exit;
 	Mix_Music		*erase;
 	Mix_Music		*error;
+	Mix_Music		*end;
+	Mix_Music		*start;
 }					t_sounds;
 
 typedef struct		s_env
@@ -167,7 +175,7 @@ typedef struct		s_env
 	char			*file_name;
 	char			object;
 	int				colision;
-	t_button		buttons[11];
+	t_button		buttons[13];
 }					t_env;
 
 void				init(t_env *env, char *file_name);
@@ -175,7 +183,8 @@ void				events(SDL_Event event, int *loop, t_env *env);
 void				refresh_events(t_env *env);
 void				check_frame(void);
 SDL_Surface			*init_surface(t_env *env);
-void				create_texture(SDL_Surface *surface, t_env *env);
+SDL_Texture			*create_texture(SDL_Surface *surface, t_env *env);
+void				print_view(SDL_Surface *surface, t_env *env);
 void				clear(t_env *env, const char *str, int error);
 void				start_draw(t_env *env);
 void				fill_px(SDL_Surface *surface, int x, int y, Uint32 col);
@@ -211,5 +220,6 @@ char				chose_object(t_button buttons[10], int x, int y,
 						int colision);
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);
+void				destroy_text(t_env *env);
 
 #endif

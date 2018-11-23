@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 10:04:13 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:44:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/22 15:38:51 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,17 @@ int		ft_wall_height_on_screen(double dist)
 		* (CAM_HEIGHT) / dist) * 2.0));
 }
 
-void	display_map(char map[MAPY][MAPX])
+int		is_movement(int keys_tab[KEYS_TAB_SIZE])
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (i < MAPY)
-	{
-		j = 0;
-		while (j < MAPX)
-		{
-			ft_putchar(map[i][j]);
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
+	return (keys_tab[KEY_W] || keys_tab[KEY_A] || keys_tab[KEY_S] ||
+		keys_tab[KEY_D] || keys_tab[KEY_CTRL] || keys_tab[KEY_SPACEBAR]);
 }
 
-void	display_float_map(float map[MAPY][MAPX])
+void	init_image(t_mlx ptr, t_img *img, int x, int y)
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (i < MAPY)
-	{
-		j = 0;
-		while (j < MAPX)
-		{
-			printf("%f", map[i][j]);
-			ft_putchar(' ');
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
+	if (!(img->img = mlx_new_image(ptr.mlx, x, y)))
+		ft_error("error", 14, perror);
+	img->width = x;
+	img->height = y;
+	img->data = mlx_get_data_addr(img->img, &img->bpp, &img->sl, &img->endian);
 }

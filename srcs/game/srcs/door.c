@@ -68,7 +68,9 @@ void	door_open(t_all *all)
 		all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 		all->rc.ray_h : all->rc.ray_v;
 	if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == T_DOOR_C
-	&& all->rc.ray.dist <= 100) {
+	&& all->rc.ray.dist <= 100)
+	{
+		Mix_PlayChannel(-1, all->sounds.opendoor, 0);
 		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_M;
 		door_timer(DOOR_SPEED, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
 			all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)]);

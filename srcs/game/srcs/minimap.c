@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 09:38:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:30:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ static void	fill_rect(t_img *ptr, char map[MAPY][MAPX], t_player p, t_point i)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
 	if (map[i.y][i.x] == T_A_S || map[i.y][i.x] == T_B_S
 			|| map[i.y][i.x] == T_C_S || map[i.y][i.x] == T_D_S)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREY);
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
 	else if (map[i.y][i.x] == TP_S)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_GREEN);
 	else if (map[i.y][i.x] == TP_E)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREEN);
 	else if (map[i.y][i.x] == T_DOOR_C)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLUE);
+	else if (map[i.y][i.x] == END)
+		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLACK);
 }
 
 void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)

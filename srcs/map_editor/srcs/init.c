@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:36:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:43:35 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ static void	init_sounds(t_env *env)
 	if ((env->sounds.erase = Mix_LoadMUS(S_ERASER)) == NULL)
 		ft_puterror(Mix_GetError());
 	if ((env->sounds.error = Mix_LoadMUS(S_ERROR)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((env->sounds.door = Mix_LoadMUS(S_DOOR)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((env->sounds.end = Mix_LoadMUS(S_END)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((env->sounds.start = Mix_LoadMUS(S_START)) == NULL)
 		ft_puterror(Mix_GetError());
 }
 
@@ -71,30 +77,20 @@ static void	init_bindings(t_env *env)
 
 static void	init_textures(t_env *env)
 {
-	SDL_Surface *s;
+	SDL_Surface *surface;
 
-	s = IMG_Load(TEXT_A);
-	if (!(env->text.t_a = SDL_CreateTextureFromSurface(env->renderer, s)))
-		clear(env, SDL_GetError(), 12);
-	SDL_FreeSurface(s);
-	s = IMG_Load(TEXT_B);
-	if (!(env->text.t_b = SDL_CreateTextureFromSurface(env->renderer, s)))
-		clear(env, SDL_GetError(), 13);
-	SDL_FreeSurface(s);
-	s = IMG_Load(TEXT_C);
-	if (!(env->text.t_c = SDL_CreateTextureFromSurface(env->renderer, s)))
-		clear(env, SDL_GetError(), 14);
-	SDL_FreeSurface(s);
-	s = IMG_Load(TEXT_D);
-	if (!(env->text.t_d = SDL_CreateTextureFromSurface(env->renderer, s)))
-		clear(env, SDL_GetError(), 15);
-	s = IMG_Load(ERASER);
-	if (!(env->text.eraser = SDL_CreateTextureFromSurface(env->renderer, s)))
-		clear(env, SDL_GetError(), 16);
-	s = IMG_Load(TEXT_DOOR);
-	if (!(env->text.door = SDL_CreateTextureFromSurface(env->renderer, s)))
-		clear(env, SDL_GetError(), 17);
-	SDL_FreeSurface(s);
+	surface = IMG_Load(TEXT_A);
+	env->text.t_a = create_texture(surface, env);
+	surface = IMG_Load(TEXT_B);
+	env->text.t_b = create_texture(surface, env);
+	surface = IMG_Load(TEXT_C);
+	env->text.t_c = create_texture(surface, env);
+	surface = IMG_Load(TEXT_D);
+	env->text.t_d = create_texture(surface, env);
+	surface = IMG_Load(ERASER);
+	env->text.eraser = create_texture(surface, env);
+	surface = IMG_Load(TEXT_DOOR);
+	env->text.door = create_texture(surface, env);
 }
 
 void		init(t_env *env, char *file_name)
