@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 14:45:39 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/23 15:09:02 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE])
 	keys_tab[0][KEY_T] = 1;
 }
 
-static void	ft_init_img(t_all *all, t_textures *textures)
+static void	init_textures(t_all *all, t_textures *textures, t_img *end_img)
 {
 	textures->img_n.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_NORTH, &textures->width, &textures->height);
@@ -59,13 +59,15 @@ static void	ft_init_img(t_all *all, t_textures *textures)
 		TEXT_DOOR, &textures->width, &textures->height);
 	textures->img_dr.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_DOOR_R, &textures->width, &textures->height);
-	if (textures->img_n.img == NULL || textures->img_s.img == NULL
-		|| textures->img_e.img == NULL || textures->img_w.img == NULL
-		|| textures->img_d.img == NULL || textures->img_dr.img == NULL)
+	end_img->img = mlx_xpm_file_to_image(all->ptr.mlx, END_IMG,
+		&end_img->width, &end_img->height);
+	if (!textures->img_n.img || !textures->img_s.img || !textures->img_e.img
+	|| !textures->img_w.img || !textures->img_d.img || !textures->img_dr.img
+	|| !end_img->img)
 		ft_error("error", 11, perror);
 }
 
-static void	ft_init_data(t_textures *textures)
+static void	init_data_textures(t_textures *textures, t_img *end_img)
 {
 	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
 		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
@@ -79,25 +81,24 @@ static void	ft_init_data(t_textures *textures)
 		&textures->img_dr.bpp, &textures->img_dr.sl, &textures->img_dr.endian);
 	textures->img_dr.data = mlx_get_data_addr(textures->img_d.img,
 		&textures->img_d.bpp, &textures->img_d.sl, &textures->img_d.endian);
+	end_img->data = mlx_get_data_addr(end_img->img, &end_img->bpp, &end_img->sl,
+		&end_img->endian);
 }
 
 void		ft_init_mlx(t_all *all, char *title)
 {
+	t_img tmp;
+
 	all->ptr.mlx = mlx_init();
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
-	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
-	all->fp.img = mlx_new_image(all->ptr.mlx, WINX, WINY);
-	all->sprites.knife = mlx_xpm_file_to_image(all->ptr.mlx, SPR_KNIFE,
-		&all->sprites.width, &all->sprites.height);
-	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
-		&all->info.sl, &all->info.endian);
-	all->fp.data = mlx_get_data_addr(all->fp.img, &all->fp.bpp, &all->fp.sl,
-		&all->fp.endian);
-	all->fp.width = WINX;
-	all->fp.height = WINY;
-	all->info.width = INFOX;
-	all->info.height = INFOY;
+	init_image(all->ptr, &all->info, INFOX, INFOY);
+	init_image(all->ptr, &all->fp, WINX, WINY);
+	init_image(all->ptr, &all->hud.stamina_bar, BARW, BARH);
+	init_image(all->ptr, &all->end_img, WINX, WINY);
 	all->wall_gap = 0.0;
-	ft_init_img(all, &all->textures);
-	ft_init_data(&all->textures);
+	all->stamina = (int)STAMINA_MAX;
+	init_textures(all, &all->textures, &tmp);
+	init_data_textures(&all->textures, &tmp);
+	scale_img(&all->end_img, &tmp);
+	init_stickman(all);
 }

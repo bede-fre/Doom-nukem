@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 14:35:47 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/23 15:09:27 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,5 +220,6 @@ char				chose_object(t_button buttons[10], int x, int y,
 						int colision);
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);
+void				destroy_text(t_env *env);
 
 #endif

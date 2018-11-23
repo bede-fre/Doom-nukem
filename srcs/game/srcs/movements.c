@@ -6,13 +6,17 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/22 17:02:56 by cmace            ###   ########.fr       */
+=======
+/*   Updated: 2018/11/23 11:59:16 by lguiller         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static void	ft_moving(t_all *all, double dir)
+void		ft_moving(t_all *all, double dir)
 {
 	t_coord		p;
 	t_fcoord	sh;
@@ -33,7 +37,7 @@ static void	ft_moving(t_all *all, double dir)
 		-dir * (sin(all->p.a) * all->speed) : 0.0;
 }
 
-static void	ft_strafing(t_all *all, double dir)
+void		ft_strafing(t_all *all, double dir)
 {
 	t_coord		p;
 	t_fcoord	sh;
@@ -59,6 +63,8 @@ static void	ft_teleport(t_all *all)
 	int	y;
 	int	x;
 
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == 'e')
+		all->end = 1;
 	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == '3')
 	{
 		y = -1;
@@ -82,32 +88,37 @@ static void	ft_refresh_images(t_all *all)
 {
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
-	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->sprites.knife,
-		WINX / 2, WINY - 239);
+	print_stamina_bar(&all->hud.stamina_bar, all->stamina);
+	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+		all->hud.stamina_bar.img, BARX, BARY);
+	if (all->s_idle)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.ptr,
+		INFOX / 2, WINY - 85);
+	else if (all->s_jump)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_jump.ptr,
+		INFOX / 2, WINY - 85);
+	else if (all->speed == RUN_SPEED)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_run.ptr,
+		INFOY / 2, WINY - 85);
+	else if (all->speed == MOVE_SPEED)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_walk.ptr,
+		INFOX / 2, WINY - 85);
+	else if (all->speed == CROUCH_SPEED)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+		all->hud.s_crouch.ptr, INFOX / 2, WINY - 85);
+	if (all->end)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+			all->end_img.img, 0, 0);
 }
 
 int			ft_movements(t_all *all)
 {
-	if (all->keys_tab[KEY_CTRL] == TRUE)
-		all->speed = CROUCH_SPEED;
-	else if (all->keys_tab[KEY_SHIFT] == TRUE && all->keys_tab[KEY_W] == TRUE)
-		all->speed = RUN_SPEED;
-	else
-		all->speed = MOVE_SPEED;
-	(all->keys_tab[KEY_A] == TRUE) ? ft_strafing(all, 1.0) : 0;
-	(all->keys_tab[KEY_D] == TRUE) ? ft_strafing(all, -1.0) : 0;
-	(all->keys_tab[KEY_W] == TRUE) ? ft_moving(all, 1.0) : 0;
-	(all->keys_tab[KEY_S] == TRUE) ? ft_moving(all, -1.0) : 0;
-	(all->keys_tab[KEY_Q] == TRUE) ? all->p.a += ft_rad(ROT_SPEED) : 0;
-	(all->keys_tab[KEY_E] == TRUE) ? all->p.a -= ft_rad(ROT_SPEED) : 0;
-	(all->keys_tab[KEY_F] == TRUE) ? open_door(all) : 0;
-	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
+	refresh_events(all);
 	jump_and_crouch(all);
 	ft_teleport(all);
+	stamina_control(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
-	all->info.img = mlx_new_image(all->ptr.mlx, INFOX, INFOY);
-	all->info.data = mlx_get_data_addr(all->info.img, &all->info.bpp,
-		&all->info.sl, &all->info.endian);
+	init_image(all->ptr, &all->info, INFOX, INFOY);
 	ft_print_all(all);
 	ft_refresh_images(all);
 	return (1);
