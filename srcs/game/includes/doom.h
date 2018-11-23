@@ -6,11 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/11/23 14:46:31 by cmace            ###   ########.fr       */
-=======
-/*   Updated: 2018/11/23 14:27:29 by lguiller         ###   ########.fr       */
->>>>>>> master
+/*   Updated: 2018/11/23 15:12:05 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +248,6 @@ typedef struct	s_sprites
 	int			width;
 }				t_sprites;
 
-<<<<<<< HEAD
 typedef struct	s_musics
 {
 	Mix_Music	*musics;
@@ -263,7 +258,7 @@ typedef struct	s_sounds
 	Mix_Chunk	*opendoor;
 	Mix_Chunk	*teleport;
 }				t_sounds;
-=======
+
 typedef struct	s_hud
 {
 	t_sprites	s_jump;
@@ -273,7 +268,6 @@ typedef struct	s_hud
 	t_sprites	s_crouch;
 	t_img		stamina_bar;
 }				t_hud;
->>>>>>> master
 
 typedef struct	s_all
 {
@@ -340,10 +334,8 @@ void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 		double a);
 int				ft_wall_height_on_screen(double dist);
-<<<<<<< HEAD
 void			ft_init_sdl(t_all *all);
 void			init_sounds(t_all *all);
-=======
 void			init_stickman(t_all *all);
 int				is_movement(int keys_tab[KEYS_TAB_SIZE]);
 void			init_image(t_mlx ptr, t_img *img, int x, int y);
@@ -353,6 +345,5 @@ void			refresh_events(t_all *all);
 void			ft_moving(t_all *all, double dir);
 void			ft_strafing(t_all *all, double dir);
 void			scale_img(t_img *dst, t_img *src);
->>>>>>> master
 
 #endif
