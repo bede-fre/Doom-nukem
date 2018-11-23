@@ -18,7 +18,7 @@ OPE_SYS					= $(shell uname)
 NAME					= doom-nukem
 SRCS_FILES				= $(addsuffix .c, main bresenham display print_env \
 						  check_and_stock_map init minimap raycasting copy_struct \
-						  input_device movements movements2 tools tools2)
+						  input_device movements movements2 tools tools2 door)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/

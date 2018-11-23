@@ -81,7 +81,6 @@ void		*ft_wall_dist(void *ptr)
 		else
 			all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 				all->rc.ray_h : all->rc.ray_v;
-		update_door_status(all);		
 		ft_perso(&all->info, all->p);
 		ft_print_on_screen(all, all->i, all->lens);
 		all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
@@ -108,7 +107,6 @@ void		ft_print_ray_infos(t_all *all)
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
 		display_map(all->rc.map);
-		update_door_status(all);
 	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);

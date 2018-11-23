@@ -76,6 +76,7 @@
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
 # define TRANS_F		10
+# define DOOR_SPEED		0.0007
 # define ZOOM			(((double)MAPX * BLOCK_SIZE / 4.0) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012
@@ -276,14 +277,16 @@ int				is_wall(char wall);
 int				is_door(char map[MAPY][MAPX], t_ray *ray);
 int				is_displayable(char c);
 void			jump_and_crouch(t_all *all);
-void			open_door(t_all *all);
-float			timer(float add, int x, int y, char c);
 void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 					double a);
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 					double a);
 int				ft_wall_height_on_screen(double dist);
 void			display_map(char map[MAPY][MAPX]);
-void			update_door_status(t_all *all);
+void			door_open(t_all *all);
+float			door_timer(float add, int x, int y, char c);
+void			door_update_status(t_all *all);
+void			door_update(float timer[MAPY][MAPX]);
+void			display_float_map(float map[MAPY][MAPX]);
 
 #endif

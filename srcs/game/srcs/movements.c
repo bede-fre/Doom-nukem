@@ -99,7 +99,7 @@ int			ft_movements(t_all *all)
 	(all->keys_tab[KEY_S] == TRUE) ? ft_moving(all, -1.0) : 0;
 	(all->keys_tab[KEY_Q] == TRUE) ? all->p.a += ft_rad(ROT_SPEED) : 0;
 	(all->keys_tab[KEY_E] == TRUE) ? all->p.a -= ft_rad(ROT_SPEED) : 0;
-	(all->keys_tab[KEY_F] == TRUE) ? open_door(all) : 0;
+	(all->keys_tab[KEY_F] == TRUE) ? door_open(all) : 0;
 	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
 	jump_and_crouch(all);
 	ft_teleport(all);

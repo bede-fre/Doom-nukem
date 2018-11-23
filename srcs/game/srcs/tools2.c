@@ -12,26 +12,15 @@
 
 #include "doom.h"
 
-void	update_door_status(t_all *all)
-{
-	if (timer(0.0, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
-			  all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)]) >= 0.9)
-	{
-		ft_putstr("ALL\n");
-		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_O;
-		display_map(all->rc.map);
-	}
-}
-
 int		is_door(char map[MAPY][MAPX], t_ray *ray)
 {
-	return (map[to_map(ray->y - (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+	return (map[to_map(ray->y - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
 			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x - (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+			[to_map(ray->x - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
 			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_M
-		&& map[to_map(ray->y + (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+		&& map[to_map(ray->y + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
 			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x + (64 * timer(0.0, to_map(ray->y), to_map(ray->x),
+			[to_map(ray->x + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
 			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_M);
 }
 
@@ -53,6 +42,26 @@ void	display_map(char map[MAPY][MAPX])
 		while (j < MAPX)
 		{
 			ft_putchar(map[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
+}
+
+void	display_float_map(float map[MAPY][MAPX])
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < MAPY)
+	{
+		j = 0;
+		while (j < MAPX)
+		{
+			printf("%f", map[i][j]);
+			ft_putchar(' ');
 			j++;
 		}
 		ft_putchar('\n');
