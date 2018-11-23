@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 16:33:10 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 18:06:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,8 @@ static void	ft_refresh_images(t_all *all)
 	print_stamina_bar(&all->hud.stamina_bar, all->stamina);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.stamina_bar.img, BARX, BARY);
-	if (all->s_jump && all->stamina > JUMP_STA)
+	if (all->s_jump)
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_jump.ptr,
-		INFOX / 2, WINY - 85);
-	else if (all->s_idle)
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.ptr,
 		INFOX / 2, WINY - 85);
 	else if (all->speed == RUN_SPEED)
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_run.ptr,
@@ -102,6 +99,9 @@ static void	ft_refresh_images(t_all *all)
 	else if (all->speed == CROUCH_SPEED)
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.s_crouch.ptr, INFOX / 2, WINY - 85);
+	else
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.ptr,
+		INFOX / 2, WINY - 85);
 	if (all->end)
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 			all->end_img.img, 0, 0);
