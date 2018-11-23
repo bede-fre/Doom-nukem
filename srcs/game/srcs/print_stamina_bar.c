@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:45:17 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 10:33:25 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 16:31:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		stamina_control(t_all *all)
 	if (all->speed == RUN_SPEED || all->jump)
 	{
 		if (all->stamina > 0)
-			all->stamina -= (all->jump) ? (int)(STAMINA_MAX / 3.0) : 1;
+			all->stamina -= (all->jump) ? JUMP_STA : 2;
 		time = 200;
 	}
 	else if ((time -= (time > 0) ? 1 : 0) == 0)

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 15:12:05 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/23 16:31:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <limits.h>
 # include <pthread.h>
 
+# define WINX			960
+# define WINY			540
 # define MAPX			32
 # define MAPY			MAPX
 # define INFOX			(WINY / 4)
@@ -42,8 +44,6 @@
 # define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
 # define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
 # define END_IMG		"./srcs/game/images/End_img.xpm"
-# define WINX			960
-# define WINY			540
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
 # define FOV			60.0
@@ -101,7 +101,8 @@
 # define M_WOAH			F_MUSIC"WOAH.wav"
 # define S_OPENDOOR		F_SOUNDS"door_open.wav"
 # define S_TELEPORT		F_SOUNDS"teleport.wav"
-# define STAMINA_MAX	100.0
+# define STAMINA_MAX	200.0
+# define JUMP_STA		(int)(STAMINA_MAX / 5.0)
 
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
