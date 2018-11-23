@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/22 13:35:31 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/23 11:42:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define GAP		SCALE
 # define CAP_FPS	60
 # define START		's'
+# define END		'e'
 # define FLOOR		' '
 # define SECRET		'2'
 # define TP_S		'3'

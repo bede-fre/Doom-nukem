@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 10:49:58 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 11:59:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void	ft_teleport(t_all *all)
 	int	y;
 	int	x;
 
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == 'e')
+		all->end = 1;
 	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == '3')
 	{
 		y = -1;
@@ -99,6 +101,9 @@ static void	ft_refresh_images(t_all *all)
 	else if (all->speed == CROUCH_SPEED)
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.s_crouch.ptr, INFOX / 2, WINY - 85);
+	if (all->end)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+			all->end_img.img, 0, 0);
 }
 
 int			ft_movements(t_all *all)

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 10:49:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 14:27:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
 # define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
 # define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
+# define END_IMG		"./srcs/game/images/End_img.xpm"
 # define WINX			960
 # define WINY			540
 # define BLOCK_SIZE		64.0
@@ -46,6 +47,7 @@
 # define FOV			60.0
 # define RAY_ANGLE		FOV / (double)WINX
 # define START			's'
+# define END			'e'
 # define FLOOR			' '
 # define TP_S			'3'
 # define TP_E			'4'
@@ -256,6 +258,7 @@ typedef struct	s_all
 	t_hud		hud;
 	t_img		info;
 	t_img		map;
+	t_img		end_img;
 	t_mlx		ptr;
 	t_img		fp;
 	t_raycast	rc;
@@ -274,6 +277,7 @@ typedef struct	s_all
 	int			jump;
 	int			s_idle;
 	int			stamina;
+	int			end;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);
@@ -318,5 +322,6 @@ void			stamina_control(t_all *all);
 void			refresh_events(t_all *all);
 void			ft_moving(t_all *all, double dir);
 void			ft_strafing(t_all *all, double dir);
+void			scale_img(t_img *dst, t_img *src);
 
 #endif
