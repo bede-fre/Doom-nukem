@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 10:37:05 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 11:56:24 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:33:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ void	jump_and_crouch(t_all *all)
 	else if (!all->keys_tab[KEY_CTRL] && all->wall_gap > 0.0)
 	{
 		all->wall_gap -= JUMP_SPEED;
-		if (all->wall_gap <= 0.0)
-			all->wall_gap = 0.0;
+		all->wall_gap = (all->wall_gap <= 0.0) ? 0.0 : all->wall_gap;
 	}
 	else if (jump)
 	{
 		all->s_jump = 1;
+		all->jump = 0;
 		all->wall_gap -= JUMP_SPEED;
 		jump = (all->wall_gap <= -1.0) ? FALSE : TRUE;
 	}
-	else if (all->keys_tab[KEY_SPACEBAR] && all->wall_gap == 0.0)
+	else if (all->keys_tab[KEY_SPACEBAR] && all->wall_gap == 0.0
+		&& all->stamina > 0 && (all->jump = 1))
 		jump = TRUE;
 	else if (all->wall_gap < 0.0)
 	{
 		all->wall_gap += JUMP_SPEED;
-		if (all->wall_gap >= 0.0 && (all->s_jump = 0))
-			all->wall_gap = 0.0;
+		all->wall_gap = (all->wall_gap >= 0.0) ? 0.0 : all->wall_gap;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/22 16:05:56 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:33:27 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int			ft_movements(t_all *all)
 {
 	if (all->keys_tab[KEY_CTRL] == TRUE)
 		all->speed = CROUCH_SPEED;
-	else if (all->keys_tab[KEY_SHIFT] == TRUE && all->keys_tab[KEY_W] == TRUE)
+	else if (all->keys_tab[KEY_SHIFT] == TRUE && all->keys_tab[KEY_W] == TRUE
+		&& all->stamina > 0)
 		all->speed = RUN_SPEED;
 	else
 		all->speed = MOVE_SPEED;
@@ -120,6 +121,7 @@ int			ft_movements(t_all *all)
 	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
 	jump_and_crouch(all);
 	ft_teleport(all);
+	stamina_control(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
 	init_image(all->ptr, &all->info, INFOX, INFOY);
 	ft_print_all(all);

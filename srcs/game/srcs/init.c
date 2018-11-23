@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 16:07:30 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:06:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		ft_init_mlx(t_all *all, char *title)
 	init_image(all->ptr, &all->fp, WINX, WINY);
 	init_image(all->ptr, &all->hud.stamina_bar, BARW, BARH);
 	all->wall_gap = 0.0;
+	all->stamina = (int)STAMINA_MAX;
 	init_textures(all, &all->textures);
 	init_data_textures(&all->textures);
 	init_stickman(all);

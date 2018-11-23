@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 17:21:31 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:25:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@
 # define TRUE			1
 # define FALSE			0
 # define THREAD			80
+# define STAMINA_MAX	100.0
 
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
@@ -266,8 +267,9 @@ typedef struct	s_all
 	int			start_wall;
 	int			skip;
 	double		wall_gap;
-	int			speed;
+	double		speed;
 	int			s_jump;
+	int			jump;
 	int			s_idle;
 	int			stamina;
 }				t_all;
@@ -310,5 +312,6 @@ void			init_stickman(t_all *all);
 int				is_movement(int keys_tab[KEYS_TAB_SIZE]);
 void			init_image(t_mlx ptr, t_img *img, int x, int y);
 void			print_stamina_bar(t_img *img, int stamina);
+void			stamina_control(t_all *all);
 
 #endif
