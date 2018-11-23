@@ -6,13 +6,13 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 10:33:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:49:58 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static void	ft_moving(t_all *all, double dir)
+void		ft_moving(t_all *all, double dir)
 {
 	t_coord		p;
 	t_fcoord	sh;
@@ -33,7 +33,7 @@ static void	ft_moving(t_all *all, double dir)
 		-dir * (sin(all->p.a) * all->speed) : 0.0;
 }
 
-static void	ft_strafing(t_all *all, double dir)
+void		ft_strafing(t_all *all, double dir)
 {
 	t_coord		p;
 	t_fcoord	sh;
@@ -103,22 +103,7 @@ static void	ft_refresh_images(t_all *all)
 
 int			ft_movements(t_all *all)
 {
-	if (all->keys_tab[KEY_CTRL] == TRUE)
-		all->speed = CROUCH_SPEED;
-	else if (all->keys_tab[KEY_SHIFT] == TRUE && all->keys_tab[KEY_W] == TRUE
-		&& all->stamina > 0)
-		all->speed = RUN_SPEED;
-	else
-		all->speed = MOVE_SPEED;
-	(all->keys_tab[KEY_A] == TRUE) ? ft_strafing(all, 1.0) : 0;
-	(all->keys_tab[KEY_D] == TRUE) ? ft_strafing(all, -1.0) : 0;
-	(all->keys_tab[KEY_W] == TRUE) ? ft_moving(all, 1.0) : 0;
-	(all->keys_tab[KEY_S] == TRUE) ? ft_moving(all, -1.0) : 0;
-	(all->keys_tab[KEY_Q] == TRUE) ? all->p.a += ft_rad(ROT_SPEED) : 0;
-	(all->keys_tab[KEY_E] == TRUE) ? all->p.a -= ft_rad(ROT_SPEED) : 0;
-	(all->keys_tab[KEY_F] == TRUE) ? open_door(all) : 0;
-	all->s_idle = (is_movement(all->keys_tab) ? 0 : 1);
-	all->skip = (all->keys_tab[KEY_ENTER] == TRUE) ? 1 : 0;
+	refresh_events(all);
 	jump_and_crouch(all);
 	ft_teleport(all);
 	stamina_control(all);

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 10:25:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:49:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@
 #  define KEY_E			101
 #  define KEY_F			102
 #  define KEY_T			116
+#  define KEY_L			37
 #  define KEY_SPACEBAR	32
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -131,6 +132,7 @@
 #  define KEY_E			14
 #  define KEY_F			3
 #  define KEY_T			17
+#  define KEY_L			37
 #  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -313,5 +315,8 @@ int				is_movement(int keys_tab[KEYS_TAB_SIZE]);
 void			init_image(t_mlx ptr, t_img *img, int x, int y);
 void			print_stamina_bar(t_img *img, int stamina);
 void			stamina_control(t_all *all);
+void			refresh_events(t_all *all);
+void			ft_moving(t_all *all, double dir);
+void			ft_strafing(t_all *all, double dir);
 
 #endif
