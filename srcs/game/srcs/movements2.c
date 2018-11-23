@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 10:37:05 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 10:33:28 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/23 10:40:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	jump_and_crouch(t_all *all)
 	else if (all->wall_gap < 0.0)
 	{
 		all->wall_gap += JUMP_SPEED;
-		all->wall_gap = (all->wall_gap >= 0.0) ? 0.0 : all->wall_gap;
+		if (all->wall_gap >= 0.0 && (all->s_jump = 0))
+			all->wall_gap = 0.0;
 	}
 }
 
