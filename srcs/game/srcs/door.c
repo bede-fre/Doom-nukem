@@ -1,11 +1,16 @@
-#include "doom.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aruellou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/23 19:11:47 by aruellou          #+#    #+#             */
+/*   Updated: 2018/11/23 19:11:49 by aruellou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	door_update_status(t_all *all)
-{
-	if (door_timer(0.0, to_map(all->p.y), to_map(all->p.x),
-			  all->rc.map[to_map(all->p.y)][to_map(all->p.x)]) == 1.0)
-		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = T_DOOR_O;
-}
+#include "doom.h"
 
 void	door_update(float timer[MAPY][MAPX])
 {
@@ -21,10 +26,7 @@ void	door_update(float timer[MAPY][MAPX])
 			if (timer[i][j] >= 0.99)
 				timer[i][j] = 1.0;
 			else if (timer[i][j] != 0.0 && timer[i][j] != 1.0)
-			{
-				printf("%f\n", timer[i][j]);
 				timer[i][j] += DOOR_SPEED;
-			}
 			j++;
 		}
 		i++;
@@ -70,7 +72,6 @@ void	door_open(t_all *all)
 		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_M;
 		door_timer(DOOR_SPEED, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
 			all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)]);
-			printf("tETS\n");
 	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);
