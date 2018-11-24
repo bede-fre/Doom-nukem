@@ -62,8 +62,9 @@
 # define T_D			'D'
 # define T_D_S			'd'
 # define T_DOOR_C		'-'
-# define T_DOOR_M		'~'
-# define T_DOOR_O		'|'
+# define T_DOOR_I		'i'
+# define T_DOOR_R		'r'
+# define T_DOOR_O		'_'
 # define ALPHA			0xFF000000
 # define GREEN_A		0x5517EE01
 # define BLACK			0
@@ -338,7 +339,7 @@ void			display_map(char map[MAPY][MAPX]);
 void			door_open(t_all *all);
 float			door_timer(float add, int x, int y, char c);
 void			door_update_status(t_all *all);
-void			door_update(float timer[MAPY][MAPX]);
+void			door_update(float timer[MAPY][MAPX], char c);
 void			display_float_map(float map[MAPY][MAPX]);
 void			ft_init_sdl(t_all *all);
 void			init_sounds(t_all *all);

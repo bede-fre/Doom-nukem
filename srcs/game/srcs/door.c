@@ -12,11 +12,13 @@
 
 #include "doom.h"
 
-void	door_update(float timer[MAPY][MAPX])
+void	door_update(float timer[MAPY][MAPX], char c)
 {
 	int i;
 	int j;
 
+	if (c == T_DOOR_I)
+		ft_putstr("TEST");
 	i = 0;
 	while (i < MAPY)
 	{
@@ -39,10 +41,10 @@ float	door_timer(float add, int x, int y, char c)
 	static int	 i = 0;
 
 	if (i % 50000 == 0) {
-		door_update(timer);
+		door_update(timer, c);
 	}
 	i++;
-	if (c == T_DOOR_C || c == T_DOOR_M || c == T_DOOR_O)
+	if (c == T_DOOR_C || c == T_DOOR_I || c == T_DOOR_R || c == T_DOOR_O)
 	{
 		if (c == T_DOOR_C)
 			timer[y][x] = 0.0;
@@ -71,7 +73,7 @@ void	door_open(t_all *all)
 	&& all->rc.ray.dist <= 100)
 	{
 		Mix_PlayChannel(-1, all->sounds.opendoor, 0);
-		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_M;
+		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_I;
 		door_timer(DOOR_SPEED, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
 			all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)]);
 	}
