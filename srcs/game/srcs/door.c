@@ -12,13 +12,21 @@
 
 #include "doom.h"
 
+void	door_auto(char map[MAPY][MAPX], t_player p, t_point	i)
+{
+	if (door_timer(0.0, i.y, i.x, map[i.y][i.x]) == 1.0)
+		map[i.y][i.x] = T_DOOR_O;
+	if (map[i.y][i.x] == T_DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2)
+			+ pow(((p.y / 64) - i.y), 2)) >= 5)
+		map[i.y][i.x] = T_DOOR_C;
+}
+
 void	door_update(float timer[MAPY][MAPX], char c)
 {
 	int i;
 	int j;
 
-	if (c == T_DOOR_I)
-		ft_putstr("TEST");
+	c = ' ';
 	i = 0;
 	while (i < MAPY)
 	{

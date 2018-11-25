@@ -340,6 +340,7 @@ void			door_open(t_all *all);
 float			door_timer(float add, int x, int y, char c);
 void			door_update_status(t_all *all);
 void			door_update(float timer[MAPY][MAPX], char c);
+void			door_auto(char map[MAPY][MAPX], t_player p, t_point	i);
 void			display_float_map(float map[MAPY][MAPX]);
 void			ft_init_sdl(t_all *all);
 void			init_sounds(t_all *all);

@@ -92,11 +92,7 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
 		i.x = -1;
 		while (++i.x < MAPY) {
 			fill_rect(ptr, map, p, i);
-			if (door_timer(0.0, i.y, i.x, map[i.y][i.x]) == 1.0)
-				map[i.y][i.x] = T_DOOR_O;
-			if (map[i.y][i.x] == T_DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2)
-				+ pow(((p.y / 64) - i.y), 2)) >= 5)
-				map[i.y][i.x] = T_DOOR_C;
+			door_auto(map, p, i);
 		}
 	}
 }
