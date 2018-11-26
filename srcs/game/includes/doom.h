@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 15:09:54 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 15:52:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@
 #  define KEY_F			102
 #  define KEY_T			116
 #  define KEY_L			37
+#  define KEY_X			7
 #  define KEY_SPACEBAR	32
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -146,6 +147,7 @@
 #  define KEY_F			3
 #  define KEY_T			17
 #  define KEY_L			37
+#  define KEY_X			7
 #  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -302,6 +304,7 @@ typedef struct	s_all
 	int			jump;
 	int			s_idle;
 	int			stamina;
+	int			fly;
 	int			end;
 }				t_all;
 

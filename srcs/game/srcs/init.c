@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:08:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 15:36:21 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void		ft_init_mlx(t_all *all, char *title)
 	init_image(all->ptr, &all->hud.stamina_bar, BARW, BARH);
 	init_image(all->ptr, &all->end_img, WINX, WINY);
 	all->wall_gap = 0.0;
+	all->fly = 1;
 	all->stamina = (int)STAMINA_MAX;
 	init_textures(all, &all->textures, &tmp);
 	init_data_textures(&all->textures, &tmp);

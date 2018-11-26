@@ -6,24 +6,17 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 10:37:05 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:11:01 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 15:52:47 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void	jump_and_crouch(t_all *all)
+static void	jump(t_all *all)
 {
-	static int jump = FALSE;
+	static int jump;
 
-	if (all->keys_tab[KEY_CTRL] && all->wall_gap >= 0.0 && all->wall_gap < 1.0)
-		all->wall_gap += JUMP_SPEED;
-	else if (!all->keys_tab[KEY_CTRL] && all->wall_gap > 0.0)
-	{
-		all->wall_gap -= JUMP_SPEED;
-		all->wall_gap = (all->wall_gap <= 0.0) ? 0.0 : all->wall_gap;
-	}
-	else if (jump && (all->s_jump = 1))
+	if (jump && (all->s_jump = 1))
 	{
 		all->jump = 0;
 		all->wall_gap -= JUMP_SPEED;
@@ -38,4 +31,31 @@ void	jump_and_crouch(t_all *all)
 		if (all->wall_gap >= 0.0 && (all->s_jump = 0))
 			all->wall_gap = 0.0;
 	}
+}
+
+static void	fly(t_all *all)
+{
+	if (all->keys_tab[KEY_SPACEBAR] && (all->s_jump = 1))
+		all->wall_gap -= (all->wall_gap > -1) ? JUMP_SPEED : 0.0;
+	else if (all->keys_tab[KEY_CTRL])
+	{
+		all->wall_gap += (all->wall_gap < 0) ? JUMP_SPEED : 0.0;
+		if (all->wall_gap >= 0)
+			all->s_jump = 0;
+	}
+}
+
+void		jump_and_crouch(t_all *all)
+{
+	if (all->keys_tab[KEY_CTRL] && all->wall_gap >= 0.0 && all->wall_gap < 1.0)
+		all->wall_gap += JUMP_SPEED;
+	else if (!all->keys_tab[KEY_CTRL] && all->wall_gap > 0.0)
+	{
+		all->wall_gap -= JUMP_SPEED;
+		all->wall_gap = (all->wall_gap <= 0.0) ? 0.0 : all->wall_gap;
+	}
+	if (all->fly)
+		fly(all);
+	else
+		jump(all);
 }
