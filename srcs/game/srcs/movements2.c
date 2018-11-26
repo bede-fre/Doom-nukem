@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 10:37:05 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 15:52:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 15:56:44 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		jump_and_crouch(t_all *all)
 		all->wall_gap -= JUMP_SPEED;
 		all->wall_gap = (all->wall_gap <= 0.0) ? 0.0 : all->wall_gap;
 	}
-	if (all->fly)
+	if (all->keys_tab[KEY_X])
 		fly(all);
 	else
 		jump(all);

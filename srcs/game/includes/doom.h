@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 15:52:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 15:56:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,7 +304,6 @@ typedef struct	s_all
 	int			jump;
 	int			s_idle;
 	int			stamina;
-	int			fly;
 	int			end;
 }				t_all;
 
