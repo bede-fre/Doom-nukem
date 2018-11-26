@@ -6,11 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/11/26 20:24:23 by cmace            ###   ########.fr       */
-=======
-/*   Updated: 2018/11/26 15:56:13 by lguiller         ###   ########.fr       */
->>>>>>> 02e0bd10fbc28a324c866191600162bfabc0b010
+/*   Updated: 2018/11/26 20:32:30 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +151,8 @@
 #  define KEY_F			3
 #  define KEY_T			17
 #  define KEY_L			37
-<<<<<<< HEAD
 #  define KEY_M			46
-=======
 #  define KEY_X			7
->>>>>>> 02e0bd10fbc28a324c866191600162bfabc0b010
 #  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
