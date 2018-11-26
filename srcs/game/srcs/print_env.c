@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 14:30:38 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 10:05:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,20 @@ static int		ft_find_color2(t_all *all, double cpt, int col, float door)
 	float	hit_wall;
 
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
-	if ((hit_wall == '-' || hit_wall == '~') && (all->rc.ray.hit == S_W ||
+	if (hit_wall == T_DOOR_C && (all->rc.ray.hit == S_W ||
 		all->rc.ray.hit == E_W))
 		return (ft_color_textures(&all->textures.img_dr, cpt, col));
-	else if (hit_wall == '|' && (all->rc.ray.hit == N_W ||
+	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col + door));
-	else if (hit_wall == '|' && (all->rc.ray.hit == S_W ||
+	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == S_W ||
 		all->rc.ray.hit == E_W))
 		return (ft_color_textures(&all->textures.img_dr, cpt, col - door));
-	else
+	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == N_W ||
+		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
+	else
+		return (ft_color_textures(&all->textures.nether, cpt, col));
 }
 
 static int		ft_find_color(t_all *all, double cpt, int col)
@@ -47,17 +50,17 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 	float	door;
 
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
-	door = 64 * timer(0.0000001, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
+	door = 64 * door_timer(0.0, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
 		hit_wall);
-	if (hit_wall == 'A' || hit_wall == 'a')
+	if (hit_wall == T_A || hit_wall == T_A_S)
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
-	else if (hit_wall == 'B' || hit_wall == 'b')
+	else if (hit_wall == T_B || hit_wall == T_B_S)
 		return (ft_color_textures(&all->textures.img_e, cpt, col));
-	else if (hit_wall == 'C' || hit_wall == 'c')
+	else if (hit_wall == T_C || hit_wall == T_C_S)
 		return (ft_color_textures(&all->textures.img_s, cpt, col));
-	else if (hit_wall == 'D' || hit_wall == 'd')
+	else if (hit_wall == T_D || hit_wall == T_D_S)
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
-	else if ((hit_wall == '-' || hit_wall == '~') && (all->rc.ray.hit == N_W ||
+	else if (hit_wall == T_DOOR_C && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else
@@ -96,7 +99,7 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 			ft_fill_pixel(&all->fp, x, i, BOTTOM);
 		else
 		{
-			if (all->keys_tab[KEY_T] == TRUE)
+			if (all->keys_tab[KEY_T])
 				ft_print_textures(all, x, i, h * 4.0);
 			else if (all->keys_tab[KEY_T] == FALSE)
 				ft_fill_pixel(&all->fp, x, i, all->rc.ray.hit);

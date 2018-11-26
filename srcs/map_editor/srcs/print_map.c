@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 15:30:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:13:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 10:24:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static Uint32	col_wall2(char object)
 		return (START_COL);
 	else if (object == T_DOOR)
 		return (T_DOOR_COL);
+	else if (object == END)
+		return (END_COL);
 	else
 		return (0);
 }

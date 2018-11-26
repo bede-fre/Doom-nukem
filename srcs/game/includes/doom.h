@@ -6,7 +6,11 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/23 15:39:33 by cmace            ###   ########.fr       */
+=======
+/*   Updated: 2018/11/26 10:27:16 by lguiller         ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +26,8 @@
 # include <limits.h>
 # include <pthread.h>
 
+# define WINX			960
+# define WINY			540
 # define MAPX			32
 # define MAPY			MAPX
 # define INFOX			(WINY / 4)
@@ -36,14 +42,13 @@
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
 # define TEXT_DOOR		"./srcs/game/textures/door.xpm"
 # define TEXT_DOOR_R	"./srcs/game/textures/door_reverse.xpm"
+# define TEXT_NETHER	"./srcs/game/textures/nether.xpm"
 # define SPR_WALK		"./srcs/game/sprites/Walk_Sprite2.xpm"
 # define SPR_JUMP		"./srcs/game/sprites/Jump_Sprite2.xpm"
 # define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
 # define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
 # define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
 # define END_IMG		"./srcs/game/images/End_img.xpm"
-# define WINX			960
-# define WINY			540
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
 # define FOV			60.0
@@ -76,6 +81,7 @@
 # define GREY			0x888888
 # define GREY_A			0x44888888
 # define YELLOW			0xFFFF00
+# define PURPLE			0x642EFE
 # define TOP			0x87CEFA
 # define BOTTOM			0xFFDA8C
 # define N_W			0x940602
@@ -90,6 +96,7 @@
 # define HIT_BOX		5.0
 # define VIEW_DIST		20.0
 # define TRANS_F		10
+# define DOOR_SPEED		0.0007
 # define ZOOM			(((double)MAPX * BLOCK_SIZE / 4.0) / (double)INFOX)
 # define P_SIZE			2.5
 # define LITTLE			0.00000000000012
@@ -101,7 +108,8 @@
 # define M_WOAH			F_MUSIC"WOAH.wav"
 # define S_OPENDOOR		F_SOUNDS"door_open.wav"
 # define S_TELEPORT		F_SOUNDS"teleport.wav"
-# define STAMINA_MAX	100.0
+# define STAMINA_MAX	200.0
+# define JUMP_STA		(int)(STAMINA_MAX / 5.0)
 
 # ifdef __linux__
 #  define MOVE_SPEED	2.0
@@ -239,6 +247,7 @@ typedef struct	s_textures
 	t_img		img_s;
 	t_img		img_d;
 	t_img		img_dr;
+	t_img		nether;
 }				t_textures;
 
 typedef struct	s_sprites
@@ -327,13 +336,17 @@ int				is_wall(char wall);
 int				is_door(char map[MAPY][MAPX], t_ray *ray);
 int				is_displayable(char c);
 void			jump_and_crouch(t_all *all);
-void			open_door(t_all *all);
-float			timer(float add, int x, int y, char c);
 void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 		double a);
 void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 		double a);
 int				ft_wall_height_on_screen(double dist);
+void			display_map(char map[MAPY][MAPX]);
+void			door_open(t_all *all);
+float			door_timer(float add, int x, int y, char c);
+void			door_update_status(t_all *all);
+void			door_update(float timer[MAPY][MAPX]);
+void			display_float_map(float map[MAPY][MAPX]);
 void			ft_init_sdl(t_all *all);
 void			init_sounds(t_all *all);
 void			init_stickman(t_all *all);

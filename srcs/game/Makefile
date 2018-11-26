@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/23 15:09:04 by cmace            ###   ########.fr        #
+#    Updated: 2018/11/23 19:06:19 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,9 @@ OPE_SYS					= $(shell uname)
 NAME					= doom-nukem
 SRCS_FILES				= $(addsuffix .c, main bresenham display print_env \
 						  check_and_stock_map init minimap raycasting copy_struct \
-						  input_device movements movements2 tools tools2 \
-						  hud_sprites print_stamina_bar refresh_events init2)
+						  input_device movements movements2 tools tools2 tools3 \
+						  hud_sprites print_stamina_bar refresh_events init2 \
+						  door)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
@@ -91,17 +92,20 @@ _CUT		= "\033[k"
 ##   TARGETS    ##
 ##################
 
-.PHONY: all create_dir clean fclean re norme
+.PHONY: all create_dir clean fclean re norme print
 
 all: $(NAME)
 
-$(NAME): create_dir $(OBJS)
+print:
+	@echo $(_CLEAR)$(_YELLOW)"Building - "$(_GREEN)$(NAME)$(_END)
+
+$(NAME): print create_dir $(OBJS)
 	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)
-	@echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
-	@echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
+	@echo $(_GREEN)"\nDone.\n"$(_END)$(_SHOW_CURS)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@gcc $(FLAGS) $(INCLUDES) -c $^ -o $@
+	@printf $^
 
 create_dir:
 	@mkdir -p objs/

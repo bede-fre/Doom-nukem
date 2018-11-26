@@ -1,36 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   tools3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:08:22 by lguiller         ###   ########.fr       */
+/*   Created: 2018/11/26 10:12:09 by lguiller          #+#    #+#             */
+/*   Updated: 2018/11/26 10:12:30 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-int		to_win(int x)
+void	display_map(char map[MAPY][MAPX])
 {
-	return (x * BLOCK_SIZE / ZOOM);
+	int i;
+	int j;
+
+	i = 0;
+	while (i < MAPY)
+	{
+		j = 0;
+		while (j < MAPX)
+		{
+			ft_putchar(map[i][j]);
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
 }
 
-int		to_map(double x)
+void	display_float_map(float map[MAPY][MAPX])
 {
-	return ((int)(x / BLOCK_SIZE));
-}
+	int i;
+	int j;
 
-int		is_wall(char wall)
-{
-	return (wall == T_A || wall == T_B || wall == T_C || wall == T_D
-		|| wall == T_DOOR_C || wall == T_DOOR_M);
-}
-
-int		is_displayable(char c)
-{
-	return (c != T_A && c != T_B && c != T_C && c != T_D && c != T_A_S
-		&& c != T_B_S && c != T_C_S && c != T_D_S && c != T_DOOR_C
-		&& c != TP_S);
+	i = 0;
+	while (i < MAPY)
+	{
+		j = 0;
+		while (j < MAPX)
+		{
+			printf("%f", map[i][j]);
+			ft_putchar(' ');
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
 }
