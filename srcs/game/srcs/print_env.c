@@ -37,7 +37,7 @@ static int		ft_find_color2(t_all *all, double cpt, int col, float door)
 	else if ((hit_wall == T_DOOR_I || hit_wall == T_DOOR_R) && (all->rc.ray.hit == S_W ||
 		all->rc.ray.hit == E_W))
 		return (ft_color_textures(&all->textures.img_dr, cpt, col - door));
-	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == N_W ||
+	else if (hit_wall == T_DOOR_I && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else
