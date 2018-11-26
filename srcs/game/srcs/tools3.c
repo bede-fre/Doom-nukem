@@ -30,22 +30,3 @@ void	display_map(char map[MAPY][MAPX])
 		i++;
 	}
 }
-
-void	display_float_map(float map[MAPY][MAPX])
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < MAPY)
-	{
-		j = 0;
-		while (j < MAPX)
-		{
-			printf("%f ", map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
