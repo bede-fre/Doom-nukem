@@ -36,20 +36,15 @@ int		is_displayable(char c)
 
 int		is_door(char map[MAPY][MAPX], t_ray *ray)
 {
-	return (map[to_map(ray->y - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_I
-		&& map[to_map(ray->y + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_I
-		&& map[to_map(ray->y - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_R
-		&& map[to_map(ray->y + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_R);
+	double t;
+
+	t = (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
+			map[to_map(ray->y)][to_map(ray->x)]));
+
+	return (
+		map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_I
+		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_I
+		&& map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_R
+		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_R
+		);
 }
