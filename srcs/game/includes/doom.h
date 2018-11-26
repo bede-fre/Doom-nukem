@@ -337,9 +337,9 @@ void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 int				ft_wall_height_on_screen(double dist);
 void			display_map(char map[MAPY][MAPX]);
 void			door_open(t_all *all);
-float			door_timer(float add, int x, int y, char c);
+float			door_timer(float add, int x, int y, char map[MAPY][MAPX]);
 void			door_update_status(t_all *all);
-void			door_update(float timer[MAPY][MAPX], char c);
+void			door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX]);
 void			door_auto(char map[MAPY][MAPX], t_player p, t_point	i);
 void			display_float_map(float map[MAPY][MAPX]);
 void			ft_init_sdl(t_all *all);

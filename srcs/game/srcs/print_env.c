@@ -48,7 +48,7 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
 	door = 64 * door_timer(0.0, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
-		hit_wall);
+		all->rc.map);
 	if (hit_wall == T_A || hit_wall == T_A_S)
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
 	else if (hit_wall == T_B || hit_wall == T_B_S)

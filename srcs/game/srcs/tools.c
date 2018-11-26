@@ -39,7 +39,7 @@ int		is_door(char map[MAPY][MAPX], t_ray *ray)
 	double t;
 
 	t = (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)]));
+			map));
 
 	return (
 		map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_I

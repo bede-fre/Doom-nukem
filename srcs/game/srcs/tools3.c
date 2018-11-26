@@ -30,11 +30,10 @@ void	display_float_map(float map[MAPY][MAPX])
 		j = 0;
 		while (j < MAPX)
 		{
-			printf("%f", map[i][j]);
-			ft_putchar(' ');
+			printf("%f ", map[i][j]);
 			j++;
 		}
-		ft_putchar('\n');
+		printf("\n");
 		i++;
 	}
 }
