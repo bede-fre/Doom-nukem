@@ -6,13 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 14:34:40 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 14:38:10 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static char	chose_object2(t_button buttons[13], int x, int y)
+static char	chose_object2(t_button buttons[15], int x, int y)
 {
 	if (win_to_map(x) >= win_to_map(buttons[B_ERASER].pos.x) &&
 		win_to_map(x) <= win_to_map(buttons[B_ERASER].pos.x) + 3 &&
@@ -41,7 +41,7 @@ static char	chose_object2(t_button buttons[13], int x, int y)
 	return (-1);
 }
 
-char		chose_object(t_button buttons[13], int x, int y, int colision)
+char		chose_object(t_button buttons[15], int x, int y, int colision)
 {
 	if (win_to_map(x) >= win_to_map(buttons[WOOD].pos.x) &&
 		win_to_map(x) <= (win_to_map(buttons[WOOD].pos.x) + 4) &&

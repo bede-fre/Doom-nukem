@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 15:09:27 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 15:09:56 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 # define TEXT_D		F_TEXT"ice1.xpm"
 # define ERASER		F_TEXT"eraser.jpg"
 # define TEXT_DOOR	F_TEXT"door.xpm"
+# define TEXT_SOUND	F_TEXT"sound.png"
+# define TEXT_MUTE	F_TEXT"soundmute.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -78,6 +80,8 @@
 # define RED		(Uint32)0x990000FF
 # define GREEN		(Uint32)0x009900FF
 # define LIGHT_GREY	(Uint32)0x999999FF
+# define YELLOW		(Uint32)0xFFFF00FF
+# define PURPLE		(Uint32)0x642EFEFF
 # define START_COL	RED
 # define T_A_COL	(Uint32)0x844927FF
 # define T_B_COL	(Uint32)0xF3A16AFF
@@ -91,6 +95,7 @@
 # define TP_S_COL	(Uint32)0xAAFFAAFF
 # define TP_E_COL	(Uint32)0x00FF00FF
 # define T_DOOR_COL	(Uint32)0x4AD8D4FF
+# define END_COL	PURPLE
 
 enum				e_keys
 {
@@ -116,7 +121,9 @@ enum				e_button
 	B_START,
 	B_DOOR,
 	B_ERASER,
-	B_END
+	B_END,
+	B_SOUND,
+	B_MUTE
 };
 
 typedef struct		s_parse
@@ -134,6 +141,8 @@ typedef struct		s_textures
 	SDL_Texture		*t_d;
 	SDL_Texture		*eraser;
 	SDL_Texture		*door;
+	SDL_Texture		*sound;
+	SDL_Texture		*mute;
 }					t_textures;
 
 typedef struct		s_button
@@ -175,7 +184,8 @@ typedef struct		s_env
 	char			*file_name;
 	char			object;
 	int				colision;
-	t_button		buttons[13];
+	int				sound;
+	t_button		buttons[15];
 }					t_env;
 
 void				init(t_env *env, char *file_name);
@@ -216,7 +226,7 @@ SDL_Rect			rect_to_map(SDL_Rect rect);
 SDL_Rect			rect_to_win(SDL_Rect rect);
 int					get_object(char x);
 int					get_colision(int x);
-char				chose_object(t_button buttons[10], int x, int y,
+char				chose_object(t_button buttons[15], int x, int y,
 						int colision);
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);

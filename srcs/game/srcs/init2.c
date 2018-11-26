@@ -6,13 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:56:49 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/23 15:09:00 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 10:10:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void	ft_init_sdl(t_all *all)
+void		ft_init_sdl(t_all *all)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		exit(0);
@@ -21,7 +21,7 @@ void	ft_init_sdl(t_all *all)
 	init_sounds(all);
 }
 
-void	init_sounds(t_all *all)
+void		init_sounds(t_all *all)
 {
 	if ((all->musics.musics = Mix_LoadMUS(M_WOAH)) == NULL)
 		ft_puterror(Mix_GetError());

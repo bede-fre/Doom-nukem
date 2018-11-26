@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 15:09:02 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 15:56:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ static void	init_textures(t_all *all, t_textures *textures, t_img *end_img)
 		TEXT_DOOR, &textures->width, &textures->height);
 	textures->img_dr.img = mlx_xpm_file_to_image(all->ptr.mlx,
 		TEXT_DOOR_R, &textures->width, &textures->height);
+	textures->nether.img = mlx_xpm_file_to_image(all->ptr.mlx, TEXT_NETHER,
+		&textures->nether.width, &textures->nether.height);
 	end_img->img = mlx_xpm_file_to_image(all->ptr.mlx, END_IMG,
 		&end_img->width, &end_img->height);
 	if (!textures->img_n.img || !textures->img_s.img || !textures->img_e.img
 	|| !textures->img_w.img || !textures->img_d.img || !textures->img_dr.img
-	|| !end_img->img)
+	|| !end_img->img || !textures->nether.img)
 		ft_error("error", 11, perror);
 }
 
@@ -81,6 +83,8 @@ static void	init_data_textures(t_textures *textures, t_img *end_img)
 		&textures->img_dr.bpp, &textures->img_dr.sl, &textures->img_dr.endian);
 	textures->img_dr.data = mlx_get_data_addr(textures->img_d.img,
 		&textures->img_d.bpp, &textures->img_d.sl, &textures->img_d.endian);
+	textures->nether.data = mlx_get_data_addr(textures->nether.img,
+		&textures->nether.bpp, &textures->nether.sl, &textures->nether.endian);
 	end_img->data = mlx_get_data_addr(end_img->img, &end_img->bpp, &end_img->sl,
 		&end_img->endian);
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 14:43:35 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 14:57:50 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,15 @@ static void	init_textures(t_env *env)
 	env->text.eraser = create_texture(surface, env);
 	surface = IMG_Load(TEXT_DOOR);
 	env->text.door = create_texture(surface, env);
+	surface = IMG_Load(TEXT_SOUND);
+	env->text.sound = create_texture(surface, env);
+	surface = IMG_Load(TEXT_MUTE);
+	env->text.mute = create_texture(surface, env);
 }
 
 void		init(t_env *env, char *file_name)
 {
+	env->sound = 1;
 	init_sdl(env);
 	read_file(file_name, &env->map);
 	init_bindings(env);
