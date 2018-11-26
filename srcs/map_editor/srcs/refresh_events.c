@@ -6,11 +6,22 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:49:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 11:31:28 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 14:58:49 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+static void	change_sound(t_env *env, int *sound)
+{
+	if (win_to_map(env->mouse.x) == win_to_map(env->buttons[B_SOUND].pos.x) &&
+		win_to_map(env->mouse.y) == win_to_map(env->buttons[B_SOUND].pos.y))
+		*sound = (*sound == 1) ? 0 : 1;
+	if (*sound == 1)
+		Mix_VolumeMusic(MIX_MAX_VOLUME);
+	else
+		Mix_VolumeMusic(0);
+}
 
 static void	change_colision(t_env *env, char *object, int *colision)
 {
@@ -54,6 +65,7 @@ void		refresh_events(t_env *env)
 {
 	if (env->keys[B_LEFT])
 	{
+		change_sound(env, &env->sound);
 		change_colision(env, &env->object, &env->colision);
 		change_object(env, &env->object);
 		modif_map(env);

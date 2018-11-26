@@ -62,6 +62,11 @@ static void		print_texture(t_env *env)
 		env->buttons[B_DOOR].rect.y + 2, env->buttons[B_DOOR].rect.w - 3,
 		env->buttons[B_DOOR].rect.h - 3);
 	SDL_RenderCopy(env->renderer, env->buttons[B_DOOR].texture, NULL, &rect);
+	rect = create_rect(env->buttons[B_SOUND].rect.x,
+		env->buttons[B_SOUND].rect.y, env->buttons[B_SOUND].rect.w,
+		env->buttons[B_SOUND].rect.h);
+	SDL_RenderCopy(env->renderer, env->buttons[(env->sound == 1) ?
+		B_SOUND : B_MUTE].texture, NULL, &rect);
 }
 
 /*

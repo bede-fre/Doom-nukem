@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:27:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 15:56:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@
 # define T_D			'D'
 # define T_D_S			'd'
 # define T_DOOR_C		'-'
-# define T_DOOR_M		'~'
-# define T_DOOR_O		'|'
+# define T_DOOR_I		'i'
+# define T_DOOR_R		'r'
+# define T_DOOR_O		'_'
 # define ALPHA			0xFF000000
 # define GREEN_A		0x5517EE01
 # define BLACK			0
@@ -124,6 +125,7 @@
 #  define KEY_F			102
 #  define KEY_T			116
 #  define KEY_L			37
+#  define KEY_X			7
 #  define KEY_SPACEBAR	32
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -146,6 +148,7 @@
 #  define KEY_F			3
 #  define KEY_T			17
 #  define KEY_L			37
+#  define KEY_X			7
 #  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -339,9 +342,10 @@ void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
 int				ft_wall_height_on_screen(double dist);
 void			display_map(char map[MAPY][MAPX]);
 void			door_open(t_all *all);
-float			door_timer(float add, int x, int y, char c);
+float			door_timer(float add, int x, int y, char map[MAPY][MAPX]);
 void			door_update_status(t_all *all);
-void			door_update(float timer[MAPY][MAPX]);
+void			door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX]);
+void			door_auto(char map[MAPY][MAPX], t_player p, t_point	i);
 void			display_float_map(float map[MAPY][MAPX]);
 void			ft_init_sdl(t_all *all);
 void			init_sounds(t_all *all);

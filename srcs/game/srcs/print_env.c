@@ -31,13 +31,13 @@ static int		ft_find_color2(t_all *all, double cpt, int col, float door)
 	if (hit_wall == T_DOOR_C && (all->rc.ray.hit == S_W ||
 		all->rc.ray.hit == E_W))
 		return (ft_color_textures(&all->textures.img_dr, cpt, col));
-	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == N_W ||
+	else if ((hit_wall == T_DOOR_I || hit_wall == T_DOOR_R) && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col + door));
-	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == S_W ||
+	else if ((hit_wall == T_DOOR_I || hit_wall == T_DOOR_R) && (all->rc.ray.hit == S_W ||
 		all->rc.ray.hit == E_W))
 		return (ft_color_textures(&all->textures.img_dr, cpt, col - door));
-	else if (hit_wall == T_DOOR_M && (all->rc.ray.hit == N_W ||
+	else if (hit_wall == T_DOOR_I && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
 		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else
@@ -51,7 +51,7 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
 	door = 64 * door_timer(0.0, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
-		hit_wall);
+		all->rc.map);
 	if (hit_wall == T_A || hit_wall == T_A_S)
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
 	else if (hit_wall == T_B || hit_wall == T_B_S)
