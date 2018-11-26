@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/26 10:24:09 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 17:28:52 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 # define GREY		(Uint32)0x555555FF
 # define RED		(Uint32)0x990000FF
 # define GREEN		(Uint32)0x009900FF
-# define LIGHT_GREY	(Uint32)0x999999FF
+# define LIGHT_GREY	(Uint32)0xBBBBBBFF
 # define YELLOW		(Uint32)0xFFFF00FF
 # define PURPLE		(Uint32)0x642EFEFF
 # define START_COL	RED
@@ -119,7 +119,7 @@ enum				e_button
 	B_START,
 	B_DOOR,
 	B_ERASER,
-	B_END
+	B_END,
 };
 
 typedef struct		s_parse
@@ -219,7 +219,7 @@ SDL_Rect			rect_to_map(SDL_Rect rect);
 SDL_Rect			rect_to_win(SDL_Rect rect);
 int					get_object(char x);
 int					get_colision(int x);
-char				chose_object(t_button buttons[10], int x, int y,
+char				chose_object(t_button buttons[13], int x, int y,
 						int colision);
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);
