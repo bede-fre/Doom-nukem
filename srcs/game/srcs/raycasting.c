@@ -106,7 +106,6 @@ void		ft_print_ray_infos(t_all *all)
 		ft_putstr("ray dist: ");
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
-		display_map(all->rc.map);
 	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);

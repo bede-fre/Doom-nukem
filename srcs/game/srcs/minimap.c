@@ -93,8 +93,7 @@ void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)
 		while (++i.x < MAPY)
 		{
 			fill_rect(ptr, map, p, i);
-			if (door_timer(0.0, i.y, i.x, map[i.y][i.x]) == 1.0)
-				map[i.y][i.x] = T_DOOR_O;
+			door_auto(map, p, i);
 		}
 	}
 }

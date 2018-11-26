@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/26 15:09:56 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 17:28:52 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@
 # define GREY		(Uint32)0x555555FF
 # define RED		(Uint32)0x990000FF
 # define GREEN		(Uint32)0x009900FF
-# define LIGHT_GREY	(Uint32)0x999999FF
+# define LIGHT_GREY	(Uint32)0xBBBBBBFF
 # define YELLOW		(Uint32)0xFFFF00FF
 # define PURPLE		(Uint32)0x642EFEFF
 # define START_COL	RED

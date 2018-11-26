@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:58:50 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/22 19:22:03 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 17:38:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 {
 	t_point	p;
 
-	p = ft_pointdef(map_to_win(36), map_to_win(22));
+	p = ft_pointdef(map_to_win(36), map_to_win(23));
 	set_string(env, "Others:", p, surface);
 	p = ft_pointdef(env->buttons[B_START].pos.x + dim,
 		env->buttons[B_START].pos.y);
@@ -53,9 +53,9 @@ void			set_text(SDL_Surface *surface, t_env *env)
 
 	p = ft_pointdef(map_to_win(36), map_to_win(30));
 	set_string(env, "Press ENTER to generate map", p, surface);
-	p = ft_pointdef(map_to_win(36), map_to_win(0));
+	p = ft_pointdef(map_to_win(36), map_to_win(1));
 	set_string(env, "Texture:", p, surface);
-	p = ft_pointdef(map_to_win(36), map_to_win(14));
+	p = ft_pointdef(map_to_win(36), map_to_win(15));
 	set_string(env, "Collision:", p, surface);
 	p = ft_pointdef(env->buttons[COLISION].pos.x + dim,
 		env->buttons[COLISION].pos.y);
@@ -63,7 +63,7 @@ void			set_text(SDL_Surface *surface, t_env *env)
 	p = ft_pointdef(env->buttons[NO_COLISION].pos.x + dim,
 		env->buttons[NO_COLISION].pos.y);
 	set_string(env, "No", p, surface);
-	p = ft_pointdef(map_to_win(36), map_to_win(18));
+	p = ft_pointdef(map_to_win(36), map_to_win(19));
 	set_string(env, "Teleporter:", p, surface);
 	p = ft_pointdef(env->buttons[TP_START].pos.x + dim,
 		env->buttons[TP_START].pos.y);
