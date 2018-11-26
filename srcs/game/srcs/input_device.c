@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_device.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 10:45:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 19:51:23 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_key_press(int key, t_all *all)
 {
-	if (key == KEY_H || key == KEY_T)
+	if (key == KEY_H || key == KEY_T || key == KEY_M)
 		all->keys_tab[key] = (all->keys_tab[key] == FALSE) ? TRUE : FALSE;
 	else
 		all->keys_tab[key] = 1;
@@ -25,7 +25,7 @@ int		ft_key_press(int key, t_all *all)
 
 int		ft_key_release(int key, t_all *all)
 {
-	if (key != KEY_H && key != KEY_T)
+	if (key != KEY_H && key != KEY_T && key != KEY_M)
 		all->keys_tab[key] = 0;
 	return (1);
 }

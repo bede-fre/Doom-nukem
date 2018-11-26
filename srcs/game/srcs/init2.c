@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:56:49 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/26 10:10:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 20:27:28 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void		init_sounds(t_all *all)
 		ft_puterror(Mix_GetError());
 	if ((all->sounds.opendoor = Mix_LoadWAV(S_OPENDOOR)) == NULL)
 		ft_puterror(Mix_GetError());
+	if ((all->sounds.closedoor = Mix_LoadWAV(S_CLOSEDOOR)) == NULL)
+		ft_puterror(Mix_GetError());
 	if ((all->sounds.teleport = Mix_LoadWAV(S_TELEPORT)) == NULL)
+		ft_puterror(Mix_GetError());
+	if ((all->sounds.win = Mix_LoadWAV(S_WIN)) == NULL)
 		ft_puterror(Mix_GetError());
 }
 

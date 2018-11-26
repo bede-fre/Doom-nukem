@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 18:06:07 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 20:23:52 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,7 @@ static void	ft_refresh_images(t_all *all)
 	else
 		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.ptr,
 		INFOX / 2, WINY - 85);
-	if (all->end)
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
-			all->end_img.img, 0, 0);
+	it_is_the_end(all);
 }
 
 int			ft_movements(t_all *all)
@@ -117,5 +115,6 @@ int			ft_movements(t_all *all)
 	init_image(all->ptr, &all->info, INFOX, INFOY);
 	ft_print_all(all);
 	ft_refresh_images(all);
+	mute_sound(all);
 	return (1);
 }

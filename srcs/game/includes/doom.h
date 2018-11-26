@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 15:09:54 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 20:24:23 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
 # define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
 # define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
+# define SPR_MUTE		"./srcs/game/sprites/soundmute.xpm"
 # define END_IMG		"./srcs/game/images/End_img.xpm"
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
@@ -103,7 +104,9 @@
 # define F_SOUNDS		"srcs/game/sounds/"
 # define M_WOAH			F_MUSIC"WOAH.wav"
 # define S_OPENDOOR		F_SOUNDS"door_open.wav"
+# define S_CLOSEDOOR	F_SOUNDS"door_close.wav"
 # define S_TELEPORT		F_SOUNDS"teleport.wav"
+# define S_WIN			F_SOUNDS"door_open.wav"
 # define STAMINA_MAX	200.0
 # define JUMP_STA		(int)(STAMINA_MAX / 5.0)
 
@@ -146,6 +149,7 @@
 #  define KEY_F			3
 #  define KEY_T			17
 #  define KEY_L			37
+#  define KEY_M			46
 #  define KEY_SPACEBAR  49
 #  define KEY_CTRL		256
 #  define KEY_ENTER		36
@@ -244,6 +248,7 @@ typedef struct	s_textures
 	t_img		img_d;
 	t_img		img_dr;
 	t_img		nether;
+	t_img		mute;
 }				t_textures;
 
 typedef struct	s_sprites
@@ -261,7 +266,9 @@ typedef struct	s_musics
 typedef struct	s_sounds
 {
 	Mix_Chunk	*opendoor;
+	Mix_Chunk	*closedoor;
 	Mix_Chunk	*teleport;
+	Mix_Chunk	*win;
 }				t_sounds;
 
 typedef struct	s_hud
@@ -271,6 +278,7 @@ typedef struct	s_hud
 	t_sprites	s_idle;
 	t_sprites	s_walk;
 	t_sprites	s_crouch;
+	t_sprites	s_mute;
 	t_img		stamina_bar;
 }				t_hud;
 
@@ -303,6 +311,7 @@ typedef struct	s_all
 	int			s_idle;
 	int			stamina;
 	int			end;
+	int			mute;
 }				t_all;
 
 void			*ft_wall_dist(void *ptr);
@@ -354,5 +363,6 @@ void			refresh_events(t_all *all);
 void			ft_moving(t_all *all, double dir);
 void			ft_strafing(t_all *all, double dir);
 void			scale_img(t_img *dst, t_img *src);
-
+void			it_is_the_end(t_all *all);
+void			mute_sound(t_all *all);
 #endif
