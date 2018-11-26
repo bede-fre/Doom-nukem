@@ -14,11 +14,8 @@
 
 void	door_auto(char map[MAPY][MAPX], t_player p, t_point	i)
 {
-	if (door_timer(0.0, i.y, i.x, map[i.y][i.x]) >= 1.0)
+	if (door_timer(0.0, i.y, i.x, map[i.y][i.x]) == 1.0)
 		map[i.y][i.x] = T_DOOR_O;
-	else if (door_timer(0.0, i.y, i.x, map[i.y][i.x]) <= 1.0
-		&& door_timer(0.0, i.y, i.x, map[i.y][i.x]) >= 0.95)
-		map[i.y][i.x] = T_DOOR_I;
 	if (map[i.y][i.x] == T_DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2)
 			+ pow(((p.y / 64) - i.y), 2)) >= 5)
 		map[i.y][i.x] = T_DOOR_C;
@@ -36,9 +33,9 @@ void	door_update(float timer[MAPY][MAPX], char c)
 		j = 0;
 		while (j < MAPX)
 		{
-			if (timer[i][j] >= 5.99)
-				timer[i][j] = 6.0;
-			else if (timer[i][j] != 0.0 && timer[i][j] != 6.0)
+			if (timer[i][j] >= 0.99)
+				timer[i][j] = 1.0;
+			else if (timer[i][j] != 0.0 && timer[i][j] != 1.0)
 				timer[i][j] += DOOR_SPEED;
 			j++;
 		}
@@ -60,7 +57,7 @@ float	door_timer(float add, int x, int y, char c)
 		if (c == T_DOOR_C)
 			timer[y][x] = 0.0;
 		else if (c == T_DOOR_O)
-			timer[y][x] = 6.0;
+			timer[y][x] = 1.0;
 		else if (add)
 			timer[y][x] += add;
 		return (timer[y][x]);
