@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 15:09:27 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/26 10:24:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@
 # define RED		(Uint32)0x990000FF
 # define GREEN		(Uint32)0x009900FF
 # define LIGHT_GREY	(Uint32)0x999999FF
+# define YELLOW		(Uint32)0xFFFF00FF
+# define PURPLE		(Uint32)0x642EFEFF
 # define START_COL	RED
 # define T_A_COL	(Uint32)0x844927FF
 # define T_B_COL	(Uint32)0xF3A16AFF
@@ -91,6 +93,7 @@
 # define TP_S_COL	(Uint32)0xAAFFAAFF
 # define TP_E_COL	(Uint32)0x00FF00FF
 # define T_DOOR_COL	(Uint32)0x4AD8D4FF
+# define END_COL	PURPLE
 
 enum				e_keys
 {

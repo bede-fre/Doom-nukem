@@ -6,7 +6,7 @@
 /*   By: aruellou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:11:47 by aruellou          #+#    #+#             */
-/*   Updated: 2018/11/23 19:11:49 by aruellou         ###   ########.fr       */
+/*   Updated: 2018/11/26 10:10:31 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ void	door_update(float timer[MAPY][MAPX])
 
 float	door_timer(float add, int x, int y, char c)
 {
-	static float timer[MAPY][MAPX];
-	static int	 i = 0;
+	static float	timer[MAPY][MAPX];
+	static int		i = 0;
 
-	if (i % 50000 == 0) {
+	if (i % 50000 == 0)
 		door_update(timer);
-	}
 	i++;
 	if (c == T_DOOR_C || c == T_DOOR_M || c == T_DOOR_O)
 	{

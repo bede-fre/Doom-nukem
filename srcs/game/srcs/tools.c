@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 10:04:27 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 10:08:22 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int		is_wall(char wall)
 int		is_displayable(char c)
 {
 	return (c != T_A && c != T_B && c != T_C && c != T_D && c != T_A_S
-		&& c != T_B_S && c != T_C_S && c != T_D_S && c != T_DOOR_C);
+		&& c != T_B_S && c != T_C_S && c != T_D_S && c != T_DOOR_C
+		&& c != TP_S);
 }

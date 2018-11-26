@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 16:31:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/26 10:27:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
 # define TEXT_DOOR		"./srcs/game/textures/door.xpm"
 # define TEXT_DOOR_R	"./srcs/game/textures/door_reverse.xpm"
+# define TEXT_NETHER	"./srcs/game/textures/nether.xpm"
 # define SPR_WALK		"./srcs/game/sprites/Walk_Sprite2.xpm"
 # define SPR_JUMP		"./srcs/game/sprites/Jump_Sprite2.xpm"
 # define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
@@ -76,6 +77,7 @@
 # define GREY			0x888888
 # define GREY_A			0x44888888
 # define YELLOW			0xFFFF00
+# define PURPLE			0x642EFE
 # define TOP			0x87CEFA
 # define BOTTOM			0xFFDA8C
 # define N_W			0x940602
@@ -241,6 +243,7 @@ typedef struct	s_textures
 	t_img		img_s;
 	t_img		img_d;
 	t_img		img_dr;
+	t_img		nether;
 }				t_textures;
 
 typedef struct	s_sprites

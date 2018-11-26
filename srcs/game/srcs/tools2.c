@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 10:04:13 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/22 15:38:51 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/26 10:11:59 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int		is_door(char map[MAPY][MAPX], t_ray *ray)
 {
-	return (map[to_map(ray->y - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_M
-		&& map[to_map(ray->y + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))]
-			[to_map(ray->x + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_M);
+	return (map[to_map(ray->y - (64 * door_timer(0.0, to_map(ray->y),
+		to_map(ray->x), map[to_map(ray->y)][to_map(ray->x)])))]
+		[to_map(ray->x - (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
+		map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_M
+		&& map[to_map(ray->y + (64 * door_timer(0.0, to_map(ray->y),
+		to_map(ray->x), map[to_map(ray->y)][to_map(ray->x)])))]
+		[to_map(ray->x + (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
+		map[to_map(ray->y)][to_map(ray->x)])))] != T_DOOR_M);
 }
 
 int		ft_wall_height_on_screen(double dist)
