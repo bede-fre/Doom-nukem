@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 15:46:55 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 16:10:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ static void	print_commands(void)
 	ft_putendl("		CONTROL CENTER");
 	ft_putchar('\n');
 	ft_putendl("Esc		--> Quit");
-	ft_putendl("W		--> Step forward");
-	ft_putendl("S		--> Step backward");
-	ft_putendl("A		--> Straf left");
-	ft_putendl("D		--> Straf right");
+	ft_putendl("W		--> Move forward");
+	ft_putendl("S		--> Move backward");
+	ft_putendl("A		--> Move left");
+	ft_putendl("D		--> Move right");
 	ft_putendl("Q		--> Turn left");
 	ft_putendl("E		--> Turn right");
 	ft_putendl("Space		--> Jump / Fly");
