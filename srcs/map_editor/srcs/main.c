@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 15:45:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 16:17:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void	ft_loop(char *file_name)
 	t_env		env;
 	SDL_Event	event;
 
-	print_commands();
 	loop = 1;
 	init(&env, file_name);
+	print_commands();
 	start_draw(&env);
 	while (loop)
 	{
