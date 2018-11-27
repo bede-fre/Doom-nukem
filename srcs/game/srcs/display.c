@@ -41,7 +41,7 @@ void		ft_print_all(t_all *all)
 	x = 0;
 	while ((all->i += THREAD) < WINX)
 	{
-		tmp[x] = (t_all*)malloc(sizeof(t_all));
+		tmp[x] = (t_all*)ft_memalloc(sizeof(t_all));
 		ft_cpy_struct(tmp[x], all);
 		pthread_create(&thread[x], NULL, ft_wall_dist, tmp[x]);
 		all->lens -= (double)THREAD * ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
