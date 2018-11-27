@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 20:32:30 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/27 11:04:03 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
 # define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
 # define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
-# define SPR_MUTE		"./srcs/game/sprites/soundmute.xpm"
+# define MUTE_IMG		"./srcs/game/images/soundmute.xpm"
 # define END_IMG		"./srcs/game/images/End_img.xpm"
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
@@ -251,15 +251,7 @@ typedef struct	s_textures
 	t_img		img_d;
 	t_img		img_dr;
 	t_img		nether;
-	t_img		mute;
 }				t_textures;
-
-typedef struct	s_sprites
-{
-	void		*ptr;
-	int			height;
-	int			width;
-}				t_sprites;
 
 typedef struct	s_musics
 {
@@ -276,13 +268,13 @@ typedef struct	s_sounds
 
 typedef struct	s_hud
 {
-	t_sprites	s_jump;
-	t_sprites	s_run;
-	t_sprites	s_idle;
-	t_sprites	s_walk;
-	t_sprites	s_crouch;
-	t_sprites	s_mute;
+	t_img		s_jump;
+	t_img		s_run;
+	t_img		s_idle;
+	t_img		s_walk;
+	t_img		s_crouch;
 	t_img		stamina_bar;
+	t_img		mute;
 }				t_hud;
 
 typedef struct	s_all
@@ -328,7 +320,7 @@ void			ft_fill_pixel(t_img *ptr, int x, int y, int col);
 void			ft_print_on_screen(t_all *all, int x, double a);
 void			ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p);
 void			ft_perso(t_img *img, t_player p);
-void			ft_init_mlx(t_all *all, char *title);
+void			ft_init(t_all *all, char *title);
 int				ft_key_release(int key, t_all *all);
 void			ft_free_map(char map[MAPY][MAPX]);
 int				ft_key_press(int key, t_all *all);
@@ -357,7 +349,6 @@ void			door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX]);
 void			door_auto(char map[MAPY][MAPX], t_player p, t_point	i);
 void			ft_init_sdl(t_all *all);
 void			init_sounds(t_all *all);
-void			init_stickman(t_all *all);
 int				is_movement(int keys_tab[KEYS_TAB_SIZE]);
 void			init_image(t_mlx ptr, t_img *img, int x, int y);
 void			print_stamina_bar(t_img *img, int stamina);
@@ -368,4 +359,6 @@ void			ft_strafing(t_all *all, double dir);
 void			scale_img(t_img *dst, t_img *src);
 void			it_is_the_end(t_all *all);
 void			mute_sound(t_all *all);
+void			init_xpm(t_mlx ptr, t_img *img, char *path);
+
 #endif

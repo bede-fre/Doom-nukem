@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 19:43:40 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/27 11:03:52 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		ft_draw(t_all all, char *name)
 	all.prevy = -8000;
 	all.start_wall = WINY / 2;
 	title = ft_strjoin("doom-nukem - ", name);
-	ft_init_mlx(&all, title);
+	ft_init(&all, title);
 	free(title);
 	mlx_hook(all.ptr.win, 2, (1L << 0), ft_key_press, &all);
 	mlx_hook(all.ptr.win, 3, (1L << 1), ft_key_release, &all);

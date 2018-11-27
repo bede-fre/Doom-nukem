@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:08:22 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 09:37:25 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,9 @@ int		is_door(char map[MAPY][MAPX], t_ray *ray)
 {
 	double t;
 
-	t = (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x),
-			map));
-
-	return (
-		map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_I
+	t = (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x), map));
+	return (map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_I
 		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_I
 		&& map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_R
-		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_R
-		);
+		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_R);
 }

@@ -6,31 +6,31 @@
 /*   By: aruellou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 19:11:47 by aruellou          #+#    #+#             */
-/*   Updated: 2018/11/26 10:10:31 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 09:36:12 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void	door_auto(char map[MAPY][MAPX], t_player p, t_point	i)
+void	door_auto(char map[MAPY][MAPX], t_player p, t_point i)
 {
 	if (map[i.y][i.x] == T_DOOR_I && door_timer(0.0, i.y, i.x, map) > 0.99)
 		map[i.y][i.x] = T_DOOR_O;
 	if (map[i.y][i.x] == T_DOOR_R && door_timer(0.0, i.y, i.x, map) < 0.01)
 		map[i.y][i.x] = T_DOOR_C;
-	if (map[i.y][i.x] == T_DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2) + pow(((p.y / 64) - i.y), 2)) >= 5)
+	if (map[i.y][i.x] == T_DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2) +
+		pow(((p.y / 64) - i.y), 2)) >= 5)
 	{
 		map[i.y][i.x] = T_DOOR_R;
 		door_timer(-DOOR_SPEED, i.y, i.x, map);
 	}
-
 }
 
 void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 {
-	int i;
-	int j;
-	char c;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
 	while (i < MAPY)
@@ -55,15 +55,13 @@ void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 
 float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
 {
-	static float timer[MAPY][MAPX];
-	static int	 i = 0;
-	char c;
+	static float	timer[MAPY][MAPX];
+	static int		i = 0;
+	char			c;
 
 	c = map[x][y];
-
-	if (i % 50000 == 0) {
+	if (i % 50000 == 0)
 		door_update(timer, map);
-	}
 	i++;
 	if (c == T_DOOR_C || c == T_DOOR_I || c == T_DOOR_R || c == T_DOOR_O)
 	{
@@ -71,7 +69,7 @@ float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
 			timer[y][x] = 0.0;
 		else if (c == T_DOOR_O)
 			timer[y][x] = 1.0;
-		else if (add) 
+		else if (add)
 			timer[y][x] += add;
 		return (timer[y][x]);
 	}

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 20:32:33 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/27 11:05:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,66 +45,41 @@ void		ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE])
 	keys_tab[0][KEY_T] = 1;
 }
 
-static void	init_textures(t_all *all, t_textures *textures, t_img *end_img)
+static void	init_textures(t_all *all, t_textures *textures)
 {
-	textures->img_n.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_NORTH, &textures->width, &textures->height);
-	textures->img_s.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_SOUTH, &textures->width, &textures->height);
-	textures->img_e.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_EAST, &textures->width, &textures->height);
-	textures->img_w.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_WEST, &textures->width, &textures->height);
-	textures->img_d.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_DOOR, &textures->width, &textures->height);
-	textures->img_dr.img = mlx_xpm_file_to_image(all->ptr.mlx,
-		TEXT_DOOR_R, &textures->width, &textures->height);
-	textures->nether.img = mlx_xpm_file_to_image(all->ptr.mlx, TEXT_NETHER,
-		&textures->nether.width, &textures->nether.height);
-	all->hud.s_mute.ptr = mlx_xpm_file_to_image(all->ptr.mlx, SPR_MUTE,
-		&all->hud.s_mute.width, &all->hud.s_mute.height);
-	end_img->img = mlx_xpm_file_to_image(all->ptr.mlx, END_IMG,
-		&end_img->width, &end_img->height);
-	if (!textures->img_n.img || !textures->img_s.img || !textures->img_e.img
-	|| !textures->img_w.img || !textures->img_d.img || !textures->img_dr.img
-	|| !end_img->img || !textures->nether.img || !all->hud.s_mute.ptr)
-		ft_error("error", 11, perror);
+	init_xpm(all->ptr, &textures->img_n, TEXT_NORTH);
+	init_xpm(all->ptr, &textures->img_s, TEXT_SOUTH);
+	init_xpm(all->ptr, &textures->img_e, TEXT_EAST);
+	init_xpm(all->ptr, &textures->img_w, TEXT_WEST);
+	init_xpm(all->ptr, &textures->img_d, TEXT_DOOR);
+	init_xpm(all->ptr, &textures->img_dr, TEXT_DOOR_R);
+	init_xpm(all->ptr, &textures->nether, TEXT_NETHER);
 }
 
-static void	init_data_textures(t_textures *textures, t_img *end_img)
-{
-	textures->img_n.data = mlx_get_data_addr(textures->img_n.img,
-		&textures->img_n.bpp, &textures->img_n.sl, &textures->img_n.endian);
-	textures->img_s.data = mlx_get_data_addr(textures->img_s.img,
-		&textures->img_s.bpp, &textures->img_s.sl, &textures->img_s.endian);
-	textures->img_e.data = mlx_get_data_addr(textures->img_e.img,
-		&textures->img_e.bpp, &textures->img_e.sl, &textures->img_e.endian);
-	textures->img_w.data = mlx_get_data_addr(textures->img_w.img,
-		&textures->img_w.bpp, &textures->img_w.sl, &textures->img_w.endian);
-	textures->img_d.data = mlx_get_data_addr(textures->img_dr.img,
-		&textures->img_dr.bpp, &textures->img_dr.sl, &textures->img_dr.endian);
-	textures->img_dr.data = mlx_get_data_addr(textures->img_d.img,
-		&textures->img_d.bpp, &textures->img_d.sl, &textures->img_d.endian);
-	textures->nether.data = mlx_get_data_addr(textures->nether.img,
-		&textures->nether.bpp, &textures->nether.sl, &textures->nether.endian);
-	end_img->data = mlx_get_data_addr(end_img->img, &end_img->bpp, &end_img->sl,
-		&end_img->endian);
-}
-
-void		ft_init_mlx(t_all *all, char *title)
+static void	init_hud(t_all *all, t_hud *hud)
 {
 	t_img tmp;
 
+	init_xpm(all->ptr, &hud->s_jump, SPR_JUMP);
+	init_xpm(all->ptr, &hud->s_run, SPR_RUN);
+	init_xpm(all->ptr, &hud->s_idle, SPR_IDLE);
+	init_xpm(all->ptr, &hud->s_walk, SPR_WALK);
+	init_xpm(all->ptr, &hud->s_crouch, SPR_CROUCH);
+	init_xpm(all->ptr, &hud->mute, MUTE_IMG);
+	init_image(all->ptr, &hud->stamina_bar, BARW, BARH);
+	init_xpm(all->ptr, &tmp, END_IMG);
+	scale_img(&all->end_img, &tmp);
+}
+
+void		ft_init(t_all *all, char *title)
+{
 	all->ptr.mlx = mlx_init();
 	all->ptr.win = mlx_new_window(all->ptr.mlx, WINX, WINY, title);
 	init_image(all->ptr, &all->info, INFOX, INFOY);
 	init_image(all->ptr, &all->fp, WINX, WINY);
-	init_image(all->ptr, &all->hud.stamina_bar, BARW, BARH);
 	init_image(all->ptr, &all->end_img, WINX, WINY);
+	init_textures(all, &all->textures);
+	init_hud(all, &all->hud);
 	all->wall_gap = 0.0;
 	all->stamina = (int)STAMINA_MAX;
-	init_textures(all, &all->textures, &tmp);
-	init_data_textures(&all->textures, &tmp);
-	scale_img(&all->end_img, &tmp);
-	init_stickman(all);
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/26 17:28:52 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/27 09:48:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@
 # define TRUE		1
 # define FALSE		0
 # define F_SOUNDS	"srcs/map_editor/sounds/"
-# define F_FONT		"/srcs/map_editor/font/"
-# define F_TEXT		"/srcs/map_editor/textures/"
+# define F_FONT		"srcs/map_editor/font/"
+# define F_TEXT		"srcs/map_editor/textures/"
 # define TEXT_A		F_TEXT"wood1.xpm"
 # define TEXT_B		F_TEXT"metal1.xpm"
 # define TEXT_C		F_TEXT"stone1.xpm"
 # define TEXT_D		F_TEXT"ice1.xpm"
 # define ERASER		F_TEXT"eraser.jpg"
 # define TEXT_DOOR	F_TEXT"door.xpm"
-# define TEXT_SOUND	F_TEXT"sound.png"
-# define TEXT_MUTE	F_TEXT"soundmute.png"
+# define TEXT_SOUND	"srcs/map_editor/images/sound.png"
+# define TEXT_MUTE	"srcs/map_editor/images/soundmute.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
