@@ -30,18 +30,20 @@ static int		ft_find_color2(t_all *all, double cpt, int col, float door)
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
 	if (hit_wall == T_DOOR_C && (all->rc.ray.hit == S_W ||
 		all->rc.ray.hit == E_W))
-		return (ft_color_textures(&all->textures.img_dr, cpt, col));
+		return (ft_color_textures(&all->textures.img_d, cpt, col));
 	else if ((hit_wall == T_DOOR_I || hit_wall == T_DOOR_R) &&
 		(all->rc.ray.hit == N_W || all->rc.ray.hit == W_W))
-		return (ft_color_textures(&all->textures.img_d, cpt, col + door));
+		return (ft_color_textures(&all->textures.img_dr, cpt, col + door));
 	else if ((hit_wall == T_DOOR_I || hit_wall == T_DOOR_R) &&
 		(all->rc.ray.hit == S_W || all->rc.ray.hit == E_W))
-		return (ft_color_textures(&all->textures.img_dr, cpt, col - door));
+		return (ft_color_textures(&all->textures.img_d, cpt, col - door));
 	else if (hit_wall == T_DOOR_I && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
-		return (ft_color_textures(&all->textures.img_d, cpt, col));
-	else
+		return (ft_color_textures(&all->textures.img_dr, cpt, col));
+	else if (hit_wall == TP_S)
 		return (ft_color_textures(&all->textures.nether, cpt, col));
+	else
+		return (ft_color_textures(&all->textures.img_d, cpt, col));
 }
 
 static int		ft_find_color(t_all *all, double cpt, int col)
@@ -62,7 +64,7 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
 	else if (hit_wall == T_DOOR_C && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))
-		return (ft_color_textures(&all->textures.img_d, cpt, col));
+		return (ft_color_textures(&all->textures.img_dr, cpt, col));
 	else
 		return (ft_find_color2(all, cpt, col, door));
 }
