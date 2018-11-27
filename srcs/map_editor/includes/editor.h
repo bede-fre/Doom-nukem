@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 09:48:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:57:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 # define TEXT_B		F_TEXT"metal1.xpm"
 # define TEXT_C		F_TEXT"stone1.xpm"
 # define TEXT_D		F_TEXT"ice1.xpm"
-# define ERASER		F_TEXT"eraser.jpg"
 # define TEXT_DOOR	F_TEXT"door.xpm"
+# define ERASER		"srcs/map_editor/images/eraser.png"
 # define TEXT_SOUND	"srcs/map_editor/images/sound.png"
 # define TEXT_MUTE	"srcs/map_editor/images/soundmute.png"
 # define FONT		F_FONT"times-new-roman.ttf"
