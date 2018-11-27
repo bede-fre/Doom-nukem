@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 11:03:52 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 15:46:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,36 @@ int			ft_quit(void)
 	exit(0);
 }
 
+static void	print_commands(void)
+{
+	ft_putchar('\n');
+	ft_putendl("		CONTROL CENTER");
+	ft_putchar('\n');
+	ft_putendl("Esc		--> Quit");
+	ft_putendl("W		--> Step forward");
+	ft_putendl("S		--> Step backward");
+	ft_putendl("A		--> Straf left");
+	ft_putendl("D		--> Straf right");
+	ft_putendl("Q		--> Turn left");
+	ft_putendl("E		--> Turn right");
+	ft_putendl("Space		--> Jump / Fly");
+	ft_putendl("Shift		--> Run");
+	ft_putendl("Ctrl		--> Crouch");
+	ft_putendl("F		--> Open doors");
+	ft_putendl("L		--> Leaks");
+	ft_putendl("M		--> Mute");
+	ft_putendl("X		--> Active / Desactive fly");
+	ft_putendl("H		--> Active / Desactive fish eye");
+	ft_putendl("Enter		--> Active / Desactive mouse");
+	ft_putendl("Left Clic	--> Print ray info");
+	ft_putchar('\n');
+}
+
 void		ft_draw(t_all all, char *name)
 {
 	char	*title;
 
+	print_commands();
 	all.prevx = -8000;
 	all.prevy = -8000;
 	all.start_wall = WINY / 2;

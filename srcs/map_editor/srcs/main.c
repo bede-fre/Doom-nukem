@@ -6,11 +6,22 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 21:03:37 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/27 15:45:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+static void	print_commands(void)
+{
+	ft_putchar('\n');
+	ft_putendl("		CONTROL CENTER");
+	ft_putchar('\n');
+	ft_putendl("Esc		--> Quit");
+	ft_putendl("Enter		--> Generate");
+	ft_putendl("L		--> Leaks");
+	ft_putchar('\n');
+}
 
 /*
 ** INITIALISATION DE ENV ET LANCEMENT DE LA BOUCLE DES EVENTS
@@ -22,6 +33,7 @@ static void	ft_loop(char *file_name)
 	t_env		env;
 	SDL_Event	event;
 
+	print_commands();
 	loop = 1;
 	init(&env, file_name);
 	start_draw(&env);
