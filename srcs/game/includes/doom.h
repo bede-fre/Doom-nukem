@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 11:04:03 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 14:20:56 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@
 # define S_OPENDOOR		F_SOUNDS"door_open.wav"
 # define S_CLOSEDOOR	F_SOUNDS"door_close.wav"
 # define S_TELEPORT		F_SOUNDS"teleport.wav"
-# define S_WIN			F_SOUNDS"door_open.wav"
+# define S_WIN			F_MUSIC"win.wav"
 # define STAMINA_MAX	200.0
 # define JUMP_STA		(int)(STAMINA_MAX / 5.0)
 
@@ -256,6 +256,7 @@ typedef struct	s_textures
 typedef struct	s_musics
 {
 	Mix_Music	*musics;
+	Mix_Music	*win;
 }				t_musics;
 
 typedef struct	s_sounds
@@ -263,7 +264,6 @@ typedef struct	s_sounds
 	Mix_Chunk	*opendoor;
 	Mix_Chunk	*closedoor;
 	Mix_Chunk	*teleport;
-	Mix_Chunk	*win;
 }				t_sounds;
 
 typedef struct	s_hud
