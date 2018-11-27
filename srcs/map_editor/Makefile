@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/23 19:05:31 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/27 17:44:41 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 OPE_SYS					= $(shell uname)
 NAME					= editor
 SRCS_FILES				= $(addsuffix .c, main init events tools make_grid \
-						  refresh_events check_frame init2 clear start_draw \
+						  refresh_events init2 clear start_draw \
 						  check_and_stock_map print_map modif_map write_file \
 						  shape input print_buttons init_button tools2 tools3 \
 						  set_text create_new_file)

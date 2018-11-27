@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 14:57:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:44:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@
 # define F_SOUNDS	"srcs/map_editor/sounds/"
 # define F_FONT		"srcs/map_editor/font/"
 # define F_TEXT		"srcs/map_editor/textures/"
+# define F_IMAGE	"srcs/map_editor/images/"
 # define TEXT_A		F_TEXT"wood1.xpm"
 # define TEXT_B		F_TEXT"metal1.xpm"
 # define TEXT_C		F_TEXT"stone1.xpm"
 # define TEXT_D		F_TEXT"ice1.xpm"
 # define TEXT_DOOR	F_TEXT"door.xpm"
-# define ERASER		"srcs/map_editor/images/eraser.png"
-# define TEXT_SOUND	"srcs/map_editor/images/sound.png"
-# define TEXT_MUTE	"srcs/map_editor/images/soundmute.png"
+# define ERASER		F_IMAGE"eraser.png"
+# define TEXT_SOUND	F_IMAGE"sound.png"
+# define TEXT_MUTE	F_IMAGE"soundmute.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -191,7 +192,6 @@ typedef struct		s_env
 void				init(t_env *env, char *file_name);
 void				events(SDL_Event event, int *loop, t_env *env);
 void				refresh_events(t_env *env);
-void				check_frame(void);
 SDL_Surface			*init_surface(t_env *env);
 SDL_Texture			*create_texture(SDL_Surface *surface, t_env *env);
 void				print_view(SDL_Surface *surface, t_env *env);

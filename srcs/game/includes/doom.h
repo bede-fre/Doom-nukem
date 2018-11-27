@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 15:50:48 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:41:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,30 @@
 # define BARY			(WINY - 45)
 # define BARW			250
 # define BARH			15
-# define TEXT_NORTH		"./srcs/game/textures/wood1.xpm"
-# define TEXT_SOUTH		"./srcs/game/textures/stone1.xpm"
-# define TEXT_EAST		"./srcs/game/textures/metal1.xpm"
-# define TEXT_WEST		"./srcs/game/textures/ice1.xpm"
-# define TEXT_DOOR		"./srcs/game/textures/door.xpm"
-# define TEXT_DOOR_R	"./srcs/game/textures/door_reverse.xpm"
-# define TEXT_NETHER	"./srcs/game/textures/nether.xpm"
-# define SPR_WALK		"./srcs/game/sprites/Walk_Sprite2.xpm"
-# define SPR_JUMP		"./srcs/game/sprites/Jump_Sprite2.xpm"
-# define SPR_CROUCH		"./srcs/game/sprites/Crouch_Sprite2.xpm"
-# define SPR_IDLE		"./srcs/game/sprites/Idle_Sprite2.xpm"
-# define SPR_RUN		"./srcs/game/sprites/Run_Sprite2.xpm"
-# define MUTE_IMG		"./srcs/game/images/soundmute.xpm"
-# define END_IMG		"./srcs/game/images/End_img.xpm"
+# define F_TEXT			"srcs/game/textures/"
+# define F_SPRITE		"srcs/game/sprites/"
+# define F_IMAGE		"srcs/game/images/"
+# define F_MUSIC		"srcs/game/musics/"
+# define F_SOUNDS		"srcs/game/sounds/"
+# define TEXT_NORTH		F_TEXT"wood1.xpm"
+# define TEXT_SOUTH		F_TEXT"stone1.xpm"
+# define TEXT_EAST		F_TEXT"metal1.xpm"
+# define TEXT_WEST		F_TEXT"ice1.xpm"
+# define TEXT_DOOR		F_TEXT"door.xpm"
+# define TEXT_DOOR_R	F_TEXT"door_reverse.xpm"
+# define TEXT_NETHER	F_TEXT"nether.xpm"
+# define SPR_WALK		F_SPRITE"Walk_Sprite2.xpm"
+# define SPR_JUMP		F_SPRITE"Jump_Sprite2.xpm"
+# define SPR_CROUCH		F_SPRITE"Crouch_Sprite2.xpm"
+# define SPR_IDLE		F_SPRITE"Idle_Sprite2.xpm"
+# define SPR_RUN		F_SPRITE"Run_Sprite2.xpm"
+# define MUTE_IMG		F_IMAGE"soundmute.xpm"
+# define END_IMG		F_IMAGE"End_img.xpm"
+# define M_WOAH			F_MUSIC"WOAH.wav"
+# define S_OPENDOOR		F_SOUNDS"door_open.wav"
+# define S_CLOSEDOOR	F_SOUNDS"door_close.wav"
+# define S_TELEPORT		F_SOUNDS"teleport.wav"
+# define S_WIN			F_MUSIC"win.wav"
 # define BLOCK_SIZE		64.0
 # define CAM_HEIGHT		BLOCK_SIZE / 2.0
 # define FOV			60.0
@@ -101,13 +111,6 @@
 # define TRUE			1
 # define FALSE			0
 # define THREAD			80
-# define F_MUSIC		"srcs/game/musics/"
-# define F_SOUNDS		"srcs/game/sounds/"
-# define M_WOAH			F_MUSIC"WOAH.wav"
-# define S_OPENDOOR		F_SOUNDS"door_open.wav"
-# define S_CLOSEDOOR	F_SOUNDS"door_close.wav"
-# define S_TELEPORT		F_SOUNDS"teleport.wav"
-# define S_WIN			F_MUSIC"win.wav"
 # define STAMINA_MAX	200.0
 # define JUMP_STA		(int)(STAMINA_MAX / 5.0)
 

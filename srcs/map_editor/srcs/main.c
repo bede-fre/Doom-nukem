@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 16:17:28 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 17:44:17 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	ft_loop(char *file_name)
 	{
 		while (SDL_PollEvent(&event))
 			events(event, &loop, &env);
-		check_frame();
 	}
 	SDL_RenderClear(env.renderer);
 	SDL_DestroyWindow(env.window);
