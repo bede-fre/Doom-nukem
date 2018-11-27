@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 11:05:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 15:50:06 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void		ft_init_keys_tab(int (*keys_tab)[KEYS_TAB_SIZE])
 	while (++i < KEYS_TAB_SIZE)
 		keys_tab[0][i] = 0;
 	keys_tab[0][KEY_H] = 1;
-	keys_tab[0][KEY_T] = 1;
 }
 
 static void	init_textures(t_all *all, t_textures *textures)

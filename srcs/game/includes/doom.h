@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 14:20:56 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/27 15:50:48 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@
 #  define KEY_Q			113
 #  define KEY_E			101
 #  define KEY_F			102
-#  define KEY_T			116
 #  define KEY_L			37
 #  define KEY_X			7
 #  define KEY_SPACEBAR	32
@@ -149,7 +148,6 @@
 #  define KEY_Q			12
 #  define KEY_E			14
 #  define KEY_F			3
-#  define KEY_T			17
 #  define KEY_L			37
 #  define KEY_M			46
 #  define KEY_X			7

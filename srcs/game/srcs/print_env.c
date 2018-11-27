@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 09:38:33 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/27 15:49:52 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,6 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 		else if ((double)i >= (all->start_wall + (h * (2.0 - all->wall_gap))))
 			ft_fill_pixel(&all->fp, x, i, BOTTOM);
 		else
-		{
-			if (all->keys_tab[KEY_T])
-				ft_print_textures(all, x, i, h * 4.0);
-			else if (all->keys_tab[KEY_T] == FALSE)
-				ft_fill_pixel(&all->fp, x, i, all->rc.ray.hit);
-		}
+			ft_print_textures(all, x, i, h * 4.0);
 	}
 }
