@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/27 17:46:56 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/28 09:10:51 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,9 +134,13 @@ re:
 	@$(MAKE) -s
 
 norme:
+	@echo "	LIBFT"
 	@$(MAKE) -C $(LIBFT_DIR) norme
+	@echo "\n	LIBVECT"
 	@$(MAKE) -C $(LIBVECT_DIR) norme
+	@echo "\n	GAME"
 	@$(MAKE) -C $(GAME_DIR) norme
+	@echo "\n	EDITOR"
 	@$(MAKE) -C $(EDITOR_DIR) norme
 
 title:
