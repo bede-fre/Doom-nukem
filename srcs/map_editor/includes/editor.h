@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 17:44:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/28 09:16:37 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ enum				e_keys
 	K_RENDER,
 	K_QUIT,
 	K_LEAKS,
+	K_MUTE,
 	B_LEFT,
 	B_RIGHT,
 	K_END

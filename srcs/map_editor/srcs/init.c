@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 15:25:26 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/28 09:17:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	init_bindings(t_env *env)
 	env->bindings[K_RENDER] = (int)SDLK_RETURN;
 	env->bindings[K_QUIT] = (int)SDLK_ESCAPE;
 	env->bindings[K_LEAKS] = (int)SDLK_l;
+	env->bindings[K_MUTE] = (int)SDLK_m;
 	env->bindings[B_LEFT] = (int)SDL_BUTTON_LEFT;
 	env->bindings[B_RIGHT] = (int)SDL_BUTTON_RIGHT;
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 17:44:17 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/28 09:20:40 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	print_commands(void)
 	ft_putchar('\n');
 	ft_putendl("Esc		--> Quit");
 	ft_putendl("Enter		--> Generate");
+	ft_putendl("M		--> Mute");
 	ft_putendl("L		--> Leaks");
 	ft_putchar('\n');
 }
