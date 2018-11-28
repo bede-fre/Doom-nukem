@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/27 11:01:22 by lguiller         ###   ########.fr        #
+#    Updated: 2018/11/28 10:25:37 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,12 +94,13 @@ _CUT		= "\033[k"
 
 .PHONY: all create_dir clean fclean re norme print
 
-all: $(NAME)
+all: create_dir
+	@$(MAKE) $(NAME)
 
 print:
 	@echo $(_CLEAR)$(_YELLOW)"Building - "$(_GREEN)$(NAME)$(_END)
 
-$(NAME): print create_dir $(OBJS)
+$(NAME): print $(OBJS)
 	@gcc $(FLAGS) $(OBJS) $(FRAMEWORK) -o ../../$(NAME)
 	@echo $(_GREEN)"\nDone.\n"$(_END)$(_SHOW_CURS)
 
