@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 15:49:52 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 10:37:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 	hit_wall = all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)];
 	door = 64 * door_timer(0.0, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
 		all->rc.map);
-	if (hit_wall == T_A || hit_wall == T_A_S)
+	if (hit_wall == T_A || hit_wall == T_AS)
 		return (ft_color_textures(&all->textures.img_n, cpt, col));
-	else if (hit_wall == T_B || hit_wall == T_B_S)
+	else if (hit_wall == T_B || hit_wall == T_BS)
 		return (ft_color_textures(&all->textures.img_e, cpt, col));
-	else if (hit_wall == T_C || hit_wall == T_C_S)
+	else if (hit_wall == T_C || hit_wall == T_CS)
 		return (ft_color_textures(&all->textures.img_s, cpt, col));
-	else if (hit_wall == T_D || hit_wall == T_D_S)
+	else if (hit_wall == T_D || hit_wall == T_DS)
 		return (ft_color_textures(&all->textures.img_w, cpt, col));
 	else if (hit_wall == T_DOOR_C && (all->rc.ray.hit == N_W ||
 		all->rc.ray.hit == W_W))

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 15:30:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:24:38 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 10:42:13 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static Uint32	col_wall(char object)
 		return (T_CS_COL);
 	else if (object == T_DS)
 		return (T_DS_COL);
-	else if (object == SECRET)
-		return (SECRET_COL);
 	else if (object == TP_S)
 		return (TP_S_COL);
 	else if (object == TP_E)

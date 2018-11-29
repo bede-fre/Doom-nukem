@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 17:41:46 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 10:36:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@
 # define TP_S			'3'
 # define TP_E			'4'
 # define T_A			'A'
-# define T_A_S			'a'
+# define T_AS			'a'
 # define T_B			'B'
-# define T_B_S			'b'
+# define T_BS			'b'
 # define T_C			'C'
-# define T_C_S			'c'
+# define T_CS			'c'
 # define T_D			'D'
-# define T_D_S			'd'
+# define T_DS			'd'
 # define T_DOOR_C		'-'
 # define T_DOOR_I		'i'
 # define T_DOOR_R		'r'

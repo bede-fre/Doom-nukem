@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 13:36:28 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/29 10:38:29 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	fill_rect(t_img *ptr, char map[MAPY][MAPX], t_player p, t_point i)
 	if (map[i.y][i.x] == T_A || map[i.y][i.x] == T_B || map[i.y][i.x] == T_C
 		|| map[i.y][i.x] == T_D)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
-	if (map[i.y][i.x] == T_A_S || map[i.y][i.x] == T_B_S
-			|| map[i.y][i.x] == T_C_S || map[i.y][i.x] == T_D_S)
+	if (map[i.y][i.x] == T_AS || map[i.y][i.x] == T_BS
+			|| map[i.y][i.x] == T_CS || map[i.y][i.x] == T_DS)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
 	else if (map[i.y][i.x] == TP_S)
 		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_GREEN);
