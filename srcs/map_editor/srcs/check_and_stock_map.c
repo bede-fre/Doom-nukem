@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:40:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 11:42:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 10:25:07 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_check_char(char *buff, short i)
 			ft_error("error: Wrong character found", 4, ft_puterror);
 }
 
-void		ft_check_map(char *buff, int *start, int *tp)
+static void	ft_check_map(char *buff, int *start, int *tp)
 {
 	if (ft_strlen(buff) != BUFF_SIZE)
 		ft_error("error: Wrong line length", 1, ft_puterror);
