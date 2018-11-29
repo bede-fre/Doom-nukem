@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 16:10:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 17:35:03 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_fill_pixel(t_img *ptr, int x, int y, int col)
 void		ft_print_all(t_all *all)
 {
 	pthread_t	thread[WINX / THREAD];
-	t_all		*tmp[WINX / THREAD];
+	t_all		tmp[WINX / THREAD];
 	int			i;
 	int			x;
 
@@ -41,19 +41,15 @@ void		ft_print_all(t_all *all)
 	x = 0;
 	while ((all->i += THREAD) < WINX)
 	{
-		tmp[x] = (t_all*)ft_memalloc(sizeof(t_all));
-		ft_cpy_struct(tmp[x], all);
-		pthread_create(&thread[x], NULL, ft_wall_dist, tmp[x]);
+		ft_cpy_struct(&tmp[x], all);
+		pthread_create(&thread[x], NULL, ft_wall_dist, &tmp[x]);
 		all->lens -= (double)THREAD * ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 		all->a -= (double)THREAD * ft_rad(RAY_ANGLE);
 		++x;
 	}
 	i = -1;
 	while (++i < WINX / THREAD)
-	{
 		pthread_join(thread[i], NULL);
-		free(tmp[i]);
-	}
 }
 
 int			ft_quit(void)

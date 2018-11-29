@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:56:49 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/27 14:21:21 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/29 14:43:26 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,12 @@ void		init_sounds(t_all *all)
 		ft_puterror(Mix_GetError());
 	if ((all->musics.win = Mix_LoadMUS(S_WIN)) == NULL)
 		ft_puterror(Mix_GetError());
+}
+
+void		init_sprites(t_all *all, t_sprites *sprites)
+{
+
+	(void)all;
+	(void)sprites;
+	//	init_xpm(all->ptr, &sprites->spr_barrel, SPR_BARREL);
 }

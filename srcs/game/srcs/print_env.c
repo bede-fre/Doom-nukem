@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/29 10:37:34 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 15:56:01 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,21 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 	else
 		col = (int)(all->rc.ray.y - ft_roundminf(all->rc.ray.y, BLOCK_SIZE));
 	ft_fill_pixel(&all->fp, x, i, ft_find_color(all, cpt, col));
+}
+
+void		print_sprite(t_all *all)
+{
+	double	h;
+	t_img	tmp;
+	const double	dist =
+	ft_vecnorm(ft_vecsub(ft_vecdef(1760.0, 1952, 0.0), ft_vecdef((double)all->p.x, (double)all->p.y, 0.0)));
+
+//	printf("%d %d\n", all->rc.ray.pos.x, all->rc.ray.pos.y);
+	h = ft_wall_height_on_screen(dist);
+	init_xpm(all->ptr, &tmp, SPR_BARREL);
+	init_image(all->ptr, &all->sprites.spr_barrel, h, h);
+	scale_img(&all->sprites.spr_barrel, &tmp);
+	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->sprites.spr_barrel.img, WINX / 2 - all->sprites.spr_barrel.width / 2, WINY / 2 - all->sprites.spr_barrel.height / 2);
 }
 
 void			ft_print_on_screen(t_all *all, int x, double lens)

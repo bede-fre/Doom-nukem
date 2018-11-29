@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:40:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/29 10:42:20 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 17:00:05 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_check_char(char *buff, short i)
 			&& buff[i] != T_A && buff[i] != T_B && buff[i] != T_C
 			&& buff[i] != T_D && buff[i] != T_AS && buff[i] != T_BS
 			&& buff[i] != T_CS && buff[i] != T_DS && buff[i] != T_DOOR
-			&& buff[i] != END)
+			&& buff[i] != END && buff[i] != '0')
 			ft_error("error: Wrong character found", 4, ft_puterror);
 }
 

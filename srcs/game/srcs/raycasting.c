@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:08:23 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 17:23:50 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 		&& is_displayable(map[to_map(ray->y)][to_map(ray->x)])
 		&& is_door(map, ray))
 	{
+		if (is_sprite(map[to_map(ray->y)][to_map(ray->x)]))
+		{
+			ray->pos.x = 1760;
+			ray->pos.y = 1952;
+		}
 		ray->x += ray->xa;
 		ray->y += ray->ya;
 		++i;

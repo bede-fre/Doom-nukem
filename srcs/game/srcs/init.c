@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 15:50:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 17:23:20 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		ft_init(t_all *all, char *title)
 	init_image(all->ptr, &all->end_img, WINX, WINY);
 	init_textures(all, &all->textures);
 	init_hud(all, &all->hud);
+	init_sprites(all, &all->sprites);
 	all->wall_gap = 0.0;
 	all->stamina = (int)STAMINA_MAX;
 }

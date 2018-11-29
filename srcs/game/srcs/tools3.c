@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 10:12:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 10:46:22 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 12:10:30 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,11 @@ void	display_map(char map[MAPY][MAPX])
 		ft_putchar('\n');
 		i++;
 	}
+}
+
+int		is_sprite(char c)
+{
+	if (c == S_BARREL)
+		return (1);
+	return (0);
 }

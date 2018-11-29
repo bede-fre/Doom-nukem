@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 10:36:55 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/29 17:23:35 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define TEXT_DOOR		F_TEXT"door.xpm"
 # define TEXT_DOOR_R	F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER	F_TEXT"nether.xpm"
+# define SPR_BARREL		F_SPRITE"barrel.xpm"
 # define SPR_WALK		F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP		F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH		F_SPRITE"Crouch_Sprite2.xpm"
@@ -63,6 +64,7 @@
 # define START			's'
 # define END			'e'
 # define FLOOR			' '
+# define S_BARREL		'0'
 # define TP_S			'3'
 # define TP_E			'4'
 # define T_A			'A'
@@ -188,6 +190,12 @@ typedef struct	s_parse
 	short		i;
 }				t_parse;
 
+typedef struct	s_test
+{
+	t_point		pos;
+	double		dist;
+}				t_test;
+
 typedef struct	s_ray
 {
 	double		dist;
@@ -200,6 +208,7 @@ typedef struct	s_ray
 	double		dy;
 	double		x;
 	double		y;
+	t_point		pos;
 }				t_ray;
 
 typedef struct	s_raycast
@@ -240,6 +249,11 @@ typedef struct	s_algo_brez
 	int			a;
 	int			b;
 }				t_algo_brez;
+
+typedef struct	s_sprites
+{
+	t_img		spr_barrel;
+}				t_sprites;
 
 typedef struct	s_textures
 {
@@ -284,6 +298,7 @@ typedef struct	s_all
 	t_musics	musics;
 	t_sounds	sounds;
 	t_textures	textures;
+	t_sprites	sprites;
 	t_hud		hud;
 	t_img		info;
 	t_img		map;
@@ -292,6 +307,8 @@ typedef struct	s_all
 	t_img		fp;
 	t_raycast	rc;
 	t_player	p;
+	t_test		test;
+//	t_img		tmp;
 	double		a;
 	int			i;
 	double		lens;
@@ -361,5 +378,8 @@ void			scale_img(t_img *dst, t_img *src);
 void			it_is_the_end(t_all *all);
 void			mute_sound(t_all *all);
 void			init_xpm(t_mlx ptr, t_img *img, char *path);
+int				is_sprite(char c);
+void			init_sprites(t_all *all, t_sprites *sprites);
+void			print_sprite(t_all *all);
 
 #endif
