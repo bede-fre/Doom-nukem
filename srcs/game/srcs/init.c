@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 17:23:20 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/30 11:50:46 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	init_textures(t_all *all, t_textures *textures)
 	init_xpm(all->ptr, &textures->img_d, TEXT_DOOR);
 	init_xpm(all->ptr, &textures->img_dr, TEXT_DOOR_R);
 	init_xpm(all->ptr, &textures->nether, TEXT_NETHER);
+	init_xpm(all->ptr, &all->sprites.spr_barrel, SPR_BARREL);
 }
 
 static void	init_hud(t_all *all, t_hud *hud)
@@ -79,7 +80,6 @@ void		ft_init(t_all *all, char *title)
 	init_image(all->ptr, &all->end_img, WINX, WINY);
 	init_textures(all, &all->textures);
 	init_hud(all, &all->hud);
-	init_sprites(all, &all->sprites);
 	all->wall_gap = 0.0;
 	all->stamina = (int)STAMINA_MAX;
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/29 16:43:06 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/30 10:20:03 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static void	ft_refresh_images(t_all *all)
 {
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
-	print_sprite(all);
 	print_stamina_bar(&all->hud.stamina_bar, all->stamina);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.stamina_bar.img, BARX, BARY);

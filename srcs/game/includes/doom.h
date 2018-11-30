@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 17:23:35 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/30 14:29:39 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,8 @@ typedef struct	s_ray
 	double		x;
 	double		y;
 	t_point		pos;
+	int			test;
+	t_mat2		inter;
 }				t_ray;
 
 typedef struct	s_raycast
@@ -379,7 +381,5 @@ void			it_is_the_end(t_all *all);
 void			mute_sound(t_all *all);
 void			init_xpm(t_mlx ptr, t_img *img, char *path);
 int				is_sprite(char c);
-void			init_sprites(t_all *all, t_sprites *sprites);
-void			print_sprite(t_all *all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 10:40:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/30 10:02:55 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		to_win(int x)
 {
-	return (x * BLOCK_SIZE / ZOOM);
+	return ((int)((double)x * BLOCK_SIZE));
 }
 
 int		to_map(double x)

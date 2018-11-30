@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/29 15:56:01 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/30 16:15:35 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ static int		ft_find_color(t_all *all, double cpt, int col)
 		return (ft_find_color2(all, cpt, col, door));
 }
 
+static int		find_color3(t_all *all, double cpt, double col)
+{
+	return (ft_color_textures(&all->sprites.spr_barrel, cpt, col));
+}
+
 static void		ft_print_textures(t_all *all, int x, int i, double h)
 {
 	int		col;
@@ -83,19 +88,47 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 	ft_fill_pixel(&all->fp, x, i, ft_find_color(all, cpt, col));
 }
 
-void		print_sprite(t_all *all)
+static void		ft_print_sprite(t_all *all, int x, int i, double h)
 {
-	double	h;
-	t_img	tmp;
-	const double	dist =
-	ft_vecnorm(ft_vecsub(ft_vecdef(1760.0, 1952, 0.0), ft_vecdef((double)all->p.x, (double)all->p.y, 0.0)));
+	double			cpt;
+	double			col;
+	double			dist;
+	t_mat3			v_sprite;
+	t_mat3			v_inter;
+	t_mat3			jeanbon;
 
-//	printf("%d %d\n", all->rc.ray.pos.x, all->rc.ray.pos.y);
-	h = ft_wall_height_on_screen(dist);
-	init_xpm(all->ptr, &tmp, SPR_BARREL);
-	init_image(all->ptr, &all->sprites.spr_barrel, h, h);
-	scale_img(&all->sprites.spr_barrel, &tmp);
-	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->sprites.spr_barrel.img, WINX / 2 - all->sprites.spr_barrel.width / 2, WINY / 2 - all->sprites.spr_barrel.height / 2);
+
+	v_sprite = ft_vecsub(ft_vecdef(all->rc.ray.pos.x, all->rc.ray.pos.y, 0.0),
+		ft_vecdef((double)all->p.x, (double)all->p.y, 0.0));
+	dist = ft_vecnorm(v_sprite);
+	v_inter = ft_vecsub(ft_vecdef(all->rc.ray.inter.x, all->rc.ray.inter.y, 0.0)
+		, ft_vecdef((double)all->p.x, (double)all->p.y, 0.0));
+	dist = cos(ft_rad(ft_vecangle(v_sprite, v_inter))) / dist;
+	v_inter = ft_vecnormalize(v_inter);
+	v_inter = ft_vecscale(v_inter, dist);
+	jeanbon = ft_vecadd(ft_vecrotz(ft_vecnormalize(v_sprite), -90.0), v_sprite);
+	jeanbon = ft_vecsub(v_inter, jeanbon);
+	col = ft_vecnorm(jeanbon);
+	printf("%f\n", col);
+	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
+		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
+	if (find_color3(all, cpt, col) != (int)ALPHA)
+		ft_fill_pixel(&all->fp, x, i, find_color3(all, cpt, col));
+}
+
+
+static void		print_sprite(t_all *all, int x)
+{
+	int				i;
+	const double	dist =
+	ft_vecnorm(ft_vecsub(ft_vecdef(all->rc.ray.pos.x, all->rc.ray.pos.y, 0.0),
+		ft_vecdef((double)all->p.x, (double)all->p.y, 0.0)));
+	const double	h = ft_wall_height_on_screen(dist);
+	const int		start = all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap));
+
+	i = -1;
+	while (++i < h)
+		ft_print_sprite(all, x, i + start, h);
 }
 
 void			ft_print_on_screen(t_all *all, int x, double lens)
@@ -117,4 +150,6 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 		else
 			ft_print_textures(all, x, i, h * 4.0);
 	}
+	if (all->rc.ray.test)
+		print_sprite(all, x);
 }

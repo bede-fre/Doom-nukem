@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 17:23:50 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/11/30 14:30:50 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 	ray->x = ray->fx;
 	ray->y = ray->fy;
 	i = 0;
+	ray->test = 0;
 	while (ray->x >= 0.0 && ray->x < (MAPX * BLOCK_SIZE)
 		&& ray->y >= 0.0 && ray->y < (MAPY * BLOCK_SIZE)
 		&& is_displayable(map[to_map(ray->y)][to_map(ray->x)])
@@ -26,8 +27,11 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 	{
 		if (is_sprite(map[to_map(ray->y)][to_map(ray->x)]))
 		{
-			ray->pos.x = 1760;
-			ray->pos.y = 1952;
+			ray->pos = ft_pointdef(to_win(to_map(ray->x)) + (int)(BLOCK_SIZE / 2.0),
+				to_win((to_map(ray->y))) + (int)(BLOCK_SIZE / 2.0));
+			ray->inter.x = ray->x;
+			ray->inter.y = ray->y;
+			ray->test = 1;
 		}
 		ray->x += ray->xa;
 		ray->y += ray->ya;
