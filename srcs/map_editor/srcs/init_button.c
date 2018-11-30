@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 20:33:22 by cmace            ###   ########.fr       */
+/*   Updated: 2018/11/30 19:58:54 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void		init_next_buttons(t_env *env)
 	env->buttons[STONE] = create_button(rect, BLACK, BLACK, env->text.t_c);
 	rect = create_rect(map_to_win(42) + 2, map_to_win(9) + 2, dim, dim);
 	env->buttons[ICE] = create_button(rect, BLACK, BLACK, env->text.t_d);
+	rect = create_rect(map_to_win(48), map_to_win(1), dim2, dim2);
+	env->buttons[BARREL] = create_button(rect, BLACK, BLACK, env->text.t_barrel);
 	rect = create_rect(map_to_win(48), map_to_win(1), dim2, dim2);
 	env->buttons[B_SOUND] = create_button(rect, BLACK, BLUE,
 		env->text.sound);

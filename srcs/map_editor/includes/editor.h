@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/29 10:41:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/11/30 21:30:05 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define T_BS		'b'
 # define T_CS		'c'
 # define T_DS		'd'
+# define T_BARREL	'0'
 # define T_DOOR		'-'
 # define TRUE		1
 # define FALSE		0
@@ -56,6 +57,7 @@
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
+# define TEXT_BARREL	F_IMAGE"soundmute.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -116,6 +118,7 @@ enum				e_button
 	STONE,
 	ICE,
 	COLISION,
+	BARREL,
 	NO_COLISION,
 	TP_START,
 	TP_END,
@@ -140,6 +143,7 @@ typedef struct		s_textures
 	SDL_Texture		*t_b;
 	SDL_Texture		*t_c;
 	SDL_Texture		*t_d;
+	SDL_Texture		*t_barrel;
 	SDL_Texture		*eraser;
 	SDL_Texture		*door;
 	SDL_Texture		*sound;
@@ -186,7 +190,7 @@ typedef struct		s_env
 	char			object;
 	int				colision;
 	int				sound;
-	t_button		buttons[15];
+	t_button		buttons[16];
 }					t_env;
 
 void				init(t_env *env, char *file_name);
