@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 11:19:02 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/03 15:23:49 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TEXT_DOOR		F_TEXT"door.xpm"
 # define TEXT_DOOR_R	F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER	F_TEXT"nether.xpm"
-# define SPR_BARREL		F_SPRITE"barrel.xpm"
+# define SPR_BARREL		F_SPRITE"Jet_pack.xpm"
 # define SPR_WALK		F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP		F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH		F_SPRITE"Crouch_Sprite2.xpm"
