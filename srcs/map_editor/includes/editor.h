@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/03 11:22:39 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/03 14:27:21 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
-# define TEXT_BARREL	F_IMAGE"eraser.png"
+# define TEXT_BARREL	F_TEXT"door.xpm"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
