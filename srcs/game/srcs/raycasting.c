@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 12:03:41 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/03 15:13:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void		*ft_wall_dist(void *ptr)
 			all->rc.ray.inter = all->rc.ray_v.inter;
 			all->rc.ray.test = 1;
 		}
-		if (all->rc.ray_h.test)
+		else if (all->rc.ray_h.test)
 		{
 			all->rc.ray.sprite = all->rc.ray_h.sprite;
 			all->rc.ray.inter = all->rc.ray_h.inter;
@@ -115,12 +115,12 @@ void		ft_print_ray_infos(t_all *all)
 	ft_fp_hori(&all->rc.ray_h, &all->p, all->rc.map, all->a);
 	ft_fp_vert(&all->rc.ray_v, &all->p, all->rc.map, all->a);
 	if (all->rc.ray_h.dist != all->rc.ray_h.dist ||
-		all->rc.ray_v.dist != all->rc.ray_v.dist)
+			all->rc.ray_v.dist != all->rc.ray_v.dist)
 		all->rc.ray = (all->rc.ray_h.dist != all->rc.ray_h.dist) ?
-		all->rc.ray_v : all->rc.ray_h;
+			all->rc.ray_v : all->rc.ray_h;
 	else
 		all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
-		all->rc.ray_h : all->rc.ray_v;
+			all->rc.ray_h : all->rc.ray_v;
 	if (all->p.ray_infos == 1)
 	{
 		ft_putstr("ray dist: ");
