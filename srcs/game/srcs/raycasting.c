@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/30 14:30:50 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/03 12:03:41 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
 	{
 		if (is_sprite(map[to_map(ray->y)][to_map(ray->x)]))
 		{
-			ray->pos = ft_pointdef(to_win(to_map(ray->x)) + (int)(BLOCK_SIZE / 2.0),
-				to_win((to_map(ray->y))) + (int)(BLOCK_SIZE / 2.0));
-			ray->inter.x = ray->x;
-			ray->inter.y = ray->y;
+			ray->sprite = ft_vecdef(to_win(to_map(ray->x)) + (BLOCK_SIZE / 2.0),
+				to_win(to_map(ray->y)) + (BLOCK_SIZE / 2.0), 0.0);
+			ray->inter = ft_vecdef(ray->x, ray->y, 0.0);
 			ray->test = 1;
 		}
 		ray->x += ray->xa;
@@ -90,6 +89,18 @@ void		*ft_wall_dist(void *ptr)
 		else
 			all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 				all->rc.ray_h : all->rc.ray_v;
+		if (all->rc.ray_v.test)
+		{
+			all->rc.ray.sprite = all->rc.ray_v.sprite;
+			all->rc.ray.inter = all->rc.ray_v.inter;
+			all->rc.ray.test = 1;
+		}
+		if (all->rc.ray_h.test)
+		{
+			all->rc.ray.sprite = all->rc.ray_h.sprite;
+			all->rc.ray.inter = all->rc.ray_h.inter;
+			all->rc.ray.test = 1;
+		}
 		ft_perso(&all->info, all->p);
 		ft_print_on_screen(all, all->i, all->lens);
 		all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];

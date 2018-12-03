@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/30 16:15:35 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/03 12:03:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,27 +92,18 @@ static void		ft_print_sprite(t_all *all, int x, int i, double h)
 {
 	double			cpt;
 	double			col;
-	double			dist;
-	t_mat3			v_sprite;
-	t_mat3			v_inter;
-	t_mat3			jeanbon;
+	const t_mat3	player = ft_vecdef(all->p.x, all->p.y, 0.0);
+	const t_mat3	v_sprite = ft_vecsub(all->rc.ray.sprite, player);
+	const t_mat3	v_inter = ft_vecsub(all->rc.ray.inter, player);
+	t_mat3			begin;
+	t_mat3			end;
 
-
-	v_sprite = ft_vecsub(ft_vecdef(all->rc.ray.pos.x, all->rc.ray.pos.y, 0.0),
-		ft_vecdef((double)all->p.x, (double)all->p.y, 0.0));
-	dist = ft_vecnorm(v_sprite);
-	v_inter = ft_vecsub(ft_vecdef(all->rc.ray.inter.x, all->rc.ray.inter.y, 0.0)
-		, ft_vecdef((double)all->p.x, (double)all->p.y, 0.0));
-	dist = cos(ft_rad(ft_vecangle(v_sprite, v_inter))) / dist;
-	v_inter = ft_vecnormalize(v_inter);
-	v_inter = ft_vecscale(v_inter, dist);
-	jeanbon = ft_vecadd(ft_vecrotz(ft_vecnormalize(v_sprite), -90.0), v_sprite);
-	jeanbon = ft_vecsub(v_inter, jeanbon);
-	col = ft_vecnorm(jeanbon);
-	printf("%f\n", col);
+	begin = ft_vecadd(ft_vecscale(ft_vecrotz(ft_vecnormalize(v_sprite), -90.0), BLOCK_SIZE / 2.0), v_sprite);
+	end = ft_vecscale(ft_vecnormalize(v_inter), ft_vecnorm(v_sprite) / cos(ft_rad(ft_vecangle(v_sprite, v_inter))));
+	col = ft_vecnorm(ft_vecsub(end, begin));
 	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
 		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
-	if (find_color3(all, cpt, col) != (int)ALPHA)
+	if (find_color3(all, cpt, col) != (int)ALPHA && col >= 0.0 && col < 64.0)
 		ft_fill_pixel(&all->fp, x, i, find_color3(all, cpt, col));
 }
 
@@ -120,10 +111,8 @@ static void		ft_print_sprite(t_all *all, int x, int i, double h)
 static void		print_sprite(t_all *all, int x)
 {
 	int				i;
-	const double	dist =
-	ft_vecnorm(ft_vecsub(ft_vecdef(all->rc.ray.pos.x, all->rc.ray.pos.y, 0.0),
-		ft_vecdef((double)all->p.x, (double)all->p.y, 0.0)));
-	const double	h = ft_wall_height_on_screen(dist);
+	const double	h = ft_wall_height_on_screen(
+	ft_vecnorm(ft_vecsub(all->rc.ray.sprite, ft_vecdef(all->p.x, all->p.y, 0.0))));
 	const int		start = all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap));
 
 	i = -1;

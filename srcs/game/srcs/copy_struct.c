@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:11:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 17:23:13 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/03 10:11:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		ft_cpy_struct(t_all *tmp, t_all *all)
 	tmp->start_wall = all->start_wall;
 	tmp->wall_gap = all->wall_gap;
 	tmp->rc.ray = all->rc.ray;
-	tmp->rc.ray.pos = all->rc.ray.pos;
-	tmp->rc.ray.pos.x = all->rc.ray.pos.x;
-	tmp->rc.ray.pos.y = all->rc.ray.pos.y;
+	tmp->rc.ray.sprite = all->rc.ray.sprite;
+	tmp->rc.ray.sprite.x = all->rc.ray.sprite.x;
+	tmp->rc.ray.sprite.y = all->rc.ray.sprite.y;
 }

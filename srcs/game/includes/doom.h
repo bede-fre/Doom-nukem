@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/30 14:29:39 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/03 11:19:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,9 +208,9 @@ typedef struct	s_ray
 	double		dy;
 	double		x;
 	double		y;
-	t_point		pos;
+	t_mat3		sprite;
 	int			test;
-	t_mat2		inter;
+	t_mat3		inter;
 }				t_ray;
 
 typedef struct	s_raycast
