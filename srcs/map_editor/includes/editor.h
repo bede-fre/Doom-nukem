@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/03 14:27:21 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/03 16:53:33 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
-# define TEXT_BARREL	F_TEXT"door.xpm"
+# define TEXT_BARREL	F_IMAGE"barrel.png"
+# define TEXT_JETPACK	F_IMAGE"jetpack.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -128,7 +129,8 @@ enum				e_button
 	B_ERASER,
 	B_END,
 	B_SOUND,
-	B_MUTE
+	B_MUTE,
+	JETPACKc
 };
 
 typedef struct		s_parse
@@ -145,6 +147,7 @@ typedef struct		s_textures
 	SDL_Texture		*t_c;
 	SDL_Texture		*t_d;
 	SDL_Texture		*t_barrel;
+	SDL_Texture		*t_jetpack;
 	SDL_Texture		*eraser;
 	SDL_Texture		*door;
 	SDL_Texture		*sound;
