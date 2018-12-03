@@ -6,13 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/30 20:55:20 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/03 13:49:14 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static char	chose_object2(t_button buttons[15], int x, int y)
+static char	chose_object2(t_button buttons[NB_BUTTONS], int x, int y)
 {
 	if (win_to_map(x) >= win_to_map(buttons[B_ERASER].pos.x) &&
 		win_to_map(x) <= win_to_map(buttons[B_ERASER].pos.x) + 3 &&
@@ -45,27 +45,19 @@ static char	chose_object2(t_button buttons[15], int x, int y)
 	return (-1);
 }
 
-char		chose_object(t_button buttons[15], int x, int y, int colision)
+char		chose_object(t_button buttons[NB_BUTTONS], int x, int y, int colision)
 {
-	if (win_to_map(x) >= win_to_map(buttons[WOOD].pos.x) &&
-		win_to_map(x) <= (win_to_map(buttons[WOOD].pos.x) + 4) &&
-		win_to_map(y) >= win_to_map(buttons[WOOD].pos.y) &&
-		win_to_map(y) <= (win_to_map(buttons[WOOD].pos.y) + 4))
+	if (win_to_map(x) == win_to_map(buttons[WOOD].pos.x) &&
+		win_to_map(y) == win_to_map(buttons[WOOD].pos.y))
 		return ((colision) ? T_A : T_AS);
-	else if (win_to_map(x) >= win_to_map(buttons[METAL].pos.x) &&
-		win_to_map(x) <= (win_to_map(buttons[METAL].pos.x) + 4) &&
-		win_to_map(y) >= win_to_map(buttons[METAL].pos.y) &&
-		win_to_map(y) <= (win_to_map(buttons[METAL].pos.y) + 4))
+	else if (win_to_map(x) == win_to_map(buttons[METAL].pos.x) &&
+		win_to_map(y) == win_to_map(buttons[METAL].pos.y))
 		return ((colision) ? T_B : T_BS);
-	else if (win_to_map(x) >= win_to_map(buttons[STONE].pos.x) &&
-		win_to_map(x) <= (win_to_map(buttons[STONE].pos.x) + 4) &&
-		win_to_map(y) >= win_to_map(buttons[STONE].pos.y) &&
-		win_to_map(y) <= (win_to_map(buttons[STONE].pos.y) + 4))
+	else if (win_to_map(x) == win_to_map(buttons[STONE].pos.x) &&
+		win_to_map(y) == win_to_map(buttons[STONE].pos.y))
 		return ((colision) ? T_C : T_CS);
-	else if (win_to_map(x) >= win_to_map(buttons[ICE].pos.x) &&
-		win_to_map(x) <= (win_to_map(buttons[ICE].pos.x) + 4) &&
-		win_to_map(y) >= win_to_map(buttons[ICE].pos.y) &&
-		win_to_map(y) <= (win_to_map(buttons[ICE].pos.y) + 4))
+	else if (win_to_map(x) == win_to_map(buttons[ICE].pos.x) &&
+		win_to_map(y) == win_to_map(buttons[ICE].pos.y))
 		return ((colision) ? T_D : T_DS);
 	else
 		return (chose_object2(buttons, x, y));

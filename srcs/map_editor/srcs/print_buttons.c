@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:22:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 14:25:27 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/03 10:32:13 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	print_border_textures_buttons(t_env *env, SDL_Surface *surface,
 		env->buttons[x].border_col);
 }
 
-static void	print_others_buttons(t_env *env, SDL_Surface *surface)
+ void	print_others_buttons(t_env *env, SDL_Surface *surface)
 {
 	fill_rect(surface, env->buttons[TP_START].pos,
 		env->buttons[TP_START].button_col);

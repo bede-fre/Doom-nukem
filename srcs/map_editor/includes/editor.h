@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/30 21:30:05 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/03 11:22:39 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define SCALE		(int)((double)WIN_HEIGHT / (double)(MAP_HEIGHT + 2))
 # define GAP		SCALE
 # define CAP_FPS	60
+# define NB_BUTTONS	16
 # define START		's'
 # define END		'e'
 # define FLOOR		' '
@@ -57,7 +58,7 @@
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
-# define TEXT_BARREL	F_IMAGE"soundmute.png"
+# define TEXT_BARREL	F_IMAGE"eraser.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -117,8 +118,8 @@ enum				e_button
 	METAL,
 	STONE,
 	ICE,
-	COLISION,
 	BARREL,
+	COLISION,
 	NO_COLISION,
 	TP_START,
 	TP_END,
@@ -190,7 +191,7 @@ typedef struct		s_env
 	char			object;
 	int				colision;
 	int				sound;
-	t_button		buttons[16];
+	t_button		buttons[NB_BUTTONS];
 }					t_env;
 
 void				init(t_env *env, char *file_name);

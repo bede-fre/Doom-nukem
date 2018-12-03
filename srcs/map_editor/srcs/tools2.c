@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 10:51:33 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 14:00:22 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/03 11:25:49 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ SDL_Rect	rect_to_win(SDL_Rect rect)
 
 int			get_object(char x)
 {
-	const int	object[] = {WOOD, WOOD, METAL, METAL, STONE, STONE, ICE, ICE,
+	const int	object[] = {WOOD, WOOD, METAL, METAL, STONE, STONE, ICE, ICE, BARREL,
 		TP_START, TP_END, B_START, B_ERASER, B_DOOR, B_END};
-	const char	wall[] = {T_A, T_AS, T_B, T_BS, T_C, T_CS, T_D, T_DS, TP_S,
+	const char	wall[] = {T_A, T_AS, T_B, T_BS, T_C, T_CS, T_D, T_DS, T_BARREL, TP_S,
 		TP_E, START, FLOOR, T_DOOR, END};
 	int			i;
 
 	i = -1;
-	while (++i < 14)
+	while (++i < NB_BUTTONS)
 		if (x == wall[i])
 			return (object[i]);
 	return (-1);

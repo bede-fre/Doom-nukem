@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 15:30:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 10:42:13 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/03 13:32:18 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static Uint32	col_wall2(char object)
 		return (T_DOOR_COL);
 	else if (object == END)
 		return (END_COL);
+	else if (object == T_BARREL)
+		return (GREEN);
 	else
 		return (0);
 }
