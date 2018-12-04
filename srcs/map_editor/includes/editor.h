@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/03 16:53:33 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/04 14:38:30 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 # define SCALE		(int)((double)WIN_HEIGHT / (double)(MAP_HEIGHT + 2))
 # define GAP		SCALE
 # define CAP_FPS	60
-# define NB_BUTTONS	16
+# define NB_BUTTONS	17
 # define START		's'
 # define END		'e'
 # define FLOOR		' '
-# define TP_S		'3'
-# define TP_E		'4'
+# define TP_S		'1'
+# define TP_E		'2'
 # define T_A		'A'
 # define T_B		'B'
 # define T_C		'C'
@@ -42,7 +42,9 @@
 # define T_BS		'b'
 # define T_CS		'c'
 # define T_DS		'd'
-# define T_BARREL	'0'
+# define BARREL		'3'
+# define JETPACK	'4'
+# define PILLAR		'5'
 # define T_DOOR		'-'
 # define TRUE		1
 # define FALSE		0
@@ -58,8 +60,9 @@
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
-# define TEXT_BARREL	F_IMAGE"barrel.png"
-# define TEXT_JETPACK	F_IMAGE"jetpack.png"
+# define T_BARREL	F_IMAGE"barrel.png"
+# define T_JETPACK	F_IMAGE"jetpack.png"
+# define T_PILLAR	F_IMAGE"soundmute.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -85,7 +88,9 @@
 # define GREEN		(Uint32)0x009900FF
 # define LIGHT_GREY	(Uint32)0xBBBBBBFF
 # define YELLOW		(Uint32)0xFFFF00FF
+# define ORANGE		(Uint32)0xFFA500FF
 # define PURPLE		(Uint32)0x642EFEFF
+# define PINK		(Uint32)0xC71585FF
 # define START_COL	RED
 # define T_A_COL	(Uint32)0x844927FF
 # define T_B_COL	(Uint32)0xF3A16AFF
@@ -119,7 +124,9 @@ enum				e_button
 	METAL,
 	STONE,
 	ICE,
-	BARREL,
+	B_BARREL,
+	B_JETPACK,
+	B_PILLAR,
 	COLISION,
 	NO_COLISION,
 	TP_START,
@@ -129,8 +136,7 @@ enum				e_button
 	B_ERASER,
 	B_END,
 	B_SOUND,
-	B_MUTE,
-	JETPACKc
+	B_MUTE
 };
 
 typedef struct		s_parse
@@ -148,6 +154,7 @@ typedef struct		s_textures
 	SDL_Texture		*t_d;
 	SDL_Texture		*t_barrel;
 	SDL_Texture		*t_jetpack;
+	SDL_Texture		*t_pillar;
 	SDL_Texture		*eraser;
 	SDL_Texture		*door;
 	SDL_Texture		*sound;
@@ -234,7 +241,7 @@ SDL_Rect			rect_to_map(SDL_Rect rect);
 SDL_Rect			rect_to_win(SDL_Rect rect);
 int					get_object(char x);
 int					get_colision(int x);
-char				chose_object(t_button buttons[15], int x, int y,
+char				chose_object(t_button buttons[NB_BUTTONS], int x, int y,
 						int colision);
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);

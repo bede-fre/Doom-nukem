@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 13:43:08 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/04 14:35:59 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		print_texture(t_env *env)
 	int			i;
 
 	i = -1;
-	while (++i <= BARREL)
+	while (++i <= B_PILLAR)
 	{
 		rect = create_rect(env->buttons[i].rect.x + 2,
 			env->buttons[i].rect.y + 2, env->buttons[i].rect.w - 3,

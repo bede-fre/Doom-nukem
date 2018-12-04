@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 13:49:14 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/04 14:36:37 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ static char	chose_object2(t_button buttons[NB_BUTTONS], int x, int y)
 		win_to_map(x) <= win_to_map(buttons[B_END].pos.x) + 2 &&
 		win_to_map(y) == win_to_map(buttons[B_END].pos.y))
 		return (END);
-	else if (win_to_map(x) >= win_to_map(buttons[BARREL].pos.x) &&
-		win_to_map(x) <= win_to_map(buttons[BARREL].pos.x) + 2 &&
-		win_to_map(y) == win_to_map(buttons[BARREL].pos.y))
-		return (T_BARREL);
+	else if (win_to_map(x) == win_to_map(buttons[B_BARREL].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_BARREL].pos.y))
+		return (BARREL);
+	else if (win_to_map(x) == win_to_map(buttons[B_JETPACK].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_JETPACK].pos.y))
+		return (JETPACK);
+	else if (win_to_map(x) == win_to_map(buttons[B_PILLAR].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_PILLAR].pos.y))
+		return (PILLAR);
 	return (-1);
 }
 

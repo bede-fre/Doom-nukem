@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:40:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/03 13:33:40 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/04 14:38:15 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	ft_check_start(char *buff, short i, int *start, int *tp)
 {
 	while (++i < BUFF_SIZE)
 	{
-		if (buff[i] == 's')
+		if (buff[i] == START)
 			++(*start);
-		if (buff[i] == '4')
+		if (buff[i] == TP_E)
 			++(*tp);
 		if (*start > 1)
 			ft_error("error: More than one departure area", 2, ft_puterror);
@@ -30,13 +30,17 @@ static void	ft_check_start(char *buff, short i, int *start, int *tp)
 static void	ft_check_char(char *buff, short i)
 {
 	while (++i < BUFF_SIZE)
+	{
 		if (buff[i] != FLOOR && buff[i] != START
 			&& buff[i] != TP_S && buff[i] != TP_E
 			&& buff[i] != T_A && buff[i] != T_B && buff[i] != T_C
 			&& buff[i] != T_D && buff[i] != T_AS && buff[i] != T_BS
 			&& buff[i] != T_CS && buff[i] != T_DS && buff[i] != T_DOOR
-			&& buff[i] != END && buff[i] != T_BARREL)
+			&& buff[i] != END && buff[i] != BARREL && buff[i] != JETPACK
+			&& buff[i] != PILLAR)
 			ft_error("error: Wrong character found", 4, ft_puterror);
+
+	}
 }
 
 static void	ft_check_map(char *buff, int *start, int *tp)

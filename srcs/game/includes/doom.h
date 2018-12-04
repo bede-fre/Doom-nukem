@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 10:36:55 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 11:42:46 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@
 # define START			's'
 # define END			'e'
 # define FLOOR			' '
-# define TP_S			'3'
-# define TP_E			'4'
+# define TP_S			'1'
+# define TP_E			'2'
 # define T_A			'A'
 # define T_AS			'a'
 # define T_B			'B'

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 15:42:34 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/04 14:32:00 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,12 @@ static void	init_textures(t_env *env)
 	env->text.t_c = create_texture(surface, env);
 	surface = IMG_Load(TEXT_D);
 	env->text.t_d = create_texture(surface, env);
-	surface = IMG_Load(TEXT_BARREL);
+	surface = IMG_Load(T_BARREL);
 	env->text.t_barrel = create_texture(surface, env);
+	surface = IMG_Load(T_JETPACK);
+	env->text.t_jetpack = create_texture(surface, env);
+	surface = IMG_Load(T_PILLAR);
+	env->text.t_pillar = create_texture(surface, env);
 	surface = IMG_Load(ERASER);
 	env->text.eraser = create_texture(surface, env);
 	surface = IMG_Load(TEXT_DOOR);
