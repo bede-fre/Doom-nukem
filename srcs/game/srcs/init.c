@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/30 11:50:46 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/04 10:55:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void		ft_init(t_all *all, char *title)
 	init_textures(all, &all->textures);
 	init_hud(all, &all->hud);
 	all->wall_gap = 0.0;
+	all->p.ray_infos = 0;
 	all->stamina = (int)STAMINA_MAX;
 }

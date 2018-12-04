@@ -23,10 +23,10 @@ C   C     C C C C       C   C CC
 C CCC C CCC C CCCCC CCC C CCC CC
 C C   C     C   C   C C     C CC
 C CCCCC CCC CCC CCCCC          C
-C   C C   C   C C              C
+C   C C   C   C C       C      C
 C CCC CCCCCCC C C              C
-C   C C C     C         0      C
+C   C C C     C       C 0 C    C
 CCC C C C C C CCC              C
-C         C C                  s
+C         C C           C      s
 CCCCCCCCCCCCCCCCCCCCC          C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC

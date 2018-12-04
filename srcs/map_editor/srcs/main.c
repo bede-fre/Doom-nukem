@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/28 09:20:40 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 10:11:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			main(int ac, char **av)
 	}
 	else
 	{
-		ft_puterror("usage: ./editor [-n] [map_name ...]");
+		ft_puterror("usage: ./editor [-n] [map_name]");
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

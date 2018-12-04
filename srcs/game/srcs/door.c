@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:12:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 14:12:10 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 10:38:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
 void	door_open(t_all *all)
 {
 	all->a = all->p.a - ft_rad((((WINX / 2) - 1) - (WINX / 2) - 1) * RAY_ANGLE);
-	ft_fp_hori(&all->rc.ray_h, &all->p, all->rc.map, all->a);
-	ft_fp_vert(&all->rc.ray_v, &all->p, all->rc.map, all->a);
+	ft_fp_hori(&all->rc.ray_h, all->p, all->rc.map, all->a);
+	ft_fp_vert(&all->rc.ray_v, all->p, all->rc.map, all->a);
 	if (all->rc.ray_h.dist != all->rc.ray_h.dist ||
 		all->rc.ray_v.dist != all->rc.ray_v.dist)
 		all->rc.ray = (all->rc.ray_h.dist != all->rc.ray_h.dist) ?

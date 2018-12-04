@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/03 12:03:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 10:52:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 
 	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
 		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
-	if (all->rc.ray.hit == N_W || all->rc.ray.hit == S_W)
-		col = (int)(all->rc.ray.x - ft_roundminf(all->rc.ray.x, BLOCK_SIZE));
-	else
-		col = (int)(all->rc.ray.y - ft_roundminf(all->rc.ray.y, BLOCK_SIZE));
+	col = ((all->rc.ray.hit == N_W || all->rc.ray.hit == S_W) ?
+		(int)all->rc.ray.x : (int)all->rc.ray.y) % (int)BLOCK_SIZE;
 	ft_fill_pixel(&all->fp, x, i, ft_find_color(all, cpt, col));
 }
 
@@ -95,12 +93,13 @@ static void		ft_print_sprite(t_all *all, int x, int i, double h)
 	const t_mat3	player = ft_vecdef(all->p.x, all->p.y, 0.0);
 	const t_mat3	v_sprite = ft_vecsub(all->rc.ray.sprite, player);
 	const t_mat3	v_inter = ft_vecsub(all->rc.ray.inter, player);
-	t_mat3			begin;
-	t_mat3			end;
+//	t_mat3			begin;
+//	t_mat3			end;
 
-	begin = ft_vecadd(ft_vecscale(ft_vecrotz(ft_vecnormalize(v_sprite), -90.0), BLOCK_SIZE / 2.0), v_sprite);
-	end = ft_vecscale(ft_vecnormalize(v_inter), ft_vecnorm(v_sprite) / cos(ft_rad(ft_vecangle(v_sprite, v_inter))));
-	col = ft_vecnorm(ft_vecsub(end, begin));
+//	begin = ft_vecadd(ft_vecscale(ft_vecrotz(ft_vecnormalize(v_sprite), -90.0), BLOCK_SIZE / 2.0), v_sprite);
+//	end = ft_vecscale(ft_vecnormalize(v_inter), ft_vecnorm(v_sprite) / cos(ft_rad(ft_vecangle(v_sprite, v_inter))));
+//	col = ft_vecnorm(ft_vecsub(end, begin));
+	col = 32.0 - (tan(ft_rad(ft_vecangle(v_sprite, v_inter))) * ft_vecnorm(v_sprite));
 	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
 		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
 	if (find_color3(all, cpt, col) != (int)ALPHA && col >= 0.0 && col < 64.0)

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 17:19:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 10:53:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TEXT_DOOR		F_TEXT"door.xpm"
 # define TEXT_DOOR_R	F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER	F_TEXT"nether.xpm"
-# define SPR_BARREL		F_SPRITE"barrel.xpm"
+# define SPR_BARREL		F_SPRITE"Jet_pack.xpm"
 # define SPR_WALK		F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP		F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH		F_SPRITE"Crouch_Sprite2.xpm"
@@ -92,8 +92,10 @@
 # define GREY_A			0x44888888
 # define YELLOW			0xFFFF00
 # define PURPLE			0x642EFE
-# define TOP			0x87CEFA
-# define BOTTOM			0xFFDA8C
+//# define TOP			0x87CEFA
+//# define BOTTOM			0xFFDA8C
+# define TOP			0x585858
+# define BOTTOM			0x323232
 # define N_W			0x940602
 # define S_W			0x50468C
 # define E_W			0x769600
@@ -209,8 +211,9 @@ typedef struct	s_ray
 	double		x;
 	double		y;
 	t_mat3		sprite;
-	int			test;
 	t_mat3		inter;
+	double		sprite_dist;
+	int			test;
 }				t_ray;
 
 typedef struct	s_raycast
@@ -310,7 +313,6 @@ typedef struct	s_all
 	t_raycast	rc;
 	t_player	p;
 	t_test		test;
-//	t_img		tmp;
 	double		a;
 	int			i;
 	double		lens;
@@ -356,9 +358,9 @@ int				is_wall(char wall);
 int				is_door(char map[MAPY][MAPX], t_ray *ray);
 int				is_displayable(char c);
 void			jump_and_crouch(t_all *all);
-void			ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX],
+void			ft_fp_hori(t_ray *ray, t_player p, char map[MAPY][MAPX],
 		double a);
-void			ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX],
+void			ft_fp_vert(t_ray *ray, t_player p, char map[MAPY][MAPX],
 		double a);
 int				ft_wall_height_on_screen(double dist);
 void			display_map(char map[MAPY][MAPX]);
