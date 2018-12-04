@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 15:54:39 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 16:00:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,8 @@
 # define LITTLE			0.00000000000012
 # define TRUE			1
 # define FALSE			0
-# define THREAD			80
+# define NB_THREAD		4
+# define THREAD			(WINX / NB_THREAD)
 # define STAMINA_MAX	200.0
 # define JUMP_STA		(int)(STAMINA_MAX / 5.0)
 
