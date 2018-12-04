@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 10:53:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 15:54:39 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TEXT_DOOR		F_TEXT"door.xpm"
 # define TEXT_DOOR_R	F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER	F_TEXT"nether.xpm"
-# define SPR_BARREL		F_SPRITE"Jet_pack.xpm"
+# define SPR_BARREL		F_SPRITE"pillar.xpm"
 # define SPR_WALK		F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP		F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH		F_SPRITE"Crouch_Sprite2.xpm"
@@ -65,6 +65,7 @@
 # define END			'e'
 # define FLOOR			' '
 # define S_BARREL		'0'
+# define S_PILLAR		'1'
 # define TP_S			'3'
 # define TP_E			'4'
 # define T_A			'A'
@@ -92,8 +93,6 @@
 # define GREY_A			0x44888888
 # define YELLOW			0xFFFF00
 # define PURPLE			0x642EFE
-//# define TOP			0x87CEFA
-//# define BOTTOM			0xFFDA8C
 # define TOP			0x585858
 # define BOTTOM			0x323232
 # define N_W			0x940602
@@ -383,5 +382,10 @@ void			it_is_the_end(t_all *all);
 void			mute_sound(t_all *all);
 void			init_xpm(t_mlx ptr, t_img *img, char *path);
 int				is_sprite(char c);
+int				ft_find_color(t_all *all, double cpt, int col);
+int				ft_find_color2(t_all *all, double cpt, int col, float door);
+int				ft_find_color3(t_all *all, double cpt, double col);
+void			cpy_sprite_infos(t_raycast *rc);
+void			register_sprite(t_ray *ray, t_player p);
 
 #endif

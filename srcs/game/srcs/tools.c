@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 13:00:48 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 15:27:34 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		to_map(double x)
 int		is_wall(char wall)
 {
 	return (wall == T_A || wall == T_B || wall == T_C || wall == T_D
-		|| wall == T_DOOR_C || wall == T_DOOR_I || wall == T_DOOR_R || wall == '0');
+		|| wall == T_DOOR_C || wall == T_DOOR_I || wall == T_DOOR_R
+		|| wall == S_BARREL || wall == S_PILLAR);
 }
 
 int		is_displayable(char c)

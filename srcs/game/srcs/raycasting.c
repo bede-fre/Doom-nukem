@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 10:45:45 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/04 15:54:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,7 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player p)
 		&& is_door(map, ray))
 	{
 		if (is_sprite(map[to_map(ray->y)][to_map(ray->x)]) && (ray->test = 1))
-		{
-			ray->sprite = ft_vecdef(to_win(to_map(ray->x)) + (BLOCK_SIZE / 2.0),
-				to_win(to_map(ray->y)) + (BLOCK_SIZE / 2.0), 0.0);
-			ray->inter = ft_vecdef(ray->x, ray->y, 0.0);
-			ray->sprite_dist = ft_vecnorm(ft_vecsub(ray->sprite, ft_vecdef(p.x, p.y, 0.0)));
-		}
+			register_sprite(ray, p);
 		ray->x += ray->xa;
 		ray->y += ray->ya;
 		++i;
@@ -90,20 +85,7 @@ void		*ft_wall_dist(void *ptr)
 		else
 			all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 				all->rc.ray_h : all->rc.ray_v;
-		if (all->rc.ray_v.test)
-		{
-			all->rc.ray.sprite = all->rc.ray_v.sprite;
-			all->rc.ray.inter = all->rc.ray_v.inter;
-			if (all->rc.ray.dist > all->rc.ray_v.sprite_dist)
-				all->rc.ray.test = 1;
-		}
-		else if (all->rc.ray_h.test)
-		{
-			all->rc.ray.sprite = all->rc.ray_h.sprite;
-			all->rc.ray.inter = all->rc.ray_h.inter;
-			if (all->rc.ray.dist > all->rc.ray_h.sprite_dist)
-				all->rc.ray.test = 1;
-		}
+		cpy_sprite_infos(&all->rc);
 		ft_perso(&all->info, all->p);
 		ft_print_on_screen(all, all->i, all->lens);
 		all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];

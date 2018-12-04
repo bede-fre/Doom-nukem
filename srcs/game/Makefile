@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/28 10:25:37 by lguiller         ###   ########.fr        #
+#    Updated: 2018/12/04 15:51:59 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS_FILES				= $(addsuffix .c, main bresenham display print_env \
 						  check_and_stock_map init minimap raycasting copy_struct \
 						  input_device movements movements2 tools tools2 tools3 \
 						  print_stamina_bar refresh_events init2 \
-						  door end sound)
+						  door end sound tools4)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/
