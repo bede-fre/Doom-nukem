@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 10:55:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/05 13:18:35 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,8 @@ void		ft_init(t_all *all, char *title)
 	init_hud(all, &all->hud);
 	all->wall_gap = 0.0;
 	all->p.ray_infos = 0;
+	all->rc.ray_h.list = NULL;
+	all->rc.ray_v.list = NULL;
+	all->rc.ray.list = NULL;
 	all->stamina = (int)STAMINA_MAX;
 }

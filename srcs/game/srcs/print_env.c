@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/04 15:52:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/05 15:40:43 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,9 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 			ft_print_textures(all, x, i, h * 4.0);
 	}
 	if (all->rc.ray.test)
+	{
 		print_sprite(all, x);
+		free_lst(all->rc.ray_h.list);
+		free_lst(all->rc.ray_v.list);
+	}
 }
