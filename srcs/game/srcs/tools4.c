@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 15:50:45 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/05 15:35:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/05 15:44:59 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	register_sprite(t_ray *ray, t_player p)
 		ft_vecdef(p.x, p.y, 0.0)));
 }
 
-void		free_lst(t_sprt *list)
+void	free_lst(t_sprt *list)
 {
 	t_sprt *tmp;
 
