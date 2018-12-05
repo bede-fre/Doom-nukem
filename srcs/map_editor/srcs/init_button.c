@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 14:31:41 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/05 13:42:39 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void		init_next_buttons(t_env *env)
 	env->buttons[B_JETPACK] = create_button(rect, BLUE, BLACK, env->text.t_jetpack);
 	rect = create_rect(map_to_win(42), map_to_win(10), dim, dim);
 	env->buttons[B_PILLAR] = create_button(rect, BLUE, BLACK, env->text.t_pillar);
+	rect = create_rect(map_to_win(44), map_to_win(10), dim, dim);
+	env->buttons[B_UPSTAMI] = create_button(rect, BLUE, BLACK, env->text.t_upstami);
 	rect = create_rect(map_to_win(48), map_to_win(1), dim, dim);
 	env->buttons[B_SOUND] = create_button(rect, BLACK, BLUE,
 		env->text.sound);

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/04 14:38:30 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/05 13:39:41 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SCALE		(int)((double)WIN_HEIGHT / (double)(MAP_HEIGHT + 2))
 # define GAP		SCALE
 # define CAP_FPS	60
-# define NB_BUTTONS	17
+# define NB_BUTTONS	18
 # define START		's'
 # define END		'e'
 # define FLOOR		' '
@@ -45,6 +45,7 @@
 # define BARREL		'3'
 # define JETPACK	'4'
 # define PILLAR		'5'
+# define UPSTAMI	'6'
 # define T_DOOR		'-'
 # define TRUE		1
 # define FALSE		0
@@ -62,7 +63,8 @@
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
 # define T_BARREL	F_IMAGE"barrel.png"
 # define T_JETPACK	F_IMAGE"jetpack.png"
-# define T_PILLAR	F_IMAGE"soundmute.png"
+# define T_PILLAR	F_IMAGE"pillar.png"
+# define T_UPSTAMI	F_IMAGE"pillar.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -126,6 +128,7 @@ enum				e_button
 	ICE,
 	B_BARREL,
 	B_JETPACK,
+	B_UPSTAMI,
 	B_PILLAR,
 	COLISION,
 	NO_COLISION,
@@ -155,6 +158,7 @@ typedef struct		s_textures
 	SDL_Texture		*t_barrel;
 	SDL_Texture		*t_jetpack;
 	SDL_Texture		*t_pillar;
+	SDL_Texture		*t_upstami;
 	SDL_Texture		*eraser;
 	SDL_Texture		*door;
 	SDL_Texture		*sound;

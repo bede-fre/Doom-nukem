@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 14:36:37 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/05 13:46:14 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ char		chose_object(t_button buttons[NB_BUTTONS], int x, int y, int colision)
 	else if (win_to_map(x) == win_to_map(buttons[ICE].pos.x) &&
 		win_to_map(y) == win_to_map(buttons[ICE].pos.y))
 		return ((colision) ? T_D : T_DS);
+	else if (win_to_map(x) == win_to_map(buttons[B_UPSTAMI].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_UPSTAMI].pos.y))
+		return (UPSTAMI);
 	else
 		return (chose_object2(buttons, x, y));
 }
