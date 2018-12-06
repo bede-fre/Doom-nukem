@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 12:37:54 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 13:20:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,15 +193,6 @@ typedef struct		s_parse
 	short			i;
 }					t_parse;
 
-typedef struct		s_sprt
-{
-	t_mat3			center;
-	t_mat3			inter;
-	double			dist;
-	struct s_sprt	*next;
-	struct s_sprt	*prev;
-}					t_sprt;
-
 typedef struct		s_ray
 {
 	double			dist;
@@ -218,7 +209,6 @@ typedef struct		s_ray
 	t_mat3			inter;
 	double			sprite_dist;
 	int				test;
-	t_sprt			*list;
 }					t_ray;
 
 typedef struct		s_raycast
@@ -392,6 +382,5 @@ int					ft_find_color2(t_all *all, double cpt, int col, float door);
 int					ft_find_color3(t_all *all, double cpt, double col);
 void				cpy_sprite_infos(t_raycast *rc);
 void				register_sprite(t_ray *ray, t_player p);
-void				free_lst(t_sprt **list);
 
 #endif
