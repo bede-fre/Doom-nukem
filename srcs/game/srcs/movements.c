@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 10:59:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 15:37:13 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,28 @@ void		ft_strafing(t_all *all, double dir)
 		-dir * (cos(all->p.a) * all->speed) : 0.0;
 }
 
-static void	ft_teleport(t_all *all)
+static void	action_zone(t_all *all)
 {
 	int	y;
 	int	x;
 
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == 'e')
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == END)
 		all->end = 1;
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == '3')
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == LIGHTNING
+		&& all->stamina < STAMINA_MAX)
 	{
-		y = -1;
-		while (++y < MAPY)
-		{
-			x = -1;
+		all->stamina = STAMINA_MAX;
+		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
+	}
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == TP_E && (y = -1))
+		while (++y < MAPY && (x = -1))
 			while (++x < MAPX)
-			{
-				if (all->rc.map[y][x] == '4')
+				if (all->rc.map[y][x] == TP_S)
 				{
 					all->p.x = x * (int)BLOCK_SIZE + 32;
 					all->p.y = y * (int)BLOCK_SIZE + 32;
 					Mix_PlayChannel(-1, all->sounds.teleport, 0);
 				}
-			}
-		}
-	}
 }
 
 static void	ft_refresh_images(t_all *all)
@@ -109,7 +107,7 @@ int			ft_movements(t_all *all)
 {
 	refresh_events(all);
 	jump_and_crouch(all);
-	ft_teleport(all);
+	action_zone(all);
 	stamina_control(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
 	init_image(all->ptr, &all->info, INFOX, INFOY);
