@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/28 10:25:14 by lguiller         ###   ########.fr        #
+#    Updated: 2018/12/05 16:36:47 by cmace            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS_FILES				= $(addsuffix .c, main init events tools make_grid \
 						  refresh_events init2 clear start_draw \
 						  check_and_stock_map print_map modif_map write_file \
 						  shape input print_buttons init_button tools2 tools3 \
-						  set_text create_new_file)
+						  tools4 set_text create_new_file)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/

@@ -6,66 +6,60 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 15:30:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/04 14:35:52 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 16:41:53 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static Uint32	col_wall2(char object)
+static Uint32	col_wall(char object)
 {
 	if (object == START)
 		return (START_COL);
-	else if (object == T_DOOR)
-		return (T_DOOR_COL);
+	if (object == TP_E)
+		return (TP_E_COL);
 	else if (object == END)
 		return (END_COL);
-	else if (object == BARREL)
-		return (GREEN);
-	else if (object == JETPACK)
-		return (ORANGE);
-	else if (object == PILLAR)
-		return (PINK);
 	else
 		return (0);
 }
 
-static Uint32	col_wall(char object)
-{
-	if (object == T_A)
-		return (T_A_COL);
-	else if (object == T_B)
-		return (T_B_COL);
-	else if (object == T_C)
-		return (T_C_COL);
-	else if (object == T_D)
-		return (T_D_COL);
-	else if (object == T_AS)
-		return (T_AS_COL);
-	else if (object == T_BS)
-		return (T_BS_COL);
-	else if (object == T_CS)
-		return (T_CS_COL);
-	else if (object == T_DS)
-		return (T_DS_COL);
-	else if (object == TP_S)
-		return (TP_S_COL);
-	else if (object == TP_E)
-		return (TP_E_COL);
-	else
-		return (col_wall2(object));
-}
-
-void			print_map(SDL_Surface *surface, char map[MAP_HEIGHT][MAP_WIDTH])
+void			print_map(SDL_Surface *surface, char map[MAP_HEIGHT][MAP_WIDTH], t_env *env)
 {
 	t_point p;
 
+	p.y = -1;
+	(void) env;
+	while (++p.y < MAP_HEIGHT)
+	{
+		p.x = -1;
+		while (++p.x < MAP_WIDTH)
+		{
+			if (is_color(map[p.y][p.x]))
+				fill_rect(surface, point_to_win(p), col_wall(map[p.y][p.x]));
+		}
+	}
+}
+
+void			print_maptexture(SDL_Surface *surface,
+	char map[MAP_HEIGHT][MAP_WIDTH], t_env *env)
+{
+	t_point p;
+	SDL_Rect rect;
+
+	(void)surface;
 	p.y = -1;
 	while (++p.y < MAP_HEIGHT)
 	{
 		p.x = -1;
 		while (++p.x < MAP_WIDTH)
-			if (map[p.y][p.x] != ' ')
-				fill_rect(surface, point_to_win(p), col_wall(map[p.y][p.x]));
+		{
+			if (is_image(map[p.y][p.x]))
+			{
+				rect = create_rect(map_to_win(p.x), map_to_win(p.y), SCALE, SCALE);
+				if (SDL_RenderCopy(env->renderer, what_image(env->text, map[p.y][p.x]), NULL, &rect) < 0)
+					ft_error((char*)SDL_GetError(), 25, ft_puterror);
+			}
+		}
 	}
 }

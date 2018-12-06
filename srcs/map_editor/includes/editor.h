@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/05 13:39:41 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 17:52:51 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@
 # define T_BARREL	F_IMAGE"barrel.png"
 # define T_JETPACK	F_IMAGE"jetpack.png"
 # define T_PILLAR	F_IMAGE"pillar.png"
-# define T_UPSTAMI	F_IMAGE"pillar.png"
+# define T_UPSTAMI	F_IMAGE"upstamina.png"
+# define T_TP_START	F_TEXT"nether.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -163,6 +164,7 @@ typedef struct		s_textures
 	SDL_Texture		*door;
 	SDL_Texture		*sound;
 	SDL_Texture		*mute;
+	SDL_Texture		*t_tp_start;
 }					t_textures;
 
 typedef struct		s_button
@@ -224,7 +226,9 @@ void				fill_border(SDL_Surface *surface, t_point coord, int l,
 						Uint32 col);
 void				fill_cross(SDL_Surface *surface, t_point coord, Uint32 col);
 void				print_map(SDL_Surface *surface,
-						char map[MAP_HEIGHT][MAP_WIDTH]);
+						char map[MAP_HEIGHT][MAP_WIDTH], t_env *env);
+void				print_maptexture(SDL_Surface *surface,
+						char map[MAP_HEIGHT][MAP_WIDTH], t_env *env);
 int					map_to_win(int x);
 int					win_to_map(int x);
 void				modif_map(t_env *env);
@@ -250,5 +254,8 @@ char				chose_object(t_button buttons[NB_BUTTONS], int x, int y,
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);
 void				destroy_text(t_env *env);
+SDL_Texture 		*what_image(t_textures text, char object);
+int					is_image(char c);
+int					is_color(char c);
 
 #endif
