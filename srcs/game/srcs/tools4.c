@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 15:50:45 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/05 15:44:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 12:46:22 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	register_sprite(t_ray *ray, t_player p)
 				ft_vecdef(p.x, p.y, 0.0)));
 			ray->list->next = NULL;
 			ray->list->prev = NULL;
-			printf("first\n");
 		}
 		else
 		{
@@ -77,7 +76,6 @@ void	register_sprite(t_ray *ray, t_player p)
 			current->next->dist = ft_vecnorm(ft_vecsub(ray->sprite,
 				ft_vecdef(p.x, p.y, 0.0)));
 			current->next->next = NULL;
-			printf("other\n");
 		}
 	}
 
@@ -88,16 +86,16 @@ void	register_sprite(t_ray *ray, t_player p)
 		ft_vecdef(p.x, p.y, 0.0)));
 }
 
-void	free_lst(t_sprt *list)
+void	free_lst(t_sprt **list)
 {
 	t_sprt *tmp;
 
-	if (!list)
-		return ;
-	while (list)
+	while (*list)
 	{
-		tmp = list->next;
-		free(&list);
-		list = tmp;
+		tmp = (*list)->next;
+		if (*list)
+			free((void*)*list);
+		*list = NULL;
+		*list = tmp;
 	}
 }

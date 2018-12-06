@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/05 15:40:43 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 11:52:56 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 	if (all->rc.ray.test)
 	{
 		print_sprite(all, x);
-		free_lst(all->rc.ray_h.list);
-		free_lst(all->rc.ray_v.list);
+		if (all->rc.ray_h.list)
+			free_lst(&all->rc.ray_h.list);
+		if (all->rc.ray_v.list)
+			free_lst(&all->rc.ray_v.list);
 	}
 }

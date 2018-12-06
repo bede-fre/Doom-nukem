@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/05 15:40:05 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 10:45:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void		ft_print_ray_infos(t_all *all)
 		ft_putstr("ray dist: ");
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
+		ft_print_on_screen(all, all->i, all->lens);
 	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/05 15:28:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 12:37:54 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TEXT_DOOR			F_TEXT"door.xpm"
 # define TEXT_DOOR_R		F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER		F_TEXT"nether.xpm"
-# define SPR_BARREL			F_SPRITE"Ennemy.xpm"
+# define SPR_BARREL			F_SPRITE"lightning.xpm"
 # define SPR_WALK			F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP			F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH			F_SPRITE"Crouch_Sprite2.xpm"
@@ -82,6 +82,7 @@
 # define T_DOOR_O			'_'
 # define ALPHA				0xFF000000
 # define GREEN_A			0x5517EE01
+# define ORANGE_A			0x55FF710F
 # define BLACK				0
 # define WHITE				0xFFFFFF
 # define RED				0xFF0000
@@ -376,7 +377,7 @@ void				ft_init_sdl(t_all *all);
 void				init_sounds(t_all *all);
 int					is_movement(int keys_tab[KEYS_TAB_SIZE]);
 void				init_image(t_mlx ptr, t_img *img, int x, int y);
-void				print_stamina_bar(t_img *img, int stamina);
+void				print_stamina_bar(t_img *img, int stamina, int col);
 void				stamina_control(t_all *all);
 void				refresh_events(t_all *all);
 void				ft_moving(t_all *all, double dir);
@@ -391,6 +392,6 @@ int					ft_find_color2(t_all *all, double cpt, int col, float door);
 int					ft_find_color3(t_all *all, double cpt, double col);
 void				cpy_sprite_infos(t_raycast *rc);
 void				register_sprite(t_ray *ray, t_player p);
-void				free_lst(t_sprt *list);
+void				free_lst(t_sprt **list);
 
 #endif

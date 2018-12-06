@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/30 10:20:03 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/06 12:38:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static void	ft_teleport(t_all *all)
 	int	y;
 	int	x;
 
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == 'e')
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == END)
 		all->end = 1;
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == '3')
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == TP_S)
 	{
 		y = -1;
 		while (++y < MAPY)
@@ -69,7 +69,7 @@ static void	ft_teleport(t_all *all)
 			x = -1;
 			while (++x < MAPX)
 			{
-				if (all->rc.map[y][x] == '4')
+				if (all->rc.map[y][x] == TP_E)
 				{
 					all->p.x = x * (int)BLOCK_SIZE + 32;
 					all->p.y = y * (int)BLOCK_SIZE + 32;
@@ -84,7 +84,8 @@ static void	ft_refresh_images(t_all *all)
 {
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
-	print_stamina_bar(&all->hud.stamina_bar, all->stamina);
+	print_stamina_bar(&all->hud.stamina_bar, all->stamina,
+		(all->keys_tab[KEY_X]) ? ORANGE_A : GREEN_A);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.stamina_bar.img, BARX, BARY);
 	if (all->s_jump)
