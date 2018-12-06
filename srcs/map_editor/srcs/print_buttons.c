@@ -6,13 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:22:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 10:32:13 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:25:51 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static void	print_border_textures_buttons(t_env *env, SDL_Surface *surface,
+static void		print_border_textures_buttons(t_env *env, SDL_Surface *surface,
 		char object)
 {
 	int x;
@@ -22,7 +22,7 @@ static void	print_border_textures_buttons(t_env *env, SDL_Surface *surface,
 		env->buttons[x].border_col);
 }
 
- void	print_others_buttons(t_env *env, SDL_Surface *surface)
+void			print_others_buttons(t_env *env, SDL_Surface *surface)
 {
 	fill_rect(surface, env->buttons[TP_START].pos,
 		env->buttons[TP_START].button_col);
@@ -38,7 +38,7 @@ static void	print_border_textures_buttons(t_env *env, SDL_Surface *surface,
 		env->buttons[NO_COLISION].size.x, env->buttons[NO_COLISION].button_col);
 }
 
-static void	print_border_others_button(t_env *env, SDL_Surface *surface,
+static void		print_border_others_button(t_env *env, SDL_Surface *surface,
 		char object, int colision)
 {
 	int x;
@@ -50,8 +50,8 @@ static void	print_border_others_button(t_env *env, SDL_Surface *surface,
 	fill_cross(surface, env->buttons[x].pos, env->buttons[x].button_col);
 }
 
-void		print_buttons(t_env *env, SDL_Surface *surface, char object,
-	int colision)
+void			print_buttons(t_env *env, SDL_Surface *surface, char object,
+					int colision)
 {
 	print_border_textures_buttons(env, surface, object);
 	print_others_buttons(env, surface);

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 16:26:47 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:24:21 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void		print_texture(t_env *env)
 	i = -1;
 	while (++i <= B_PILLAR)
 	{
-		// printf("%d\n",env->buttons[i].rect.x);
 		rect = create_rect(env->buttons[i].rect.x + 2,
 			env->buttons[i].rect.y + 2, env->buttons[i].rect.w - 3,
 			env->buttons[i].rect.h - 3);
@@ -84,9 +83,9 @@ void			start_draw(t_env *env)
 	make_grid(surface);
 	print_buttons(env, surface, env->object, env->colision);
 	set_text(surface, env);
-	print_map(surface, env->map, env);
+	print_map(surface, env->map);
 	print_view(surface, env);
 	print_texture(env);
-	print_maptexture(surface, env->map, env);
+	print_maptexture(env->map, env);
 	SDL_RenderPresent(env->renderer);
 }

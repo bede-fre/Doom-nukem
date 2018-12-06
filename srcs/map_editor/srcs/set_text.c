@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:58:50 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/03 13:56:49 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:15:51 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 	p = ft_pointdef(env->buttons[B_END].pos.x + dim,
 		env->buttons[B_END].pos.y);
 	set_string(env, "End", p, surface);
+	p = ft_pointdef(env->buttons[TP_END].pos.x + dim,
+		env->buttons[TP_END].pos.y);
+	set_string(env, "Exit", p, surface);
 }
 
 void			set_text(SDL_Surface *surface, t_env *env)
@@ -70,8 +73,5 @@ void			set_text(SDL_Surface *surface, t_env *env)
 	p = ft_pointdef(env->buttons[TP_START].pos.x + dim,
 		env->buttons[TP_START].pos.y);
 	set_string(env, "Start", p, surface);
-	p = ft_pointdef(env->buttons[TP_END].pos.x + dim,
-		env->buttons[TP_END].pos.y);
-	set_string(env, "Exit", p, surface);
 	set_text2(surface, env, dim);
 }

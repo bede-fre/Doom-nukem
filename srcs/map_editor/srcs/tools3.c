@@ -6,11 +6,23 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/05 16:10:14 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:10:23 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
+
+static char	chose_object3(t_button buttons[NB_BUTTONS], int x, int y)
+{
+	if (win_to_map(x) == win_to_map(buttons[B_BARREL].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_BARREL].pos.y))
+		return (BARREL);
+	else if (win_to_map(x) >= win_to_map(buttons[B_END].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[B_END].pos.x) + 2 &&
+		win_to_map(y) == win_to_map(buttons[B_END].pos.y))
+		return (END);
+	return (-1);
+}
 
 static char	chose_object2(t_button buttons[NB_BUTTONS], int x, int y)
 {
@@ -34,23 +46,12 @@ static char	chose_object2(t_button buttons[NB_BUTTONS], int x, int y)
 		win_to_map(x) <= win_to_map(buttons[B_DOOR].pos.x) + 3 &&
 		win_to_map(y) == win_to_map(buttons[B_DOOR].pos.y))
 		return (T_DOOR);
-	else if (win_to_map(x) >= win_to_map(buttons[B_END].pos.x) &&
-		win_to_map(x) <= win_to_map(buttons[B_END].pos.x) + 2 &&
-		win_to_map(y) == win_to_map(buttons[B_END].pos.y))
-		return (END);
-	else if (win_to_map(x) == win_to_map(buttons[B_BARREL].pos.x)
-		&& win_to_map(y) == win_to_map(buttons[B_BARREL].pos.y))
-		return (BARREL);
-	else if (win_to_map(x) == win_to_map(buttons[B_JETPACK].pos.x)
-		&& win_to_map(y) == win_to_map(buttons[B_JETPACK].pos.y))
-		return (JETPACK);
-	else if (win_to_map(x) == win_to_map(buttons[B_PILLAR].pos.x)
-		&& win_to_map(y) == win_to_map(buttons[B_PILLAR].pos.y))
-		return (PILLAR);
-	return (-1);
+	else
+		return (chose_object3(buttons, x, y));
 }
 
-char		chose_object(t_button buttons[NB_BUTTONS], int x, int y, int colision)
+char		chose_object(t_button buttons[NB_BUTTONS],
+				int x, int y, int colision)
 {
 	if (win_to_map(x) == win_to_map(buttons[WOOD].pos.x) &&
 		win_to_map(y) == win_to_map(buttons[WOOD].pos.y))
@@ -67,6 +68,12 @@ char		chose_object(t_button buttons[NB_BUTTONS], int x, int y, int colision)
 	else if (win_to_map(x) == win_to_map(buttons[B_UPSTAMI].pos.x)
 		&& win_to_map(y) == win_to_map(buttons[B_UPSTAMI].pos.y))
 		return (UPSTAMI);
+	else if (win_to_map(x) == win_to_map(buttons[B_JETPACK].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_JETPACK].pos.y))
+		return (JETPACK);
+	else if (win_to_map(x) == win_to_map(buttons[B_PILLAR].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_PILLAR].pos.y))
+		return (PILLAR);
 	else
 		return (chose_object2(buttons, x, y));
 }
@@ -96,11 +103,13 @@ Mix_Music	*get_sounds(t_env *env, char x)
 	return (NULL);
 }
 
-int		is_image(char c)
+int			is_image(char c)
 {
-	if (c == TP_S || c == T_A || c == T_AS || c == T_B || c == T_BS
-		|| c == T_C || c == T_CS || c == T_D || c == T_DS || c == BARREL
-		|| c == JETPACK || c == PILLAR || c == UPSTAMI || c == T_DOOR)
+	if (c == TP_S || c == T_A || c == T_AS
+		|| c == T_B || c == T_BS || c == T_C
+		|| c == T_CS || c == T_D || c == T_DS
+		|| c == BARREL || c == JETPACK || c == PILLAR
+		|| c == UPSTAMI || c == T_DOOR)
 		return (1);
 	return (0);
 }

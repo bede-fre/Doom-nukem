@@ -6,13 +6,25 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:27:21 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/06 17:54:23 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:14:28 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-SDL_Texture *what_image(t_textures text, char object)
+static SDL_Texture	*what_image2(t_textures text, char object)
+{
+	if (object == T_DS)
+		return (text.t_d);
+	else if (object == UPSTAMI)
+		return (text.t_upstami);
+	else if (object == T_CS)
+		return (text.t_c);
+	else
+		return (NULL);
+}
+
+SDL_Texture			*what_image(t_textures text, char object)
 {
 	if (object == T_DOOR)
 		return (text.door);
@@ -36,17 +48,11 @@ SDL_Texture *what_image(t_textures text, char object)
 		return (text.t_a);
 	else if (object == T_BS)
 		return (text.t_b);
-	else if (object == T_CS)
-		return (text.t_c);
-	else if (object == T_DS)
-		return (text.t_d);
-	else if (object == UPSTAMI)
-		return (text.t_upstami);
-    else
-        return (NULL);
+	else
+		return (what_image2(text, object));
 }
 
-int		is_color(char c)
+int					is_color(char c)
 {
 	if (c == TP_E || c == END || c == START)
 		return (1);

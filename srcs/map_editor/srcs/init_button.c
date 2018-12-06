@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/05 13:42:39 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:19:26 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,25 @@ static t_button	create_button(SDL_Rect rect, int button_col, int border_col,
 	return (button);
 }
 
+static void		init_next_buttons_le_retour(t_env *env)
+{
+	SDL_Rect	rect;
+	const int	dim = SCALE;
+
+	rect = create_rect(map_to_win(38), map_to_win(10), dim, dim);
+	env->buttons[B_BARREL] = create_button(rect, BLUE, BLACK,
+		env->text.t_barrel);
+	rect = create_rect(map_to_win(40), map_to_win(10), dim, dim);
+	env->buttons[B_JETPACK] = create_button(rect, BLUE, BLACK,
+		env->text.t_jetpack);
+	rect = create_rect(map_to_win(42), map_to_win(10), dim, dim);
+	env->buttons[B_PILLAR] = create_button(rect, BLUE, BLACK,
+		env->text.t_pillar);
+	rect = create_rect(map_to_win(44), map_to_win(10), dim, dim);
+	env->buttons[B_UPSTAMI] = create_button(rect, BLUE, BLACK,
+		env->text.t_upstami);
+}
+
 static void		init_next_buttons(t_env *env)
 {
 	SDL_Rect	rect;
@@ -44,19 +63,12 @@ static void		init_next_buttons(t_env *env)
 	env->buttons[STONE] = create_button(rect, BLACK, BLACK, env->text.t_c);
 	rect = create_rect(map_to_win(44) + 2, map_to_win(3) + 2, dim, dim);
 	env->buttons[ICE] = create_button(rect, BLACK, BLACK, env->text.t_d);
-	rect = create_rect(map_to_win(38), map_to_win(10), dim, dim);
-	env->buttons[B_BARREL] = create_button(rect, BLUE, BLACK, env->text.t_barrel);
-	rect = create_rect(map_to_win(40), map_to_win(10), dim, dim);
-	env->buttons[B_JETPACK] = create_button(rect, BLUE, BLACK, env->text.t_jetpack);
-	rect = create_rect(map_to_win(42), map_to_win(10), dim, dim);
-	env->buttons[B_PILLAR] = create_button(rect, BLUE, BLACK, env->text.t_pillar);
-	rect = create_rect(map_to_win(44), map_to_win(10), dim, dim);
-	env->buttons[B_UPSTAMI] = create_button(rect, BLUE, BLACK, env->text.t_upstami);
 	rect = create_rect(map_to_win(48), map_to_win(1), dim, dim);
 	env->buttons[B_SOUND] = create_button(rect, BLACK, BLUE,
 		env->text.sound);
 	env->buttons[B_MUTE] = create_button(rect, BLACK, BLUE,
 		env->text.mute);
+	init_next_buttons_le_retour(env);
 }
 
 void			init_button(t_env *env)

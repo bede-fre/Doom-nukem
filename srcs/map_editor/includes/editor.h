@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/06 17:52:51 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 18:24:03 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,9 +226,9 @@ void				fill_border(SDL_Surface *surface, t_point coord, int l,
 						Uint32 col);
 void				fill_cross(SDL_Surface *surface, t_point coord, Uint32 col);
 void				print_map(SDL_Surface *surface,
-						char map[MAP_HEIGHT][MAP_WIDTH], t_env *env);
-void				print_maptexture(SDL_Surface *surface,
-						char map[MAP_HEIGHT][MAP_WIDTH], t_env *env);
+						char map[MAP_HEIGHT][MAP_WIDTH]);
+void				print_maptexture(char map[MAP_HEIGHT][MAP_WIDTH],
+						t_env *env);
 int					map_to_win(int x);
 int					win_to_map(int x);
 void				modif_map(t_env *env);
@@ -257,5 +257,6 @@ void				destroy_text(t_env *env);
 SDL_Texture 		*what_image(t_textures text, char object);
 int					is_image(char c);
 int					is_color(char c);
+void				init_textures(t_env *env);
 
 #endif
