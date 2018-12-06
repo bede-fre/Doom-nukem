@@ -22,11 +22,11 @@ C CCCCCCCCC C C CCCCC CCCCCCC CC
 C   C     C C C C       C   C CC
 C CCC C CCC C CCCCC CCC C CCC CC
 C C   C     C   C   C C     C CC
-C CCCCC CCC CCC CCCCC          C
-C   C C   C   C C       0      C
-C CCC CCCCCCC C C              C
-C   C C C     C   0  0  0  0   C
-CCC C C C C C CCC              C
-C         C C                  s
-CCCCCCCCCCCCCCCCCCCCC          C
+C CCCCC CCC CCC CCCCC    0     C
+C   C C   C   C C    0     0   C
+C CCC CCCCCCC C C      0       C
+C   C C C     C     0      0   C
+CCC C C C C C CCC   0  0   s   C
+C         C C     0          0  
+CCCCCCCCCCCCCCCCCCCCC  0  0 0  C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC

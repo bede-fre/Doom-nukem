@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 13:20:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 17:12:28 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TEXT_DOOR			F_TEXT"door.xpm"
 # define TEXT_DOOR_R		F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER		F_TEXT"nether.xpm"
-# define SPR_BARREL			F_SPRITE"lightning.xpm"
+# define SPR_BARREL			F_SPRITE"Ennemy.xpm"
 # define SPR_WALK			F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP			F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH			F_SPRITE"Crouch_Sprite2.xpm"
@@ -165,6 +165,16 @@
 #  define KEY_SHIFT			257
 #  define KEYS_TAB_SIZE		280
 # endif
+
+typedef struct		s_fourtout
+{
+	double			i;
+	t_mat3			tp;
+	t_point			p;
+	t_point			save;
+	t_mat3			v_inter;
+	t_mat3			v_sprite;
+}					t_fourtout;
 
 typedef struct		s_coord
 {
@@ -295,6 +305,7 @@ typedef struct		s_hud
 typedef struct		s_all
 {
 	int				keys_tab[KEYS_TAB_SIZE];
+	t_fourtout		var;
 	t_musics		musics;
 	t_sounds		sounds;
 	t_textures		textures;
@@ -382,5 +393,6 @@ int					ft_find_color2(t_all *all, double cpt, int col, float door);
 int					ft_find_color3(t_all *all, double cpt, double col);
 void				cpy_sprite_infos(t_raycast *rc);
 void				register_sprite(t_ray *ray, t_player p);
+void				print_sprites(t_all *all, int x);
 
 #endif

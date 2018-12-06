@@ -6,7 +6,7 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 12:59:44 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/06 13:20:20 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 16:38:09 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,6 @@ static void		ft_print_textures(t_all *all, int x, int i, double h)
 	col = ((all->rc.ray.hit == N_W || all->rc.ray.hit == S_W) ?
 		(int)all->rc.ray.x : (int)all->rc.ray.y) % (int)BLOCK_SIZE;
 	ft_fill_pixel(&all->fp, x, i, ft_find_color(all, cpt, col));
-}
-
-static void		ft_print_sprite(t_all *all, int x, int i, double h)
-{
-	double			cpt;
-	double			col;
-	const t_mat3	player = ft_vecdef(all->p.x, all->p.y, 0.0);
-	const t_mat3	v_sprite = ft_vecsub(all->rc.ray.sprite, player);
-	const t_mat3	v_inter = ft_vecsub(all->rc.ray.inter, player);
-
-	col = 32.0 + (ft_signe(ft_cross_product(v_sprite, v_inter).z)
-		* (tan(ft_rad(ft_vecangle(v_sprite, v_inter))) * ft_vecnorm(v_sprite)));
-	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
-		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
-	if (ft_find_color3(all, cpt, col) != (int)ALPHA && col >= 0.0 && col < 64.0)
-		ft_fill_pixel(&all->fp, x, i, ft_find_color3(all, cpt, col));
-}
-
-static void		print_sprite(t_all *all, int x)
-{
-	int		i;
-	double	h;
-	int		gap;
-
-	h = ft_wall_height_on_screen(ft_vecnorm(ft_vecsub(all->rc.ray.sprite,
-		ft_vecdef(all->p.x, all->p.y, 0.0))));
-	gap = all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap));
-	i = -1;
-	while (++i < h)
-		ft_print_sprite(all, x, i + gap, h);
 }
 
 void			ft_print_on_screen(t_all *all, int x, double lens)
@@ -73,6 +43,5 @@ void			ft_print_on_screen(t_all *all, int x, double lens)
 		else
 			ft_print_textures(all, x, i, h * 4.0);
 	}
-	if (all->rc.ray.test)
-		print_sprite(all, x);
+	print_sprites(all, x);
 }
