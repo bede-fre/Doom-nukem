@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:58:50 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/06 18:15:51 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/07 12:48:31 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 	p = ft_pointdef(env->buttons[TP_END].pos.x + dim,
 		env->buttons[TP_END].pos.y);
 	set_string(env, "Exit", p, surface);
+	p = ft_pointdef(map_to_win(36), map_to_win(11));
+	set_string(env, "Mob:", p, surface);
 }
 
 void			set_text(SDL_Surface *surface, t_env *env)
@@ -58,7 +60,7 @@ void			set_text(SDL_Surface *surface, t_env *env)
 	set_string(env, "Press ENTER to generate map", p, surface);
 	p = ft_pointdef(map_to_win(36), map_to_win(1));
 	set_string(env, "Texture:", p, surface);
-	p = ft_pointdef(map_to_win(36), map_to_win(8));
+	p = ft_pointdef(map_to_win(36), map_to_win(6));
 	set_string(env, "Objet:", p, surface);
 	p = ft_pointdef(map_to_win(36), map_to_win(15));
 	set_string(env, "Collision:", p, surface);

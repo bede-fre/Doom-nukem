@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 18:19:26 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/07 12:53:24 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,21 @@ static void		init_next_buttons_le_retour(t_env *env)
 	SDL_Rect	rect;
 	const int	dim = SCALE;
 
-	rect = create_rect(map_to_win(38), map_to_win(10), dim, dim);
+	rect = create_rect(map_to_win(38), map_to_win(8), dim, dim);
 	env->buttons[B_BARREL] = create_button(rect, BLUE, BLACK,
 		env->text.t_barrel);
-	rect = create_rect(map_to_win(40), map_to_win(10), dim, dim);
+	rect = create_rect(map_to_win(40), map_to_win(8), dim, dim);
 	env->buttons[B_JETPACK] = create_button(rect, BLUE, BLACK,
 		env->text.t_jetpack);
-	rect = create_rect(map_to_win(42), map_to_win(10), dim, dim);
+	rect = create_rect(map_to_win(42), map_to_win(8), dim, dim);
 	env->buttons[B_PILLAR] = create_button(rect, BLUE, BLACK,
 		env->text.t_pillar);
-	rect = create_rect(map_to_win(44), map_to_win(10), dim, dim);
+	rect = create_rect(map_to_win(44), map_to_win(8), dim, dim);
 	env->buttons[B_UPSTAMI] = create_button(rect, BLUE, BLACK,
 		env->text.t_upstami);
+	rect = create_rect(map_to_win(38), map_to_win(13), dim, dim);
+	env->buttons[B_MOB] = create_button(rect, BLUE, BLACK,
+		env->text.t_mob);
 }
 
 static void		init_next_buttons(t_env *env)

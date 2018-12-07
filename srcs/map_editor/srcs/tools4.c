@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:27:21 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/06 18:14:28 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 20:05:56 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static SDL_Texture	*what_image2(t_textures text, char object)
 		return (text.t_upstami);
 	else if (object == T_CS)
 		return (text.t_c);
+	else if (object == MOB)
+		return (text.t_mob);
 	else
 		return (NULL);
 }

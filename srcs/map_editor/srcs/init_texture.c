@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 18:20:28 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/06 18:27:20 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 19:54:49 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	init_next_textures(t_env *env)
 	env->text.mute = create_texture(surface, env);
 	surface = IMG_Load(T_TP_START);
 	env->text.t_tp_start = create_texture(surface, env);
+	surface = IMG_Load(T_MOB);
+	env->text.t_mob = create_texture(surface, env);
 }
 
 void		init_textures(t_env *env)

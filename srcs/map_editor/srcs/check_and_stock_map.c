@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:40:30 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/06 18:27:45 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 19:51:59 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_check_char(char *buff, short i)
 			&& buff[i] != T_D && buff[i] != T_AS && buff[i] != T_BS
 			&& buff[i] != T_CS && buff[i] != T_DS && buff[i] != T_DOOR
 			&& buff[i] != END && buff[i] != BARREL && buff[i] != JETPACK
-			&& buff[i] != PILLAR && buff[i] != UPSTAMI)
+			&& buff[i] != PILLAR && buff[i] != UPSTAMI && buff[i] == MOB)
 			ft_error("error: Wrong character found", 4, ft_puterror);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/06 18:24:03 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 20:04:47 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SCALE		(int)((double)WIN_HEIGHT / (double)(MAP_HEIGHT + 2))
 # define GAP		SCALE
 # define CAP_FPS	60
-# define NB_BUTTONS	18
+# define NB_BUTTONS	19
 # define START		's'
 # define END		'e'
 # define FLOOR		' '
@@ -46,6 +46,7 @@
 # define JETPACK	'4'
 # define PILLAR		'5'
 # define UPSTAMI	'6'
+# define MOB		'7'
 # define T_DOOR		'-'
 # define TRUE		1
 # define FALSE		0
@@ -66,6 +67,7 @@
 # define T_PILLAR	F_IMAGE"pillar.png"
 # define T_UPSTAMI	F_IMAGE"upstamina.png"
 # define T_TP_START	F_TEXT"nether.png"
+# define T_MOB		F_IMAGE"mob.png"
 # define FONT		F_FONT"times-new-roman.ttf"
 # define S_WOOD		F_SOUNDS"pose.wav"
 # define S_METAL	F_SOUNDS"pose.wav"
@@ -130,6 +132,7 @@ enum				e_button
 	B_BARREL,
 	B_JETPACK,
 	B_UPSTAMI,
+	B_MOB,
 	B_PILLAR,
 	COLISION,
 	NO_COLISION,
@@ -165,6 +168,7 @@ typedef struct		s_textures
 	SDL_Texture		*sound;
 	SDL_Texture		*mute;
 	SDL_Texture		*t_tp_start;
+	SDL_Texture		*t_mob;
 }					t_textures;
 
 typedef struct		s_button

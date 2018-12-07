@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 18:10:23 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/06 20:00:24 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static char	chose_object3(t_button buttons[NB_BUTTONS], int x, int y)
 		win_to_map(x) <= win_to_map(buttons[B_END].pos.x) + 2 &&
 		win_to_map(y) == win_to_map(buttons[B_END].pos.y))
 		return (END);
+	else if (win_to_map(x) >= win_to_map(buttons[B_MOB].pos.x) &&
+		win_to_map(x) <= win_to_map(buttons[B_MOB].pos.x) + 2 &&
+		win_to_map(y) == win_to_map(buttons[B_MOB].pos.y))
+		return (MOB);
 	return (-1);
 }
 
