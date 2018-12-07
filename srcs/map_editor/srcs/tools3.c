@@ -6,13 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/30 20:55:20 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/07 11:09:53 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-static char	chose_object2(t_button buttons[15], int x, int y)
+static char	chose_object2(t_button buttons[16], int x, int y)
 {
 	if (win_to_map(x) >= win_to_map(buttons[B_ERASER].pos.x) &&
 		win_to_map(x) <= win_to_map(buttons[B_ERASER].pos.x) + 3 &&
