@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/06 12:38:53 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 10:19:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,25 @@ void		ft_strafing(t_all *all, double dir)
 
 static void	ft_teleport(t_all *all)
 {
-	int	y;
-	int	x;
+	t_point p;
 
 	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == END)
 		all->end = 1;
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == TP_S)
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == LIGHTNING &&
+		all->stamina < STAMINA_MAX)
 	{
-		y = -1;
-		while (++y < MAPY)
-		{
-			x = -1;
-			while (++x < MAPX)
-			{
-				if (all->rc.map[y][x] == TP_E)
+		all->stamina = STAMINA_MAX;
+		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
+	}
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == TP_S && (p.y = -1))
+		while (++p.y < MAPY && (p.x = -1))
+			while (++p.x < MAPX)
+				if (all->rc.map[p.y][p.x] == TP_E)
 				{
-					all->p.x = x * (int)BLOCK_SIZE + 32;
-					all->p.y = y * (int)BLOCK_SIZE + 32;
+					all->p.x = p.x * (int)BLOCK_SIZE + 32;
+					all->p.y = p.y * (int)BLOCK_SIZE + 32;
 					Mix_PlayChannel(-1, all->sounds.teleport, 0);
 				}
-			}
-		}
-	}
 }
 
 static void	ft_refresh_images(t_all *all)
