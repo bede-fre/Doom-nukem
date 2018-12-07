@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/07 11:00:56 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:48:51 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libvect.h"
 # include "libft.h"
 
-# define WIN_DIM	30
+# define WIN_DIM	20
 # define WIN_WIDTH	WIN_HEIGHT + 18 * SCALE
 # define WIN_HEIGHT	(MAP_HEIGHT + 2) * WIN_DIM
 # define MAP_WIDTH	32
@@ -32,8 +32,8 @@
 # define END		'e'
 # define FLOOR		' '
 # define T_BARREL	'0'
-# define TP_S		'3'
-# define TP_E		'4'
+# define TP_S		'1'
+# define TP_E		'2'
 # define T_A		'A'
 # define T_B		'B'
 # define T_C		'C'

@@ -6,27 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:12:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 10:03:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:50:19 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void	door_auto(char map[MAPY][MAPX], t_player p, t_point i)
-{
-	if (map[i.y][i.x] == DOOR_I && door_timer(0.0, i.y, i.x, map) > 0.99)
-		map[i.y][i.x] = DOOR_O;
-	if (map[i.y][i.x] == DOOR_R && door_timer(0.0, i.y, i.x, map) < 0.01)
-		map[i.y][i.x] = DOOR_C;
-	if (map[i.y][i.x] == DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2) +
-		pow(((p.y / 64) - i.y), 2)) >= 5)
-	{
-		map[i.y][i.x] = DOOR_R;
-		door_timer(-DOOR_SPEED, i.y, i.x, map);
-	}
-}
-
-void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
+static void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 {
 	int		i;
 	int		j;
@@ -53,7 +39,21 @@ void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 	}
 }
 
-float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
+void		door_auto(char map[MAPY][MAPX], t_player p, t_point i)
+{
+	if (map[i.y][i.x] == DOOR_I && door_timer(0.0, i.y, i.x, map) > 0.99)
+		map[i.y][i.x] = DOOR_O;
+	if (map[i.y][i.x] == DOOR_R && door_timer(0.0, i.y, i.x, map) < 0.01)
+		map[i.y][i.x] = DOOR_C;
+	if (map[i.y][i.x] == DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2) +
+		pow(((p.y / 64) - i.y), 2)) >= 5)
+	{
+		map[i.y][i.x] = DOOR_R;
+		door_timer(-DOOR_SPEED, i.y, i.x, map);
+	}
+}
+
+float		door_timer(float add, int x, int y, char map[MAPY][MAPX])
 {
 	static float	timer[MAPY][MAPX];
 	static int		i = 0;
@@ -76,7 +76,7 @@ float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
 	return (0.0);
 }
 
-void	door_open(t_all *all)
+void		door_open(t_all *all)
 {
 	all->a = all->p.a - ft_rad((((WINX / 2) - 1) - (WINX / 2) - 1) * RAY_ANGLE);
 	ft_fp_hori(&all->rc.ray_h, all->p, all->rc.map, all->a);
@@ -91,6 +91,8 @@ void	door_open(t_all *all)
 	if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == DOOR_C
 	&& all->rc.ray.dist <= 100)
 	{
+		all->message = TRUE;
+		all->message_spd = 1.0f;
 		Mix_PlayChannel(-1, all->sounds.opendoor, 0);
 		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = DOOR_I;
 		door_timer(DOOR_SPEED * 2, to_map(all->rc.ray.y), to_map(all->rc.ray.x),

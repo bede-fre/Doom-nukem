@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 16:28:21 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/07 17:45:42 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -330,6 +330,8 @@ typedef struct		s_all
 	t_img			fp;
 	t_raycast		rc;
 	t_player		p;
+	int				message;
+	float			message_spd;
 	double			a;
 	int				i;
 	double			lens;
@@ -347,8 +349,6 @@ typedef struct		s_all
 	int				end;
 	int				mute;
 	int				jetpack;
-	int				message;
-	float			message_spd;
 }					t_all;
 
 void				*ft_wall_dist(void *ptr);
@@ -387,8 +387,7 @@ void				display_map(char map[MAPY][MAPX]);
 void				door_open(t_all *all);
 float				door_timer(float add, int x, int y, char map[MAPY][MAPX]);
 void				door_update_status(t_all *all);
-void				door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX]);
-void				door_auto(char map[MAPY][MAPX], t_player p, t_point	i);
+void				door_auto(char map[MAPY][MAPX], t_player p, t_point i);
 void				ft_init_sdl(t_all *all);
 void				init_sounds(t_all *all);
 int					is_movement(int keys_tab[KEYS_TAB_SIZE]);
