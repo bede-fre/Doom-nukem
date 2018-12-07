@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 13:21:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 09:41:16 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ static void	init_textures(t_all *all, t_textures *textures)
 	init_xpm(all->ptr, &textures->img_d, TEXT_DOOR);
 	init_xpm(all->ptr, &textures->img_dr, TEXT_DOOR_R);
 	init_xpm(all->ptr, &textures->nether, TEXT_NETHER);
-	init_xpm(all->ptr, &all->sprites.spr_barrel, SPR_BARREL);
+	init_xpm(all->ptr, &all->sprites.barrel, SPR_BARREL);
+	init_xpm(all->ptr, &all->sprites.ennemy, SPR_ENNEMY);
+	init_xpm(all->ptr, &all->sprites.lightning, SPR_LIGHTNING);
+	init_xpm(all->ptr, &all->sprites.jetpack, SPR_JETPACK);
 }
 
 static void	init_hud(t_all *all, t_hud *hud)

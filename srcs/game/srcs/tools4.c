@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 15:50:45 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 13:20:37 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 09:42:24 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_xpm(t_mlx ptr, t_img *img, char *path)
 
 int		is_sprite(char c)
 {
-	if (c == S_BARREL || c == S_PILLAR)
+	if (c == BARREL || c == ENNEMY || c == LIGHTNING || c == JETPACK)
 		return (1);
 	return (0);
 }

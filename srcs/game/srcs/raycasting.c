@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 16:38:17 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 10:08:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player p)
 	ray->dist = 0.0;
 	while (ray->x >= 0.0 && ray->x < (MAPX * BLOCK_SIZE)
 		&& ray->y >= 0.0 && ray->y < (MAPY * BLOCK_SIZE)
-		&& is_displayable(map[to_map(ray->y)][to_map(ray->x)])
+		&& !is_displayable(map[to_map(ray->y)][to_map(ray->x)])
 		&& is_door(map, ray))
 	{
 		ray->x += ray->xa;

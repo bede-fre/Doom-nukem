@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 17:12:28 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 09:49:42 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@
 # define TEXT_DOOR			F_TEXT"door.xpm"
 # define TEXT_DOOR_R		F_TEXT"door_reverse.xpm"
 # define TEXT_NETHER		F_TEXT"nether.xpm"
-# define SPR_BARREL			F_SPRITE"Ennemy.xpm"
+# define SPR_BARREL			F_SPRITE"barrel.xpm"
+# define SPR_ENNEMY			F_SPRITE"Ennemy.xpm"
+# define SPR_LIGHTNING		F_SPRITE"lightning.xpm"
+# define SPR_JETPACK		F_SPRITE"Jet_pack.xpm"
 # define SPR_WALK			F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP			F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH			F_SPRITE"Crouch_Sprite2.xpm"
@@ -56,7 +59,7 @@
 # define S_OPENDOOR			F_SOUNDS"door_open.wav"
 # define S_CLOSEDOOR		F_SOUNDS"door_close.wav"
 # define S_TELEPORT			F_SOUNDS"teleport.wav"
-# define S_WIN				F_MUSIC"win.wav"
+# define M_WIN				F_MUSIC"win.wav"
 # define BLOCK_SIZE			64.0
 # define CAM_HEIGHT			BLOCK_SIZE / 2.0
 # define FOV				60.0
@@ -64,22 +67,24 @@
 # define START				's'
 # define END				'e'
 # define FLOOR				' '
-# define S_BARREL			'0'
-# define S_PILLAR			'1'
-# define TP_S				'3'
-# define TP_E				'4'
-# define T_A				'A'
-# define T_AS				'a'
-# define T_B				'B'
-# define T_BS				'b'
-# define T_C				'C'
-# define T_CS				'c'
-# define T_D				'D'
-# define T_DS				'd'
-# define T_DOOR_C			'-'
-# define T_DOOR_I			'i'
-# define T_DOOR_R			'r'
-# define T_DOOR_O			'_'
+# define TP_S				'1'
+# define TP_E				'2'
+# define BARREL				'3'
+# define ENNEMY				'4'
+# define LIGHTNING			'5'
+# define JETPACK			'6'
+# define WOOD				'A'
+# define WOOD_S				'a'
+# define METAL				'B'
+# define METAL_S			'b'
+# define STONE				'C'
+# define STONE_S			'c'
+# define ICE				'D'
+# define ICE_S				'd'
+# define DOOR_C				'-'
+# define DOOR_I				'i'
+# define DOOR_R				'r'
+# define DOOR_O				'_'
 # define ALPHA				0xFF000000
 # define GREEN_A			0x5517EE01
 # define ORANGE_A			0x55FF710F
@@ -262,7 +267,10 @@ typedef struct		s_algo_brez
 
 typedef struct		s_sprites
 {
-	t_img			spr_barrel;
+	t_img			barrel;
+	t_img			ennemy;
+	t_img			lightning;
+	t_img			jetpack;
 }					t_sprites;
 
 typedef struct		s_textures

@@ -15,18 +15,18 @@ C C C   C C C C         C     CC
 C CCC CCC C C CCCCCCC CCCCCCC CC
 C C C C     c   C         C   CC
 C C C CCCCCCCCC CCCCCCC CCC CCCC
-C   C       C     C4     3C C CC
+C   C       C     C2     1C C CC
 CCCCC C C C CCCCC CCCCC CCCCC CC
 C C   C C C C   C         C   CC
 C CCCCCCCCC C C CCCCC CCCCCCC CC
 C   C     C C C C       C   C CC
 C CCC C CCC C CCCCC CCC C CCC CC
-C C   C     C   C   C C     C CC
-C CCCCC CCC CCC CCCCC    0     C
-C   C C   C   C C    0     0   C
-C CCC CCCCCCC C C      0       C
-C   C C C     C     0      0   C
-CCC C C C C C CCC   0  0   s   C
-C         C C     0          0  
-CCCCCCCCCCCCCCCCCCCCC  0  0 0  C
+C C   C     C   C   C C6    C CC
+C CCCCC CCC CCC CCCCC          C
+C   C C   C   C C        5     C
+C CCC CCCCCCC C C              C
+C   C C C     C            4   C
+CCC C C C C C CCC          s   C
+C         C C                3  
+CCCCCCCCCCCCCCCCCCCCC          C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
