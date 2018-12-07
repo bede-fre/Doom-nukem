@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/07 10:19:36 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 10:39:04 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void		ft_strafing(t_all *all, double dir)
 		-dir * (cos(all->p.a) * all->speed) : 0.0;
 }
 
-static void	ft_teleport(t_all *all)
+static void	action_zone(t_all *all)
 {
 	t_point p;
 
 	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == END)
 		all->end = 1;
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == LIGHTNING &&
-		all->stamina < STAMINA_MAX)
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == LIGHTNING
+		&& all->stamina < STAMINA_MAX)
 	{
 		all->stamina = STAMINA_MAX;
 		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
@@ -107,7 +107,7 @@ int			ft_movements(t_all *all)
 {
 	refresh_events(all);
 	jump_and_crouch(all);
-	ft_teleport(all);
+	action_zone(all);
 	stamina_control(all);
 	mlx_destroy_image(all->ptr.mlx, all->info.img);
 	init_image(all->ptr, &all->info, INFOX, INFOY);
