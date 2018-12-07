@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:22:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 10:09:33 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 10:29:50 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			print_sprites(t_all *all, int x)
 	{
 		all->var.tp = ft_vecadd(ft_vecscale(vect, all->var.i), inter);
 		all->var.p = ft_pointdef(to_map(all->var.tp.x), to_map(all->var.tp.y));
-		if (is_sprite(all->rc.map[to_map(all->var.tp.x)][to_map(all->var.tp.y)])
+		if (is_sprite(all->rc.map[to_map(all->var.tp.y)][to_map(all->var.tp.x)])
 		&& (all->var.p.x != all->var.save.x || all->var.p.y != all->var.save.y)
 		&& (to_map(player.x) != all->var.p.x
 		|| to_map(player.y) != all->var.p.y))
