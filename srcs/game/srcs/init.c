@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 11:39:11 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 16:18:27 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ void		ft_init(t_all *all, char *title)
 	all->wall_gap = 0.0;
 	all->p.ray_infos = 0;
 	all->jetpack = 0;
+	all->message = 0;
+	all->message_spd = 0.0f;
 	all->stamina = (int)STAMINA_MAX;
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 12:03:38 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 16:28:21 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@
 #  define MOVE_SPEED		2.0
 #  define RUN_SPEED			3.0
 #  define JUMP_SPEED		0.1
+#  define MSG_SPEED			0.01f
 #  define CROUCH_SPEED		1.0
 #  define ROT_SPEED			1.0
 #  define ESC				65307
@@ -151,6 +152,7 @@
 #  define MOVE_SPEED		2.0
 #  define RUN_SPEED			5.0
 #  define JUMP_SPEED		0.1
+#  define MSG_SPEED			0.01f
 #  define CROUCH_SPEED		1.0
 #  define ROT_SPEED			2.0
 #  define ESC				53
@@ -345,6 +347,8 @@ typedef struct		s_all
 	int				end;
 	int				mute;
 	int				jetpack;
+	int				message;
+	float			message_spd;
 }					t_all;
 
 void				*ft_wall_dist(void *ptr);
@@ -407,5 +411,6 @@ void				register_sprite(t_ray *ray, t_player p);
 void				print_sprites(t_all *all, int x);
 void				print_stickman(t_all *all);
 void				print_square(t_all *all);
+void				print_in_game_message(t_all *all);
 
 #endif

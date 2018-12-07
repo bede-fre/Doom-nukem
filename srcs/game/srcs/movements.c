@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/07 12:08:32 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 15:00:45 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static void	ft_refresh_images(t_all *all)
 		all->hud.jetpack.img, WINX / 2 + 128 - 16, WINY - 48 - 16);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.stamina_bar.img, BARX, BARY);
+	print_in_game_message(all);
 	it_is_the_end(all);
 }
 
