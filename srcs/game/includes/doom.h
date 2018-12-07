@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 09:49:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 12:03:38 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@
 # define SPR_BARREL			F_SPRITE"barrel.xpm"
 # define SPR_ENNEMY			F_SPRITE"Ennemy.xpm"
 # define SPR_LIGHTNING		F_SPRITE"lightning.xpm"
-# define SPR_JETPACK		F_SPRITE"Jet_pack.xpm"
+# define SPR_JETPACK		F_SPRITE"jetpack.xpm"
+# define SPR_JETPACK_BIG	F_SPRITE"jetpack_big.xpm"
 # define SPR_WALK			F_SPRITE"Walk_Sprite2.xpm"
 # define SPR_JUMP			F_SPRITE"Jump_Sprite2.xpm"
 # define SPR_CROUCH			F_SPRITE"Crouch_Sprite2.xpm"
@@ -308,6 +309,7 @@ typedef struct		s_hud
 	t_img			s_crouch;
 	t_img			stamina_bar;
 	t_img			mute;
+	t_img			jetpack;
 }					t_hud;
 
 typedef struct		s_all
@@ -342,6 +344,7 @@ typedef struct		s_all
 	int				stamina;
 	int				end;
 	int				mute;
+	int				jetpack;
 }					t_all;
 
 void				*ft_wall_dist(void *ptr);
@@ -402,5 +405,7 @@ int					ft_find_color3(t_all *all, double cpt, double col);
 void				cpy_sprite_infos(t_raycast *rc);
 void				register_sprite(t_ray *ray, t_player p);
 void				print_sprites(t_all *all, int x);
+void				print_stickman(t_all *all);
+void				print_square(t_all *all);
 
 #endif

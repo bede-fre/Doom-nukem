@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 09:41:16 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 11:39:11 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static void	init_hud(t_all *all, t_hud *hud)
 	init_image(all->ptr, &hud->stamina_bar, BARW, BARH);
 	init_xpm(all->ptr, &tmp, END_IMG);
 	scale_img(&all->end_img, &tmp);
+	init_xpm(all->ptr, &tmp, SPR_JETPACK_BIG);
+	scale_img(&all->hud.jetpack, &tmp);
 }
 
 void		ft_init(t_all *all, char *title)
@@ -81,9 +83,11 @@ void		ft_init(t_all *all, char *title)
 	init_image(all->ptr, &all->info, INFOX, INFOY);
 	init_image(all->ptr, &all->fp, WINX, WINY);
 	init_image(all->ptr, &all->end_img, WINX, WINY);
+	init_image(all->ptr, &all->hud.jetpack, 32, 32);
 	init_textures(all, &all->textures);
 	init_hud(all, &all->hud);
 	all->wall_gap = 0.0;
 	all->p.ray_infos = 0;
+	all->jetpack = 0;
 	all->stamina = (int)STAMINA_MAX;
 }

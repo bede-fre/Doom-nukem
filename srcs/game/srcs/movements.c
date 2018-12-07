@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/07 10:39:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 12:08:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ static void	action_zone(t_all *all)
 		all->stamina = STAMINA_MAX;
 		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
 	}
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == JETPACK)
+	{
+		all->jetpack = 1;
+		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
+	}
 	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == TP_S && (p.y = -1))
 		while (++p.y < MAPY && (p.x = -1))
 			while (++p.x < MAPX)
@@ -79,27 +84,17 @@ static void	action_zone(t_all *all)
 
 static void	ft_refresh_images(t_all *all)
 {
+	print_square(all);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->fp.img, 0, 0);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->info.img, 0, 0);
 	print_stamina_bar(&all->hud.stamina_bar, all->stamina,
 		(all->keys_tab[KEY_X]) ? ORANGE_A : GREEN_A);
+	print_stickman(all);
+	if (all->jetpack)
+		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
+		all->hud.jetpack.img, WINX / 2 + 128 - 16, WINY - 48 - 16);
 	mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
 		all->hud.stamina_bar.img, BARX, BARY);
-	if (all->s_jump)
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_jump.img,
-		INFOX / 2, WINY - 85);
-	else if (all->speed == RUN_SPEED)
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_run.img,
-		INFOY / 2, WINY - 85);
-	else if (all->speed == MOVE_SPEED)
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_walk.img,
-		INFOX / 2, WINY - 85);
-	else if (all->speed == CROUCH_SPEED)
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win,
-		all->hud.s_crouch.img, INFOX / 2, WINY - 85);
-	else
-		mlx_put_image_to_window(all->ptr.mlx, all->ptr.win, all->hud.s_idle.img,
-		INFOX / 2, WINY - 85);
 	it_is_the_end(all);
 }
 
