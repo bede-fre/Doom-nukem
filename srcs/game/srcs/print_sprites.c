@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:22:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 12:05:59 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:17:04 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void		ft_print_sprite(t_all *all, int x, int i, double h)
 	{
 		sprite = ft_vecdef(all->var.tp.x, all->var.tp.y, 0.0);
 		player = ft_vecdef(all->p.x, all->p.y, 0.0);
-		angle = ft_vecangle(ft_vecsub(player, sprite), ft_vecdef(1.0, 0.0, 0.0))
+		angle = ft_vecangle(ft_vecsub(player, sprite), all->girl_vec)
 			* ft_signe(ft_cross_product(ft_vecsub(player, sprite),
-			ft_vecdef(1.0, 0.0, 0.0)).z);
+			all->girl_vec).z);
 	}
 	col = (BLOCK_SIZE / 2.0) + (ft_signe(ft_cross_product(all->var.v_sprite,
 		all->var.v_inter).z) * (tan(ft_rad(ft_vecangle(all->var.v_sprite,

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 18:22:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 10:56:06 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:16:45 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ void		ft_init(t_all *all, char *title)
 	all->wall_gap = 0.0;
 	all->p.ray_infos = 0;
 	all->jetpack = 0;
+	all->girl_vec = ft_vecdef(1.0, 0.0, 0.0);
 	all->stamina = (int)STAMINA_MAX;
 }

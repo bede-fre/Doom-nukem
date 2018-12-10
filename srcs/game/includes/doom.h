@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 12:06:41 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:13:47 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,6 +337,7 @@ typedef struct		s_all
 	t_img			fp;
 	t_raycast		rc;
 	t_player		p;
+	t_mat3			girl_vec;
 	double			a;
 	int				i;
 	double			lens;
