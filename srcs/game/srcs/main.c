@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 17:16:31 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/21 15:38:30 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/04 10:11:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			main(int ac, char **av)
 	t_all		all;
 
 	if (ac != 2)
-		ft_error("usage: ./doom-nukem [map_name ...]", 12, ft_puterror);
+		ft_error("usage: ./doom-nukem [map_name]", 12, ft_puterror);
 	ft_read_file(av[1], &all.rc.map);
 	ft_init_sdl(&all);
 	ft_init_player(all.rc.map, &all.p);

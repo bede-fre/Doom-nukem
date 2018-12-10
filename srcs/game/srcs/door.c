@@ -6,27 +6,13 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:12:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 14:12:10 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 09:47:59 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void	door_auto(char map[MAPY][MAPX], t_player p, t_point i)
-{
-	if (map[i.y][i.x] == T_DOOR_I && door_timer(0.0, i.y, i.x, map) > 0.99)
-		map[i.y][i.x] = T_DOOR_O;
-	if (map[i.y][i.x] == T_DOOR_R && door_timer(0.0, i.y, i.x, map) < 0.01)
-		map[i.y][i.x] = T_DOOR_C;
-	if (map[i.y][i.x] == T_DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2) +
-		pow(((p.y / 64) - i.y), 2)) >= 5)
-	{
-		map[i.y][i.x] = T_DOOR_R;
-		door_timer(-DOOR_SPEED, i.y, i.x, map);
-	}
-}
-
-void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
+static void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 {
 	int		i;
 	int		j;
@@ -43,9 +29,9 @@ void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 				timer[i][j] = 1.0;
 			else if (timer[i][j] <= DOOR_SPEED * 0.9)
 				timer[i][j] = 0.0;
-			else if (c == T_DOOR_I)
+			else if (c == DOOR_I)
 				timer[i][j] += DOOR_SPEED;
-			else if (c == T_DOOR_R)
+			else if (c == DOOR_R)
 				timer[i][j] -= DOOR_SPEED;
 			j++;
 		}
@@ -53,7 +39,21 @@ void	door_update(float timer[MAPY][MAPX], char map[MAPY][MAPX])
 	}
 }
 
-float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
+void		door_auto(char map[MAPY][MAPX], t_player p, t_point i)
+{
+	if (map[i.y][i.x] == DOOR_I && door_timer(0.0, i.y, i.x, map) > 0.99)
+		map[i.y][i.x] = DOOR_O;
+	if (map[i.y][i.x] == DOOR_R && door_timer(0.0, i.y, i.x, map) < 0.01)
+		map[i.y][i.x] = DOOR_C;
+	if (map[i.y][i.x] == DOOR_O && sqrt(pow(((p.x / 64) - i.x), 2) +
+		pow(((p.y / 64) - i.y), 2)) >= 5)
+	{
+		map[i.y][i.x] = DOOR_R;
+		door_timer(-DOOR_SPEED, i.y, i.x, map);
+	}
+}
+
+float		door_timer(float add, int x, int y, char map[MAPY][MAPX])
 {
 	static float	timer[MAPY][MAPX];
 	static int		i = 0;
@@ -63,11 +63,11 @@ float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
 	if (i % 50000 == 0)
 		door_update(timer, map);
 	i++;
-	if (c == T_DOOR_C || c == T_DOOR_I || c == T_DOOR_R || c == T_DOOR_O)
+	if (c == DOOR_C || c == DOOR_I || c == DOOR_R || c == DOOR_O)
 	{
-		if (c == T_DOOR_C)
+		if (c == DOOR_C)
 			timer[y][x] = 0.0;
-		else if (c == T_DOOR_O)
+		else if (c == DOOR_O)
 			timer[y][x] = 1.0;
 		else if (add)
 			timer[y][x] += add;
@@ -76,11 +76,11 @@ float	door_timer(float add, int x, int y, char map[MAPY][MAPX])
 	return (0.0);
 }
 
-void	door_open(t_all *all)
+void		door_open(t_all *all)
 {
 	all->a = all->p.a - ft_rad((((WINX / 2) - 1) - (WINX / 2) - 1) * RAY_ANGLE);
-	ft_fp_hori(&all->rc.ray_h, &all->p, all->rc.map, all->a);
-	ft_fp_vert(&all->rc.ray_v, &all->p, all->rc.map, all->a);
+	ft_fp_hori(&all->rc.ray_h, all->p, all->rc.map, all->a);
+	ft_fp_vert(&all->rc.ray_v, all->p, all->rc.map, all->a);
 	if (all->rc.ray_h.dist != all->rc.ray_h.dist ||
 		all->rc.ray_v.dist != all->rc.ray_v.dist)
 		all->rc.ray = (all->rc.ray_h.dist != all->rc.ray_h.dist) ?
@@ -88,11 +88,13 @@ void	door_open(t_all *all)
 	else
 		all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 		all->rc.ray_h : all->rc.ray_v;
-	if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == T_DOOR_C
+	if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == DOOR_C
 	&& all->rc.ray.dist <= 100)
 	{
+		all->msg_door = TRUE;
+		all->msg_door_rate = 1.0f;
 		Mix_PlayChannel(-1, all->sounds.opendoor, 0);
-		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = T_DOOR_I;
+		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = DOOR_I;
 		door_timer(DOOR_SPEED * 2, to_map(all->rc.ray.y), to_map(all->rc.ray.x),
 			all->rc.map);
 	}

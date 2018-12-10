@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/10 15:27:06 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:44:51 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libvect.h"
 # include "libft.h"
 
-# define WIN_DIM	30
+# define WIN_DIM	25
 # define WIN_WIDTH	WIN_HEIGHT + 18 * SCALE
 # define WIN_HEIGHT	(MAP_HEIGHT + 2) * WIN_DIM
 # define MAP_WIDTH	32

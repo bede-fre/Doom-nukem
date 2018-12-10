@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 10:40:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 11:40:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		to_win(int x)
 {
-	return (x * BLOCK_SIZE / ZOOM);
+	return ((int)((double)x * BLOCK_SIZE));
 }
 
 int		to_map(double x)
@@ -24,15 +24,16 @@ int		to_map(double x)
 
 int		is_wall(char wall)
 {
-	return (wall == T_A || wall == T_B || wall == T_C || wall == T_D
-		|| wall == T_DOOR_C || wall == T_DOOR_I || wall == T_DOOR_R);
+	return (wall == WOOD || wall == METAL || wall == STONE || wall == ICE
+		|| wall == DOOR_C || wall == DOOR_I || wall == DOOR_R
+		|| wall == BARREL || wall == ENNEMY || wall == GIRL);
 }
 
 int		is_displayable(char c)
 {
-	return (c != T_A && c != T_B && c != T_C && c != T_D && c != T_AS
-		&& c != T_BS && c != T_CS && c != T_DS && c != T_DOOR_C
-		&& c != TP_S);
+	return (c == WOOD || c == METAL || c == STONE || c == ICE || c == WOOD_S
+		|| c == METAL_S || c == STONE_S || c == ICE_S || c == DOOR_C
+		|| c == TP_S);
 }
 
 int		is_door(char map[MAPY][MAPX], t_ray *ray)
@@ -40,8 +41,8 @@ int		is_door(char map[MAPY][MAPX], t_ray *ray)
 	double t;
 
 	t = (64 * door_timer(0.0, to_map(ray->y), to_map(ray->x), map));
-	return (map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_I
-		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_I
-		&& map[to_map(ray->y - t)][to_map(ray->x - t)] != T_DOOR_R
-		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != T_DOOR_R);
+	return (map[to_map(ray->y - t)][to_map(ray->x - t)] != DOOR_I
+		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != DOOR_I
+		&& map[to_map(ray->y - t)][to_map(ray->x - t)] != DOOR_R
+		&& map[to_map(ray->y + t)][to_map(ray->x + t)] != DOOR_R);
 }

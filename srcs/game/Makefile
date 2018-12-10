@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/11/28 10:25:37 by lguiller         ###   ########.fr        #
+#    Updated: 2018/12/07 15:03:12 by bede-fre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ NAME					= doom-nukem
 SRCS_FILES				= $(addsuffix .c, main bresenham display print_env \
 						  check_and_stock_map init minimap raycasting copy_struct \
 						  input_device movements movements2 tools tools2 tools3 \
-						  print_stamina_bar refresh_events init2 \
-						  door end sound)
+						  print_stamina_bar refresh_events init2 print_stickman \
+						  door end sound tools4 print_sprites print_square \
+						  print_in_game_message)
 SRCS					= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS					= $(addprefix $(OBJS_DIR), $(SRCS_FILES:.c=.o))
 SRCS_DIR				= srcs/

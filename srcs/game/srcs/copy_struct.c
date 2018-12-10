@@ -6,48 +6,11 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:11:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/27 14:11:57 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:16:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-
-static void	ft_cpy_struct_3(t_all *tmp, t_all *all)
-{
-	tmp->lens = all->lens;
-	tmp->prevx = all->prevx;
-	tmp->prevy = all->prevy;
-	tmp->start_wall = all->start_wall;
-	tmp->wall_gap = all->wall_gap;
-}
-
-static void	ft_cpy_struct_2(t_all *tmp, t_all *all)
-{
-	tmp->rc.ray_v.dist = all->rc.ray_v.dist;
-	tmp->rc.ray_v.hit = all->rc.ray_v.hit;
-	tmp->rc.ray_v.fx = all->rc.ray_v.fx;
-	tmp->rc.ray_v.fy = all->rc.ray_v.fy;
-	tmp->rc.ray_v.xa = all->rc.ray_v.xa;
-	tmp->rc.ray_v.ya = all->rc.ray_v.ya;
-	tmp->rc.ray_v.dx = all->rc.ray_v.dx;
-	tmp->rc.ray_v.dy = all->rc.ray_v.dy;
-	tmp->rc.ray_v.x = all->rc.ray_v.x;
-	tmp->rc.ray_v.y = all->rc.ray_v.y;
-	tmp->rc.ray.dist = all->rc.ray.dist;
-	tmp->rc.ray.hit = all->rc.ray.hit;
-	tmp->rc.ray.fx = all->rc.ray.fx;
-	tmp->rc.ray.fy = all->rc.ray.fy;
-	tmp->rc.ray.xa = all->rc.ray.xa;
-	tmp->rc.ray.ya = all->rc.ray.ya;
-	tmp->rc.ray.dx = all->rc.ray.dx;
-	tmp->rc.ray.dy = all->rc.ray.dy;
-	tmp->rc.ray.x = all->rc.ray.x;
-	tmp->rc.ray.y = all->rc.ray.y;
-	tmp->p = all->p;
-	tmp->a = all->a;
-	tmp->i = all->i;
-	ft_cpy_struct_3(tmp, all);
-}
 
 void		ft_cpy_struct(t_all *tmp, t_all *all)
 {
@@ -62,15 +25,18 @@ void		ft_cpy_struct(t_all *tmp, t_all *all)
 	tmp->ptr = all->ptr;
 	tmp->fp = all->fp;
 	tmp->rc = all->rc;
-	tmp->rc.ray_h.dist = all->rc.ray_h.dist;
-	tmp->rc.ray_h.hit = all->rc.ray_h.hit;
-	tmp->rc.ray_h.fx = all->rc.ray_h.fx;
-	tmp->rc.ray_h.fy = all->rc.ray_h.fy;
-	tmp->rc.ray_h.xa = all->rc.ray_h.xa;
-	tmp->rc.ray_h.ya = all->rc.ray_h.ya;
-	tmp->rc.ray_h.dx = all->rc.ray_h.dx;
-	tmp->rc.ray_h.dy = all->rc.ray_h.dy;
-	tmp->rc.ray_h.x = all->rc.ray_h.x;
-	tmp->rc.ray_h.y = all->rc.ray_h.y;
-	ft_cpy_struct_2(tmp, all);
+	tmp->sprites = all->sprites;
+	tmp->p = all->p;
+	tmp->a = all->a;
+	tmp->i = all->i;
+	tmp->lens = all->lens;
+	tmp->prevx = all->prevx;
+	tmp->prevy = all->prevy;
+	tmp->start_wall = all->start_wall;
+	tmp->wall_gap = all->wall_gap;
+	tmp->rc.ray = all->rc.ray;
+	tmp->rc.ray.sprite = all->rc.ray.sprite;
+	tmp->rc.ray.sprite.x = all->rc.ray.sprite.x;
+	tmp->rc.ray.sprite.y = all->rc.ray.sprite.y;
+	tmp->girl_vec = all->girl_vec;
 }

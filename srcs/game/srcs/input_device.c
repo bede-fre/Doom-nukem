@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/27 15:50:24 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 11:20:02 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int		ft_key_press(int key, t_all *all)
 {
-	if (key == KEY_H || key == KEY_X || key == KEY_ENTER ||
+	if (key == KEY_H || key == KEY_ENTER ||
 		key == KEY_M)
 		all->keys_tab[key] = (all->keys_tab[key] == FALSE) ? TRUE : FALSE;
+	else if (key == KEY_X)
+	{
+		if (all->jetpack)
+			all->keys_tab[key] = (all->keys_tab[key] == FALSE) ? TRUE : FALSE;
+	}
 	else
 		all->keys_tab[key] = 1;
 	if (key == ESC)

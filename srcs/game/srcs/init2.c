@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 13:56:49 by cmace             #+#    #+#             */
-/*   Updated: 2018/11/27 14:21:21 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/07 10:01:46 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void		init_sounds(t_all *all)
 		ft_puterror(Mix_GetError());
 	if ((all->sounds.teleport = Mix_LoadWAV(S_TELEPORT)) == NULL)
 		ft_puterror(Mix_GetError());
-	if ((all->musics.win = Mix_LoadMUS(S_WIN)) == NULL)
+	if ((all->musics.win = Mix_LoadMUS(M_WIN)) == NULL)
 		ft_puterror(Mix_GetError());
 }

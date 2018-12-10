@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 11:55:11 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/29 10:38:29 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 09:59:36 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,24 @@ static void	fill_rect(t_img *ptr, char map[MAPY][MAPX], t_player p, t_point i)
 	const int		dimx = BLOCK_SIZE - (p.x / ZOOM) + HIT_BOX;
 	const int		dimy = BLOCK_SIZE - (p.y / ZOOM) + HIT_BOX;
 
-	if (map[i.y][i.x] == T_A || map[i.y][i.x] == T_B || map[i.y][i.x] == T_C
-		|| map[i.y][i.x] == T_D)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
-	if (map[i.y][i.x] == T_AS || map[i.y][i.x] == T_BS
-			|| map[i.y][i.x] == T_CS || map[i.y][i.x] == T_DS)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, WHITE);
+	if (map[i.y][i.x] == WOOD || map[i.y][i.x] == METAL
+		|| map[i.y][i.x] == STONE || map[i.y][i.x] == ICE
+		|| map[i.y][i.x] == WOOD_S || map[i.y][i.x] == METAL_S
+		|| map[i.y][i.x] == STONE_S || map[i.y][i.x] == ICE_S)
+		ft_rect(ptr, to_win(i.x) / ZOOM + dimx, to_win(i.y)
+		/ ZOOM + dimy, WHITE);
 	else if (map[i.y][i.x] == TP_S)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, LIGHT_GREEN);
+		ft_rect(ptr, to_win(i.x) / ZOOM + dimx, to_win(i.y)
+			/ ZOOM + dimy, LIGHT_GREEN);
 	else if (map[i.y][i.x] == TP_E)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, GREEN);
-	else if (map[i.y][i.x] == T_DOOR_C)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, BLUE);
+		ft_rect(ptr, to_win(i.x) / ZOOM + dimx, to_win(i.y)
+			/ ZOOM + dimy, GREEN);
+	else if (map[i.y][i.x] == DOOR_C)
+		ft_rect(ptr, to_win(i.x) / ZOOM + dimx, to_win(i.y)
+			/ ZOOM + dimy, BLUE);
 	else if (map[i.y][i.x] == END)
-		ft_rect(ptr, to_win(i.x) + dimx, to_win(i.y) + dimy, PURPLE);
+		ft_rect(ptr, to_win(i.x) / ZOOM + dimx, to_win(i.y)
+			/ ZOOM + dimy, PURPLE);
 }
 
 void		ft_print_map(t_img *ptr, char map[MAPY][MAPX], t_player p)

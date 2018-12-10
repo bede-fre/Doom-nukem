@@ -6,57 +6,59 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 14:06:10 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/26 10:08:23 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/07 10:08:55 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player *p)
+static void	ft_dist(char map[MAPY][MAPX], t_ray *ray, t_player p)
 {
 	int		i;
 
 	ray->x = ray->fx;
 	ray->y = ray->fy;
 	i = 0;
+	ray->test = 0;
+	ray->dist = 0.0;
 	while (ray->x >= 0.0 && ray->x < (MAPX * BLOCK_SIZE)
 		&& ray->y >= 0.0 && ray->y < (MAPY * BLOCK_SIZE)
-		&& is_displayable(map[to_map(ray->y)][to_map(ray->x)])
+		&& !is_displayable(map[to_map(ray->y)][to_map(ray->x)])
 		&& is_door(map, ray))
 	{
 		ray->x += ray->xa;
 		ray->y += ray->ya;
 		++i;
 	}
-	ray->dx = fabs(p->x - ray->x);
-	ray->dy = fabs(p->y - ray->y);
+	ray->dx = fabs(p.x - ray->x);
+	ray->dy = fabs(p.y - ray->y);
 	ray->dist = sqrt(pow(ray->dx, 2) + pow(ray->dy, 2));
 }
 
-void		ft_fp_hori(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
+void		ft_fp_hori(t_ray *ray, t_player p, char map[MAPY][MAPX], double a)
 {
 	if (a == WEST || a == EAST || a == EAST2)
-		ray->fy = p->y;
+		ray->fy = p.y;
 	else if (sin(a) >= 0)
-		ray->fy = ft_roundminf(p->y, (int)BLOCK_SIZE) - LITTLE;
+		ray->fy = ft_roundminf(p.y, (int)BLOCK_SIZE) - LITTLE;
 	else
-		ray->fy = ft_roundmsup(p->y, (int)BLOCK_SIZE);
-	ray->fx = p->x + (p->y - ray->fy) / tan(a);
+		ray->fy = ft_roundmsup(p.y, (int)BLOCK_SIZE);
+	ray->fx = p.x + (p.y - ray->fy) / tan(a);
 	ray->ya = (sin(a) >= 0) ? -BLOCK_SIZE : BLOCK_SIZE;
 	ray->xa = -ray->ya / tan(a);
 	ft_dist(map, ray, p);
 	ray->hit = (sin(a) > 0) ? S_W : N_W;
 }
 
-void		ft_fp_vert(t_ray *ray, t_player *p, char map[MAPY][MAPX], double a)
+void		ft_fp_vert(t_ray *ray, t_player p, char map[MAPY][MAPX], double a)
 {
 	if (a == NORTH || a == SOUTH)
-		ray->fx = p->x;
+		ray->fx = p.x;
 	else if (cos(a) < 0)
-		ray->fx = ft_roundminf(p->x, (int)BLOCK_SIZE) - LITTLE;
+		ray->fx = ft_roundminf(p.x, (int)BLOCK_SIZE) - LITTLE;
 	else
-		ray->fx = ft_roundmsup(p->x, (int)BLOCK_SIZE);
-	ray->fy = p->y + (p->x - ray->fx) * tan(a);
+		ray->fx = ft_roundmsup(p.x, (int)BLOCK_SIZE);
+	ray->fy = p.y + (p.x - ray->fx) * tan(a);
 	ray->xa = (cos(a) < 0) ? -BLOCK_SIZE : BLOCK_SIZE;
 	ray->ya = -ray->xa * tan(a);
 	ft_dist(map, ray, p);
@@ -72,8 +74,8 @@ void		*ft_wall_dist(void *ptr)
 	x = -1;
 	while (++x < THREAD)
 	{
-		ft_fp_hori(&all->rc.ray_h, &all->p, all->rc.map, all->a);
-		ft_fp_vert(&all->rc.ray_v, &all->p, all->rc.map, all->a);
+		ft_fp_hori(&all->rc.ray_h, all->p, all->rc.map, all->a);
+		ft_fp_vert(&all->rc.ray_v, all->p, all->rc.map, all->a);
 		if (all->rc.ray_h.dist != all->rc.ray_h.dist ||
 			all->rc.ray_v.dist != all->rc.ray_v.dist)
 			all->rc.ray = (all->rc.ray_h.dist != all->rc.ray_h.dist) ?
@@ -81,6 +83,7 @@ void		*ft_wall_dist(void *ptr)
 		else
 			all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
 				all->rc.ray_h : all->rc.ray_v;
+		cpy_sprite_infos(&all->rc);
 		ft_perso(&all->info, all->p);
 		ft_print_on_screen(all, all->i, all->lens);
 		all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
@@ -92,20 +95,21 @@ void		*ft_wall_dist(void *ptr)
 
 void		ft_print_ray_infos(t_all *all)
 {
-	ft_fp_hori(&all->rc.ray_h, &all->p, all->rc.map, all->a);
-	ft_fp_vert(&all->rc.ray_v, &all->p, all->rc.map, all->a);
+	ft_fp_hori(&all->rc.ray_h, all->p, all->rc.map, all->a);
+	ft_fp_vert(&all->rc.ray_v, all->p, all->rc.map, all->a);
 	if (all->rc.ray_h.dist != all->rc.ray_h.dist ||
-		all->rc.ray_v.dist != all->rc.ray_v.dist)
+			all->rc.ray_v.dist != all->rc.ray_v.dist)
 		all->rc.ray = (all->rc.ray_h.dist != all->rc.ray_h.dist) ?
-		all->rc.ray_v : all->rc.ray_h;
+			all->rc.ray_v : all->rc.ray_h;
 	else
 		all->rc.ray = (all->rc.ray_h.dist <= all->rc.ray_v.dist) ?
-		all->rc.ray_h : all->rc.ray_v;
+			all->rc.ray_h : all->rc.ray_v;
 	if (all->p.ray_infos == 1)
 	{
 		ft_putstr("ray dist: ");
 		ft_putnbr(all->rc.ray.dist);
 		ft_putchar('\n');
+		ft_print_on_screen(all, all->i, all->lens);
 	}
 	all->lens -= ft_rad(RAY_ANGLE) * all->keys_tab[KEY_H];
 	all->a -= ft_rad(RAY_ANGLE);

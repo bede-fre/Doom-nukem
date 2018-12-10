@@ -6,13 +6,13 @@
 /*   By: bede-fre <bede-fre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:45:17 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/11/23 16:31:51 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/06 12:25:48 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void		print_stamina_bar(t_img *img, int stamina)
+void		print_stamina_bar(t_img *img, int stamina, int col)
 {
 	const int	rate = (int)((double)BARW * ((double)stamina / STAMINA_MAX));
 	const int	size = 2;
@@ -28,7 +28,7 @@ void		print_stamina_bar(t_img *img, int stamina)
 				|| p.y >= BARH - size - 1)
 				ft_fill_pixel(img, p.x, p.y, BLACK);
 			else if (p.x < rate)
-				ft_fill_pixel(img, p.x, p.y, GREEN_A);
+				ft_fill_pixel(img, p.x, p.y, col);
 			else
 				ft_fill_pixel(img, p.x, p.y, ALPHA);
 		}
