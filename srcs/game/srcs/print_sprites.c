@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:22:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 10:29:50 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:05:59 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 
 static void		ft_print_sprite(t_all *all, int x, int i, double h)
 {
-	double			cpt;
-	double			col;
+	t_mat3	sprite;
+	t_mat3	player;
+	double	angle;
+	double	cpt;
+	double	col;
 
+	angle = 0.0;
+	if (all->rc.map[to_map(all->var.tp.y)][to_map(all->var.tp.x)] == GIRL)
+	{
+		sprite = ft_vecdef(all->var.tp.x, all->var.tp.y, 0.0);
+		player = ft_vecdef(all->p.x, all->p.y, 0.0);
+		angle = ft_vecangle(ft_vecsub(player, sprite), ft_vecdef(1.0, 0.0, 0.0))
+			* ft_signe(ft_cross_product(ft_vecsub(player, sprite),
+			ft_vecdef(1.0, 0.0, 0.0)).z);
+	}
 	col = (BLOCK_SIZE / 2.0) + (ft_signe(ft_cross_product(all->var.v_sprite,
 		all->var.v_inter).z) * (tan(ft_rad(ft_vecangle(all->var.v_sprite,
 		all->var.v_inter))) * ft_vecnorm(all->var.v_sprite)));
 	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
 		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
-	if (ft_find_color3(all, cpt, col) != (int)ALPHA && col >= 0.0 && col < 64.0)
-		ft_fill_pixel(&all->fp, x, i, ft_find_color3(all, cpt, col));
+	if (ft_find_color3(all, cpt, col, angle) !=
+		(int)ALPHA && col >= 0.0 && col < 64.0)
+		ft_fill_pixel(&all->fp, x, i, ft_find_color3(all, cpt, col, angle));
 }
 
 static void		print_col(t_all *all, int x)
