@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 17:45:42 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 09:41:36 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -330,8 +330,10 @@ typedef struct		s_all
 	t_img			fp;
 	t_raycast		rc;
 	t_player		p;
-	int				message;
-	float			message_spd;
+	int				msg_door;
+	float			msg_door_rate;
+	int				msg_tp;
+	float			msg_tp_rate;
 	double			a;
 	int				i;
 	double			lens;

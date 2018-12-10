@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:12:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 17:50:19 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 09:47:59 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void		door_open(t_all *all)
 	if (all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] == DOOR_C
 	&& all->rc.ray.dist <= 100)
 	{
-		all->message = TRUE;
-		all->message_spd = 1.0f;
+		all->msg_door = TRUE;
+		all->msg_door_rate = 1.0f;
 		Mix_PlayChannel(-1, all->sounds.opendoor, 0);
 		all->rc.map[to_map(all->rc.ray.y)][to_map(all->rc.ray.x)] = DOOR_I;
 		door_timer(DOOR_SPEED * 2, to_map(all->rc.ray.y), to_map(all->rc.ray.x),

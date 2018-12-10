@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:24:19 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/07 15:00:45 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/10 09:46:01 by bede-fre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ static void	action_zone(t_all *all)
 		all->stamina = STAMINA_MAX;
 		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
 	}
-	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == JETPACK)
-	{
-		all->jetpack = 1;
+	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == JETPACK
+		&& (all->jetpack = 1))
 		all->rc.map[to_map(all->p.y)][to_map(all->p.x)] = FLOOR;
-	}
 	if (all->rc.map[to_map(all->p.y)][to_map(all->p.x)] == TP_S && (p.y = -1))
 		while (++p.y < MAPY && (p.x = -1))
 			while (++p.x < MAPX)
@@ -79,6 +77,8 @@ static void	action_zone(t_all *all)
 					all->p.x = p.x * (int)BLOCK_SIZE + 32;
 					all->p.y = p.y * (int)BLOCK_SIZE + 32;
 					Mix_PlayChannel(-1, all->sounds.teleport, 0);
+					all->msg_tp = TRUE;
+					all->msg_tp_rate = 1.0f;
 				}
 }
 
