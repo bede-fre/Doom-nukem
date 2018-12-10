@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 12:13:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:18:11 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@
 # define SPR_CROUCH			F_SPRITE"Crouch_Sprite2.xpm"
 # define SPR_IDLE			F_SPRITE"Idle_Sprite2.xpm"
 # define SPR_RUN			F_SPRITE"Run_Sprite2.xpm"
-# define GIRL_FACE			F_SPRITE"deathknight_face.xpm"
-# define GIRL_LEFT			F_SPRITE"deathknight_left.xpm"
-# define GIRL_RIGHT			F_SPRITE"deathknight_right.xpm"
-# define GIRL_BACK			F_SPRITE"deathknight_back.xpm"
+# define GIRL_FACE			F_SPRITE"girl_face.xpm"
+# define GIRL_LEFT			F_SPRITE"girl_left.xpm"
+# define GIRL_RIGHT			F_SPRITE"girl_right.xpm"
+# define GIRL_BACK			F_SPRITE"girl_back.xpm"
 # define MUTE_IMG			F_IMAGE"soundmute.xpm"
 # define END_IMG			F_IMAGE"End_img.xpm"
 # define M_WOAH				F_MUSIC"WOAH.wav"
