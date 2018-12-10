@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 18:24:21 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 16:33:53 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		set_background(SDL_Surface *surface)
 	}
 }
 
-static void		print_texture(t_env *env)
+static void		print_texture(SDL_Surface *surface, t_env *env)
 {
 	SDL_Rect	rect;
 	int			i;
@@ -52,21 +52,28 @@ static void		print_texture(t_env *env)
 		rect = create_rect(env->buttons[i].rect.x + 2,
 			env->buttons[i].rect.y + 2, env->buttons[i].rect.w - 3,
 			env->buttons[i].rect.h - 3);
-		SDL_RenderCopy(env->renderer, env->buttons[i].texture, NULL, &rect);
+		scale_surface(surface, env->buttons[i].surface, &rect);
 	}
 	rect = create_rect(env->buttons[B_ERASER].rect.x + 2,
 		env->buttons[B_ERASER].rect.y + 2, env->buttons[B_ERASER].rect.w - 3,
 		env->buttons[B_ERASER].rect.h - 3);
-	SDL_RenderCopy(env->renderer, env->buttons[B_ERASER].texture, NULL, &rect);
-	rect = create_rect(env->buttons[B_DOOR].rect.x + 2,
-		env->buttons[B_DOOR].rect.y + 2, env->buttons[B_DOOR].rect.w - 3,
-		env->buttons[B_DOOR].rect.h - 3);
-	SDL_RenderCopy(env->renderer, env->buttons[B_DOOR].texture, NULL, &rect);
+	scale_surface(surface, env->buttons[B_ERASER].surface, &rect);
+//	rect = create_rect(env->buttons[B_DOOR].rect.x + 2,
+//		env->buttons[B_DOOR].rect.y + 2, env->buttons[B_DOOR].rect.w - 3,
+//		env->buttons[B_DOOR].rect.h - 3);
+
+	rect = create_rect(map_to_win(44) + 2, map_to_win(25) + 2, 0, 0);
+	SDL_Surface *tmp;
+	SDL_Surface *tmp2;
+	tmp2 = init_surface(env, SCALE - 4,  SCALE - 4);
+	tmp = env->surf.s_door;
+	scale_surface(tmp2, tmp, NULL);
+	SDL_BlitSurface(tmp2, NULL, surface, &rect);
+
 	rect = create_rect(env->buttons[B_SOUND].rect.x,
 		env->buttons[B_SOUND].rect.y, env->buttons[B_SOUND].rect.w,
 		env->buttons[B_SOUND].rect.h);
-	SDL_RenderCopy(env->renderer, env->buttons[(env->sound == 1) ?
-		B_SOUND : B_MUTE].texture, NULL, &rect);
+	scale_surface(surface, env->buttons[(env->sound == 1) ? B_SOUND : B_MUTE].surface, &rect);
 }
 
 /*
@@ -78,14 +85,13 @@ void			start_draw(t_env *env)
 	SDL_Surface *surface;
 
 	SDL_RenderClear(env->renderer);
-	surface = init_surface(env);
+	surface = init_surface(env, WIN_WIDTH, WIN_HEIGHT);
 	set_background(surface);
 	make_grid(surface);
 	print_buttons(env, surface, env->object, env->colision);
 	set_text(surface, env);
-	print_map(surface, env->map);
+	print_map(surface, env->map, env);
+	print_texture(surface, env);
 	print_view(surface, env);
-	print_texture(env);
-	print_maptexture(env->map, env);
 	SDL_RenderPresent(env->renderer);
 }

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 20:00:24 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 10:33:45 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int			is_image(char c)
 		|| c == T_B || c == T_BS || c == T_C
 		|| c == T_CS || c == T_D || c == T_DS
 		|| c == BARREL || c == JETPACK || c == PILLAR
-		|| c == UPSTAMI || c == T_DOOR)
+		|| c == UPSTAMI || c == T_DOOR || c == MOB)
 		return (1);
 	return (0);
 }

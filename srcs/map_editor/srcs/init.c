@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 11:18:35 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 18:22:33 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 13:57:42 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		init(t_env *env, char *file_name)
 	init_sdl(env);
 	read_file(file_name, &env->map);
 	init_bindings(env);
-	init_textures(env);
+	init_surfaces(env);
 	init_button(env);
 	init_sounds(env);
 	env->file_name = (char*)ft_memalloc(sizeof(char) *

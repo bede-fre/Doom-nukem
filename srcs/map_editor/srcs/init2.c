@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 13:47:28 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 14:35:22 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/07 14:11:06 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** INITIALISATION DE LA SURFACE
 */
 
-SDL_Surface	*init_surface(t_env *env)
+SDL_Surface	*init_surface(t_env *env, int w, int h)
 {
 	SDL_Surface *surface;
 
-	if (!(surface = SDL_CreateRGBSurface(0, WIN_WIDTH, WIN_HEIGHT, 32,
+	if (!(surface = SDL_CreateRGBSurface(0, w, h, 32,
 		0xFF000000, 0xFF0000, 0xFF00, 0xFF)))
 	{
 		SDL_FreeSurface(surface);

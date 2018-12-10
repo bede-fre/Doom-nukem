@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/06 20:04:47 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 15:27:06 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@
 # define F_FONT		"srcs/map_editor/font/"
 # define F_TEXT		"srcs/map_editor/textures/"
 # define F_IMAGE	"srcs/map_editor/images/"
-# define TEXT_A		F_TEXT"wood1.xpm"
-# define TEXT_B		F_TEXT"metal1.xpm"
-# define TEXT_C		F_TEXT"stone1.xpm"
-# define TEXT_D		F_TEXT"ice1.xpm"
-# define TEXT_DOOR	F_TEXT"door.xpm"
+# define TEXT_A		F_TEXT"wood1.png"
+# define TEXT_B		F_TEXT"stone1.png"
+# define TEXT_C		F_TEXT"metal1.png"
+# define TEXT_D		F_TEXT"ice1.png"
+# define TEXT_DOOR	F_TEXT"door.png"
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
@@ -171,6 +171,24 @@ typedef struct		s_textures
 	SDL_Texture		*t_mob;
 }					t_textures;
 
+typedef struct		s_surfaces
+{
+	SDL_Surface		*s_a;
+	SDL_Surface		*s_b;
+	SDL_Surface		*s_c;
+	SDL_Surface		*s_d;
+	SDL_Surface		*s_barrel;
+	SDL_Surface		*s_jetpack;
+	SDL_Surface		*s_pillar;
+	SDL_Surface		*s_upstami;
+	SDL_Surface		*s_eraser;
+	SDL_Surface		*s_door;
+	SDL_Surface		*s_sound;
+	SDL_Surface		*s_mute;
+	SDL_Surface		*s_tp_start;
+	SDL_Surface		*s_mob;
+}					t_surfaces;
+
 typedef struct		s_button
 {
 	t_point			pos;
@@ -178,7 +196,7 @@ typedef struct		s_button
 	SDL_Rect		rect;
 	int				button_col;
 	int				border_col;
-	SDL_Texture		*texture;
+	SDL_Surface		*surface;
 }					t_button;
 
 typedef struct		s_sounds
@@ -202,6 +220,7 @@ typedef struct		s_env
 	SDL_Renderer	*renderer;
 	TTF_Font		*font;
 	t_sounds		sounds;
+	t_surfaces		surf;
 	t_textures		text;
 	char			map[MAP_HEIGHT][MAP_WIDTH];
 	int				*bindings;
@@ -217,7 +236,7 @@ typedef struct		s_env
 void				init(t_env *env, char *file_name);
 void				events(SDL_Event event, int *loop, t_env *env);
 void				refresh_events(t_env *env);
-SDL_Surface			*init_surface(t_env *env);
+SDL_Surface			*init_surface(t_env *env, int w, int h);
 SDL_Texture			*create_texture(SDL_Surface *surface, t_env *env);
 void				print_view(SDL_Surface *surface, t_env *env);
 void				clear(t_env *env, const char *str, int error);
@@ -230,9 +249,7 @@ void				fill_border(SDL_Surface *surface, t_point coord, int l,
 						Uint32 col);
 void				fill_cross(SDL_Surface *surface, t_point coord, Uint32 col);
 void				print_map(SDL_Surface *surface,
-						char map[MAP_HEIGHT][MAP_WIDTH]);
-void				print_maptexture(char map[MAP_HEIGHT][MAP_WIDTH],
-						t_env *env);
+						char map[MAP_HEIGHT][MAP_WIDTH], t_env *env);
 int					map_to_win(int x);
 int					win_to_map(int x);
 void				modif_map(t_env *env);
@@ -258,9 +275,13 @@ char				chose_object(t_button buttons[NB_BUTTONS], int x, int y,
 void				create_new_file(char *file);
 Mix_Music			*get_sounds(t_env *env, char x);
 void				destroy_text(t_env *env);
-SDL_Texture 		*what_image(t_textures text, char object);
+SDL_Texture			*what_image(t_textures text, char object);
+SDL_Surface			*what_surface(t_surfaces surf, char object);
 int					is_image(char c);
 int					is_color(char c);
 void				init_textures(t_env *env);
+void				init_surfaces(t_env *env);
+void				scale_surface(SDL_Surface *dst, SDL_Surface *src,
+						SDL_Rect *r);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 10:51:33 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/06 20:00:01 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/07 13:56:25 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ SDL_Rect	create_rect(int x, int y, int w, int h)
 {
 	SDL_Rect rect;
 
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
+	if (x >= 0)
+		rect.x = x;
+	if (y >= 0)
+		rect.y = y;
+	if (w >= 0)
+		rect.w = w;
+	if (h >= 0)
+		rect.h = h;
 	return (rect);
 }
 
