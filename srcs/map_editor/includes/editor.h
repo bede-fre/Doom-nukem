@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 09:14:15 by bede-fre          #+#    #+#             */
-/*   Updated: 2018/12/10 17:44:51 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:52:58 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 # define T_CS		'c'
 # define T_DS		'd'
 # define BARREL		'3'
-# define JETPACK	'4'
-# define PILLAR		'5'
-# define UPSTAMI	'6'
-# define MOB		'7'
+# define MOB		'4'
+# define UPSTAMI	'5'
+# define JETPACK	'6'
+# define GIRL		'7'
 # define T_DOOR		'-'
 # define TRUE		1
 # define FALSE		0
@@ -64,7 +64,7 @@
 # define TEXT_MUTE	F_IMAGE"soundmute.png"
 # define T_BARREL	F_IMAGE"barrel.png"
 # define T_JETPACK	F_IMAGE"jetpack.png"
-# define T_PILLAR	F_IMAGE"pillar.png"
+# define T_GIRL		F_IMAGE"girl.png"
 # define T_UPSTAMI	F_IMAGE"upstamina.png"
 # define T_TP_START	F_TEXT"nether.png"
 # define T_MOB		F_IMAGE"mob.png"
@@ -133,7 +133,7 @@ enum				e_button
 	B_JETPACK,
 	B_UPSTAMI,
 	B_MOB,
-	B_PILLAR,
+	B_GIRL,
 	COLISION,
 	NO_COLISION,
 	TP_START,
@@ -161,7 +161,7 @@ typedef struct		s_textures
 	SDL_Texture		*t_d;
 	SDL_Texture		*t_barrel;
 	SDL_Texture		*t_jetpack;
-	SDL_Texture		*t_pillar;
+	SDL_Texture		*t_girl;
 	SDL_Texture		*t_upstami;
 	SDL_Texture		*eraser;
 	SDL_Texture		*door;
@@ -179,7 +179,7 @@ typedef struct		s_surfaces
 	SDL_Surface		*s_d;
 	SDL_Surface		*s_barrel;
 	SDL_Surface		*s_jetpack;
-	SDL_Surface		*s_pillar;
+	SDL_Surface		*s_girl;
 	SDL_Surface		*s_upstami;
 	SDL_Surface		*s_eraser;
 	SDL_Surface		*s_door;

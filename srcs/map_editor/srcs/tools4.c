@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:27:21 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/07 13:36:50 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:49:50 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ SDL_Texture			*what_image(t_textures text, char object)
 		return (text.t_barrel);
 	else if (object == JETPACK)
 		return (text.t_jetpack);
-	else if (object == PILLAR)
-		return (text.t_pillar);
+	else if (object == GIRL)
+		return (text.t_girl);
 	else if (object == TP_S)
 		return (text.t_tp_start);
 	else if (object == T_A)
@@ -76,8 +76,8 @@ SDL_Surface			*what_surface(t_surfaces surf, char object)
 		return (surf.s_barrel);
 	else if (object == JETPACK)
 		return (surf.s_jetpack);
-	else if (object == PILLAR)
-		return (surf.s_pillar);
+	else if (object == GIRL)
+		return (surf.s_girl);
 	else if (object == TP_S)
 		return (surf.s_tp_start);
 	else if (object == T_A)

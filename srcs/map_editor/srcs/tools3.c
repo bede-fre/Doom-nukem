@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:58:42 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 17:37:20 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:49:34 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ char		chose_object(t_button buttons[NB_BUTTONS],
 	else if (win_to_map(x) == win_to_map(buttons[B_JETPACK].pos.x)
 		&& win_to_map(y) == win_to_map(buttons[B_JETPACK].pos.y))
 		return (JETPACK);
-	else if (win_to_map(x) == win_to_map(buttons[B_PILLAR].pos.x)
-		&& win_to_map(y) == win_to_map(buttons[B_PILLAR].pos.y))
-		return (PILLAR);
+	else if (win_to_map(x) == win_to_map(buttons[B_GIRL].pos.x)
+		&& win_to_map(y) == win_to_map(buttons[B_GIRL].pos.y))
+		return (GIRL);
 	else
 		return (chose_object2(buttons, x, y));
 }
@@ -112,7 +112,7 @@ int			is_image(char c)
 	if (c == TP_S || c == T_A || c == T_AS
 		|| c == T_B || c == T_BS || c == T_C
 		|| c == T_CS || c == T_D || c == T_DS
-		|| c == BARREL || c == JETPACK || c == PILLAR
+		|| c == BARREL || c == JETPACK || c == GIRL
 		|| c == UPSTAMI || c == T_DOOR || c == MOB)
 		return (1);
 	return (0);

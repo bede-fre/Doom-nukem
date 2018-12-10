@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 18:20:28 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/10 16:47:18 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:49:50 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			init_surfaces(t_env *env)
 	env->surf.s_d = IMG_Load(TEXT_D);
 	env->surf.s_barrel = IMG_Load(T_BARREL);
 	env->surf.s_jetpack = IMG_Load(T_JETPACK);
-	env->surf.s_pillar = IMG_Load(T_PILLAR);
+	env->surf.s_girl = IMG_Load(T_GIRL);
 	env->surf.s_upstami = IMG_Load(T_UPSTAMI);
 	env->surf.s_eraser = IMG_Load(ERASER);
 	env->surf.s_door = IMG_Load(TEXT_DOOR);

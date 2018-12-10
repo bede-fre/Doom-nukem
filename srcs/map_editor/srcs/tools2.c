@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 10:51:33 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 13:56:25 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:49:34 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int			get_object(char x)
 {
 	const int	object[] = {WOOD, WOOD, METAL, METAL, STONE, STONE, ICE, ICE,
 		B_BARREL, TP_START, TP_END, B_START, B_ERASER, B_DOOR, B_END,
-		B_JETPACK, B_PILLAR, B_UPSTAMI, B_MOB};
+		B_JETPACK, B_GIRL, B_UPSTAMI, B_MOB};
 	const char	wall[] = {T_A, T_AS, T_B, T_BS, T_C, T_CS, T_D, T_DS, BARREL,
-		TP_S, TP_E, START, FLOOR, T_DOOR, END, JETPACK, PILLAR, UPSTAMI, MOB};
+		TP_S, TP_E, START, FLOOR, T_DOOR, END, JETPACK, GIRL, UPSTAMI, MOB};
 	int			i;
 
 	i = -1;
