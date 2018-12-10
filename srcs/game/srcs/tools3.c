@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 10:12:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 10:28:47 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:08:26 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,22 @@ static int	ft_color_textures(t_img *ptr, double cpt, int col)
 		ptr->data[col * 4 + ((int)(CAM_HEIGHT + cpt) * ptr->sl) + 3]));
 }
 
-int			ft_find_color3(t_all *all, double cpt, double col)
+static int	ft_find_color4(t_all *all, double cpt, double col, double angle)
+{
+	if (angle < 45.0 && angle > -45.0)
+		return (ft_color_textures(&all->sprites.girl_face, cpt, col));
+	else if (angle < 135.0 && angle > -135.0)
+	{
+		if (angle >= 0)
+			return (ft_color_textures(&all->sprites.girl_left, cpt, col));
+		else
+			return (ft_color_textures(&all->sprites.girl_right, cpt, col));
+	}
+	else
+		return (ft_color_textures(&all->sprites.girl_back, cpt, col));
+}
+
+int			ft_find_color3(t_all *all, double cpt, double col, double angle)
 {
 	char	hit_wall;
 
@@ -36,6 +51,8 @@ int			ft_find_color3(t_all *all, double cpt, double col)
 		return (ft_color_textures(&all->sprites.lightning, cpt, col));
 	else if (hit_wall == JETPACK)
 		return (ft_color_textures(&all->sprites.jetpack, cpt, col));
+	else if (hit_wall == GIRL)
+		return (ft_find_color4(all, cpt, col, angle));
 	else
 		return (0);
 }

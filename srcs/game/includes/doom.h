@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:51:58 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 09:41:36 by bede-fre         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:18:11 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@
 # define SPR_CROUCH			F_SPRITE"Crouch_Sprite2.xpm"
 # define SPR_IDLE			F_SPRITE"Idle_Sprite2.xpm"
 # define SPR_RUN			F_SPRITE"Run_Sprite2.xpm"
+# define GIRL_FACE			F_SPRITE"girl_face.xpm"
+# define GIRL_LEFT			F_SPRITE"girl_left.xpm"
+# define GIRL_RIGHT			F_SPRITE"girl_right.xpm"
+# define GIRL_BACK			F_SPRITE"girl_back.xpm"
 # define MUTE_IMG			F_IMAGE"soundmute.xpm"
 # define END_IMG			F_IMAGE"End_img.xpm"
 # define M_WOAH				F_MUSIC"WOAH.wav"
@@ -74,6 +78,7 @@
 # define ENNEMY				'4'
 # define LIGHTNING			'5'
 # define JETPACK			'6'
+# define GIRL				'7'
 # define WOOD				'A'
 # define WOOD_S				'a'
 # define METAL				'B'
@@ -274,6 +279,10 @@ typedef struct		s_sprites
 	t_img			ennemy;
 	t_img			lightning;
 	t_img			jetpack;
+	t_img			girl_face;
+	t_img			girl_left;
+	t_img			girl_right;
+	t_img			girl_back;
 }					t_sprites;
 
 typedef struct		s_textures
@@ -334,6 +343,7 @@ typedef struct		s_all
 	float			msg_door_rate;
 	int				msg_tp;
 	float			msg_tp_rate;
+	t_mat3			girl_vec;
 	double			a;
 	int				i;
 	double			lens;
@@ -406,7 +416,8 @@ void				init_xpm(t_mlx ptr, t_img *img, char *path);
 int					is_sprite(char c);
 int					ft_find_color(t_all *all, double cpt, int col);
 int					ft_find_color2(t_all *all, double cpt, int col, float door);
-int					ft_find_color3(t_all *all, double cpt, double col);
+int					ft_find_color3(t_all *all, double cpt, double col,
+						double angle);
 void				cpy_sprite_infos(t_raycast *rc);
 void				register_sprite(t_ray *ray, t_player p);
 void				print_sprites(t_all *all, int x);

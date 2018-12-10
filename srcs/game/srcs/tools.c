@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:17:09 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/07 10:12:41 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 11:40:08 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		is_wall(char wall)
 {
 	return (wall == WOOD || wall == METAL || wall == STONE || wall == ICE
 		|| wall == DOOR_C || wall == DOOR_I || wall == DOOR_R
-		|| wall == BARREL || wall == ENNEMY);
+		|| wall == BARREL || wall == ENNEMY || wall == GIRL);
 }
 
 int		is_displayable(char c)

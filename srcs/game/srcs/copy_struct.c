@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:11:56 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/03 10:11:08 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/10 12:16:10 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void		ft_cpy_struct(t_all *tmp, t_all *all)
 	tmp->rc.ray.sprite = all->rc.ray.sprite;
 	tmp->rc.ray.sprite.x = all->rc.ray.sprite.x;
 	tmp->rc.ray.sprite.y = all->rc.ray.sprite.y;
+	tmp->girl_vec = all->girl_vec;
 }
