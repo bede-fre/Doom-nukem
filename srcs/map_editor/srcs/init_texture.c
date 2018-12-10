@@ -6,14 +6,13 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 18:20:28 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/10 17:49:50 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 17:54:56 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "editor.h"
 
-
-void			init_surfaces(t_env *env)
+void	init_surfaces(t_env *env)
 {
 	env->surf.s_a = IMG_Load(TEXT_A);
 	env->surf.s_b = IMG_Load(TEXT_B);

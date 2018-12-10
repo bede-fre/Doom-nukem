@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:06:22 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 17:49:34 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 18:00:23 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,23 @@ static void		set_background(SDL_Surface *surface)
 	}
 }
 
+static void		print_texture2(SDL_Surface *surface, t_env *env, SDL_Rect rect)
+{
+	SDL_Surface *tmp;
+	SDL_Surface *tmp2;
+
+	rect = create_rect(map_to_win(44) + 2, map_to_win(25) + 2, 0, 0);
+	tmp2 = init_surface(env, SCALE - 4, SCALE - 4);
+	tmp = env->surf.s_door;
+	scale_surface(tmp2, tmp, NULL);
+	SDL_BlitSurface(tmp2, NULL, surface, &rect);
+	rect = create_rect(env->buttons[B_SOUND].rect.x,
+		env->buttons[B_SOUND].rect.y, env->buttons[B_SOUND].rect.w,
+		env->buttons[B_SOUND].rect.h);
+	scale_surface(surface, env->buttons[(env->sound == 1) ?
+		B_SOUND : B_MUTE].surface, &rect);
+}
+
 static void		print_texture(SDL_Surface *surface, t_env *env)
 {
 	SDL_Rect	rect;
@@ -58,22 +75,7 @@ static void		print_texture(SDL_Surface *surface, t_env *env)
 		env->buttons[B_ERASER].rect.y + 2, env->buttons[B_ERASER].rect.w - 3,
 		env->buttons[B_ERASER].rect.h - 3);
 	scale_surface(surface, env->buttons[B_ERASER].surface, &rect);
-//	rect = create_rect(env->buttons[B_DOOR].rect.x + 2,
-//		env->buttons[B_DOOR].rect.y + 2, env->buttons[B_DOOR].rect.w - 3,
-//		env->buttons[B_DOOR].rect.h - 3);
-
-	rect = create_rect(map_to_win(44) + 2, map_to_win(25) + 2, 0, 0);
-	SDL_Surface *tmp;
-	SDL_Surface *tmp2;
-	tmp2 = init_surface(env, SCALE - 4,  SCALE - 4);
-	tmp = env->surf.s_door;
-	scale_surface(tmp2, tmp, NULL);
-	SDL_BlitSurface(tmp2, NULL, surface, &rect);
-
-	rect = create_rect(env->buttons[B_SOUND].rect.x,
-		env->buttons[B_SOUND].rect.y, env->buttons[B_SOUND].rect.w,
-		env->buttons[B_SOUND].rect.h);
-	scale_surface(surface, env->buttons[(env->sound == 1) ? B_SOUND : B_MUTE].surface, &rect);
+	print_texture2(surface, env, rect);
 }
 
 /*
