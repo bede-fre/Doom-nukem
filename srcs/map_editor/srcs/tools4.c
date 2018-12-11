@@ -14,12 +14,12 @@
 
 static SDL_Texture	*what_image2(t_textures text, char object)
 {
-	if (object == T_DS)
+	if (object == T_CS)
+		return (text.t_c);
+	else if (object == T_DS)
 		return (text.t_d);
 	else if (object == UPSTAMI)
 		return (text.t_upstami);
-	else if (object == T_CS)
-		return (text.t_c);
 	else if (object == MOB)
 		return (text.t_mob);
 	else
@@ -56,12 +56,12 @@ SDL_Texture			*what_image(t_textures text, char object)
 
 static SDL_Surface	*what_surface2(t_surfaces surf, char object)
 {
-	if (object == T_DS)
-		return (surf.s_d);
+	if (object == T_CS)
+		return (surf.s_sc);
+	else if (object == T_DS)
+		return (surf.s_sd);
 	else if (object == UPSTAMI)
 		return (surf.s_upstami);
-	else if (object == T_CS)
-		return (surf.s_c);
 	else if (object == MOB)
 		return (surf.s_mob);
 	else
@@ -89,9 +89,9 @@ SDL_Surface			*what_surface(t_surfaces surf, char object)
 	else if (object == T_D)
 		return (surf.s_d);
 	else if (object == T_AS)
-		return (surf.s_a);
+		return (surf.s_sa);
 	else if (object == T_BS)
-		return (surf.s_b);
+		return (surf.s_sb);
 	else
 		return (what_surface2(surf, object));
 }

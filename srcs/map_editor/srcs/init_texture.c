@@ -18,6 +18,10 @@ void	init_surfaces(t_env *env)
 	env->surf.s_b = IMG_Load(TEXT_B);
 	env->surf.s_c = IMG_Load(TEXT_C);
 	env->surf.s_d = IMG_Load(TEXT_D);
+	env->surf.s_sa = IMG_Load(TEXT_SA);
+	env->surf.s_sb = IMG_Load(TEXT_SB);
+	env->surf.s_sc = IMG_Load(TEXT_SC);
+	env->surf.s_sd = IMG_Load(TEXT_SD);
 	env->surf.s_barrel = IMG_Load(T_BARREL);
 	env->surf.s_jetpack = IMG_Load(T_JETPACK);
 	env->surf.s_girl = IMG_Load(T_GIRL);

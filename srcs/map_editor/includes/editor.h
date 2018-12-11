@@ -58,6 +58,10 @@
 # define TEXT_B		F_TEXT"stone1.png"
 # define TEXT_C		F_TEXT"metal1.png"
 # define TEXT_D		F_TEXT"ice1.png"
+# define TEXT_SA	F_TEXT"no_wood.png"
+# define TEXT_SB	F_TEXT"no_stone.png"
+# define TEXT_SC	F_TEXT"no_metal.png"
+# define TEXT_SD	F_TEXT"no_ice.png"
 # define TEXT_DOOR	F_TEXT"door.png"
 # define ERASER		F_IMAGE"eraser.png"
 # define TEXT_SOUND	F_IMAGE"sound.png"
@@ -177,6 +181,10 @@ typedef struct		s_surfaces
 	SDL_Surface		*s_b;
 	SDL_Surface		*s_c;
 	SDL_Surface		*s_d;
+	SDL_Surface		*s_sa;
+	SDL_Surface		*s_sb;
+	SDL_Surface		*s_sc;
+	SDL_Surface		*s_sd;
 	SDL_Surface		*s_barrel;
 	SDL_Surface		*s_jetpack;
 	SDL_Surface		*s_girl;
