@@ -6,7 +6,7 @@
 /*   By: lguiller <lguiller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 13:22:20 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 12:17:04 by lguiller         ###   ########.fr       */
+/*   Updated: 2018/12/11 09:45:32 by lguiller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		ft_print_sprite(t_all *all, int x, int i, double h)
 	cpt = ((double)i - (all->start_wall - ((h / 4.0) * (2.0 + all->wall_gap))))
 		* (BLOCK_SIZE / h) - (BLOCK_SIZE / 2.0);
 	if (ft_find_color3(all, cpt, col, angle) !=
-		(int)ALPHA && col >= 0.0 && col < 64.0)
+		(int)ALPHA && col >= 0.0 && col < 64.0 && cpt >= -32.0 && cpt < 32.0)
 		ft_fill_pixel(&all->fp, x, i, ft_find_color3(all, cpt, col, angle));
 }
 
