@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 10:07:18 by lguiller          #+#    #+#             */
-/*   Updated: 2018/12/10 17:49:50 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 18:43:06 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static void		init_next_buttons_le_retour(t_env *env)
 	rect = create_rect(map_to_win(40), map_to_win(8), dim, dim);
 	env->buttons[B_JETPACK] = create_button(rect, BLUE, BLACK,
 		env->surf.s_jetpack);
-	rect = create_rect(map_to_win(42), map_to_win(8), dim, dim);
+	rect = create_rect(map_to_win(40), map_to_win(13), dim, dim);
 	env->buttons[B_GIRL] = create_button(rect, BLUE, BLACK,
 		env->surf.s_girl);
-	rect = create_rect(map_to_win(44), map_to_win(8), dim, dim);
+	rect = create_rect(map_to_win(42), map_to_win(8), dim, dim);
 	env->buttons[B_UPSTAMI] = create_button(rect, BLUE, BLACK,
 		env->surf.s_upstami);
 	rect = create_rect(map_to_win(38), map_to_win(13), dim, dim);

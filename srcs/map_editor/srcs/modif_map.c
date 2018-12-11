@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 18:43:48 by lguiller          #+#    #+#             */
-/*   Updated: 2018/11/23 14:43:11 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 18:48:03 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void		modif_map(t_env *env)
 	if (i.x >= 0 && i.x < MAP_WIDTH && i.y >= 0 && i.y < MAP_HEIGHT &&
 		env->map[i.y][i.x] != env->object)
 	{
-		if (env->object == START || env->object == TP_E)
+		if (env->object == START || env->object == TP_E
+			|| env->object == JETPACK)
 			delete_car(env);
 		if (env->map[i.y][i.x] != START)
 		{

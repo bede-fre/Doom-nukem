@@ -6,7 +6,7 @@
 /*   By: cmace <cmace@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 14:58:50 by cmace             #+#    #+#             */
-/*   Updated: 2018/12/07 12:48:31 by cmace            ###   ########.fr       */
+/*   Updated: 2018/12/10 18:42:18 by cmace            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		set_text2(SDL_Surface *surface, t_env *env, const int dim)
 		env->buttons[TP_END].pos.y);
 	set_string(env, "Exit", p, surface);
 	p = ft_pointdef(map_to_win(36), map_to_win(11));
-	set_string(env, "Mob:", p, surface);
+	set_string(env, "Personnage:", p, surface);
 }
 
 void			set_text(SDL_Surface *surface, t_env *env)
