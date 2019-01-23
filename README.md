@@ -36,6 +36,8 @@ git clone https://github.com/Lynux2142/minilibx.git
 
 ## Utilisation:
 
+### doom-nukem
+
 * 'w' / 'a' / 's' / 'd' = deplacement
 
 * 'q' / 'e' / mouvement de souris = rotation camera
@@ -54,8 +56,18 @@ git clone https://github.com/Lynux2142/minilibx.git
 
 * 'm' = activer / desactiver le son
 
-* 'l' = exectuer un leaks
+* 'l' = exectuer leaks
 
 * 'left clic' = afficher la distance du mur pointe
+
+* 'esc' = quitter
+
+### editor
+
+* 'enter' = generer la map
+
+* 'm' = activer / desactiver le son
+
+* 'l' = executer leaks
 
 * 'esc' = quitter
