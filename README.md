@@ -6,7 +6,7 @@
 
 ## Telechargement:
 ```
-git clone https://github.com/Lynux2142/doom.git
+git clone https://github.com/Lynux2142/doom-nukem.git
 
 git clone https://github.com/Lynux2142/libft.git
 
@@ -16,7 +16,7 @@ git clone https://github.com/Lynux2142/minilibx.git
 ```
 ## Compilation:
 
-```cd doom/```
+```cd doom-nukem/```
 
 ```make```
 
