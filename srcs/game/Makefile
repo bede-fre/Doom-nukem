@@ -6,7 +6,7 @@
 #    By: cmace <cmace@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/16 12:18:12 by lguiller          #+#    #+#              #
-#    Updated: 2018/12/07 15:03:12 by bede-fre         ###   ########.fr        #
+#    Updated: 2019/01/23 13:21:44 by lguiller         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ FRAMEWORK				= -framework OpenGL -framework Appkit $(LIBFT) $(MLX) $(LIBVECT) \
 							-I $(SDL_MAIN_INCLUDE_PATH) \
 							-L $(SDL_MAIN_LIBS) -lSDL2 -I$(SDL_IMAGE_INCLUDE_PATH) \
 							-L $(SDL_IMAGE_LIBS) -lSDL2_image -L $(SDL_TTF_LIBS) -lSDL2_ttf \
-							-L $(FREETYPE_LIBS) -lfreetype -L $(SDL_MIXER_LIBS) -lSDL2_mixer
+							-L $(FREETYPE_LIBS) -lfreetype -L $(SDL_MIXER_LIBS) -lSDL2_mixer \
+							-lpthread
 SDL_FOLDER				= $(HOME)/sdl/
 SDL_MAIN_OBJ_LIBS		= libSDL2.a
 SDL_IMAGE_OBJ_LIBS		= libSDL2_image.a
