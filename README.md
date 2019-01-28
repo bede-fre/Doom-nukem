@@ -18,6 +18,9 @@ Enter in the dowloaded folder ```cd Doom-nukem/``` and compile two executables w
 
 ## Commands :
 
+
+### Game :
+
 - W : Move forward
 - S : Move backward
 - D : Right strafe
@@ -28,8 +31,18 @@ Enter in the dowloaded folder ```cd Doom-nukem/``` and compile two executables w
 - X : Active/desactivate jetpack (if you have it on your inventory)
 - Left shift : run (until you have no more energy)
 - Left ctrl : crunch
-- F : Down height
-- SPACE : Reset initial position
+- H : Activate/desactivate fisheye effect
+- M : Activate/desactivate sound
+- L : Execute leaks command
+- SPACE : Jump/Fly (if you have jetpack)
+- Mouse left clic : Display distance between PJ and wall clicked
+- ESC : Quit program
+
+### Editor :
+
+- M : Activate/desactivate sound
+- L : Execute leaks command
+- ENTER : Generate and save map
 - ESC : Quit program
 
 ## Screenshots :
@@ -37,42 +50,3 @@ Enter in the dowloaded folder ```cd Doom-nukem/``` and compile two executables w
 ![screenshot](/screens/screen.png?raw=true)
 
 ![screenshot](/screens/screen2.png?raw=true)
-
-
-## Utilisation:
-
-### doom-nukem
-
-* 'w' / 'a' / 's' / 'd' = deplacement
-
-* 'q' / 'e' / mouvement de souris = rotation camera
-
-* 'f' = ouvrir les portes
-
-* 'x' = activer / desactiver le jetpack (apres ramassage de celui-ci)
-
-* 'space' = sauter / voler (jetpack)
-
-* 'left ctrl = s'accroupir
-
-* 'left shift' = courrir
-
-* 'h' = activer / desactiver le fisheye
-
-* 'm' = activer / desactiver le son
-
-* 'l' = exectuer leaks
-
-* 'left clic' = afficher la distance du mur pointe
-
-* 'esc' = quitter
-
-### editor
-
-* 'enter' = generer la map
-
-* 'm' = activer / desactiver le son
-
-* 'l' = executer leaks
-
-* 'esc' = quitter
